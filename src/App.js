@@ -1,11 +1,12 @@
-import logo from './logo.svg';
+/* eslint-disable no-unused-vars */
+import React from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const test = 0;
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit
           {' '}
@@ -24,6 +25,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;
