@@ -86,7 +86,7 @@ const Institutions = () => {
             />
           </div>
           <div className="name-list">
-            <table className="table-fixed w-full text-xs shadow-md">
+            <table className="table-fixed w-full text-xs">
               <thead className=" bg-gray-50 text-xs capitalize">
                 <tr>
                   <th
@@ -124,26 +124,36 @@ const Institutions = () => {
                   <th scope="col" className=" text-gray-500 py-4 text-left" />
                 </tr>
               </thead>
-
-              <tbody className="divide-y divide-gray-300 outline outline-blue-500">
-                {displayData}
-              </tbody>
-              <tbody className="outline outline-black">
-                {' '}
-                <ReactPaginate
-                  previousLabel="Previous"
-                  nextLabel="Next"
-                  pageCount={pagingCount}
-                  onPageChange={changePage}
-                  containerClassName="pagination-button"
-                  previousLinkClassName="previousButton"
-                  nextLinkClassName="nextButton"
-                  disabledClassName="paginationDisabled"
-                  activeClassName="paginationActive"
-                />
-              </tbody>
+              <tbody className="divide-y divide-gray-300">{displayData}</tbody>
+              {/* <tbody className="w-screen flex justify-start outline outline-black"> */}
+              {' '}
+              {/* <ReactPaginate
+                previousLabel="Previous"
+                nextLabel="Next"
+                pageCount={pagingCount}
+                onPageChange={changePage}
+                containerClassName="pagination-button"
+                previousLinkClassName="previousButton"
+                nextLinkClassName="nextButton"
+                disabledClassName="paginationDisabled"
+                activeClassName="paginationActive"
+                className="w-screen flex flex-row justify-around py-3 outline outline-red-500"
+              /> */}
+              {/* </tbody> */}
             </table>
           </div>
+          <ReactPaginate
+            previousLabel="Previous"
+            nextLabel="Next"
+            pageCount={pagingCount}
+            onPageChange={changePage}
+            containerClassName="pagination-button"
+            previousLinkClassName="previousButton"
+            nextLinkClassName="nextButton"
+            disabledClassName="paginationDisabled"
+            activeClassName="paginationActive"
+            className="w-full flex flex-row justify-around py-3 outline outline-red-500"
+          />
         </div>
       </section>
     </article>
