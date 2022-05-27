@@ -58,7 +58,7 @@ const SidebarNav = () => {
         <ul className="list-wrapper">
           <li
             className={`flex items-center space-x-3 py-3 px-4 rounded transition duration-200 ${
-              defaultHome === 'dashboard' ? 'bg-linkDeep' : ''
+              defaultHome === 'dashboard' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('dashboard');
@@ -77,7 +77,7 @@ const SidebarNav = () => {
 
           <li
             className={`flex flex-col space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
-              defaultHome === 'institutions' ? 'bg-linkDeep' : ''
+              defaultHome === 'institutions' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('institutions');
@@ -91,7 +91,7 @@ const SidebarNav = () => {
                   // to="/dashboard/institutions"
                   to="/layout/institutions"
                   className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
-                  activeClassName="bg-linkDeep"
+                  activeClassName="bg-authBtn"
                 >
                   Institutions
                   {' '}
@@ -118,7 +118,7 @@ const SidebarNav = () => {
 
           <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 rounded transition duration-200 ${
-              defaultHome === 'products' ? 'bg-linkDeep' : ''
+              defaultHome === 'products' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('products');
@@ -131,7 +131,7 @@ const SidebarNav = () => {
                 // to="/dashboard/products"
                 to="/layout/products"
                 className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
-                activeClassName="bg-linkDeep"
+                activeClassName="bg-authBtn"
               >
                 Products
               </Link>
@@ -141,7 +141,7 @@ const SidebarNav = () => {
 
           <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
-              defaultHome === 'users' ? 'bg-linkDeep' : ''
+              defaultHome === 'users' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('users');
@@ -153,7 +153,7 @@ const SidebarNav = () => {
               <Link
                 to="/dashboard/users"
                 className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
-                activeClassName="bg-linkDeep"
+                activeClassName="bg-authBtn"
               >
                 Users
               </Link>
@@ -163,7 +163,7 @@ const SidebarNav = () => {
 
           <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
-              defaultHome === 'accounts' ? 'bg-linkDeep' : ''
+              defaultHome === 'accounts' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('accounts');
@@ -175,7 +175,7 @@ const SidebarNav = () => {
               <Link
                 to="/dashboard/accounts"
                 className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
-                activeClassName="bg-linkDeep"
+                activeClassName="bg-authBtn"
               >
                 Accounts
               </Link>
@@ -185,7 +185,7 @@ const SidebarNav = () => {
 
           <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
-              defaultHome === 'reports' ? 'bg-linkDeep' : ''
+              defaultHome === 'reports' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('reports');
@@ -197,7 +197,7 @@ const SidebarNav = () => {
               <Link
                 to="/dashboard/reports"
                 className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
-                activeClassName="bg-linkDeep"
+                activeClassName="bg-authBtn"
               >
                 Reports
               </Link>
@@ -207,7 +207,7 @@ const SidebarNav = () => {
 
           <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
-              defaultHome === 'ce-id' ? 'bg-linkDeep' : ''
+              defaultHome === 'ce-id' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('ce-id');
@@ -219,7 +219,7 @@ const SidebarNav = () => {
               <Link
                 to="/dashboard/ce-id"
                 className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
-                activeClassName="bg-linkDeep"
+                activeClassName="bg-authBtn"
               >
                 CE-ID
               </Link>
@@ -229,7 +229,7 @@ const SidebarNav = () => {
 
           <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
-              defaultHome === 'profile' ? 'bg-linkDeep' : ''
+              defaultHome === 'profile' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('profile');
@@ -241,7 +241,7 @@ const SidebarNav = () => {
               <Link
                 to="/dashboard/profile"
                 className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
-                activeClassName="bg-linkDeep"
+                activeClassName="bg-authBtn"
               >
                 Profile
               </Link>
@@ -251,7 +251,7 @@ const SidebarNav = () => {
 
           <li
             className={`flex items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
-              defaultHome === 'log out' ? 'bg-linkDeep' : ''
+              defaultHome === 'log out' ? 'bg-authBtn' : ''
             }`}
             onClick={() => {
               switchDefaultHome('log out');
@@ -262,7 +262,7 @@ const SidebarNav = () => {
             <Link
               to="/"
               className="inline-block rounded font-medium leading-6 text-indigo-100 "
-              activeClassName="bg-linkDeep"
+              activeClassName="bg-authBtn"
             >
               Log Out
             </Link>
