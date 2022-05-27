@@ -1,30 +1,13 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { Suspense } from 'react';
+import { useRoutes } from 'react-router-dom';
+import PageLoader from './components/pageLoader/pageLoader';
+
+import routes from '../Routes';
 import './App.css';
 
 const App = () => {
-  const test = 0;
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const elements = useRoutes(routes);
+  return <Suspense fallback={<PageLoader />}>{elements}</Suspense>;
 };
 
 export default App;

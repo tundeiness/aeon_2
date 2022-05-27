@@ -6,11 +6,11 @@ import { lazy } from 'react';
 // import MainLayout from './layouts/MainLayout';
 // const LoginView = lazy(() => import('../'));
 
-const LoginView = lazy(() => import('./src/pages/sign-in/signin'));
-const ForgotPasswordView = lazy(() => import('./src/pages/forgot-password/forgot-password'));
-const CheckEmailView = lazy(() => import('./src/pages/check-email/check-email'));
-const NewPasswordView = lazy(() => import('./src/pages/new-password/new-password'));
-const PasswordResetView = lazy(() => import('./src/pages/password-reset/password-reset'));
+const LoginView = lazy(() => import('./pages/sign-in/signin'));
+const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-password'));
+const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
+const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
+const PasswordResetView = lazy(() => import('./pages/password-reset/password-reset'));
 
 // const DashboardView = lazy(() => import('./Views/dashboard/dashboard'));
 // const SidebarView = lazy(() => import('./components/sideBarNav/sidebar-nav'));
