@@ -11,6 +11,10 @@ const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-pas
 const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
 const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
 const PasswordResetView = lazy(() => import('./pages/password-reset/password-reset'));
+const LayoutView = lazy(() => import('./pages/layout/Layout'));
+const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
+const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
+const ProductsView = lazy(() => import('./pages/layout/products/products'));
 
 // const DashboardView = lazy(() => import('./Views/dashboard/dashboard'));
 // const SidebarView = lazy(() => import('./components/sideBarNav/sidebar-nav'));
@@ -102,6 +106,27 @@ const routes = [
     protected: false,
     title: 'Password Reset',
     exact: true,
+  },
+
+  {
+    // path: '/layout',
+    element: <LayoutView />,
+    protected: false,
+    title: 'Layout',
+    exact: true,
+    children: [
+      {
+        path: '/layout/dashboard',
+        element: <DashboardView />,
+        exact: true,
+      },
+      { path: '/layout/products', element: <ProductsView />, exact: true },
+      {
+        path: '/layout/institutions',
+        element: <InstitutionView />,
+        exact: true,
+      },
+    ],
   },
 ];
 
