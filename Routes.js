@@ -5,11 +5,13 @@ import { lazy } from 'react';
 // import AuthLayout from './layouts/AuthLayout';
 // import MainLayout from './layouts/MainLayout';
 // const LoginView = lazy(() => import('../'));
+
 const LoginView = lazy(() => import('./pages/sign-in/signin'));
 const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-password'));
 const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
 const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
 const PasswordResetView = lazy(() => import('./pages/password-reset/password-reset'));
+
 // const DashboardView = lazy(() => import('./Views/dashboard/dashboard'));
 // const SidebarView = lazy(() => import('./components/sideBarNav/sidebar-nav'));
 // const InstitutionView = lazy(() => import('./Views/dashboard/institutions/institutions'));
