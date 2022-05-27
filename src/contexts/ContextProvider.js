@@ -16,12 +16,12 @@ const ContextProvider = ({ children }) => {
   };
 
   return (
-    <StateContext value={{
+    <StateContext.Provider value={{
       activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick,
     }}
     >
       {children}
-    </StateContext>
+    </StateContext.Provider>
   );
 };
 
