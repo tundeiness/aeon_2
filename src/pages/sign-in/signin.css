@@ -1,0 +1,54 @@
+
+
+
+.label{
+  font-size: 14px;
+  line-height: 20px;
+}
+
+
+/* .logo-container > img{
+  width: 16rem;
+  height: 4rem;
+} */
+
+.sign-in{
+  /* height: 100vh!important; */
+  
+}
+
+.sign-in-button{
+  padding: 10px 18px;
+}
+
+.cta-heading{
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 38px;
+}
+
+.cta-sub-heading{
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.sign-in-button{
+  font-family: 'Inter', sans-serif;
+}
+
+.image-wrapper{
+  height: 45rem;
+  margin-top: 43px;
+}
+
+.image-wrapper > img {
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+}
+
+.footer-matter{
+  font-family: 'Inter', sans-serif;
+}
