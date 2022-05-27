@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-unused-vars */
@@ -9,7 +10,10 @@ const AuthButton = ({
 }) => {
   const test = 0;
   return (
-    <button className="sign-in-button w-full block bg-buttonBlueDeep text-white hover:bg-blue-700 px-4 py-3 mt-8 rounded-lg font-medium focus:bg-blue-700 focus:outline-none" type={buttonType}>
+    <button
+      className="sign-in-button w-full block bg-authBtn text-white hover:bg-blue-700 px-4 py-3 mt-8 rounded-lg font-medium focus:bg-blue-700 focus:outline-none"
+      type={buttonType}
+    >
       {buttonText}
     </button>
   );

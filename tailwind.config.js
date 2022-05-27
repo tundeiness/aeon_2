@@ -16,6 +16,8 @@ module.exports = {
         veryLightGray: 'hsl(0,0%, 98%)',
         darkGrayishBlue: 'hsl(227, 12%, 61%)',
         brown: 'hsl(33, 78%, 29%)',
+        authBtn: '#0c34ac',
+        liteBlue: '#1756c2',
       },
     },
   },
