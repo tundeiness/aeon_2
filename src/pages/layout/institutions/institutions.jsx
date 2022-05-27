@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import './institutions.css';
 import React, { useState } from 'react';
@@ -22,30 +23,42 @@ const Institutions = () => {
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     ?.map((datum) => (
       <tr key={datum['S/N']}>
-        <td>{datum['S/N']}</td>
-        <td>{datum.Name}</td>
-        <td>
+        <td className="text-sm leading-5 py-4 px-3">{datum['S/N']}</td>
+        <td className="py-4 uppercase text-center">{datum.Name}</td>
+        <td className="py-4 pr-4 pl-20">
           {datum.Status === 'Active' ? (
-            <span className="flex items-center bg-green-300 py-0.3 px-1 rounded-xl">
+            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
               {datum.Status}
             </span>
           ) : (
-            <span className="flex items-center bg-red-400 py-0.3 px-1 rounded-xl">
+            <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
               {datum.Status}
             </span>
           )}
         </td>
-        <td>
-          {datum.Website}
-          )
+        <td className="py-4 pl-4">{datum.Website}</td>
+        <td className="py-4 pl-10">
+          <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
+            {datum.Team}
+          </span>
         </td>
-        <td>{datum.Team}</td>
-        <td className="flex justify-between w-20 outline outline-red-500">
-          <FiSearch />
-          <RiDeleteBinLine />
-          <FiEdit2 />
+        <td className="py-4 px-6">
+          <span className="flex justify-between">
+            <FiSearch
+              className="search-icon hover:cursor-pointer w-5 h-5"
+              style={{ color: '#1756c2' }}
+            />
+            <RiDeleteBinLine
+              className="delete-icon hover:cursor-pointer w-5 h-5"
+              style={{ color: '#ff0404' }}
+            />
+            <FiEdit2
+              className="pen-icon hover:cursor-pointer w-5 h-5"
+              style={{ color: '#667085' }}
+            />
+          </span>
         </td>
       </tr>
     ));
@@ -60,7 +73,7 @@ const Institutions = () => {
   // <article className="flex-1">
 
     <article className="w-4/5 ml-auto">
-      <section className="pt-3 pl-4 h-full bg-link pb-5">
+      <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
         <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
           <h1 className="institution-header mb-3">Institutions </h1>
           <hr />
@@ -73,34 +86,47 @@ const Institutions = () => {
             />
           </div>
           <div className="name-list">
-            Name list table
-            <table className="table-auto">
-              <thead>
+            <table className="table-fixed w-full text-xs shadow-md">
+              <thead className=" bg-gray-50 text-xs capitalize">
                 <tr>
-                  <th>S/N</th>
-                  <th>Name</th>
-                  <th className="flex items-center">
+                  <th
+                    scope="col"
+                    className="w-12 text-gray-500 py-4 px-2 text-left"
+                  >
+                    S/N
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-52 text-gray-500 py-4 text-center"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    className=" flex items-center  text-gray-500 py-4 pl-20"
+                  >
                     Status
                     {' '}
                     <BsArrowDownShort />
                   </th>
-                  <th>Website</th>
-                  <th>Teams</th>
+                  <th
+                    scope="col"
+                    className=" text-gray-500 py-4 pl-4 text-left"
+                  >
+                    Website
+                  </th>
+                  <th
+                    scope="col"
+                    className=" text-gray-500  py-4 pl-10 text-left"
+                  >
+                    Teams
+                  </th>
+                  <th scope="col" className=" text-gray-500 py-4 text-left" />
                 </tr>
               </thead>
-              <tbody className="outline outline-blue-500">
+
+              <tbody className="divide-y divide-gray-300 outline outline-blue-500">
                 {displayData}
-                {/* <ReactPaginate
-                  previousLabel="Previous"
-                  nextLabel="Next"
-                  pageCount={pagingCount}
-                  onPageChange={changePage}
-                  containerClassName="pagination-button"
-                  previousLinkClassName="previousButton"
-                  nextLinkClassName="nextButton"
-                  disabledClassName="paginationDisabled"
-                  activeClassName="paginationActive"
-                /> */}
               </tbody>
               <tbody className="outline outline-black">
                 {' '}

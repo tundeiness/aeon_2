@@ -1,15 +1,17 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { createContext, useContext, useState } from 'react';
 
-const ContextProvider = ({ children }) => {
-  const test = 0;
-  const initialState = {
-    serverStatus: false,
-  };
+const initialState = {
+  serverStatus: false,
+};
+
+const StateContext = createContext();
+
+export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
-  const StateContext = createContext();
 
   const handleClick = (clicked) => {
     setIsClicked({ ...initialState, [clicked]: true });
@@ -25,4 +27,4 @@ const ContextProvider = ({ children }) => {
   );
 };
 
-export default ContextProvider;
+export const useStateContext = () => useContext(StateContext);
