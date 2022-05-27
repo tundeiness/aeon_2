@@ -44,7 +44,7 @@ const SidebarNav = () => {
   // <div className="relative flex min-h-screen outline outline-red-500">
 
     // <aside className="flex flex-col h-screen bg-link text-white space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out md:relative md:-translate-x-0">
-    <aside className="fixed w-1/5 min-h-screen inset-0 bg-link text-white">
+    <aside className="fixed w-1/5 min-h-screen inset-0 bg-liteBlue text-white">
       <div className="logo-wrapper">
         <Link
           to="/dashboard/*"
