@@ -47,16 +47,16 @@ const Institutions = () => {
         <td className="py-4 px-6">
           <span className="flex justify-between">
             <FiSearch
-              className="search-icon hover:cursor-pointer w-5 h-5"
-              style={{ color: '#1756c2' }}
+              className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor"
+
             />
             <RiDeleteBinLine
-              className="delete-icon hover:cursor-pointer w-5 h-5"
-              style={{ color: '#ff0404' }}
+              className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
+
             />
             <FiEdit2
-              className="pen-icon hover:cursor-pointer w-5 h-5"
-              style={{ color: '#667085' }}
+              className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor"
+
             />
           </span>
         </td>
