@@ -67,7 +67,7 @@ const Dashboard = () => {
   return (
     // <article className="flex-1 border border-red-500">
     <article className="w-4/5 ml-auto">
-      <section className="pt-3 pl-4 h-full bg-link pb-5">
+      <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
         <div className="dashboard-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
           <header className="flex justify-between">
             {/* This is the root dashboard view */}
