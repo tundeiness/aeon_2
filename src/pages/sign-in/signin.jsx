@@ -107,7 +107,7 @@ const SignIn = () => {
                       Remember for 30 days
                     </label>
                   </div>
-                  <Link className="block font-medium text-forgotBlue hover:text-black focus:text-black focus:outline-none" to="/forgot-password">Forgot Password</Link>
+                  <Link className="block font-medium text-liteBlue hover:text-black focus:text-black focus:outline-none" to="/forgot-password">Forgot Password</Link>
                 </div>
 
                 {/* <button className="sign-in-button w-full block bg-buttonBlue text-white hover:bg-blue-700 px-4 py-3 mt-8 rounded-lg font-medium focus:bg-blue-700 focus:outline-none" type="submit">Sign in</button> */}
