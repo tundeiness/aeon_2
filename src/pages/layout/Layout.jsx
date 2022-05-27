@@ -3,7 +3,7 @@ import React from 'react';
 import {
   Outlet,
 } from 'react-router-dom';
-import Dashboard from '../dashboard/dashboard';
+import Dashboard from './dashboard/dashboard';
 import Navigation from '../../components/sideBarNav/sidebar-nav';
 import './layout.css';
 

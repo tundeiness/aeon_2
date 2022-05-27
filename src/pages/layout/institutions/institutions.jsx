@@ -7,7 +7,7 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { Routes, Link, Outlet } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import Data from '../../../utils/MOCK_DATA.json';
+import Data from '../../../data/MOCK_DATA.json';
 
 const Institutions = () => {
   const test = 0;
