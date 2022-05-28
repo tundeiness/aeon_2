@@ -23,6 +23,7 @@ module.exports = {
         penColor: '#667085',
         binColor: '#ff0404',
         searchColor: '#1756c2',
+        supportBg: '#F9F5FF',
       },
     },
   },

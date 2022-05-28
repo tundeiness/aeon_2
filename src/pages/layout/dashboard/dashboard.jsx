@@ -74,7 +74,7 @@ const Dashboard = () => {
             <h1 className="inline-block font-medium text-xl leading-9">
               Dashboard
             </h1>
-            <div className="flex items-center py-2 rounded-lg bg-paleIndigo text-gray-900 hover:cursor-pointer">
+            <div className="flex items-center py-2 rounded-lg bg-supportBg text-gray-900 hover:cursor-pointer">
               <FiUser className="xl:mx-2" />
               <p className="xl:mr-2">support@credequity.com</p>
             </div>
