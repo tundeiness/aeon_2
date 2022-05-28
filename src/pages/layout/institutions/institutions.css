@@ -23,3 +23,10 @@ ul:first-child a{
   margin-left:1rem; */
 }
 
+.previous{
+  margin-right: 15rem;
+}
+
+.next{
+  margin-left: 15rem;
+}
