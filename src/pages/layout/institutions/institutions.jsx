@@ -152,7 +152,7 @@ const Institutions = () => {
             nextLinkClassName="nextButton"
             disabledClassName="paginationDisabled"
             activeClassName="paginationActive"
-            className="w-full flex flex-row justify-around py-3 text-sm outline outline-red-500"
+            className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
           />
         </div>
       </section>
