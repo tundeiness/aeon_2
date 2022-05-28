@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import './institutions.css';
@@ -8,6 +9,7 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { Routes, Link, Outlet } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import SupportButton from '../../../components/support/support';
 import Data from '../../../data/MOCK_DATA.json';
 
 const Institutions = () => {
@@ -75,7 +77,22 @@ const Institutions = () => {
     <article className="w-4/5 ml-auto">
       <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
         <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
-          <h1 className="institution-header mb-3">Institutions </h1>
+          <header className="flex justify-between">
+            {/* This is the root dashboard view */}
+            {/* <h1 className="inline-block font-medium text-3xl leading-9">
+              Dashboard
+            </h1> */}
+            <h1 className="institution-header mb-3 font-medium text-3xl">
+              Institutions
+              {' '}
+            </h1>
+            {/* <div className="flex items-center py-2 rounded-lg bg-supportBg text-gray-900 hover:cursor-pointer">
+              <FiUser className="xl:mx-2" />
+              <p className="xl:mr-2">support@credequity.com</p>
+            </div> */}
+            <SupportButton />
+          </header>
+
           <hr />
           <div className="search-wrapper relative outline outline-red-500">
             <FiSearch className="absolute z-10 top-3.5 left-2 text-xl" />
