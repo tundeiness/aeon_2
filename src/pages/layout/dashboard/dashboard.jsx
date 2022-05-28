@@ -72,7 +72,7 @@ const Dashboard = () => {
         <div className="dashboard-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
           <header className="flex justify-between">
             {/* This is the root dashboard view */}
-            <h1 className="inline-block font-medium text-xl leading-9">
+            <h1 className="inline-block font-medium text-3xl leading-9">
               Dashboard
             </h1>
             {/* <div className="flex items-center py-2 rounded-lg bg-supportBg text-gray-900 hover:cursor-pointer">
