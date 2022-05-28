@@ -59,6 +59,7 @@ import VendorStatus from '../../../components/vendorStatus/VendorStatus';
 import BarChart from '../../../components/charts/Charts';
 import GuageChart from '../../../components/charts/Donut';
 // import Logo from '../../static/assets/img/logo-white.png';
+import Support from '../../../components/support/support';
 import './dashboard.css';
 
 const Dashboard = () => {
@@ -74,10 +75,11 @@ const Dashboard = () => {
             <h1 className="inline-block font-medium text-xl leading-9">
               Dashboard
             </h1>
-            <div className="flex items-center py-2 rounded-lg bg-supportBg text-gray-900 hover:cursor-pointer">
+            {/* <div className="flex items-center py-2 rounded-lg bg-supportBg text-gray-900 hover:cursor-pointer">
               <FiUser className="xl:mx-2" />
               <p className="xl:mr-2">support@credequity.com</p>
-            </div>
+            </div> */}
+            <Support />
           </header>
           <div className="vendor-boards flex xl:space-x-6 w-full xl:mt-5 xl:mb-6">
             {/* <div className="bg-white rounded-xl shadow border p-6 w-1/3">
