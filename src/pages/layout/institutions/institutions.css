@@ -9,13 +9,13 @@
 
 .pagination-button > ul{
   display: flex;
-  justify-content:space-around;
+  /* justify-content:space-around; */
 }
 
 
 .pagination-button > ul:first-child a{
-  margin-right: 5rem;
-  margin-left:1rem;
+  /* margin-right: 5rem;
+  margin-left:1rem; */
 }
 ul:first-child a{
   /* margin-left: 2rem; */
@@ -29,4 +29,30 @@ ul:first-child a{
 
 .next{
   margin-left: 15rem;
+}
+
+.previousButton::before{
+  content:"\2190"
+}
+
+.previousButton{
+  border: 1px blue solid;
+  padding-left: 12px;
+  padding-right:12px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  border-radius: 0.4rem;
+}
+
+.nextButton{
+  border: 1px blue solid;
+  padding-left: 12px;
+  padding-right:12px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  border-radius: 0.4rem;
+}
+
+.nextButton::after{
+  content:"\2192"
 }
