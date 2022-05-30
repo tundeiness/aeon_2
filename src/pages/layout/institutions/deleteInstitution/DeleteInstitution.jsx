@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useStateContext } from '../../../../contexts/ContextProvider';
+import { DangerIcon } from '../../../../data/Dummy';
 import './deleteinstitution.css';
 
 const DeleteInstitution = () => {
@@ -9,66 +10,52 @@ const DeleteInstitution = () => {
   const test = 0;
   const { activeModal, setActiveModal } = useStateContext();
   return (
-    <>
-      {/* <button
-        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        type="button"
-        onClick={() => setShowModal(true)}
-      >
-        Open regular modal
-      </button> */}
 
-      <>
-        <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-          <div className="relative w-auto my-6 mx-auto max-w-3xl">
-            {/* content */}
-            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-              {/* header */}
-              <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                <h3 className="text-3xl font-semibold">Modal Title</h3>
-                <button
-                  className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                  // onClick={() => setShowModal(false)}
-                  type="button"
-                >
-                  <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                    ×
-                  </span>
-                </button>
-              </div>
-              {/* body */}
-              <div className="relative p-6 flex-auto">
-                <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                  I always felt like I could do anything. That&apos;s the main
-                  thing people are controlled by! Thoughts- their perception of
-                  themselves! They&apos;re slowed down by their perception
-                  of themselves. If you&apos;re taught you can&apos;t do
-                  anything, you won&apos;t do anything. I was taught I could
-                  do everything.
-                </p>
-              </div>
-              {/* footer */}
-              <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                <button
-                  className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                  onClick={() => setActiveModal(false)}
-                >
-                  Close
-                </button>
-                <button
-                  className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                  // onClick={() => setShowModal(false)}
-                >
-                  Save Changes
-                </button>
-              </div>
+    <>
+      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+        <div className="relative w-auto my-6 mx-auto max-w-sm">
+          {/* content */}
+          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            {/* header */}
+            <div className="flex justify-center pl-5 pr-5 pt-3 pb-1 rounded-t">
+              <button
+                type="button"
+                className="flex justify-center items-center btnWrap w-12 h-12 rounded-3xl bg-red-50"
+              >
+                <span className="flex justify-center items-center w-9 h-9 text-3xl text-red-700 rounded-3xl bg-red-200">
+                  {DangerIcon.symbol}
+                </span>
+              </button>
+            </div>
+            {/* body */}
+            <div className="relative p-6 flex-auto">
+              <h3 className="text-lg font-medium text-center">Deactivate Institution</h3>
+              <p className="mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
+                Are you sure you want to deactivate this institution?
+                This action cannot be undone.
+              </p>
+            </div>
+
+            {/* footer */}
+            <div className="flex items-center justify-center pl-6 pr-6 pt-2 pb-5 rounded-b">
+              <button
+                className="text-gray-700 text-base background-transparent font-medium capitalize px-12 py-3  outline outline-gray-300 rounded mr-2 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={() => setActiveModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
+                type="button"
+              >
+                Deactivate
+              </button>
             </div>
           </div>
         </div>
-        <div className="opacity-50 fixed inset-0 z-40 bg-black" />
-      </>
+      </div>
+      <div className="opacity-50 fixed inset-0 z-40 bg-black" />
     </>
   );
 };
