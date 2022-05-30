@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
@@ -12,7 +13,7 @@ import ReactPaginate from 'react-paginate';
 import SupportButton from '../../../components/support/support';
 import Data from '../../../data/MOCK_DATA.json';
 
-const Institutions = () => {
+const Institutions = ({ customClick }) => {
   const test = 0;
 
   const [mockData, setMockData] = useState(Data);
@@ -54,7 +55,7 @@ const Institutions = () => {
             />
             <RiDeleteBinLine
               className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-
+              onClick={() => customClick(false)}
             />
             <FiEdit2
               className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor"
