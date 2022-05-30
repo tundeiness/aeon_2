@@ -11,10 +11,12 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import { Routes, Link, Outlet } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import SupportButton from '../../../components/support/support';
+import { useStateContext } from '../../../contexts/ContextProvider';
 import Data from '../../../data/MOCK_DATA.json';
 
 const Institutions = ({ customClick }) => {
   const test = 0;
+  const { activeModal, setActiveModal } = useStateContext();
 
   const [mockData, setMockData] = useState(Data);
   const [pageNum, setPageNum] = useState(0);
@@ -55,7 +57,7 @@ const Institutions = ({ customClick }) => {
             />
             <RiDeleteBinLine
               className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-              onClick={() => customClick(false)}
+              onClick={() => setActiveModal((prevActiveModal) => !prevActiveModal)}
             />
             <FiEdit2
               className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor"

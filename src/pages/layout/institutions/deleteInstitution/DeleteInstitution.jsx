@@ -1,11 +1,13 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useStateContext } from '../../../../contexts/ContextProvider';
 import './deleteinstitution.css';
 
 const DeleteInstitution = () => {
   // const [showModal, setShowModal] = useState(false);
   const test = 0;
+  const { activeModal, setActiveModal } = useStateContext();
   return (
     <>
       {/* <button
@@ -40,7 +42,7 @@ const DeleteInstitution = () => {
                   I always felt like I could do anything. That&apos;s the main
                   thing people are controlled by! Thoughts- their perception of
                   themselves! They&apos;re slowed down by their perception
-                  of themselves. If you `&apos;` re taught you can&apos;t do
+                  of themselves. If you&apos;re taught you can&apos;t do
                   anything, you won&apos;t do anything. I was taught I could
                   do everything.
                 </p>
@@ -50,7 +52,7 @@ const DeleteInstitution = () => {
                 <button
                   className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
-                  // onClick={() => setShowModal(false)}
+                  onClick={() => setActiveModal(false)}
                 >
                   Close
                 </button>
