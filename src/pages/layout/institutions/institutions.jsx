@@ -54,13 +54,12 @@ const Institutions = () => {
             <button type="button">
               <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
-            <button type="button" onClick={() => setActiveModal(true)}>
-              <RiDeleteBinLine
-                className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-                // onClick={() =>
-                //   setActiveModal((prevActiveModal) => !prevActiveModal)
-                // }
-              />
+            <button
+              type="button"
+              // onClick={() => setActiveModal(true)}
+              onClick={() => setActiveModal((prevActiveModal) => !prevActiveModal)}
+            >
+              <RiDeleteBinLine className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor" />
             </button>
             <button type="button">
               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
