@@ -51,18 +51,20 @@ const Institutions = () => {
         </td>
         <td className="py-4 px-6">
           <span className="flex justify-between">
-            <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+            <button type="button">
+              <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+            </button>
             <button type="button" onClick={() => setActiveModal(true)}>
               <RiDeleteBinLine
                 className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-
                 // onClick={() =>
                 //   setActiveModal((prevActiveModal) => !prevActiveModal)
                 // }
               />
             </button>
-
-            <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
+            <button type="button">
+              <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
+            </button>
           </span>
         </td>
       </tr>
