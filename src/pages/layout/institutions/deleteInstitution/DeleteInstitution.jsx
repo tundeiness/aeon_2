@@ -6,9 +6,7 @@ import { DangerIcon } from '../../../../data/Dummy';
 import './deleteinstitution.css';
 
 const DeleteInstitution = () => {
-  // const [showModal, setShowModal] = useState(false);
-  const test = 0;
-  const { activeModal, setActiveModal } = useStateContext();
+  const { setActiveModal } = useStateContext();
   return (
 
     <>
