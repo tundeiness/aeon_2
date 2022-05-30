@@ -14,7 +14,7 @@ import SupportButton from '../../../components/support/support';
 import { useStateContext } from '../../../contexts/ContextProvider';
 import Data from '../../../data/MOCK_DATA.json';
 
-const Institutions = ({ customClick }) => {
+const Institutions = () => {
   const test = 0;
   const { activeModal, setActiveModal } = useStateContext();
 
@@ -51,18 +51,18 @@ const Institutions = ({ customClick }) => {
         </td>
         <td className="py-4 px-6">
           <span className="flex justify-between">
-            <FiSearch
-              className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor"
+            <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+            <button type="button" onClick={() => setActiveModal(true)}>
+              <RiDeleteBinLine
+                className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
 
-            />
-            <RiDeleteBinLine
-              className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-              onClick={() => setActiveModal((prevActiveModal) => !prevActiveModal)}
-            />
-            <FiEdit2
-              className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor"
+                // onClick={() =>
+                //   setActiveModal((prevActiveModal) => !prevActiveModal)
+                // }
+              />
+            </button>
 
-            />
+            <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
           </span>
         </td>
       </tr>
