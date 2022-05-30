@@ -18,14 +18,14 @@ const Layout = () => {
     <div className="relative flex min-h-screen overflow-hidden outline outline-red-500">
       {activeModal ? (
         <>
-          {/* <Navigation />
-          <Outlet customClick={handleSetModal} /> */}
           <DeleteInstitution />
+          <Navigation />
+          <Outlet />
         </>
       ) : (
         <>
           <Navigation />
-          <Outlet customClick={handleSetModal} />
+          <Outlet />
         </>
       )}
     </div>
