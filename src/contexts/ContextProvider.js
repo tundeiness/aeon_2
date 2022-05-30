@@ -7,13 +7,14 @@ import React, { createContext, useContext, useState } from 'react';
 const initialState = {
   serverStatus: false,
   modal: false,
+  edit: false,
 };
 
 const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
-  const [activeModal, setActiveModal] = useState(true);
+  const [activeModal, setActiveModal] = useState(false);
   const [isClicked, setIsClicked] = useState(initialState);
 
   const handleClick = (clicked) => {
