@@ -15,20 +15,23 @@ const Layout = () => {
     isClicked, handleSetModal, activeModal, setActiveModal,
   } = useStateContext();
   return (
-    <div className="relative flex min-h-screen overflow-hidden outline outline-red-500">
-      {activeModal ? (
-        <>
-          <DeleteInstitution />
-          <Navigation />
-          <Outlet />
-        </>
-      ) : (
-        <>
-          <Navigation />
-          <Outlet />
-        </>
-      )}
-    </div>
+    // <div className="relative flex min-h-screen overflow-hidden outline outline-red-500">
+    //   {activeModal ? (
+    //     <>
+    //       <DeleteInstitution />
+    //       <Navigation />
+    //       <Outlet />
+    //     </>
+    //   ) : (
+    //     <>
+    //       <Navigation />
+    //       <Outlet />
+    //     </>
+    //   )}
+    // </div>
+    <>
+      <Outlet />
+    </>
   );
 };
 
