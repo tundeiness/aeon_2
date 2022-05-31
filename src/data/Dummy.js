@@ -14,10 +14,10 @@ export const Dummy = () => {
   );
 };
 
-export const DangerIcon = [{
+export const DangerIcon = {
   title: 'Danger',
   symbol: <CgDanger />,
-}];
+};
 
 export const SearchIcon = [{
   title: 'Search',
