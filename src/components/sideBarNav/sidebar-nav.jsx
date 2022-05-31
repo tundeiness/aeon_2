@@ -108,10 +108,10 @@ const SidebarNav = () => {
               }
             >
               <li className="sub-item px-6">
-                <Link to="/dashboard">Item 1</Link>
+                <Link to="/layout/institutions">List</Link>
               </li>
               <li className="sub-item px-6">
-                <Link to="/dashboard">Item 2</Link>
+                <Link to="/layout/institutions/create-institution">Create</Link>
               </li>
             </ul>
           </li>
