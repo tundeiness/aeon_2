@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import SupportButton from '../../../../components/support/support';
+import SupportButton from '../support/support';
 
 const CreateInstitution = () => {
   const test = 0;
