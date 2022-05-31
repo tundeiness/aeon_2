@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { BiHomeAlt, BiFile } from 'react-icons/bi';
 import { FiBarChart2, FiFlag, FiUser } from 'react-icons/fi';
 import { ImStack } from 'react-icons/im';
@@ -14,9 +16,23 @@ import { CgChevronDown } from 'react-icons/cg';
 import Logo from '../../static/assets/img/logo-white.png';
 import './sidebarnav.css';
 
+const NavLink = ({
+  to, className, activeClassName, inactiveClassName, ...rest
+}) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+
+  const allClassNames = className + (isActive ? `${activeClassName}` : `${inactiveClassName}`);
+  return (
+    <link className={allClassNames} to={to} {...rest} />);
+};
+
 const SidebarNav = () => {
+  const location = useLocation();
+  const isActive = location.pathname;
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [defaultHome, setDefaultHome] = useState('dashboard');
+  const [pathlink, setPathlink] = useState(isActive);
 
   const switchDefaultHome = (linkName) => {
     setDefaultHome(linkName);
@@ -57,41 +73,40 @@ const SidebarNav = () => {
       <nav className="mt-6 ml-2">
         <ul className="list-wrapper">
           <li
-            className={`flex items-center space-x-3 py-3 px-4 rounded transition duration-200 ${
-              defaultHome === 'dashboard' ? 'bg-authBtn' : ''
-            }`}
-            onClick={() => {
-              switchDefaultHome('dashboard');
-            }}
+            className="flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200"
             role="presentation"
           >
-            <BiHomeAlt className="xl:w-6 xl:h-7" />
-            <Link
-              // to="/dashboard"
-              to="/layout/dashboard"
-              className="inline-block rounded font-medium leading-6 text-indigo-100 "
-            >
-              Dashboard
-            </Link>
+            <span className="flex flex-row items-center">
+              <BiHomeAlt className="xl:w-6 xl:h-7" />
+              <Link
+                to="/layout/dashboard"
+                className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ${
+                  pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
+                }`}
+                onClick={() => {
+                  switchDefaultHome('dashboard');
+                }}
+              >
+                Dashboard
+              </Link>
+            </span>
           </li>
 
           <li
-            className={`flex flex-col space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
-              defaultHome === 'institutions' ? 'bg-authBtn' : ''
-            }`}
-            onClick={() => {
-              switchDefaultHome('institutions');
-            }}
+            className="flex flex-col space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200"
             role="presentation"
           >
             <span className="flex justify-between items-center space-x-3 w-full">
               <span className="flex flex-row items-center">
                 <FiBarChart2 className="xl:w-6 xl:h-7" />
                 <Link
-                  // to="/dashboard/institutions"
                   to="/layout/institutions"
-                  className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
-                  activeClassName="bg-authBtn"
+                  className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ${
+                    pathlink === '/layout/institutions' ? 'bg-authBtn' : ''
+                  }`}
+                  onClick={() => {
+                    switchDefaultHome('institution');
+                  }}
                 >
                   Institutions
                   {' '}
@@ -108,10 +123,30 @@ const SidebarNav = () => {
               }
             >
               <li className="sub-item px-6">
-                <Link to="/layout/institutions">List</Link>
+                <Link
+                  to="/layout/institutions"
+                  className={`sub-link ${
+                    defaultHome === 'list' ? 'bg-authBtn' : ''
+                  }`}
+                  onClick={() => {
+                    switchDefaultHome('lists');
+                  }}
+                >
+                  List
+                </Link>
               </li>
               <li className="sub-item px-6">
-                <Link to="/layout/institutions/create-institution">Create</Link>
+                <Link
+                  to="/layout/institutions/create-institution"
+                  className={`sub-link ${
+                    defaultHome === 'create' ? 'bg-authBtn' : ''
+                  }`}
+                  onClick={() => {
+                    switchDefaultHome('create');
+                  }}
+                >
+                  Create
+                </Link>
               </li>
             </ul>
           </li>

@@ -14,7 +14,7 @@ const PasswordResetView = lazy(() => import('./pages/password-reset/password-res
 const LayoutView = lazy(() => import('./pages/layout/Layout'));
 const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
 const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
-const CreateInstitution = lazy(() => import('./pages/layout/institutions/createInstituition/createInstituition'));
+const CreateInstitution = lazy(() => import('./pages/layout/institutions/createInstituition/create-institution'));
 const ProductsView = lazy(() => import('./pages/layout/products/products'));
 
 // const DashboardView = lazy(() => import('./Views/dashboard/dashboard'));
