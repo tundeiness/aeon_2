@@ -14,32 +14,32 @@ export const Dummy = () => {
   );
 };
 
-export const DangerIcon = {
+export const DangerIcon = [{
   title: 'Danger',
   symbol: <CgDanger />,
-};
+}];
 
-export const SearchIcon = {
+export const SearchIcon = [{
   title: 'Search',
   symbol: <FiSearch />,
-};
+}];
 
-export const ArrowDownIcon = {
+export const ArrowDownIcon = [{
   title: 'ArrowDown',
   symbol: <BsArrowDownShort />,
-};
+}];
 
-export const DotIcon = {
+export const DotIcon = [{
   title: 'Dot',
   symbol: <GoPrimitiveDot />,
-};
+}];
 
-export const DeleteIcon = {
+export const DeleteIcon = [{
   title: 'Delete',
   symbol: <RiDeleteBinLine />,
-};
+}];
 
-export const CreateIcon = {
+export const CreateIcon = [{
   title: 'Create',
   symbol: <FiEdit2 />,
-};
+}];

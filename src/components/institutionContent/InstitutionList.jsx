@@ -3,14 +3,18 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
+// import {
+//   SearchIcon, ArrowDownIcon, DotIcon, DeleteIcon, CreateIcon,
+// } from '../../data/Dummy';
+import { FiSearch, FiEdit2 } from 'react-icons/fi';
+import { BsArrowDownShort } from 'react-icons/bs';
+import { GoPrimitiveDot } from 'react-icons/go';
+import { RiDeleteBinLine } from 'react-icons/ri';
 import SupportButton from '../support/support';
-import {
-  SearchIcon, ArrowDownIcon, DotIcon, DeleteIcon, CreateIcon,
-} from '../../data/Dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 
-export const InstitutionList = () => {
+const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
 
   const [mockData, setMockData] = useState(Data);
@@ -28,14 +32,14 @@ export const InstitutionList = () => {
         <td className="py-4 pr-4 pl-20">
           {datum.Status === 'Active' ? (
             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
-              {/* <GoPrimitiveDot className="text-white" /> */}
-              <span className="text-white">{DotIcon}</span>
+              <GoPrimitiveDot className="text-white" />
+              {/* <span className="text-white">{DotIcon}</span> */}
               {datum.Status}
             </span>
           ) : (
             <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
-              {/* <GoPrimitiveDot className="text-white" /> */}
-              <span className="text-white">{DotIcon}</span>
+              <GoPrimitiveDot className="text-white" />
+              {/* <span className="text-white">{DotIcon}</span> */}
               {datum.Status}
             </span>
           )}
@@ -49,26 +53,26 @@ export const InstitutionList = () => {
         <td className="py-4 px-6">
           <span className="flex justify-between">
             <button type="button">
-              <span className="inline-block search-icon hover:cursor-pointer w-5 h-5 text-searchColor">
+              {/* <span className="inline-block search-icon hover:cursor-pointer w-5 h-5 text-searchColor">
                 {SearchIcon}
-              </span>
-              {/* <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" /> */}
+              </span> */}
+              <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
             <button
               type="button"
                // onClick={() => setActiveModal(true)}
               onClick={() => setActiveModal((prevActiveModal) => !prevActiveModal)}
             >
-              {/* <RiDeleteBinLine className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor" /> */}
-              <span className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor">
+              <RiDeleteBinLine className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor" />
+              {/* <span className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor">
                 {DeleteIcon}
-              </span>
+              </span> */}
             </button>
             <button type="button">
-              <span className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor">
+              {/* <span className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor">
                 {CreateIcon}
-              </span>
-              {/* <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" /> */}
+              </span> */}
+              <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
             </button>
           </span>
         </td>
@@ -96,8 +100,8 @@ export const InstitutionList = () => {
           <hr className="mb-5" />
           <div className="search-wrapper relative">
             <span className="inline-block absolute z-10 top-2.5 left-2 text-xl">
-              {/* <FiSearch className="absolute z-10 top-2.5 left-2 text-xl" /> */}
-              {SearchIcon.symbol}
+              <FiSearch className="absolute z-10 top-2.5 left-2 text-xl" />
+              {/* {SearchIcon.symbol} */}
             </span>
             <input
               type="search"
@@ -126,8 +130,8 @@ export const InstitutionList = () => {
                     className=" flex items-center  text-gray-500 py-4 pl-20"
                   >
                     Status
-                    <span>{ArrowDownIcon.symbol}</span>
-                    {/* <BsArrowDownShort /> */}
+                    {/* <span>{ArrowDownIcon.symbol}</span> */}
+                    <BsArrowDownShort />
                   </th>
                   <th
                     scope="col"
@@ -145,21 +149,6 @@ export const InstitutionList = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-300">{displayData}</tbody>
-              {/* <tbody className="w-screen flex justify-start outline outline-black"> */}
-              {' '}
-              {/* <ReactPaginate
-                previousLabel="Previous"
-                nextLabel="Next"
-                pageCount={pagingCount}
-                onPageChange={changePage}
-                containerClassName="pagination-button"
-                previousLinkClassName="previousButton"
-                nextLinkClassName="nextButton"
-                disabledClassName="paginationDisabled"
-                activeClassName="paginationActive"
-                className="w-screen flex flex-row justify-around py-3 outline outline-red-500"
-              /> */}
-              {/* </tbody> */}
             </table>
           </div>
           <ReactPaginate

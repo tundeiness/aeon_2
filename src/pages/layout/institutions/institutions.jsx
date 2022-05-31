@@ -14,6 +14,8 @@ import SupportButton from '../../../components/support/support';
 import { useStateContext } from '../../../contexts/ContextProvider';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import DeleteInstitution from './deleteInstitution/DeleteInstitution';
+// import InstitutionList from '../../../components/institutionContent/InstitutionList';
+import InstitutionList from '../../../components/institutionContent/InstitutionList';
 import Data from '../../../data/MOCK_DATA.json';
 
 const Institutions = () => {
@@ -81,7 +83,8 @@ const Institutions = () => {
     // <article className="flex-1">
     <div className="relative flex min-h-screen overflow-hidden">
       <SidebarNav />
-      <article className="w-4/5 ml-auto">
+      <InstitutionList />
+      {/* <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between mb-2">
@@ -143,21 +146,6 @@ const Institutions = () => {
                 <tbody className="divide-y divide-gray-300">
                   {displayData}
                 </tbody>
-                {/* <tbody className="w-screen flex justify-start outline outline-black"> */}
-                {' '}
-                {/* <ReactPaginate
-                previousLabel="Previous"
-                nextLabel="Next"
-                pageCount={pagingCount}
-                onPageChange={changePage}
-                containerClassName="pagination-button"
-                previousLinkClassName="previousButton"
-                nextLinkClassName="nextButton"
-                disabledClassName="paginationDisabled"
-                activeClassName="paginationActive"
-                className="w-screen flex flex-row justify-around py-3 outline outline-red-500"
-              /> */}
-                {/* </tbody> */}
               </table>
             </div>
             <ReactPaginate
@@ -174,7 +162,7 @@ const Institutions = () => {
             />
           </div>
         </section>
-      </article>
+      </article> */}
     </div>
   );
 };
