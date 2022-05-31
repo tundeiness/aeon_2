@@ -99,10 +99,7 @@ const InstitutionList = () => {
 
           <hr className="mb-5" />
           <div className="search-wrapper relative">
-            <span className="inline-block absolute z-10 top-2.5 left-2 text-xl">
-              <FiSearch className="absolute z-10 top-2.5 left-2 text-xl" />
-              {/* {SearchIcon.symbol} */}
-            </span>
+            <FiSearch className="absolute z-10 top-2.5 left-2 text-xl" />
             <input
               type="search"
               placeholder="Search"
