@@ -42,19 +42,6 @@ const SidebarNav = () => {
     setToggleDrawer(!toggleDrawer);
   };
 
-  const iconArray = [
-    ['dashboard', <BiHomeAlt key="0" />],
-    ['institution', <FiBarChart2 key="1" />],
-    ['products', <ImStack key="2" />],
-    ['users', <BsCheck2Square key="3" />],
-    ['accounts', <FiFlag key="4" />],
-    ['reports', <BiFile key="5" />],
-    ['CE-ID', <AiOutlineIdcard key="6" />],
-    ['profile', <FiUser key="7" />],
-    ['log out', <MdLogout key="8" />],
-    ['caret', <CgChevronDown key="9" />],
-  ];
-
   const subArray = [];
   return (
   // <div className="relative flex min-h-screen outline outline-red-500">

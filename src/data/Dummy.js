@@ -1,11 +1,17 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { CgDanger } from 'react-icons/cg';
-import { FiSearch, FiEdit2 } from 'react-icons/fi';
-import { BsArrowDownShort } from 'react-icons/bs';
+import { CgDanger, CgChevronDown } from 'react-icons/cg';
+import {
+  FiSearch, FiEdit2, FiBarChart2, FiFlag, FiUser,
+} from 'react-icons/fi';
+import { BsArrowDownShort, BsCheck2Square } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { BiHomeAlt, BiFile } from 'react-icons/bi';
+import { ImStack } from 'react-icons/im';
+import { MdLogout } from 'react-icons/md';
+import { AiOutlineIdcard } from 'react-icons/ai';
 
 export const Dummy = () => {
   const test = 0;
@@ -43,3 +49,16 @@ export const CreateIcon = [{
   title: 'Create',
   symbol: <FiEdit2 />,
 }];
+
+export const iconArray = [
+  ['dashboard', <BiHomeAlt key="0" />],
+  ['institution', <FiBarChart2 key="1" />],
+  ['products', <ImStack key="2" />],
+  ['users', <BsCheck2Square key="3" />],
+  ['accounts', <FiFlag key="4" />],
+  ['reports', <BiFile key="5" />],
+  ['CE-ID', <AiOutlineIdcard key="6" />],
+  ['profile', <FiUser key="7" />],
+  ['log out', <MdLogout key="8" />],
+  ['caret', <CgChevronDown key="9" />],
+];
