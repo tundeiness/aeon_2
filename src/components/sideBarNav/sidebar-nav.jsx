@@ -44,6 +44,8 @@ const SidebarNav = () => {
     setIsOpen(!isOpen);
   };
 
+  console.log(isActive);
+
   return (
   // <div className="relative flex min-h-screen outline outline-red-500">
 
@@ -86,7 +88,9 @@ const SidebarNav = () => {
 
           <li
             className={`dropdown relative flex flex-col space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
-              pathlink === '/layout/institutions' ? 'bg-authBtn' : ''
+              pathlink === '/layout/institutions' && defaultHome
+                ? 'bg-authBtn'
+                : ''
             }`}
             role="presentation"
           >
@@ -109,7 +113,9 @@ const SidebarNav = () => {
                 // onClick={handleMenuDrawer}
                 onClick={() => setIsOpen(!isOpen)}
                 className={`sub-arrow text-white w-4 h-4 inline-block cursor-pointer ${
-                  isOpen ? transformIcon : 'sub-arrow text-white w-4 h-4 inline-block cursor-pointer'
+                  isOpen
+                    ? transformIcon
+                    : 'sub-arrow text-white w-4 h-4 inline-block cursor-pointer'
                 }`}
               />
             </span>
@@ -143,17 +149,16 @@ const SidebarNav = () => {
               //   }
               // >
               <ul
-                className="origin-top absolute left-0 mt-11 w-56 rounded-md bg-authBtn ring-1 ring-black"
+                className={`origin-top absolute right-0 mt-11 w-[100%] rounded-md ${
+                  pathlink === '/layout/institutions/create-institution' ? 'bg-white' : ''
+                }`}
               >
-                <li className="sub-item inline-block px-6 py-1.5">
+                <li
+                  className="sub-item group inline-block px-6 py-1.5"
+                >
                   <Link
                     to="/layout/institutions/create-institution"
-                    className={`sub-link ${
-                      pathlink === '/layout/institutions/create-institution'
-                      && isOpen
-                        ? 'bg-white'
-                        : ''
-                    }`}
+                    className="sub-link text-center group-bg:white "
                     onClick={() => {
                       switchDefaultHome('create');
                     }}
