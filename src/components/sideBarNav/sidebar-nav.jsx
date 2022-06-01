@@ -30,16 +30,18 @@ import './sidebarnav.css';
 const SidebarNav = () => {
   const location = useLocation();
   const isActive = location.pathname;
-  const [toggleDrawer, setToggleDrawer] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [defaultHome, setDefaultHome] = useState('dashboard');
   const [pathlink, setPathlink] = useState(isActive);
+
+  const transformIcon = 'w-4 h-4 inline-block cursor-pointer origin-center rotate-180';
 
   const switchDefaultHome = (linkName) => {
     setDefaultHome(linkName);
   };
 
   const handleMenuDrawer = () => {
-    setToggleDrawer(!toggleDrawer);
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -64,72 +66,67 @@ const SidebarNav = () => {
             }`}
             role="presentation"
           >
-            <span className="flex flex-row items-center">
-              <BiHomeAlt className="xl:w-6 xl:h-7" />
-              <Link
-                to="/layout/dashboard"
-                className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ml-3${
-                  pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
-                }`}
-                onClick={() => {
-                  switchDefaultHome('dashboard');
-                }}
-              >
-                Dashboard
-              </Link>
+            <span className="flex justify-between items-center space-x-3">
+              <span className="flex flex-row items-center">
+                <BiHomeAlt className="xl:w-6 xl:h-7" />
+                <Link
+                  to="/layout/dashboard"
+                  className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ml-3${
+                    pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
+                  }`}
+                  onClick={() => {
+                    switchDefaultHome('dashboard');
+                  }}
+                >
+                  Dashboard
+                </Link>
+              </span>
             </span>
           </li>
 
           <li
-            className={`flex flex-col space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
+            className={`dropdown relative flex flex-col space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
               pathlink === '/layout/institutions' ? 'bg-authBtn' : ''
             }`}
             role="presentation"
           >
-            <span className="flex justify-between items-center space-x-3 w-full">
-              <span className="flex flex-row items-center">
-                <FiBarChart2 className="xl:w-6 xl:h-7" />
-                <Link
-                  to="/layout/institutions"
-                  className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ml-3 ${
-                    pathlink === '/layout/institutions' ? 'bg-authBtn' : ''
-                  }`}
-                  onClick={() => {
-                    switchDefaultHome('institution');
-                  }}
-                >
-                  Institutions
-                  {' '}
-                </Link>
-              </span>
+            {/* <span className="flex justify-between items-center space-x-3"> */}
+            <span className="relative flex flex-row items-center">
+              <FiBarChart2 className="xl:w-6 xl:h-7" />
+              <Link
+                to="/layout/institutions"
+                className={`dropdown-toggle inline-block rounded font-medium leading-6 transition duration-200 ease-in-out text-indigo-100 ml-3 mr-24 ${
+                  pathlink === '/layout/institutions' ? 'bg-authBtn' : ''
+                }`}
+                onClick={() => {
+                  switchDefaultHome('institution');
+                }}
+              >
+                Institutions
+                {' '}
+              </Link>
               <CgChevronDown
-                onClick={handleMenuDrawer}
-                className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer"
+                // onClick={handleMenuDrawer}
+                onClick={() => setIsOpen(!isOpen)}
+                className={`sub-arrow text-white w-4 h-4 inline-block cursor-pointer ${
+                  isOpen ? transformIcon : 'sub-arrow text-white w-4 h-4 inline-block cursor-pointer'
+                }`}
               />
             </span>
-            <ul
+            {/* </span> */}
+            {/* <ul
               className={
-                toggleDrawer ? ' flex flex-col sub-menu' : 'sub-menu-deactivate'
+                isOpen ? ' flex flex-col sub-menu' : 'sub-menu-deactivate'
               }
             >
-              {/* <li className="sub-item px-6">
-                <Link
-                  to="/layout/institutions"
-                  className={`sub-link ${
-                    defaultHome === 'list' ? 'bg-authBtn' : ''
-                  }`}
-                  onClick={() => {
-                    switchDefaultHome('lists');
-                  }}
-                >
-                  List
-                </Link>
-              </li> */}
               <li className="sub-item px-6">
                 <Link
                   to="/layout/institutions/create-institution"
                   className={`sub-link ${
-                    defaultHome === 'create' ? 'bg-authBtn' : ''
+                    pathlink === '/layout/institutions/create-institution'
+                    && isOpen
+                      ? 'bg-white'
+                      : ''
                   }`}
                   onClick={() => {
                     switchDefaultHome('create');
@@ -138,7 +135,34 @@ const SidebarNav = () => {
                   Create
                 </Link>
               </li>
-            </ul>
+            </ul> */}
+            {isOpen && (
+              // <ul
+              //   className={
+              //     isOpen ? ' flex flex-col sub-menu' : 'sub-menu-deactivate'
+              //   }
+              // >
+              <ul
+                className="origin-top absolute left-0 mt-11 w-56 rounded-md bg-authBtn ring-1 ring-black"
+              >
+                <li className="sub-item inline-block px-6 py-1.5">
+                  <Link
+                    to="/layout/institutions/create-institution"
+                    className={`sub-link ${
+                      pathlink === '/layout/institutions/create-institution'
+                      && isOpen
+                        ? 'bg-white'
+                        : ''
+                    }`}
+                    onClick={() => {
+                      switchDefaultHome('create');
+                    }}
+                  >
+                    Create
+                  </Link>
+                </li>
+              </ul>
+            )}
           </li>
 
           <li
