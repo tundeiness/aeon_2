@@ -16,16 +16,16 @@ import { CgChevronDown } from 'react-icons/cg';
 import Logo from '../../static/assets/img/logo-white.png';
 import './sidebarnav.css';
 
-const NavLink = ({
-  to, className, activeClassName, inactiveClassName, ...rest
-}) => {
-  const location = useLocation();
-  const isActive = location.pathname === to;
+// const NavLink = ({
+//   to, className, activeClassName, inactiveClassName, ...rest
+// }) => {
+//   const location = useLocation();
+//   const isActive = location.pathname === to;
 
-  const allClassNames = className + (isActive ? `${activeClassName}` : `${inactiveClassName}`);
-  return (
-    <link className={allClassNames} to={to} {...rest} />);
-};
+//   const allClassNames = className + (isActive ? `${activeClassName}` : `${inactiveClassName}`);
+//   return (
+//     <link className={allClassNames} to={to} {...rest} />);
+// };
 
 const SidebarNav = () => {
   const location = useLocation();
@@ -73,7 +73,9 @@ const SidebarNav = () => {
       <nav className="mt-6 ml-2">
         <ul className="list-wrapper">
           <li
-            className="flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200"
+            className={`flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
+              pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
+            }`}
             role="presentation"
           >
             <span className="flex flex-row items-center">
@@ -93,7 +95,9 @@ const SidebarNav = () => {
           </li>
 
           <li
-            className="flex flex-col space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200"
+            className={`flex flex-col space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
+              pathlink === '/layout/institutions' ? 'bg-authBtn' : ''
+            }`}
             role="presentation"
           >
             <span className="flex justify-between items-center space-x-3 w-full">
@@ -122,7 +126,7 @@ const SidebarNav = () => {
                 toggleDrawer ? ' flex flex-col sub-menu' : 'sub-menu-deactivate'
               }
             >
-              <li className="sub-item px-6">
+              {/* <li className="sub-item px-6">
                 <Link
                   to="/layout/institutions"
                   className={`sub-link ${
@@ -134,7 +138,7 @@ const SidebarNav = () => {
                 >
                   List
                 </Link>
-              </li>
+              </li> */}
               <li className="sub-item px-6">
                 <Link
                   to="/layout/institutions/create-institution"
