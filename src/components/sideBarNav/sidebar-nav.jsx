@@ -69,7 +69,7 @@ const SidebarNav = () => {
               <BiHomeAlt className="xl:w-6 xl:h-7" />
               <Link
                 to="/layout/dashboard"
-                className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ${
+                className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ml-3${
                   pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
                 }`}
                 onClick={() => {
@@ -92,7 +92,7 @@ const SidebarNav = () => {
                 <FiBarChart2 className="xl:w-6 xl:h-7" />
                 <Link
                   to="/layout/institutions"
-                  className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ${
+                  className={`inline-block rounded font-medium leading-6 transition duration-200 text-indigo-100 ml-3 ${
                     pathlink === '/layout/institutions' ? 'bg-authBtn' : ''
                   }`}
                   onClick={() => {
