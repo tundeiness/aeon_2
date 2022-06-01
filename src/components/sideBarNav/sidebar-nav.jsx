@@ -42,7 +42,6 @@ const SidebarNav = () => {
     setToggleDrawer(!toggleDrawer);
   };
 
-  const subArray = [];
   return (
   // <div className="relative flex min-h-screen outline outline-red-500">
 
