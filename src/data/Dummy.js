@@ -77,6 +77,8 @@ export const SideBarData = [
     title: 'Institution',
     path: '/layout/institution',
     icon: <FiBarChart2 key="1" />,
+    iconClosed: <BsArrowDownShort />,
+    iconOpen: <BsArrowUpShort />,
     subNav: [
       {
         title: 'Create',
