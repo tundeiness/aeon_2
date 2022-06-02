@@ -25,7 +25,7 @@ const SubMenu = ({ item }) => {
         <span className="inline-block">
           {item.subnav && subLink
             ? item.iconOpened
-            : item.subNav
+            : item.subnav
               ? item.iconClosed
               : null}
         </span>

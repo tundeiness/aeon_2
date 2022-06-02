@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { CgDanger, CgChevronDown } from 'react-icons/cg';
+import { CgDanger, CgChevronDown, CgChevronUp } from 'react-icons/cg';
 import {
   FiSearch, FiEdit2, FiBarChart2, FiFlag, FiUser,
 } from 'react-icons/fi';
@@ -77,8 +77,8 @@ export const SideBarData = [
     title: 'Institution',
     path: '/layout/institution',
     icon: <FiBarChart2 key="1" />,
-    iconClosed: <BsArrowDownShort />,
-    iconOpen: <BsArrowUpShort />,
+    iconClosed: <CgChevronDown />,
+    iconOpen: <CgChevronUp />,
     subnav: [
       {
         title: 'Create',
@@ -91,8 +91,8 @@ export const SideBarData = [
     title: 'Products',
     path: '/layout/products',
     icon: <ImStack key="2" />,
-    iconClosed: <BsArrowDownShort />,
-    iconOpen: <BsArrowUpShort />,
+    iconClosed: <CgChevronDown />,
+    iconOpen: <CgChevronUp />,
     subnav: [
       {
         title: 'Create',
