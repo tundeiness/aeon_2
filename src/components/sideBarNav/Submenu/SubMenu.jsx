@@ -8,9 +8,9 @@ import { Link, useLocation } from 'react-router-dom';
 const SubMenu = ({ item }) => {
   const temi = 0;
   const location = useLocation();
-  const isActive = location.pathname;
+  // const isActive = location.pathname;
   const [subLink, setSubLink] = useState(false);
-  const [pathlink, setPathlink] = useState(isActive);
+  const [pathlink, setPathlink] = useState(location.pathname);
 
   const showSubLink = () => setSubLink(!subLink);
   // console.log(item);
