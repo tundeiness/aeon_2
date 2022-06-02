@@ -101,4 +101,79 @@ export const SideBarData = [
     //   },
     // ],
   },
+  {
+    title: 'Users',
+    path: '/layout/users',
+    icon: <BsCheck2Square key="3" className="xl:w-6 xl:h-7" />,
+    iconClosed: <CgChevronDown />,
+    iconOpen: <CgChevronUp />,
+    // subnav: [
+    //   {
+    //     title: 'Create',
+    //     path: '/layout/institution/create-institution',
+    //     icon: <GoPrimitiveDot />,
+    //   },
+    // ],
+  },
+  {
+    title: 'Accounts',
+    path: '/layout/accounts',
+    icon: <FiFlag key="4" className="xl:w-6 xl:h-7" />,
+    iconClosed: <CgChevronDown />,
+    iconOpen: <CgChevronUp />,
+    // subnav: [
+    //   {
+    //     title: 'Create',
+    //     path: '/layout/institution/create-institution',
+    //     icon: <GoPrimitiveDot />,
+    //   },
+    // ],
+  },
+  {
+    title: 'Reports',
+    path: '/layout/reports',
+    icon: <BiFile key="5" className="xl:w-6 xl:h-7" />,
+    iconClosed: <CgChevronDown />,
+    iconOpen: <CgChevronUp />,
+    // subnav: [
+    //   {
+    //     title: 'Create',
+    //     path: '/layout/institution/create-institution',
+    //     icon: <GoPrimitiveDot />,
+    //   },
+    // ],
+  },
+  {
+    title: 'CE-ID',
+    path: '/layout/ce-id',
+    icon: <AiOutlineIdcard key="6" className="xl:w-6 xl:h-7" />,
+    iconClosed: <CgChevronDown />,
+    iconOpen: <CgChevronUp />,
+    // subnav: [
+    //   {
+    //     title: 'Create',
+    //     path: '/layout/institution/create-institution',
+    //     icon: <GoPrimitiveDot />,
+    //   },
+    // ],
+  },
+  {
+    title: 'Profile',
+    path: '/layout/profile',
+    icon: <FiUser key="7" className="xl:w-6 xl:h-7" />,
+    iconClosed: <CgChevronDown />,
+    iconOpen: <CgChevronUp />,
+    // subnav: [
+    //   {
+    //     title: 'Create',
+    //     path: '/layout/institution/create-institution',
+    //     icon: <GoPrimitiveDot />,
+    //   },
+    // ],
+  },
+  {
+    title: 'Log Out',
+    path: '/layout/log-out',
+    icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
+  },
 ];
