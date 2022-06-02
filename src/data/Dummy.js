@@ -91,5 +91,7 @@ export const SideBarData = [
     title: 'Products',
     path: '/layout/products',
     icon: <ImStack key="2" />,
+    iconClosed: <BsArrowDownShort />,
+    iconOpen: <BsArrowUpShort />,
   },
 ];
