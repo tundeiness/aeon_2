@@ -69,4 +69,21 @@ export const SideBarData = [
     path: '/layout/dashboard',
     icon: <BiHomeAlt key="0" />,
   },
+  {
+    title: 'Institution',
+    path: '/layout/institution',
+    icon: <FiBarChart2 key="1" />,
+    subNav: [
+      {
+        title: 'Create',
+        path: '/layout/institution/create-institution',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
+  },
+  {
+    title: 'Products',
+    path: '/layout/products',
+    icon: <ImStack key="2" />,
+  },
 ];
