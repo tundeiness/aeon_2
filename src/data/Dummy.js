@@ -75,14 +75,14 @@ export const SideBarData = [
   },
   {
     title: 'Institutions',
-    path: '/layout/institution',
+    path: '/layout/institutions',
     icon: <FiBarChart2 key="1" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
     subnav: [
       {
         title: 'Create',
-        path: '/layout/institution/create-institution',
+        path: '/layout/institutions/create-institution',
         icon: <GoPrimitiveDot />,
       },
     ],
