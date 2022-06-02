@@ -16,7 +16,7 @@ const SubMenu = ({ item }) => {
       <Link
         to={item.path}
         className="flex justify-between items-center hover:bg-authBtn"
-        onClick={item.subNav && showSubLink}
+        onClick={item.subnav && showSubLink}
       >
         <span className="inline-block">
           {item.icon}
@@ -32,9 +32,9 @@ const SubMenu = ({ item }) => {
       </Link>
       {
         subLink && item.subnav.map((itm, indx) => (
-          <Link key={itm.id} className="flex items-center py-1 bg-authBtn" to={item.path}>
-            {item.icon}
-            <span className="inline-block">{item.title}</span>
+          <Link key={itm.id} className="flex items-center py-1 bg-authBtn" to={itm.path}>
+            {itm.icon}
+            <span className="inline-block">{itm.title}</span>
           </Link>
         ))
       }
