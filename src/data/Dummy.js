@@ -5,7 +5,11 @@ import { CgDanger, CgChevronDown } from 'react-icons/cg';
 import {
   FiSearch, FiEdit2, FiBarChart2, FiFlag, FiUser,
 } from 'react-icons/fi';
-import { BsArrowDownShort, BsCheck2Square } from 'react-icons/bs';
+import {
+  BsArrowDownShort,
+  BsCheck2Square,
+  BsArrowUpShort,
+} from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { BiHomeAlt, BiFile } from 'react-icons/bi';
