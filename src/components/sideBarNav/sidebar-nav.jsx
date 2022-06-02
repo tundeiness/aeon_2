@@ -67,7 +67,7 @@ const SidebarNav = () => {
           {SideBarData.map((child, index) => (
             <li
               key={child.id}
-              className={`flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
+              className={`flex flex-col items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
                 pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
               }`}
               role="presentation"

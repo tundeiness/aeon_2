@@ -24,7 +24,7 @@ const SubMenu = ({ item }) => {
         </span>
         <span className="inline-block">
           {item.subnav && subLink
-            ? item.iconOpened
+            ? item.iconOpen
             : item.subnav
               ? item.iconClosed
               : null}
@@ -32,7 +32,7 @@ const SubMenu = ({ item }) => {
       </Link>
       {
         subLink && item.subnav.map((itm, indx) => (
-          <Link key={itm.id} className="flex items-center py-1 bg-authBtn" to={itm.path}>
+          <Link key={itm.id} className="flex items-center py-1 pl-2 hover:cursor-pointer bg-authBtn" to={itm.path}>
             {itm.icon}
             <span className="inline-block">{itm.title}</span>
           </Link>
