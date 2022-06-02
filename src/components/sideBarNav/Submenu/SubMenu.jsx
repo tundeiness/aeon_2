@@ -7,15 +7,20 @@ import { Link, useLocation } from 'react-router-dom';
 
 const SubMenu = ({ item }) => {
   const temi = 0;
+  const location = useLocation();
+  const isActive = location.pathname;
   const [subLink, setSubLink] = useState(false);
+  const [pathlink, setPathlink] = useState(isActive);
 
   const showSubLink = () => setSubLink(!subLink);
-  console.log(item);
+  // console.log(item);
   return (
     <>
       <Link
         to={item.path}
-        className="flex justify-between items-center py-2 px-3 rounded hover:bg-authBtn outline outline-gray-50"
+        className={`flex justify-between items-center py-2 px-3 rounded hover:bg-authBtn outline outline-gray-50 ${
+          pathlink === item.path ? 'bg-authBtn' : ''
+        }`}
         onClick={item.subnav && showSubLink}
       >
         <span className="flex flex-row items-end font-medium">

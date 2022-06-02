@@ -67,9 +67,7 @@ const SidebarNav = () => {
           {SideBarData.map((child, index) => (
             <li
               key={child.id}
-              className={`flex flex-col w-[95%] outline outline-red-500 space-x-3 mb-2 hover:bg-authBtn rounded transition duration-200 ${
-                pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
-              }`}
+              className="flex flex-col w-[95%] outline outline-red-500 space-x-3 mb-2 hover:bg-authBtn rounded transition duration-200"
               role="presentation"
             >
               <Submenu item={child} key={child.id} className="py-2" />
