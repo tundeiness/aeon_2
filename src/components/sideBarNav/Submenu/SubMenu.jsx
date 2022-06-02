@@ -15,12 +15,12 @@ const SubMenu = ({ item }) => {
     <>
       <Link
         to={item.path}
-        className="flex justify-between items-center hover:bg-authBtn"
+        className="flex justify-between items-center hover:bg-authBtn outline outline-gray-50"
         onClick={item.subnav && showSubLink}
       >
-        <span className="inline-block">
+        <span className="flex flex-row items-end font-medium">
           {item.icon}
-          <span className="inline-block">{item.title}</span>
+          <span className="inline-block ml-3">{item.title}</span>
         </span>
         <span className="inline-block">
           {item.subnav && subLink
@@ -30,14 +30,17 @@ const SubMenu = ({ item }) => {
               : null}
         </span>
       </Link>
-      {
-        subLink && item.subnav.map((itm, indx) => (
-          <Link key={itm.id} className="flex items-center py-1 pl-2 hover:cursor-pointer bg-authBtn" to={itm.path}>
+      {subLink
+        && item.subnav.map((itm, indx) => (
+          <Link
+            key={itm.id}
+            className="flex items-center py-1 pl-2 hover:cursor-pointer bg-authBtn"
+            to={itm.path}
+          >
             {itm.icon}
             <span className="inline-block">{itm.title}</span>
           </Link>
-        ))
-      }
+        ))}
     </>
   );
 };

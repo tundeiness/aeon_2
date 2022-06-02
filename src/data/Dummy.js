@@ -71,12 +71,12 @@ export const SideBarData = [
   {
     title: 'Dashboard',
     path: '/layout/dashboard',
-    icon: <BiHomeAlt key="0" />,
+    icon: <BiHomeAlt key="0" className="xl:w-6 xl:h-7" />,
   },
   {
     title: 'Institutions',
     path: '/layout/institutions',
-    icon: <FiBarChart2 key="1" />,
+    icon: <FiBarChart2 key="1" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
     subnav: [
@@ -90,7 +90,7 @@ export const SideBarData = [
   {
     title: 'Products',
     path: '/layout/products',
-    icon: <ImStack key="2" />,
+    icon: <ImStack key="2" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
     // subnav: [
