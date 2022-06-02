@@ -97,16 +97,8 @@ const SidebarNav = () => {
             </span>
           </li> */}
 
-          <li
-            className={`dropdown relative flex flex-col space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
-              pathlink === '/layout/institutions' && defaultHome
-                ? 'bg-authBtn'
-                : ''
-            }`}
-            role="presentation"
-          >
-            {/* <span className="flex justify-between items-center space-x-3"> */}
-            <span className="relative flex flex-row items-center">
+          {/* <li> */}
+          {/* <span className="relative flex flex-row items-center">
               <FiBarChart2 className="xl:w-6 xl:h-7" />
               <Link
                 to="/layout/institutions"
@@ -121,7 +113,6 @@ const SidebarNav = () => {
                 {' '}
               </Link>
               <CgChevronDown
-                // onClick={handleMenuDrawer}
                 onClick={() => setIsOpen(!isOpen)}
                 className={`sub-arrow text-white w-4 h-4 inline-block cursor-pointer ${
                   isOpen
@@ -129,9 +120,9 @@ const SidebarNav = () => {
                     : 'sub-arrow text-white w-4 h-4 inline-block cursor-pointer'
                 }`}
               />
-            </span>
-            {/* </span> */}
-            {/* <ul
+            </span> */}
+          {/* </span> */}
+          {/* <ul
               className={
                 isOpen ? ' flex flex-col sub-menu' : 'sub-menu-deactivate'
               }
@@ -153,7 +144,7 @@ const SidebarNav = () => {
                 </Link>
               </li>
             </ul> */}
-            {/* {isOpen && (
+          {/* {isOpen && (
               <ul
                 className={`origin-top absolute right-0 mt-11 w-[100%] rounded-md ${
                   pathlink === '/layout/institutions/create-institution' ? 'bg-white' : ''
@@ -174,7 +165,7 @@ const SidebarNav = () => {
                 </li>
               </ul>
             )} */}
-          </li>
+          {/* </li> */}
 
           {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 rounded transition duration-200 ${
@@ -308,7 +299,7 @@ const SidebarNav = () => {
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
           </li> */}
 
-          <li
+          {/* <li
             className={`flex items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'log out' ? 'bg-authBtn' : ''
             }`}
@@ -325,7 +316,7 @@ const SidebarNav = () => {
             >
               Log Out
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </aside>
