@@ -93,12 +93,12 @@ export const SideBarData = [
     icon: <ImStack key="2" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    subnav: [
-      {
-        title: 'Create',
-        path: '/layout/institution/create-institution',
-        icon: <GoPrimitiveDot />,
-      },
-    ],
+    // subnav: [
+    //   {
+    //     title: 'Create',
+    //     path: '/layout/institution/create-institution',
+    //     icon: <GoPrimitiveDot />,
+    //   },
+    // ],
   },
 ];
