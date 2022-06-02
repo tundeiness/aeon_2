@@ -74,7 +74,7 @@ export const SideBarData = [
     icon: <BiHomeAlt key="0" />,
   },
   {
-    title: 'Institution',
+    title: 'Institutions',
     path: '/layout/institution',
     icon: <FiBarChart2 key="1" />,
     iconClosed: <CgChevronDown />,
