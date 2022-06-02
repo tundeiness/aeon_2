@@ -13,6 +13,7 @@ import { MdLogout } from 'react-icons/md';
 import { AiOutlineIdcard } from 'react-icons/ai';
 import { CgChevronDown } from 'react-icons/cg';
 import Submenu from './Submenu/SubMenu';
+import { SideBarData } from '../../data/Dummy';
 // import Logo from '../../static/assets/img/logo-white.png';
 import Logo from '../../static/assets/img/logo-white.png';
 import './sidebarnav.css';
@@ -63,7 +64,18 @@ const SidebarNav = () => {
 
       <nav className="mt-6 ml-2">
         <ul className="list-wrapper">
-          <li
+          {SideBarData.map((child, index) => (
+            <li
+              key={child.id}
+              className={`flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
+                pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
+              }`}
+              role="presentation"
+            >
+              <Submenu item={child} key={child.id} />
+            </li>
+          ))}
+          {/* <li
             className={`flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
               pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
             }`}
@@ -85,7 +97,7 @@ const SidebarNav = () => {
                 </Link>
               </span>
             </span>
-          </li>
+          </li> */}
 
           <li
             className={`dropdown relative flex flex-col space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
@@ -143,12 +155,7 @@ const SidebarNav = () => {
                 </Link>
               </li>
             </ul> */}
-            {isOpen && (
-              // <ul
-              //   className={
-              //     isOpen ? ' flex flex-col sub-menu' : 'sub-menu-deactivate'
-              //   }
-              // >
+            {/* {isOpen && (
               <ul
                 className={`origin-top absolute right-0 mt-11 w-[100%] rounded-md ${
                   pathlink === '/layout/institutions/create-institution' ? 'bg-white' : ''
@@ -168,10 +175,10 @@ const SidebarNav = () => {
                   </Link>
                 </li>
               </ul>
-            )}
+            )} */}
           </li>
 
-          <li
+          {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 rounded transition duration-200 ${
               defaultHome === 'products' ? 'bg-authBtn' : ''
             }`}
@@ -183,7 +190,6 @@ const SidebarNav = () => {
             <span className="flex flex-row items-center">
               <ImStack className="xl:w-6 xl:h-7" />
               <Link
-                // to="/dashboard/products"
                 to="/layout/products"
                 className="inline-block rounded font-medium leading-6 text-indigo-100 ml-3"
                 activeClassName="bg-authBtn"
@@ -192,9 +198,9 @@ const SidebarNav = () => {
               </Link>
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
-          </li>
+          </li> */}
 
-          <li
+          {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'users' ? 'bg-authBtn' : ''
             }`}
@@ -214,9 +220,9 @@ const SidebarNav = () => {
               </Link>
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
-          </li>
+          </li> */}
 
-          <li
+          {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'accounts' ? 'bg-authBtn' : ''
             }`}
@@ -236,9 +242,9 @@ const SidebarNav = () => {
               </Link>
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
-          </li>
+          </li> */}
 
-          <li
+          {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'reports' ? 'bg-authBtn' : ''
             }`}
@@ -258,9 +264,9 @@ const SidebarNav = () => {
               </Link>
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
-          </li>
+          </li> */}
 
-          <li
+          {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'ce-id' ? 'bg-authBtn' : ''
             }`}
@@ -280,9 +286,9 @@ const SidebarNav = () => {
               </Link>
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
-          </li>
+          </li> */}
 
-          <li
+          {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'profile' ? 'bg-authBtn' : ''
             }`}
@@ -302,7 +308,7 @@ const SidebarNav = () => {
               </Link>
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
-          </li>
+          </li> */}
 
           <li
             className={`flex items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${

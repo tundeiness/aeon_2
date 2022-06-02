@@ -79,7 +79,7 @@ export const SideBarData = [
     icon: <FiBarChart2 key="1" />,
     iconClosed: <BsArrowDownShort />,
     iconOpen: <BsArrowUpShort />,
-    subNav: [
+    subnav: [
       {
         title: 'Create',
         path: '/layout/institution/create-institution',
@@ -93,5 +93,12 @@ export const SideBarData = [
     icon: <ImStack key="2" />,
     iconClosed: <BsArrowDownShort />,
     iconOpen: <BsArrowUpShort />,
+    subnav: [
+      {
+        title: 'Create',
+        path: '/layout/institution/create-institution',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
 ];
