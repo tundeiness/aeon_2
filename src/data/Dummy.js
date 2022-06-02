@@ -62,3 +62,11 @@ export const iconArray = [
   ['log out', <MdLogout key="8" />],
   ['caret', <CgChevronDown key="9" />],
 ];
+
+export const SideBarData = [
+  {
+    title: 'Dashboard',
+    path: '/layout/dashboard',
+    icon: <BiHomeAlt key="0" />,
+  },
+];
