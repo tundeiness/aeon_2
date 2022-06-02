@@ -15,7 +15,7 @@ const SubMenu = ({ item }) => {
     <>
       <Link
         to={item.path}
-        className="flex justify-between items-center hover:bg-authBtn outline outline-gray-50"
+        className="flex justify-between items-center py-2 px-2 rounded hover:bg-authBtn outline outline-gray-50"
         onClick={item.subnav && showSubLink}
       >
         <span className="flex flex-row items-end font-medium">
