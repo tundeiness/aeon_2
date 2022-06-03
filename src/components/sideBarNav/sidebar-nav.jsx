@@ -64,7 +64,7 @@ const SidebarNav = () => {
 
       <nav className="mt-6 ml-2">
         <ul className="list-wrapper">
-          {SideBarData.map((child, index) => (
+          {SideBarData.map((child, _index) => (
             <li
               key={child.id}
               className="flex flex-col w-[95%] outline outline-red-500 space-x-3 mb-2 hover:bg-authBtn rounded transition duration-200"

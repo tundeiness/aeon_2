@@ -36,7 +36,7 @@ const SubMenu = ({ item }) => {
         </span>
       </Link>
       {subLink
-        && item.subnav.map((itm, indx) => (
+        && item.subnav.map((itm, _indx) => (
           <Link
             key={itm.id}
             className="flex items-center mt-2 py-1 pl-2 w-[96%] hover:cursor-pointer bg-authBtn"
