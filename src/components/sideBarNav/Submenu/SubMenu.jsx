@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-const SubMenu = ({ item }) => {
+const SubMenu = ({ item, key }) => {
   const temi = 0;
   const location = useLocation();
   // const isActive = location.pathname;
@@ -20,7 +20,8 @@ const SubMenu = ({ item }) => {
     <>
       <Link
         to={item.path}
-        className={`flex justify-between items-center py-2 px-3 rounded outline outline-gray-50 ${
+        key={key}
+        className={`flex justify-between items-center py-2 px-3 rounded ${
           pathlink === item.path ? 'bg-authBtn' : ''
         }`}
         onClick={item.subnav && showSubLink}
@@ -41,7 +42,7 @@ const SubMenu = ({ item }) => {
         && item.subnav.map((itm, _indx) => (
           <Link
             key={itm.id}
-            className="flex items-center mt-2 mb-1 py-1 pl-5 w-[96%] rounded hover:cursor-pointer bg-authBtn outline outline-white"
+            className="flex items-center mt-2 mb-1 py-1 pl-5 w-[96%] rounded hover:cursor-pointer bg-authBtn"
             to={itm.path}
           >
             {itm.icon}

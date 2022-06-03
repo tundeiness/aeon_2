@@ -94,6 +94,7 @@ const Institutions = () => {
           <InstitutionList />
         </>
       )}
+      {/* <div>test</div> */}
 
       {/* <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
