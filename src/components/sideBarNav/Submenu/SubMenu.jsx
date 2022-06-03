@@ -39,7 +39,7 @@ const SubMenu = ({ item }) => {
         && item.subnav.map((itm, _indx) => (
           <Link
             key={itm.id}
-            className="flex items-center mt-2 mb-1 py-1 pl-5 w-[96%] hover:cursor-pointer bg-authBtn outline outline-white"
+            className="flex items-center mt-2 mb-1 py-1 pl-5 w-[96%] rounded hover:cursor-pointer bg-authBtn outline outline-white"
             to={itm.path}
           >
             {itm.icon}
