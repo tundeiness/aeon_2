@@ -11,6 +11,8 @@ const SubMenu = ({ item }) => {
   // const isActive = location.pathname;
   const [subLink, setSubLink] = useState(false);
   const [pathlink, setPathlink] = useState(location.pathname);
+  const [activePage, setActivePage] = useState(true);
+  const [childPage, setChildPage] = useState(false);
 
   const showSubLink = () => setSubLink(!subLink);
   // console.log(item);
