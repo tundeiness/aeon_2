@@ -106,31 +106,33 @@ const routes = [
     element: <PasswordResetView />,
     protected: false,
     title: 'Password Reset',
-    exact: true,
   },
 
   {
-    path: '/',
+    path: 'layout',
     element: <LayoutView />,
     protected: false,
     title: 'Layout',
-    exact: true,
     children: [
       {
-        path: '/layout/dashboard',
+        path: 'dashboard',
         element: <DashboardView />,
-        exact: true,
       },
-      { path: '/layout/products', element: <ProductsView />, exact: true },
+      { path: 'products', element: <ProductsView /> },
       {
-        path: '/layout/institutions',
+        path: 'institutions',
         element: <InstitutionView />,
-        exact: true,
+        children: [
+          {
+            path: 'create-institution',
+            element: <CreateInstitution />,
+          },
+        ],
       },
-      {
-        path: '/layout/institutions/create-institution',
-        element: <CreateInstitution />,
-      },
+      // {
+      //   path: '/layout/institutions/create-institution',
+      //   element: <CreateInstitution />,
+      // },
     ],
   },
 ];

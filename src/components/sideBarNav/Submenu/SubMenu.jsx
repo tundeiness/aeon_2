@@ -2,17 +2,23 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useResolvedPath } from 'react-router-dom';
 
 const SubMenu = ({ item, key }) => {
   const temi = 0;
   const location = useLocation();
+  // const routeMatches = matchRoutes(location);
+  // console.log(routeMatches);
   // const isActive = location.pathname;
   const [subLink, setSubLink] = useState(false);
   const [pathlink, setPathlink] = useState(location.pathname);
   const [activePage, setActivePage] = useState(true);
   const [childPage, setChildPage] = useState(false);
+  const resolvedLocation = useResolvedPath(location.pathname);
+
+  console.log(resolvedLocation.pathname);
 
   const showSubLink = () => setSubLink(!subLink);
   // console.log(item);
@@ -42,7 +48,9 @@ const SubMenu = ({ item, key }) => {
         && item.subnav.map((itm, _indx) => (
           <Link
             key={itm.id}
-            className="flex items-center mt-2 mb-1 py-1 pl-5 w-[96%] rounded hover:cursor-pointer bg-authBtn"
+            className={`flex items-center mt-2 mb-1 py-1 pl-5 w-[96%] rounded hover:cursor-pointer bg-authBtn ${
+              pathlink === item.path ? 'bg-authBtn' : ''
+            }`}
             to={itm.path}
           >
             {itm.icon}

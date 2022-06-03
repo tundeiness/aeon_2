@@ -24,6 +24,7 @@ const Institutions = () => {
 
   const [mockData, setMockData] = useState(Data);
   const [pageNum, setPageNum] = useState(0);
+  const [deactivateUser, setDeactivateUser] = useState(false);
 
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
@@ -94,6 +95,7 @@ const Institutions = () => {
           <InstitutionList />
         </>
       )}
+      {deactivateUser && <div>deactivate user Modal</div>}
       {/* <div>test</div> */}
 
       {/* <article className="w-4/5 ml-auto">
