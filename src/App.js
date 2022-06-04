@@ -7,6 +7,7 @@ import PageLoader from './components/pageLoader/pageLoader';
 import Dashboard from './pages/layout/dashboard/dashboard';
 import Institutions from './pages/layout/institutions/institutions';
 import Modal from './pages/layout/institutions/deleteInstitution/DeleteInstitution';
+import PrivateRoute from './utils/PrivateRoute';
 
 import routes from './Routes';
 import './App.css';
