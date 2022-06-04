@@ -74,7 +74,7 @@ const ProductsView = lazy(() => import('./pages/layout/products/products'));
 
 const routes = [
   {
-    path: '/',
+    path: '/sign-in',
     element: <LoginView />,
     protected: false,
     title: 'Log In',
@@ -109,7 +109,7 @@ const routes = [
   },
 
   {
-    path: 'layout',
+    path: 'layout/*',
     element: <LayoutView />,
     protected: false,
     title: 'Layout',
