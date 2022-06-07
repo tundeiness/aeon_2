@@ -44,6 +44,10 @@ const App = () => {
 
       <Routes>
         <Route path="/sign-in" element={<SignInView />} />
+        <Route path="/forgot-password" element={<ForgotPasswordView />} />
+        <Route path="/check-email" element={<CheckEmailView />} />
+        <Route path="/new-password" element={<NewPasswordView />} />
+        <Route path="/password-reset" element={<PasswordResetView />} />
       </Routes>
     </Suspense>
   );
