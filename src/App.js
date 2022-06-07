@@ -48,6 +48,9 @@ const App = () => {
         <Route path="/check-email" element={<CheckEmailView />} />
         <Route path="/new-password" element={<NewPasswordView />} />
         <Route path="/password-reset" element={<PasswordResetView />} />
+
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<p className="flex justify-center items-center text-2xl">Page Not Found !!!</p>} />
       </Routes>
     </Suspense>
   );
