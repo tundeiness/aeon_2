@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import {
   Routes, Route, useRoutes, useLocation, useNavigate,
 } from 'react-router-dom';
@@ -13,6 +13,12 @@ import PrivateRoute from './utils/PrivateRoute';
 import routes from './Routes';
 import './App.css';
 
+const SignInView = lazy(() => import('./pages/sign-in/sign-in'));
+const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-password'));
+const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
+const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
+const PasswordResetView = lazy(() => import('./pages/password-reset/password-reset'));
+
 const App = () => {
   // const elements = useRoutes(routes);
   const Navigate = useNavigate();
@@ -20,12 +26,12 @@ const App = () => {
   const background = location.state && location.state.background;
 
   const { isLoggedIn } = useStateContext();
-  // const elements = useRoutes(routes);
+  const elements = useRoutes(routes);
   return (
     <Suspense fallback={<PageLoader />}>
       {/* {elements} */}
 
-      <Routes location={background || location}>
+      {/* <Routes location={background || location}>
         <Route path="/" element={<Institutions />}>
           <Route path="/delete-institution" element={<Modal />} />
         </Route>
@@ -34,7 +40,11 @@ const App = () => {
         <Routes>
           <Route path="/delete-institution" element={<Modal />} />
         </Routes>
-      )}
+      )} */}
+
+      <Routes>
+        <Route path="/sign-in" element={<SignInView />} />
+      </Routes>
     </Suspense>
   );
 };

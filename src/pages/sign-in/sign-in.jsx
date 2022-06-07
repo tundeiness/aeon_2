@@ -9,7 +9,7 @@ import AeonLogo from '../../static/assets/img/logo-blue.png';
 import LandingImage from '../../static/assets/img/landing-image.png';
 import LogoImage from '../../static/assets/img/logo-transparent.png';
 import AuthButton from '../../components/authButton/authButton';
-import './signin.css';
+import './sign-in.css';
 
 const SignIn = () => {
   const validate = (value) => {

@@ -6,7 +6,7 @@ import { lazy } from 'react';
 // import MainLayout from './layouts/MainLayout';
 // const LoginView = lazy(() => import('../'));
 
-const LoginView = lazy(() => import('./pages/sign-in/signin'));
+const LoginView = lazy(() => import('./pages/sign-in/sign-in'));
 const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-password'));
 const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
 const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));

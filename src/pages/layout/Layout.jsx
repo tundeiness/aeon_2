@@ -8,7 +8,7 @@ import Dashboard from './dashboard/dashboard';
 import Navigation from '../../components/sideBarNav/sidebar-nav';
 import { useStateContext } from '../../contexts/ContextProvider';
 import DeleteInstitution from './institutions/deleteInstitution/DeleteInstitution';
-import SignIn from '../sign-in/signin';
+import SignIn from '../sign-in/sign-in';
 import './layout.css';
 
 const Layout = () => {
