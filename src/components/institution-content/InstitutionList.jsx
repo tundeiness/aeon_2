@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 // import {
 //   SearchIcon, ArrowDownIcon, DotIcon, DeleteIcon, CreateIcon,
@@ -16,6 +17,7 @@ import Data from '../../data/MOCK_DATA.json';
 
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
+  const location = useLocation();
 
   const [mockData, setMockData] = useState(Data);
   const [pageNum, setPageNum] = useState(0);
@@ -58,8 +60,9 @@ const InstitutionList = () => {
               </span> */}
               <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
-            <button
-              type="button"
+            <Link
+              to="/delete-institution"
+              state={{ background: location }}
                // onClick={() => setActiveModal(true)}
               onClick={() => setActiveModal((prevActiveModal) => !prevActiveModal)}
             >
@@ -67,7 +70,7 @@ const InstitutionList = () => {
               {/* <span className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor">
                 {DeleteIcon}
               </span> */}
-            </button>
+            </Link>
             <button type="button">
               {/* <span className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor">
                 {CreateIcon}
