@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Outlet,
 } from 'react-router-dom';
@@ -7,10 +8,12 @@ import Dashboard from './dashboard/dashboard';
 import Navigation from '../../components/sideBarNav/sidebar-nav';
 import { useStateContext } from '../../contexts/ContextProvider';
 import DeleteInstitution from './institutions/deleteInstitution/DeleteInstitution';
+import SignIn from '../sign-in/signin';
 import './layout.css';
 
 const Layout = () => {
   const test = 0;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const {
     isClicked, handleSetModal, activeModal, setActiveModal,
   } = useStateContext();
@@ -30,7 +33,7 @@ const Layout = () => {
     //   )}
     // </div>
     <>
-      <Outlet />
+      {isLoggedIn ? <Outlet /> : <SignIn />}
     </>
   );
 };

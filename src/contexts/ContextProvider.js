@@ -16,6 +16,7 @@ export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [activeModal, setActiveModal] = useState(false);
   const [isClicked, setIsClicked] = useState(initialState);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleClick = (clicked) => {
     setIsClicked({ ...initialState, [clicked]: true });
@@ -27,7 +28,16 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <StateContext.Provider value={{
-      activeMenu, setActiveMenu, activeModal, setActiveModal, isClicked, setIsClicked, handleClick, handleSetModal,
+      activeMenu,
+      setActiveMenu,
+      activeModal,
+      setActiveModal,
+      isClicked,
+      setIsClicked,
+      handleClick,
+      handleSetModal,
+      isLoggedIn,
+      setIsLoggedIn,
     }}
     >
       {children}
