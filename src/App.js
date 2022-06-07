@@ -20,21 +20,21 @@ const App = () => {
   const background = location.state && location.state.background;
 
   const { isLoggedIn } = useStateContext();
-  const elements = useRoutes(routes);
+  // const elements = useRoutes(routes);
   return (
     <Suspense fallback={<PageLoader />}>
-      {elements}
+      {/* {elements} */}
 
-      {/* <Routes location={background || location}>
-        <Route path="/" element={<Institutions isLoggedIn={isLoggedIn} />}>
+      <Routes location={background || location}>
+        <Route path="/" element={<Institutions />}>
           <Route path="/delete-institution" element={<Modal />} />
         </Route>
       </Routes>
       {background && (
         <Routes>
-          <Route path="modal" element={<Modal />} />
+          <Route path="/delete-institution" element={<Modal />} />
         </Routes>
-      )} */}
+      )}
     </Suspense>
   );
 };
