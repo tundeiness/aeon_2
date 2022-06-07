@@ -13,10 +13,12 @@ import './layout.css';
 
 const Layout = () => {
   const test = 0;
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const {
+  //   isClicked, handleSetModal, activeModal, setActiveModal, isLoggedIn,
+  // } = useStateContext();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const {
-    isClicked, handleSetModal, activeModal, setActiveModal,
-  } = useStateContext();
   return (
     // <div className="relative flex min-h-screen overflow-hidden outline outline-red-500">
     //   {activeModal ? (
@@ -33,7 +35,7 @@ const Layout = () => {
     //   )}
     // </div>
     <>
-      {isLoggedIn ? <Outlet /> : <SignIn />}
+      <Outlet />
     </>
   );
 };

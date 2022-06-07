@@ -7,6 +7,7 @@ import PageLoader from './components/pageLoader/pageLoader';
 import Dashboard from './pages/layout/dashboard/dashboard';
 import Institutions from './pages/layout/institutions/institutions';
 import Modal from './pages/layout/institutions/deleteInstitution/DeleteInstitution';
+import { useStateContext } from './contexts/ContextProvider';
 import PrivateRoute from './utils/PrivateRoute';
 
 import routes from './Routes';
@@ -17,13 +18,15 @@ const App = () => {
   const Navigate = useNavigate();
   const location = useLocation();
   const background = location.state && location.state.background;
+
+  const { isLoggedIn } = useStateContext();
+  const elements = useRoutes(routes);
   return (
     <Suspense fallback={<PageLoader />}>
-      {/* {elements} */}
+      {elements}
 
-      <Routes location={background || location}>
-        {/* <Route path="/sign-in" element={<Navigate replace to="sign-in" />} /> */}
-        <Route path="/" element={<Institutions />}>
+      {/* <Routes location={background || location}>
+        <Route path="/" element={<Institutions isLoggedIn={isLoggedIn} />}>
           <Route path="/delete-institution" element={<Modal />} />
         </Route>
       </Routes>
@@ -31,7 +34,7 @@ const App = () => {
         <Routes>
           <Route path="modal" element={<Modal />} />
         </Routes>
-      )}
+      )} */}
     </Suspense>
   );
 };
