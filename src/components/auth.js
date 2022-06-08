@@ -11,35 +11,39 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // const login = (user) => {
-  //   setUser(user);
-  // };
+  const [isAuthenticated, seIsAuthenticated] = useState(false);
 
-  const login = async (user) => {
+  const login = (user) => {
     setUser(user);
     navigate('/dashboard');
   };
 
-  const logout = () => {
-    setUser(null);
-    navigate('/', { replace: true });
-  };
+  // const login = async (user) => {
+  //   setUser(user);
+  //   navigate('/dashboard');
+  // };
+
+  // const logout = () => {
+  //   setUser(null);
+  //   navigate('/', { replace: true });
+  // };
 
   // const logout = (user) => {
   //   setUser(null);
   // };
 
-  const value = useMemo(
-    () => ({
-      user,
-      login,
-      logout,
-    }),
-    [user],
-  );
+  // const value = useMemo(
+  //   () => ({
+  //     user,
+  //     login,
+  //     logout,
+  //     isAuthenticated,
+  //   }),
+  //   [user],
+  // );
 
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{ isAuthenticated, login }}>
       {children}
     </AuthContext.Provider>
   );

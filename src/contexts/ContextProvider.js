@@ -2,21 +2,29 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext, useContext, useState, Navigate,
+} from 'react';
 
 const initialState = {
-  serverStatus: false,
+  // serverStatus: false,
   modal: false,
   edit: false,
 };
 
 const StateContext = createContext();
+// const AuthContext = createContext(null);
 
 export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [activeModal, setActiveModal] = useState(false);
   const [isClicked, setIsClicked] = useState(initialState);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [user, setUser] = useState(null);
+  // const navigate = useNavigate();
+
+  const [isAuthenticated, seIsAuthenticated] = useState(false);
 
   const handleClick = (clicked) => {
     setIsClicked({ ...initialState, [clicked]: true });
@@ -26,19 +34,33 @@ export const ContextProvider = ({ children }) => {
     setIsClicked({ ...initialState, [toggle]: true });
   };
 
+  const login = (user) => {
+    setUser(user);
+    Navigate('/dashboard');
+  };
+
+  const logout = () => {
+    setUser(null);
+    Navigate('/', { replace: true });
+  };
+
   return (
-    <StateContext.Provider value={{
-      activeMenu,
-      setActiveMenu,
-      activeModal,
-      setActiveModal,
-      isClicked,
-      setIsClicked,
-      handleClick,
-      handleSetModal,
-      isLoggedIn,
-      setIsLoggedIn,
-    }}
+    <StateContext.Provider
+      value={{
+        activeMenu,
+        setActiveMenu,
+        activeModal,
+        setActiveModal,
+        isClicked,
+        setIsClicked,
+        handleClick,
+        handleSetModal,
+        isLoggedIn,
+        setIsLoggedIn,
+        isAuthenticated,
+        login,
+        logout,
+      }}
     >
       {children}
     </StateContext.Provider>

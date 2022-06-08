@@ -7,19 +7,21 @@ import PageLoader from './components/pageLoader/pageLoader';
 import Dashboard from './pages/layout/dashboard/dashboard';
 import Institutions from './pages/layout/institutions/institutions';
 import Modal from './pages/layout/institutions/deleteInstitution/DeleteInstitution';
-import { useStateContext } from './contexts/ContextProvider';
+import { ContextProvider, useStateContext } from './contexts/ContextProvider';
 import PrivateRoute from './utils/PrivateRoute';
 import SidebarNav from './components/sideBarNav/sidebar-nav';
+import { AuthProvider } from './components/auth';
+// import {ContextProvider} from './contexts/ContextProvider'
 
 // import routes from './Routes';
 import MainRoutes from './Routes';
 import './App.css';
 
-const SignInView = lazy(() => import('./pages/sign-in/sign-in'));
-const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-password'));
-const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
-const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
-const PasswordResetView = lazy(() => import('./pages/password-reset/password-reset'));
+// const SignInView = lazy(() => import('./pages/sign-in/sign-in'));
+// const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-password'));
+// const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
+// const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
+// const PasswordResetView = lazy(() => import('./pages/password-reset/password-reset'));
 
 const App = () => {
   // const elements = useRoutes(routes);
@@ -27,14 +29,14 @@ const App = () => {
   const location = useLocation();
   const background = location.state && location.state.background;
 
-  const { isLoggedIn } = useStateContext();
+  const { isLoggedIn, isAuthenticated } = useStateContext();
   // const elements = useRoutes(routes);
   return (
-    <>
-      <div className="relative flex min-h-screen overflow-hidden">
-        <SidebarNav />
-        <MainRoutes />
-      </div>
+    <ContextProvider>
+      {/* <div className="relative flex min-h-screen overflow-hidden"> */}
+      {/* <SidebarNav /> */}
+      <MainRoutes />
+      {/* </div> */}
 
       {/* {elements} */}
 
@@ -67,7 +69,7 @@ const App = () => {
           )}
         />
       </Routes> */}
-    </>
+    </ContextProvider>
   );
 };
 

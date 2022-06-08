@@ -1,16 +1,17 @@
-import React from 'react';
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable react/prop-types */
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../auth';
 
-import { Navigate, Outlet } from 'react-router-dom';
-
-const useAuth = () => true;
-
-const ProtectedRoutes = () => {
-  const auth = useAuth();
-
-  return auth ? <Outlet /> : <Navigate to="/sign-in" />;
+export const ProtectedRoute = ({ children }) => {
+  const { user } = useAuth();
+  if (!user) {
+    // user is not authenticated
+    return <Navigate to="/" />;
+  }
+  return children;
 };
-
-export default ProtectedRoutes;
+// export default ProtectedRoutes;
 
 // const useAuth = () =>
 // get item from localstorage
