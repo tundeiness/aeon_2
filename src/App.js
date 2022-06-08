@@ -9,8 +9,10 @@ import Institutions from './pages/layout/institutions/institutions';
 import Modal from './pages/layout/institutions/deleteInstitution/DeleteInstitution';
 import { useStateContext } from './contexts/ContextProvider';
 import PrivateRoute from './utils/PrivateRoute';
+import SidebarNav from './components/sideBarNav/sidebar-nav';
 
-import routes from './Routes';
+// import routes from './Routes';
+import MainRoutes from './Routes';
 import './App.css';
 
 const SignInView = lazy(() => import('./pages/sign-in/sign-in'));
@@ -26,9 +28,14 @@ const App = () => {
   const background = location.state && location.state.background;
 
   const { isLoggedIn } = useStateContext();
-  const elements = useRoutes(routes);
+  // const elements = useRoutes(routes);
   return (
-    <Suspense fallback={<PageLoader />}>
+    <>
+      <div className="relative flex min-h-screen overflow-hidden">
+        <SidebarNav />
+        <MainRoutes />
+      </div>
+
       {/* {elements} */}
 
       {/* <Routes location={background || location}>
@@ -42,7 +49,7 @@ const App = () => {
         </Routes>
       )} */}
 
-      <Routes>
+      {/* <Routes>
         <Route path="/sign-in" element={<SignInView />} />
         <Route path="/forgot-password" element={<ForgotPasswordView />} />
         <Route path="/check-email" element={<CheckEmailView />} />
@@ -59,8 +66,8 @@ const App = () => {
             </p>
           )}
         />
-      </Routes>
-    </Suspense>
+      </Routes> */}
+    </>
   );
 };
 

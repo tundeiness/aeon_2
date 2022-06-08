@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
-import { lazy } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import PageLoader from './components/pageLoader/pageLoader';
 
 // import AuthLayout from './layouts/AuthLayout';
 // import MainLayout from './layouts/MainLayout';
@@ -72,69 +74,117 @@ const ProductsView = lazy(() => import('./pages/layout/products/products'));
 // };
 // export default AppRouter;
 
-const routes = [
-  {
-    path: '/sign-in',
-    element: <LoginView />,
-    protected: false,
-    title: 'Log In',
-    exact: true,
-  },
-  {
-    path: '/forgot-password',
-    element: <ForgotPasswordView />,
-    protected: false,
-    title: 'Forgot Password',
-    exact: true,
-  },
-  {
-    path: '/check-email',
-    element: <CheckEmailView />,
-    protected: false,
-    title: 'Check Email',
-    exact: true,
-  },
-  {
-    path: '/new-password',
-    element: <NewPasswordView />,
-    protected: false,
-    title: 'New Password',
-    exact: true,
-  },
-  {
-    path: '/password-reset',
-    element: <PasswordResetView />,
-    protected: false,
-    title: 'Password Reset',
-  },
+// const routes = [
+// {
+//   path: '/sign-in',
+//   element: <LoginView />,
+//   protected: false,
+//   title: 'Log In',
+//   exact: true,
+// },
+// {
+//   path: '/forgot-password',
+//   element: <ForgotPasswordView />,
+//   protected: false,
+//   title: 'Forgot Password',
+//   exact: true,
+// },
+// {
+//   path: '/check-email',
+//   element: <CheckEmailView />,
+//   protected: false,
+//   title: 'Check Email',
+//   exact: true,
+// },
+// {
+//   path: '/new-password',
+//   element: <NewPasswordView />,
+//   protected: false,
+//   title: 'New Password',
+//   exact: true,
+// },
+// {
+//   path: '/password-reset',
+//   element: <PasswordResetView />,
+//   protected: false,
+//   title: 'Password Reset',
+// },
 
-  {
-    path: 'layout/*',
-    element: <LayoutView />,
-    protected: false,
-    title: 'Layout',
-    children: [
-      {
-        path: 'dashboard',
-        element: <DashboardView />,
-      },
-      { path: 'products', element: <ProductsView /> },
-      {
-        path: 'institutions',
-        element: <InstitutionView />,
-        children: [
-          {
-            path: 'create-institution',
-            element: <CreateInstitution />,
-          },
-        ],
-      },
-      // {
-      //   path: '/layout/institutions/create-institution',
-      //   element: <CreateInstitution />,
-      // },
-    ],
-  },
-];
+// {
+//   path: 'layout/*',
+//   element: <LayoutView />,
+//   protected: false,
+//   title: 'Layout',
+//   children: [
+//     {
+//       path: 'dashboard',
+//       element: <DashboardView />,
+//     },
+//     { path: 'products', element: <ProductsView /> },
+//     {
+//       path: 'institutions',
+//       element: <InstitutionView />,
+//       children: [
+//         {
+//           path: 'create-institution',
+//           element: <CreateInstitution />,
+//         },
+//       ],
+//     },
+// {
+//   path: '/layout/institutions/create-institution',
+//   element: <CreateInstitution />,
+// },
+// ],
+//   },
+// ];
 
-export default routes;
+// export default routes;
+
+const MainRoutes = () => (
+  <Suspense fallback={<PageLoader />}>
+    <Routes>
+      {/** Protected Routes */}
+      {/** Wrap all Route under ProtectedRoutes element */}
+      <Route path="/" element={<ProtectedRoutes />}>
+        <Route path="/" element={<InnerContent />}>
+          <Route path="/" element={<Navigate replace to="dashboard" />} />
+          <Route path="dashboard" element={<DashboardView />} />
+          <Route
+            path="tabs"
+            element={<Tabs props={{ userName: 'Bikash web' }} />}
+          >
+            <Route path="/tabs" element={<Navigate replace to="tab1" />} />
+            <Route path="tab1" element={<Tab1 />} />
+            <Route
+              path="tab2"
+              element={<ProtectedRoutes roleRequired="USER" />}
+            >
+              <Route path="/tabs/tab2" element={<Tab2 />} />
+            </Route>
+            <Route path="tab3" element={<Tab3 />} />
+          </Route>
+          <Route path="settings" element={<Settings />} />
+          <Route path="dynamic-form" element={<DynamicForm />} />
+          <Route
+            path="users"
+            element={<Users extraItem="test extra item from router" />}
+          />
+          <Route path="users/:userId" element={<SingleUser />} />
+          <Route path="users/new" element={<NewUser />} />
+        </Route>
+      </Route>
+
+      {/** Public Routes */}
+      {/** Wrap all Route under PublicRoutes element */}
+      <Route path="sign-in" element={<PublicRoutes />}>
+        <Route path="/sign-in" element={<LoginView />} />
+      </Route>
+
+      {/** Permission denied route */}
+      <Route path="/denied" element={<PermissionDenied />} />
+    </Routes>
+  </Suspense>
+);
+
+export default MainRoutes;
