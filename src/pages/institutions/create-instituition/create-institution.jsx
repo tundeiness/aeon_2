@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import SidebarNav from '../../../../components/sideBarNav/sidebar-nav';
-import SupportButton from '../../../../components/support/support';
+import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
+import SupportButton from '../../../components/support/support';
 
 const CreateInstitution = () => {
   const test = 0;

@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState, useNavigate } from 'react';
-import { useStateContext } from '../../../../contexts/ContextProvider';
-import { DangerIcon } from '../../../../data/Dummy';
+import { useStateContext } from '../../../contexts/ContextProvider';
+import { DangerIcon } from '../../../data/Dummy';
 import './deleteinstitution.css';
 
 const DeleteInstitution = () => {

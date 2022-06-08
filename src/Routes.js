@@ -28,7 +28,8 @@ const PasswordResetView = lazy(() => import('./pages/password-reset/password-res
 const LayoutView = lazy(() => import('./pages/layout/Layout'));
 const DashboardView = lazy(() => import('./pages/dashboard/dashboard'));
 // const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
-const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
+const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
+// const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
 const CreateInstitution = lazy(() => import('./pages/layout/institutions/create-instituition/create-institution'));
 const ProductsView = lazy(() => import('./pages/layout/products/products'));
 
@@ -164,6 +165,7 @@ const MainRoutes = () => (
       <Route index element={<LoginView />} />
       <Route path="sign-in" element={<LoginView />} />
       <Route path="dashboard" element={<DashboardView />} />
+      <Route path="institutions" element={<InstitutionView />} />
       <Route
         path="/main-layout"
         element={(

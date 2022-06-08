@@ -16,7 +16,7 @@ import SidebarNav from '../../components/sideBarNav/sidebar-nav';
 import DeleteInstitution from './deleteInstitution/DeleteInstitution';
 // import InstitutionList from '../../../components/institutionContent/InstitutionList';
 import InstitutionList from '../../components/institution-content/InstitutionList';
-import Data from '../../../data/MOCK_DATA.json';
+import Data from '../../data/MOCK_DATA.json';
 
 const Institutions = () => {
   const test = 0;
