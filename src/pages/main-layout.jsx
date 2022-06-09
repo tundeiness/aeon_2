@@ -6,10 +6,10 @@ import SidebarNav from '../components/sideBarNav/sidebar-nav';
 const MainLayout = () => {
   const test = 0;
   return (
-    <>
+    <div className="relative flex min-h-screen overflow-hidden">
       <SidebarNav />
       <Outlet />
-    </>
+    </div>
   );
 };
 

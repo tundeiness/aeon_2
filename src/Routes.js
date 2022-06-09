@@ -7,7 +7,7 @@ import React, { lazy, Suspense } from 'react';
 import PageLoader from './components/pageLoader/pageLoader';
 import { ProtectedRoute } from './components/protectedRoutes/ProtectedRoutes';
 import { ProtectedLayout } from './components/protectedLayout/ProtectedLayout';
-import MainLayout from './components/MainLayout/MainLayout';
+import MainLayout from './pages/main-layout';
 import { useAuth } from './components/auth';
 
 // import AuthLayout from './layouts/AuthLayout';
@@ -28,8 +28,9 @@ const ResetPasswordView = lazy(() => import('./pages/reset-password/reset-passwo
 const LayoutView = lazy(() => import('./pages/layout/Layout'));
 const DashboardView = lazy(() => import('./pages/dashboard/dashboard'));
 // const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
-const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
+// const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 // const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
+const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 const CreateInstitution = lazy(() => import('./pages/layout/institutions/create-instituition/create-institution'));
 const ProductsView = lazy(() => import('./pages/layout/products/products'));
 
@@ -165,6 +166,21 @@ const MainRoutes = () => (
 
       <Route index element={<LoginView />} />
       <Route path="reset-password" element={<ResetPasswordView />} />
+      <Route path="new-password" element={<NewPasswordView />} />
+      <Route path="forgot-password" element={<ForgotPasswordView />} />
+      <Route path="check-email" element={<CheckEmailView />} />
+
+      <Route
+        path="/"
+        element={(
+          // <RequireAuth>
+          <MainLayout />
+          // </RequireAuth>
+        )}
+      >
+        <Route path="dashboard" element={<DashboardView />} />
+        <Route path="institutions" element={<InstitutionView />} />
+      </Route>
 
       {/* <Route index element={<LoginView />} />
       <Route path="sign-in" element={<LoginView />} />

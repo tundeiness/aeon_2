@@ -82,11 +82,10 @@ const Institutions = () => {
   };
   return (
     // <article className="flex-1">
-    <div className="relative flex min-h-screen overflow-hidden">
-      <>
-        <SidebarNav />
-        <InstitutionList />
-      </>
+    <>
+
+      {/* <SidebarNav /> */}
+      <InstitutionList />
 
       {/* {activeModal ? (
         <>
@@ -182,7 +181,7 @@ const Institutions = () => {
           </div>
         </section>
       </article> */}
-    </div>
+    </>
   );
 };
 
