@@ -5,6 +5,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiCheckCircle } from 'react-icons/fi';
 import AeonLogo from '../../static/assets/img/logo-blue.png';
+import './reset-password.css';
 
 const PasswordReset = () => {
   const test = 0;

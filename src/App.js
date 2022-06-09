@@ -32,7 +32,7 @@ const App = () => {
   const { isLoggedIn, isAuthenticated } = useStateContext();
   // const elements = useRoutes(routes);
   return (
-    <ContextProvider>
+    <>
       {/* <div className="relative flex min-h-screen overflow-hidden"> */}
       {/* <SidebarNav /> */}
       <MainRoutes />
@@ -69,7 +69,7 @@ const App = () => {
           )}
         />
       </Routes> */}
-    </ContextProvider>
+    </>
   );
 };
 

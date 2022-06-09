@@ -24,7 +24,7 @@ const LoginView = lazy(() => import('./pages/sign-in/sign-in'));
 const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-password'));
 const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
 const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
-const PasswordResetView = lazy(() => import('./pages/password-reset/password-reset'));
+const ResetPasswordView = lazy(() => import('./pages/reset-password/reset-password'));
 const LayoutView = lazy(() => import('./pages/layout/Layout'));
 const DashboardView = lazy(() => import('./pages/dashboard/dashboard'));
 // const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
@@ -162,19 +162,30 @@ const MainRoutes = () => (
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
       </Route> */}
+
       <Route index element={<LoginView />} />
+      <Route path="reset-password" element={<ResetPasswordView />} />
+
+      {/* <Route index element={<LoginView />} />
       <Route path="sign-in" element={<LoginView />} />
       <Route path="dashboard" element={<DashboardView />} />
-      <Route path="institutions" element={<InstitutionView />} />
-      <Route
+      <Route path="institutions" element={<InstitutionView />} /> */}
+      {/* <Route
         path="/main-layout"
         element={(
           <RequireAuth>
             <MainLayout />
           </RequireAuth>
         )}
+      /> */}
+      <Route
+        path="*"
+        element={(
+          <h1 className="flex flex-col items-center justify-center">
+            There&apos;s nothing here: 404!
+          </h1>
+        )}
       />
-      <Route path="*" element={<p>There&apos;s nothing here: 404!</p>} />
       {/* <Route path="/dashboard" element={<ProtectedLayout />}>
         <Route path="profile" element={<ProfilePage />} />
         <Route path="settings" element={<SettingsPage />} />
