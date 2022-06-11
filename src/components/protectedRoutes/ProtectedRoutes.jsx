@@ -2,9 +2,9 @@
 import { Navigate } from 'react-router-dom';
 // import { useStateContext } from '../../contexts/ContextProvider';
 
-const Protected = ({ children, isLoggedIn }) => {
+const Protected = ({ children, user }) => {
   // const { isLoggedIn } = useStateContext();
-  if (!isLoggedIn) {
+  if (!user) {
     return <Navigate to="/" replace />;
   }
   return children;
