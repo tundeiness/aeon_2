@@ -19,7 +19,7 @@ export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [activeModal, setActiveModal] = useState(false);
   const [isClicked, setIsClicked] = useState(initialState);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -34,14 +34,21 @@ export const ContextProvider = ({ children }) => {
     setIsClicked({ ...initialState, [toggle]: true });
   };
 
-  const login = (user) => {
-    setUser(user);
-    Navigate('/dashboard');
-  };
+  // const login = (user) => {
+  //   setUser(user);
+  //   Navigate('/dashboard');
+  // };
 
-  const logout = () => {
-    setUser(null);
-    Navigate('/', { replace: true });
+  // const logout = () => {
+  //   setUser(null);
+  //   Navigate('/', { replace: true });
+  // };
+
+  const logIn = () => {
+    setIsLoggedIn(true);
+  };
+  const logOut = () => {
+    setIsLoggedIn(false);
   };
 
   return (
@@ -58,8 +65,8 @@ export const ContextProvider = ({ children }) => {
         isLoggedIn,
         setIsLoggedIn,
         isAuthenticated,
-        login,
-        logout,
+        logIn,
+        logOut,
       }}
     >
       {children}

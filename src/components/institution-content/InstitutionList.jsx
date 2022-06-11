@@ -61,10 +61,14 @@ const InstitutionList = () => {
               <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
             <Link
-              to="/delete-institution"
+              to="delete-institution"
               state={{ background: location }}
-               // onClick={() => setActiveModal(true)}
+              // to={{
+              //   pathname: 'delete-institution',
+              //   state: { background: location },
+              // }}
               onClick={() => setActiveModal((prevActiveModal) => !prevActiveModal)}
+              // onClick={() => setActiveModal(true)}
             >
               <RiDeleteBinLine className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor" />
               {/* <span className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor">

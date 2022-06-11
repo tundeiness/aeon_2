@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
-import React, { useState, useNavigate } from 'react';
+import React, { useState, useNavigate, useEffect } from 'react';
 import { useStateContext } from '../../../../contexts/ContextProvider';
 import { DangerIcon } from '../../../../data/Dummy';
 import './deleteinstitution.css';
@@ -8,6 +8,12 @@ import './deleteinstitution.css';
 const DeleteInstitution = () => {
   const { setActiveModal } = useStateContext();
   const navigate = useNavigate();
+
+  const closeModal = (e) => {
+    e.stopPropagation();
+    navigate(-1);
+  };
+
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -42,7 +48,7 @@ const DeleteInstitution = () => {
                 className="text-gray-700 text-base background-transparent font-medium capitalize px-12 py-3  outline outline-gray-300 rounded mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 // onClick={() => setActiveModal(false)}
-                onClick={() => navigate(-1)}
+                onClick={closeModal}
               >
                 Cancel
               </button>
