@@ -188,7 +188,7 @@ const MainRoutes = () => {
             // </Protected>
           }
         >
-          <Route path="dashboard" element={<DashboardView />} />
+          <Route index element={<DashboardView />} />
           <Route path="institutions" element={<InstitutionView />}>
             {/* <Route
               path="delete-institution"
