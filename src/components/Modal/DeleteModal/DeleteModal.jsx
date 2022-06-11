@@ -1,17 +1,22 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { useStateContext } from '../../../contexts/ContextProvider';
+/* eslint-disable react/prop-types */
+import { useEffect } from 'react';
+import ReactPortal from '../../ReactPortal/ReactPortal';
 import { DangerIcon } from '../../../data/Dummy';
-import './deleteinstitution.css';
 
-const DeleteInstitution = ({ handleClose, isOpen }) => {
-  const { setActiveModal } = useStateContext();
-  // const navigate = useNavigate();
+const DeleteModal = ({ isOpen, handleClose }) => {
+  if (!isOpen) return null;
+
+  useEffect(() => {
+    const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
+    document.body.addEventListener('keydown', closeOnEscapeKey);
+    return () => {
+      document.body.removeEventListener('keydown', closeOnEscapeKey);
+    };
+  }, [handleClose]);
 
   return (
-    <>
+    <ReactPortal wrapperId="react-portal-modal-container">
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-auto my-6 mx-auto max-w-sm">
           {/* content */}
@@ -43,8 +48,7 @@ const DeleteInstitution = ({ handleClose, isOpen }) => {
               <button
                 className="text-gray-700 text-base background-transparent font-medium capitalize px-12 py-3  outline outline-gray-300 rounded mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                // onClick={() => setActiveModal(false)}
-                // onClick={() => handleClose}
+                onClick={() => handleClose()}
               >
                 Cancel
               </button>
@@ -59,8 +63,7 @@ const DeleteInstitution = ({ handleClose, isOpen }) => {
         </div>
       </div>
       <div className="opacity-50 fixed inset-0 z-40 bg-black" />
-    </>
+    </ReactPortal>
   );
 };
-
-export default DeleteInstitution;
+export default DeleteModal;
