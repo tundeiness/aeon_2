@@ -166,6 +166,8 @@ const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 
 // const { isLoggedIn } = useStateContext();
 
+const CreateInstitutionView = lazy(() => import('./pages/institutions/create-instituition/create-institution'));
+
 const MainRoutes = () => {
   // const location = useLocation();
   // const background = location.state && location.state.background;
@@ -192,6 +194,7 @@ const MainRoutes = () => {
           <Route index element={<DashboardView />} />
           <Route path="dashboard" element={<DashboardView />} />
           <Route path="institutions" element={<InstitutionView />} />
+          <Route path="create-institution" element={<CreateInstitutionView />} />
           {/* <Route
             path="institutions/delete-institution"
             element={<DeleteInstitutionView />}
