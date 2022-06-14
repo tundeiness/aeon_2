@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-lone-blocks */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
@@ -153,15 +154,15 @@ const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-pas
 const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
 const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
 const ResetPasswordView = lazy(() => import('./pages/reset-password/reset-password'));
-const LayoutView = lazy(() => import('./pages/layout/Layout'));
+// const LayoutView = lazy(() => import('./pages/layout/Layout'));
 const DashboardView = lazy(() => import('./pages/dashboard/dashboard'));
 // const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
 // const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 // const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
 const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
-const DeleteInstitutionView = lazy(() => import('./pages/layout/institutions/deleteInstitution/DeleteInstitution'));
-const CreateInstitution = lazy(() => import('./pages/layout/institutions/create-instituition/create-institution'));
-const ProductsView = lazy(() => import('./pages/layout/products/products'));
+// const DeleteInstitutionView = lazy(() => import('./pages/layout/institutions/deleteInstitution/DeleteInstitution'));
+// const CreateInstitution = lazy(() => import('./pages/layout/institutions/create-instituition/create-institution'));
+// const ProductsView = lazy(() => import('./pages/layout/products/products'));
 
 // const { isLoggedIn } = useStateContext();
 
@@ -183,35 +184,28 @@ const MainRoutes = () => {
         <Route path="forgot-password" element={<ForgotPasswordView />} />
         <Route path="check-email" element={<CheckEmailView />} />
 
-        <Route
+        {/* <Route
           path="/dashboard"
-          element={
-            // <Protected auth={{ isAuthenticated: true }}>
-            <MainLayout />
-            // </Protected>
-          }
-        >
+          element={<MainLayout />}
+        > */}
+        <Route element={<MainLayout />}>
           <Route index element={<DashboardView />} />
-          <Route path="institutions" element={<InstitutionView />}>
-            {/* <Route
-              path="delete-institution"
-              element={<DeleteInstitutionView />}
-            /> */}
-          </Route>
-          <Route
+          <Route path="dashboard" element={<DashboardView />} />
+          <Route path="institutions" element={<InstitutionView />} />
+          {/* <Route
             path="institutions/delete-institution"
-            element={<DeleteInstitutionView />}
-          />
-
-          {/* <Route
-            path="institutions/create-institution"
-            element={<CreateInstitutionView />}
-          /> */}
-          {/* <Route
-            path="delete-institution"
             element={<DeleteInstitutionView />}
           /> */}
         </Route>
+        {/* <Route
+            path="institutions/create-institution"
+            element={<CreateInstitutionView />}
+          /> */}
+        {/* <Route
+            path="delete-institution"
+            element={<DeleteInstitutionView />}
+          /> */}
+        {/* </Route> */}
 
         {/* <Route index element={<LoginView />} />
       <Route path="sign-in" element={<LoginView />} />

@@ -4,9 +4,9 @@ import {
   Routes, Route, useRoutes, useLocation, useNavigate,
 } from 'react-router-dom';
 import PageLoader from './components/pageLoader/pageLoader';
-import Dashboard from './pages/layout/dashboard/dashboard';
-import Institutions from './pages/layout/institutions/institutions';
-import Modal from './pages/layout/institutions/deleteInstitution/DeleteInstitution';
+// import Dashboard from './pages/layout/dashboard/dashboard';
+// import Institutions from './pages/layout/institutions/institutions';
+// import Modal from './pages/layout/institutions/deleteInstitution/DeleteInstitution';
 import { ContextProvider, useStateContext } from './contexts/ContextProvider';
 // import PrivateRoute from './utils/PrivateRoute';
 import SidebarNav from './components/sideBarNav/sidebar-nav';
