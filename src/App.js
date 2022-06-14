@@ -8,7 +8,7 @@ import Dashboard from './pages/layout/dashboard/dashboard';
 import Institutions from './pages/layout/institutions/institutions';
 import Modal from './pages/layout/institutions/deleteInstitution/DeleteInstitution';
 import { ContextProvider, useStateContext } from './contexts/ContextProvider';
-import PrivateRoute from './utils/PrivateRoute';
+// import PrivateRoute from './utils/PrivateRoute';
 import SidebarNav from './components/sideBarNav/sidebar-nav';
 import { AuthProvider } from './components/auth';
 // import {ContextProvider} from './contexts/ContextProvider'

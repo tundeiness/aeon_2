@@ -1,3 +1,5 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
@@ -7,8 +9,8 @@ import {
 } from 'react-router-dom';
 import React, { lazy, Suspense } from 'react';
 import PageLoader from './components/pageLoader/pageLoader';
-import Protected from './components/protectedRoutes/ProtectedRoutes';
-import { ProtectedLayout } from './components/protectedLayout/ProtectedLayout';
+// import Protected from './components/protectedRoutes/ProtectedRoutes';
+// import { ProtectedLayout } from './components/protectedLayout/ProtectedLayout';
 import MainLayout from './pages/main-layout';
 import { useAuth } from './components/auth';
 
@@ -164,26 +166,27 @@ const ProductsView = lazy(() => import('./pages/layout/products/products'));
 // const { isLoggedIn } = useStateContext();
 
 const MainRoutes = () => {
-  const location = useLocation();
-  const background = location.state && location.state.background;
+  // const location = useLocation();
+  // const background = location.state && location.state.background;
+  const [user, setUser] = React.useState(null);
   return (
     <Suspense fallback={<PageLoader />}>
-      <Routes location={background || location}>
+      <Routes>
         {/* <Route element={<HomeLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
       </Route> */}
-
         <Route index element={<LoginView />} />
+        <Route path="/sign-in" element={<LoginView />} />
         <Route path="reset-password" element={<ResetPasswordView />} />
         <Route path="new-password" element={<NewPasswordView />} />
         <Route path="forgot-password" element={<ForgotPasswordView />} />
         <Route path="check-email" element={<CheckEmailView />} />
 
         <Route
-          path="/"
+          path="/dashboard"
           element={
-            // <Protected isLoggedIn={isLoggedIn}>
+            // <Protected auth={{ isAuthenticated: true }}>
             <MainLayout />
             // </Protected>
           }
@@ -199,6 +202,11 @@ const MainRoutes = () => {
             path="institutions/delete-institution"
             element={<DeleteInstitutionView />}
           />
+
+          {/* <Route
+            path="institutions/create-institution"
+            element={<CreateInstitutionView />}
+          /> */}
           {/* <Route
             path="delete-institution"
             element={<DeleteInstitutionView />}
@@ -302,8 +310,110 @@ const MainRoutes = () => {
       )} */}
 
       {/* <Route path="delete-institution" element={<DeleteInstitutionView />} /> */}
+
+      {/* <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+
+          <Route path="products" element={<SharedProductLayout />}>
+            <Route index element={<Products />} />
+            <Route path=":productId" element={<SingleProduct />} />
+          </Route>
+
+          <Route path="login" element={<Login setUser={setUser} />} />
+          <Route
+            path="dashboard"
+            element={(
+              <ProtectedRoutes user={user}>
+                <Dashboard user={user} />
+              </ProtectedRoutes>
+            )}
+          />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes> */}
+
+      {/* <Routes>
+        <Route path="/" element={<PrivateRoutes />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/about" element={<About />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes> */}
     </Suspense>
   );
 };
 
 export default MainRoutes;
+
+// import { Navigate, Route, Routes } from "react-router-dom";
+
+// const AppRoutes = () => {
+
+//   const isAuthenticated = !!localStorage.getItem("token");
+
+//   return (
+//     <Routes>
+//       <Route
+//         path="/admin"
+//         element={
+//           isAuthenticated ? (
+//             <Navigate to="/admin/dashboard" />
+//           ) : (
+//             <Navigate to="/auth/login" />
+//           )
+//         }
+//       />
+
+//       <Route
+//         exact
+//         path="/admin"
+//         element={
+//           isAuthenticated ? <DashboardLayout /> : <Navigate to="/auth/login" />
+//         }
+//       >
+//         <Route exact path="/dashboard" element={<Dashboard />} />
+//         <Route
+//           exact
+//           path="/property-management"
+//           element={<AdminPropManagement />}
+//         />
+//         <Route exact path="/new-property" element={<NewProperty />} />
+//       </Route>
+
+//     </Routes>
+//   );
+// };
+
+// export default AppRoutes;
+
+// export default function Login() {
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const { authLogin, loginData } = useContext(globalC);
+
+//   if (authLogin) {
+//     const { from } = location.state || { from: { pathname: "/" } };
+//     navigate(from, { replace: true });
+//   }
+
+//   return (
+//     <div
+//       style={{ height: "100vh" }}
+//       className="d-flex justify-content-center align-items-center"
+//     >
+//       <button type="button" onClick={loginData} className="btn btn-primary">
+//         Login
+//       </button>
+//     </div>
+//   );
+// }
+
+{ /* <Route element={<PrivateWrapper auth={{ isAuthenticated: false }} />}>
+            <Route path="/dashboard3" element={<h1>Dashboard 3</h1>} />
+          </Route>
+          <Route element={<PrivateWrapper auth={{ isAuthenticated: true }} />}>
+            <Route path="/dashboard4" element={<h1>Dashboard 4</h1>} />
+          </Route> */ }
