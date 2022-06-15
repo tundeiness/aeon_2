@@ -46,14 +46,73 @@ export const ViewInstitution = () => {
                     RC Number: 147749
                   </dd>
                 </div>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div className="bg-white flex flex-row justify-between px-4 py-5">
                   {/* <dt className="text-sm font-medium text-gray-500">
                     Application for
                   </dt> */}
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Backend Developer
+                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    CREDEQUITY
+                  </dd>
+                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    RC Number: 147749
                   </dd>
                 </div>
+                <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
+                  {/* <dt className="text-sm font-medium text-gray-500">
+                    Full name
+                  </dt> */}
+                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    99999
+                  </dd>
+                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <button
+                      className="bg-green-400 px-3 py-1 rounded-md text-white"
+                      type="button"
+                    >
+                      Active
+                    </button>
+                  </dd>
+                </div>
+
+                <div className="bg-white flex flex-col justify-between px-4">
+                  {/* <dt className="text-sm font-medium text-gray-500">
+                    Application for
+                  </dt> */}
+                  <dd>Address</dd>
+                  <div className="flex flex-row justify-between py-5">
+                    <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      CREDEQUITY
+                    </dd>
+                    <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      RC Number: 147749
+                    </dd>
+                  </div>
+                </div>
+
+                <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
+                  {/* <dt className="text-sm font-medium text-gray-500">
+                    Full name
+                  </dt> */}
+                  <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    www.credequity.com
+                  </dd>
+                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    PostPaid
+                  </dd>
+                </div>
+
+                <div className="bg-white flex flex-row justify-between px-4 py-5">
+                  {/* <dt className="text-sm font-medium text-gray-500">
+                    Application for
+                  </dt> */}
+                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    Number of Calls
+                  </dd>
+                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    Notification Email
+                  </dd>
+                </div>
+
                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   {/* <dt className="text-sm font-medium text-gray-500">
                     Email address
