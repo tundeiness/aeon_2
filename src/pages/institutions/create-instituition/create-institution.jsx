@@ -58,7 +58,7 @@ const CreateInstitution = () => {
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between">
-              <h1 className="create-institution-header font-medium text-3xl outline outline-red-200">
+              <h1 className="create-institution-header font-medium text-3xl">
                 Create Institution
                 {' '}
               </h1>
