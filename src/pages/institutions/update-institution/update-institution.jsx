@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
-import './createInstituiton.css';
 
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
@@ -69,7 +68,7 @@ const CreateInstitution = () => {
 
             <hr className="my-7" />
             <form className="w-full">
-              <div className="flex flex-wrap -mx-3 mb-3 px-6">
+              <div className="name-number-block flex flex-wrap -mx-3 mb-3 px-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
@@ -87,7 +86,7 @@ const CreateInstitution = () => {
                       value={formic.values.name}
                       id="grid-first-name"
                       type="text"
-                      placeholder="Institution's name"
+                      placeholder="CREDEQUITY"
                     />
                     {formic.touched.name && formic.errors.name && (
                       <span className="text-red-300 text-xs">
@@ -114,6 +113,7 @@ const CreateInstitution = () => {
                       value={formic.values.rc_number}
                       id="grid-last-name"
                       type="text"
+                      placeholder="147749"
                     />
                     {formic.touched.rc_number && formic.errors.rc_number && (
                       <span className="text-red-300 text-xs">
@@ -378,7 +378,7 @@ const CreateInstitution = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                     >
-                      Create Institution
+                      Update Institution
                     </button>
                     <button
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
