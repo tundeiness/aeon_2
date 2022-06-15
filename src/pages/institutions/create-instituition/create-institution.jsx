@@ -55,7 +55,7 @@ const CreateInstitution = () => {
   });
   return (
     <>
-      <SidebarNav />
+      {/* <SidebarNav /> */}
       <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
