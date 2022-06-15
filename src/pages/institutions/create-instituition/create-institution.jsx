@@ -177,7 +177,7 @@ const CreateInstitution = () => {
                 </div>
               </div>
 
-              <div className="url-email-block flex flex-wrap -mx-3 mb-3 px-6">
+              <div className="url-email-block flex flex-wrap -mx-3 mb-8 px-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
@@ -244,7 +244,7 @@ const CreateInstitution = () => {
                 </div>
               </div>
 
-              <div className="category-block flex flex-wrap -mx-3 mb-3 px-6">
+              <div className="category-block flex flex-wrap -mx-3 mb-6 px-6">
                 <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
@@ -331,7 +331,7 @@ const CreateInstitution = () => {
                 </div>
               </div>
 
-              <div className="documentation-description-block flex flex-wrap -mx-3 mb-16 px-6">
+              <div className="documentation-description-block flex flex-wrap -mx-3 mb-9 px-6">
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
