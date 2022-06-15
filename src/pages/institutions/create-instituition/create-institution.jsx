@@ -2,12 +2,13 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 
 const CreateInstitution = () => {
+  const [updateInstitution, setUpdateInstitution] = useState(false);
   const validate = (value) => {
     const errors = {};
     if (!value.email) {
@@ -373,13 +374,13 @@ const CreateInstitution = () => {
                 <div className="flex -mx-3 mt-8">
                   <div className="w-full px-6">
                     <button
-                      className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded"
+                      className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                     >
                       Create Institution
                     </button>
                     <button
-                      className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded border border-gray-200"
+                      className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
                       type="submit"
                     >
                       Cancel
