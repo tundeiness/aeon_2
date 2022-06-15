@@ -257,96 +257,117 @@ const CreateInstitution = () => {
                     id="payment-category"
                     name="payment-category"
                     autoComplete="category-name"
-                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                    <option selected>Select Category</option>
+                    <option>Bi-Anunal</option>
+                    <option>Quarterly</option>
+                    <option>Monthly</option>
+                  </select>
+                </div>
+
+                <div className="w-full md:w-1/3 px-3">
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="payment-category"
+                  >
+                    number of calls
+                    {' '}
+                  </label>
+                  <select
+                    id="payment-category"
+                    name="payment-category"
+                    autoComplete="category-name"
+                    className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
                     <option>Bi-Anunal</option>
                     <option>Quarterly</option>
                     <option>Monthly</option>
                   </select>
-                  {/* <div className="mt-1 flex rounded-md shadow-sm">
-                    <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                      {' '}
-                      https://
-                      {' '}
+                </div>
+
+                <div className="w-full md:w-1/3 px-3">
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="email-address"
+                  >
+                    threshold (NGN)
+                    {' '}
+                  </label>
+                  <input
+                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                      formic.rc_number && formic.errors.rc_number
+                        ? 'border-red-400'
+                        : 'border-gray-200'
+                    } `}
+                    onChange={formic.handleChange}
+                    onBlur={formic.handleBlur}
+                    value={formic.values.rc_number}
+                    type="text"
+                    placeholder="0"
+                    name="email-address"
+                    id="email-address"
+                  />
+                  {formic.touched.rc_number && formic.errors.rc_number && (
+                    <span className="text-red-300 text-xs">
+                      {formic.errors.rc_number}
                     </span>
-                    <input
-                      type="text"
-                      name="company-website"
-                      id="company-website"
-                      onChange={formic.handleChange}
-                      onBlur={formic.handleBlur}
-                      value={formic.values.website}
-                      className={`flex-1 block w-full text-gray-700 rounded-none rounded-r-md sm:text-sm border  py-3 px-4 leading-tight focus:outline-none  focus:bg-white ${
-                        formic.website && formic.errors.website
-                          ? 'border-red-400'
-                          : 'border-gray-200'
-                      }`}
-                      placeholder="www.companyname.com"
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap -mx-3 mb-6 px-6">
+                <div className="w-full md:w-1/2 px-3">
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="documentation"
+                  >
+                    documentation
+                    {' '}
+                  </label>
+                  <div className="mt-1">
+                    <textarea
+                      id="documentation"
+                      name="documentation"
+                      rows="3"
+                      className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      placeholder="Enter the documentation..."
                     />
-                    {formic.touched.website && formic.errors.website && (
-                      <span className="text-red-300 text-xs">
-                        {formic.errors.website}
-                      </span>
-                    )}
-                  </div> */}
+                  </div>
                 </div>
 
-                <div className="w-full md:w-1/3 px-3">
+                <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="email-address"
+                    htmlFor="description"
                   >
-                    notification email
+                    description
                     {' '}
                   </label>
-                  <input
-                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.rc_number && formic.errors.rc_number
-                        ? 'border-red-400'
-                        : 'border-gray-200'
-                    } `}
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.rc_number}
-                    type="text"
-                    placeholder="info@companyname.com"
-                    name="email-address"
-                    id="email-address"
-                  />
-                  {formic.touched.rc_number && formic.errors.rc_number && (
-                    <span className="text-red-300 text-xs">
-                      {formic.errors.rc_number}
-                    </span>
-                  )}
-                </div>
-
-                <div className="w-full md:w-1/3 px-3">
-                  <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="email-address"
-                  >
-                    notification email
-                    {' '}
-                  </label>
-                  <input
-                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.rc_number && formic.errors.rc_number
-                        ? 'border-red-400'
-                        : 'border-gray-200'
-                    } `}
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.rc_number}
-                    type="text"
-                    placeholder="info@companyname.com"
-                    name="email-address"
-                    id="email-address"
-                  />
-                  {formic.touched.rc_number && formic.errors.rc_number && (
-                    <span className="text-red-300 text-xs">
-                      {formic.errors.rc_number}
-                    </span>
-                  )}
+                  <div className="mt-1">
+                    <textarea
+                      id="description"
+                      name="description"
+                      rows="3"
+                      className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      placeholder="Enter a Description..."
+                    />
+                  </div>
                 </div>
               </div>
 
