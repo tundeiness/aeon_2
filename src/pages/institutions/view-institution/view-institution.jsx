@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 
@@ -23,15 +24,15 @@ export const ViewInstitution = () => {
             </header>
 
             <hr className="my-3" />
-            <div className="w-full px-1 mb-3">
-              <button
+            <div className="inline-block px-1 mb-3">
+              <Link
                 className="flex flex-row items-center justify-start bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white py-2 pl-2 pr-3 rounded-md font-medium text-base"
-                type="submit"
+                to="/institution"
               >
                 <BiChevronLeft />
                 {' '}
                 Back to list
-              </button>
+              </Link>
             </div>
             <div className="w-full border-t border-gray-200">
               <dl>
