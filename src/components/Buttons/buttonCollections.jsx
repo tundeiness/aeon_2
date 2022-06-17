@@ -65,7 +65,7 @@ export const InActiveBtn = () => {
 };
 
 AuthButton.propTypes = {
-  buttonType: PropTypes.string.isRequired,
+  // buttonType: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
 };
