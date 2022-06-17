@@ -1,9 +1,11 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
 import { Navigate, Link } from 'react-router-dom';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
+import DescriptionRow from '../../../components/viewDescription/ViewDescription';
 import SupportButton from '../../../components/support/support';
 
 export const ViewInstitution = () => {
@@ -47,10 +49,15 @@ export const ViewInstitution = () => {
                     RC Number: 147749
                   </dd>
                 </div>
-                <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Application for
-                  </dt> */}
+                <DescriptionRow
+                  headingLeft="Code"
+                  contentLeft="99999"
+                  headingRight="Status"
+                  contentRight="Active"
+                />
+
+                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
+
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Code
                   </dd>
@@ -59,9 +66,7 @@ export const ViewInstitution = () => {
                   </dd>
                 </div>
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Full name
-                  </dt> */}
+
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     99999
                   </dd>
@@ -73,7 +78,7 @@ export const ViewInstitution = () => {
                       Active
                     </button>
                   </dd>
-                </div>
+                </div> */}
 
                 <div className="bg-white flex flex-col justify-between px-4">
                   {/* <dt className="text-sm font-medium text-gray-500">
@@ -232,7 +237,6 @@ export const ViewInstitution = () => {
                     adipisicing reprehenderit deserunt qui eu.
                   </dd>
                 </div>
-
               </dl>
             </div>
           </div>
