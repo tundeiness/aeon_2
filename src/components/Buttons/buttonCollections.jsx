@@ -20,7 +20,7 @@ const AuthButton = ({
   );
 };
 
-export const BackToList = () => {
+export const BackToList = ({ text }) => {
   const test = 0;
   return (
     <div className="inline-block px-1 mb-3">
@@ -30,7 +30,7 @@ export const BackToList = () => {
       >
         <BiChevronLeft />
         {' '}
-        Back to list
+        {text}
       </Link>
     </div>
   );

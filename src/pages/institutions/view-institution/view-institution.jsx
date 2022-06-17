@@ -7,6 +7,11 @@ import { Navigate, Link } from 'react-router-dom';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import DescriptionRow from '../../../components/viewDescription/ViewDescription';
 import SupportButton from '../../../components/support/support';
+import {
+  BackToList,
+  ActiveBtn,
+  InActiveBtn,
+} from '../../../components/Buttons/buttonCollections';
 
 export const ViewInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
@@ -26,7 +31,7 @@ export const ViewInstitution = () => {
             </header>
 
             <hr className="my-3" />
-            <div className="inline-block px-1 mb-3">
+            {/* <div className="inline-block px-1 mb-3">
               <Link
                 className="flex flex-row items-center justify-start bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white py-2 pl-2 pr-3 rounded-md font-medium text-base"
                 to="/institution"
@@ -35,7 +40,8 @@ export const ViewInstitution = () => {
                 {' '}
                 Back to list
               </Link>
-            </div>
+            </div> */}
+            <BackToList text="Back to List" />
             <div className="w-full border-t border-gray-200">
               <dl>
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
