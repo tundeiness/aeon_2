@@ -1,8 +1,24 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
 import { Navigate, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+const AuthButton = ({
+  buttonText, loading, condition,
+}) => {
+  const test = 0;
+  return (
+    <button
+      className="sign-in-button w-full block bg-authBtn text-white hover:bg-blue-700 px-4 py-3 mt-8 rounded-lg font-medium focus:bg-blue-700 focus:outline-none"
+      type={condition ? 'button' : 'submit'}
+    >
+      {buttonText}
+    </button>
+  );
+};
 
 export const BackToList = () => {
   const test = 0;
@@ -46,4 +62,10 @@ export const InActiveBtn = () => {
       </button>
     </>
   );
+};
+
+AuthButton.propTypes = {
+  buttonType: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
