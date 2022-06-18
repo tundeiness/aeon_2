@@ -90,7 +90,7 @@ const Dashboard = () => {
             <VendorStatus vendor="CAC" stat bottomSpace={8} />
           </div>
 
-          <div className="calls-overview">
+          <div className="calls-overview mb-8">
             <p className="font-semibold leading-10 text-gray-900 text-2xl">
               API Calls Overview
             </p>
@@ -144,6 +144,10 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="institution-call">
+            <p>This space holds API Calls by Institutions</p>
           </div>
 
           <div className="chart-group flex xl:space-x-6 w-full mt-8">
