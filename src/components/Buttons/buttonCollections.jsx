@@ -64,6 +64,34 @@ export const InActiveBtn = () => {
   );
 };
 
+export const Search = () => {
+  const test = 0;
+  return (
+    <>
+      <button
+        className="bg-red-400 px-3 py-1 rounded-md text-white"
+        type="button"
+      >
+        Inactive
+      </button>
+    </>
+  );
+};
+
+export const Export = () => {
+  const test = 0;
+  return (
+    <>
+      <button
+        className="bg-red-400 px-3 py-1 rounded-md text-white"
+        type="button"
+      >
+        Inactive
+      </button>
+    </>
+  );
+};
+
 AuthButton.propTypes = {
   // buttonType: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
