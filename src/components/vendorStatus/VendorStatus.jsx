@@ -9,7 +9,7 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { useStateContext } from '../../contexts/ContextProvider';
 import './vendorstatus.css';
 
-const VendorStatus = ({ vendor, stat }) => {
+const VendorStatus = ({ vendor, stat, bottomSpace }) => {
   const [serverStatus, setServerStatus] = useState(false);
   const [activeServer, setActiveServer] = useState(null);
   const { isOnline, setIsOnline } = useStateContext();
@@ -45,7 +45,7 @@ const VendorStatus = ({ vendor, stat }) => {
         <p className="xl:mr-2 leading-5 font-medium text-base">Total verified IDs</p>
         <FiRefreshCcw className="xl:mx-2" />
       </header>
-      <h5 className="text-3xl font-bold mb-6 mt-6">
+      <h5 className={`text-3xl font-bold mb-${bottomSpace} mt-6`}>
         {vendor}
       </h5>
       <footer className="flex justify-between items-center text-gray-700 text-sm">

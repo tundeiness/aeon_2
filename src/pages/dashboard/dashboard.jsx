@@ -85,9 +85,9 @@ const Dashboard = () => {
             <Support />
           </header>
           <div className="vendor-boards flex xl:space-x-6 w-full xl:mt-5 xl:mb-6">
-            <VendorStatus vendor={Badge} stat={false} />
-            <VendorStatus vendor="FRSC" stat={false} />
-            <VendorStatus vendor="CAC" stat />
+            <VendorStatus vendor={Badge} stat={false} bottomSpace={4} />
+            <VendorStatus vendor="FRSC" stat={false} bottomSpace={8} />
+            <VendorStatus vendor="CAC" stat bottomSpace={8} />
           </div>
 
           <div className="calls-overview">
@@ -170,7 +170,6 @@ const Dashboard = () => {
         </div>
       </section>
     </article>
-
   );
 };
 
