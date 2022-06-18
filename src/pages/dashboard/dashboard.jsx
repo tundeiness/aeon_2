@@ -96,7 +96,7 @@ const Dashboard = () => {
             </p>
             <p className="xl:pb-4">Last update: April 30th 2022</p>
             <div className="overview-card flex xl:space-x-6 w-full">
-              <div className="bg-forgotBlue rounded-xl shadow border p-6 w-1/3">
+              <div className="bg-liteBlue rounded-xl shadow border p-6 w-1/3">
                 <h5 className="text-md mb-4 mt-0 uppercase text-white">
                   Total
                 </h5>
@@ -108,7 +108,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="bg-successfull rounded-xl shadow border p-6 w-1/3">
+              <div className="bg-successful rounded-xl shadow border p-6 w-1/3">
                 <h5 className="text-md mb-4 mt-0 uppercase text-gray-900">
                   successful
                 </h5>
@@ -132,7 +132,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="bg-successRate rounded-xl shadow border p-6 w-1/3">
+              <div className="bg-successGreen rounded-xl shadow border p-6 w-1/3">
                 <h5 className="text-md mb-4 mt-0 uppercase text-white">
                   success rate
                 </h5>
