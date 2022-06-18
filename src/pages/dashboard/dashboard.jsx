@@ -67,7 +67,9 @@ import './dashboard.css';
 
 const Dashboard = () => {
   const test = 0;
-  const { activeModal, setActiveModal } = useStateContext();
+  const {
+    activeModal, setActiveModal, isOnline, setIsOnline,
+  } = useStateContext();
   const Badge = <img src={NIMC} alt="NIMC" className="h-10 w-10" />;
 
   return (

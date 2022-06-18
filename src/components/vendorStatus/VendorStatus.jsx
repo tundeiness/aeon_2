@@ -6,11 +6,13 @@ import {
 } from 'react-icons/fi';
 import { BsArrowDownShort, BsArrowUpShort } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
+import { useStateContext } from '../../contexts/ContextProvider';
 import './vendorstatus.css';
 
 const VendorStatus = ({ vendor, stat }) => {
   const [serverStatus, setServerStatus] = useState(null);
   const [activeServer, setActiveServer] = useState(null);
+  const { isOnline, setIsOnline } = useStateContext();
   const today = new Date();
   const monthArray = [
     'January',
@@ -50,11 +52,11 @@ const VendorStatus = ({ vendor, stat }) => {
         <button
           type="button"
           className={`flex items-center text-white p-2 rounded-md ${
-            serverStatus === stat ? 'bg-green-700' : 'bg-red-700'
+            serverStatus === isOnline ? 'bg-green-700' : 'bg-red-700'
           }`}
         >
           <GoPrimitiveDot className="text-white inline-block mr-2" />
-          {serverStatus === stat ? 'ONLINE' : 'OFFLINE'}
+          {serverStatus === isOnline ? 'ONLINE' : 'OFFLINE'}
         </button>
       </footer>
     </div>
