@@ -61,10 +61,12 @@ import GuageChart from '../../components/charts/Donut';
 import SidebarNav from '../../components/sideBarNav/sidebar-nav';
 // import Logo from '../../static/assets/img/logo-white.png';
 import Support from '../../components/support/support';
+import { useStateContext } from '../../contexts/ContextProvider';
 import './dashboard.css';
 
 const Dashboard = () => {
   const test = 0;
+  const { activeModal, setActiveModal } = useStateContext();
 
   return (
   // <article className="flex-1 border border-red-500">
@@ -73,7 +75,6 @@ const Dashboard = () => {
       <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
         <div className="dashboard-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
           <header className="flex justify-between">
-            {/* This is the root dashboard view */}
             <h1 className="inline-block font-medium text-3xl leading-9">
               Dashboard
             </h1>

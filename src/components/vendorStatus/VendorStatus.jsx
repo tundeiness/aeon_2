@@ -39,7 +39,7 @@ const VendorStatus = ({ vendor, percent, stat }) => {
   return (
     <div className="bg-white rounded-xl shadow border p-5 w-1/3">
       <header className="flex justify-between items-center">
-        <p className="xl:mr-2 leading-5 font-medium text-base">{date}</p>
+        <p className="xl:mr-2 leading-5 font-medium text-base">Total verified IDs</p>
         <FiRefreshCcw className="xl:mx-2" />
       </header>
       <h5 className="text-3xl font-bold mb-4 mt-6">{vendor}</h5>
