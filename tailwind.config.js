@@ -25,6 +25,7 @@ module.exports = {
         searchColor: '#1756c2',
         supportBg: '#F9F5FF',
         buttonTwo: '#000B93',
+        activeBtn: '#269400',
       },
     },
   },
