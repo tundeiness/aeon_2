@@ -49,20 +49,17 @@ export const ViewInstitution = () => {
                 <div className="bg-white flex flex-col justify-between px-4">
                   <dd>Address</dd>
                   <div className="flex flex-row justify-between py-5">
-                    <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      CREDEQUITY
-                    </dd>
-                    <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      RC Number: 147749
+                    <dd className="mt-1 text-sm text-gray-900">
+                      13A Charles Ifeanyi Street Lekki Phase 1 Lekki, Eti-Osa,
                     </dd>
                   </div>
                 </div>
 
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <dd className="inline-block mt-1 text-xl text-black font-medium sm:mt-0 sm:col-span-2">
                     www.credequity.com
                   </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <dd className="block w-1/3 mt-1 text-xl text-black font-medium sm:mt-0 sm:col-span-2">
                     PostPaid
                   </dd>
                 </div>
@@ -103,7 +100,7 @@ export const ViewInstitution = () => {
                 />
 
                 <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <dd className="block w-28 mt-1 text-xl text-black font-medium sm:mt-0 sm:col-span-2">
                     Documentation
                   </dd>
                 </div>
@@ -118,7 +115,7 @@ export const ViewInstitution = () => {
                 </div>
 
                 <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <dd className="block w-28 mt-1 text-xl text-black font-medium sm:mt-0 sm:col-span-2">
                     Description
                   </dd>
                 </div>
