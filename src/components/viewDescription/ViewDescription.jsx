@@ -1,8 +1,9 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-const ViewDescription = ({
+export const ViewDescription = ({
   headingRight, contentRight, headingLeft, contentLeft,
 }) => {
   const test = 0;
@@ -27,5 +28,3 @@ const ViewDescription = ({
     </>
   );
 };
-
-export default ViewDescription;

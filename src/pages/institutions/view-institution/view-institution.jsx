@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
 import { Navigate, Link } from 'react-router-dom';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
-import DescriptionRow from '../../../components/viewDescription/ViewDescription';
+import { ViewDescription } from '../../../components/viewDescription/ViewDescription';
 import SupportButton from '../../../components/support/support';
 import {
   BackToList,
@@ -55,7 +55,7 @@ export const ViewInstitution = () => {
                     RC Number: 147749
                   </dd>
                 </div>
-                <DescriptionRow
+                <ViewDescription
                   headingLeft="Code"
                   contentLeft="99999"
                   headingRight="Status"
@@ -113,7 +113,7 @@ export const ViewInstitution = () => {
                   </dd>
                 </div>
 
-                <DescriptionRow
+                <ViewDescription
                   headingLeft="Number of Calls"
                   contentLeft="1,000"
                   headingRight="Notification Email"
@@ -156,17 +156,21 @@ export const ViewInstitution = () => {
                   </dd>
                 </div> */}
 
-                <DescriptionRow
+                <ViewDescription
                   headingLeft="Website URL"
                   contentLeft=" www.credequity.com"
                   headingRight="Industry Category"
                   contentRight="Support"
                 />
 
-                <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Application for
-                  </dt> */}
+                <ViewDescription
+                  headingLeft="Balance"
+                  contentLeft="0 NGN"
+                  headingRight="Notification Email"
+                  contentRight="support@credequity.com"
+                />
+
+                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Balance
                   </dd>
@@ -176,21 +180,29 @@ export const ViewInstitution = () => {
                 </div>
 
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Full name
-                  </dt> */}
                   <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     0 NGN
                   </dd>
                   <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     support@credequity.com
                   </dd>
-                </div>
+                </div> */}
 
-                <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Application for
-                  </dt> */}
+                <ViewDescription
+                  headingLeft="Website URL"
+                  contentLeft=" www.credequity.com"
+                  headingRight="Industry Category"
+                  contentRight="Support"
+                />
+
+                <ViewDescription
+                  headingLeft="Test Token"
+                  contentLeft="csx982Ief5saa34gd"
+                  headingRight="Live Token"
+                  contentRight="009csx982IefFGop5saa34324gd"
+                />
+
+                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Test Token
                   </dd>
@@ -199,16 +211,13 @@ export const ViewInstitution = () => {
                   </dd>
                 </div>
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Full name
-                  </dt> */}
                   <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     csx982Ief5saa34gd
                   </dd>
                   <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     009csx982IefFGop5saa34324gd
                   </dd>
-                </div>
+                </div> */}
 
                 <div className="bg-white flex flex-row justify-between px-4 py-5">
                   {/* <dt className="text-sm font-medium text-gray-500">
