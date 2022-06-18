@@ -32,10 +32,10 @@ export const ViewInstitution = () => {
             <div className="w-full border-t border-gray-200">
               <dl>
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <dd className="block w-28 mt-1 text-xl text-black font-medium sm:mt-0 sm:col-span-2">
                     CREDEQUITY
                   </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <dd className="block w-1/3 mt-1 text-xl text-black font-medium sm:mt-0 sm:col-span-2">
                     RC Number: 147749
                   </dd>
                 </div>
