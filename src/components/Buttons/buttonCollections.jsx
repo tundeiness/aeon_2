@@ -72,7 +72,7 @@ export const Search = () => {
         className="bg-red-400 px-3 py-1 rounded-md text-white"
         type="button"
       >
-        Inactive
+        Search
       </button>
     </>
   );
@@ -86,7 +86,7 @@ export const Export = () => {
         className="bg-red-400 px-3 py-1 rounded-md text-white"
         type="button"
       >
-        Inactive
+        Export
       </button>
     </>
   );
