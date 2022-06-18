@@ -59,7 +59,7 @@ export const ViewInstitution = () => {
                   headingLeft="Code"
                   contentLeft="99999"
                   headingRight="Status"
-                  contentRight="Active"
+                  contentRight={<ActiveBtn />}
                 />
 
                 {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
