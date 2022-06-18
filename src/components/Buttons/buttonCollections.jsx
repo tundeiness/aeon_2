@@ -41,7 +41,7 @@ export const ActiveBtn = () => {
   return (
     <>
       <button
-        className="bg-green-400 px-3 py-1 rounded-md text-white"
+        className="bg-activeBtn px-3 py-1 rounded-md text-white"
         type="button"
       >
         Active
