@@ -70,7 +70,7 @@ const Dashboard = () => {
   const {
     activeModal, setActiveModal, isOnline, setIsOnline,
   } = useStateContext();
-  const Badge = <img src={NIMC} alt="NIMC" className="h-10 w-10" />;
+  const Badge = <img src={NIMC} alt="NIMC" className="h-14 w-16" />;
 
   return (
   // <article className="flex-1 border border-red-500">
