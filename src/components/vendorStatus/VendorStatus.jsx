@@ -36,7 +36,6 @@ const VendorStatus = ({ vendor, stat }) => {
 
   useEffect(() => {
     setServerStatus(stat);
-    setActiveServer(stat);
   }, [serverStatus]);
   return (
     <div className="bg-white rounded-xl shadow border p-5 w-1/3">
