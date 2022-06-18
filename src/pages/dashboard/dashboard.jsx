@@ -62,11 +62,13 @@ import SidebarNav from '../../components/sideBarNav/sidebar-nav';
 // import Logo from '../../static/assets/img/logo-white.png';
 import Support from '../../components/support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
+import NIMC from '../../static/assets/img/nimc.webp';
 import './dashboard.css';
 
 const Dashboard = () => {
   const test = 0;
   const { activeModal, setActiveModal } = useStateContext();
+  const Badge = <img src={NIMC} alt="NIMC" className="h-10 w-10" />;
 
   return (
   // <article className="flex-1 border border-red-500">
@@ -81,7 +83,7 @@ const Dashboard = () => {
             <Support />
           </header>
           <div className="vendor-boards flex xl:space-x-6 w-full xl:mt-5 xl:mb-6">
-            <VendorStatus vendor="NIMC" stat={false} />
+            <VendorStatus vendor={Badge} stat={false} />
             <VendorStatus vendor="FRSC" stat={false} />
             <VendorStatus vendor="CAC" stat />
           </div>

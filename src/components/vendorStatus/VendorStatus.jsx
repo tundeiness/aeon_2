@@ -42,7 +42,9 @@ const VendorStatus = ({ vendor, stat }) => {
         <p className="xl:mr-2 leading-5 font-medium text-base">Total verified IDs</p>
         <FiRefreshCcw className="xl:mx-2" />
       </header>
-      <h5 className="text-3xl font-bold mb-4 mt-6">{vendor}</h5>
+      <h5 className="text-3xl font-bold mb-4 mt-6">
+        {vendor}
+      </h5>
       <footer className="flex justify-between items-center text-gray-700 text-sm">
         <p className="veri-items text-xs">No of verifications  vs Last month</p>
         <button
