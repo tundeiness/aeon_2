@@ -2,9 +2,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { BiChevronLeft } from 'react-icons/bi';
-import { Navigate, Link } from 'react-router-dom';
-import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import { ViewDescription } from '../../../components/viewDescription/ViewDescription';
 import SupportButton from '../../../components/support/support';
 import {
@@ -31,23 +28,10 @@ export const ViewInstitution = () => {
             </header>
 
             <hr className="my-3" />
-            {/* <div className="inline-block px-1 mb-3">
-              <Link
-                className="flex flex-row items-center justify-start bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white py-2 pl-2 pr-3 rounded-md font-medium text-base"
-                to="/institution"
-              >
-                <BiChevronLeft />
-                {' '}
-                Back to list
-              </Link>
-            </div> */}
             <BackToList text="Back to List" />
             <div className="w-full border-t border-gray-200">
               <dl>
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Full name
-                  </dt> */}
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     CREDEQUITY
                   </dd>
@@ -62,34 +46,7 @@ export const ViewInstitution = () => {
                   contentRight={<ActiveBtn />}
                 />
 
-                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
-
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Code
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Status
-                  </dd>
-                </div>
-                <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    99999
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <button
-                      className="bg-green-400 px-3 py-1 rounded-md text-white"
-                      type="button"
-                    >
-                      Active
-                    </button>
-                  </dd>
-                </div> */}
-
                 <div className="bg-white flex flex-col justify-between px-4">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Application for
-                  </dt> */}
                   <dd>Address</dd>
                   <div className="flex flex-row justify-between py-5">
                     <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
@@ -102,9 +59,6 @@ export const ViewInstitution = () => {
                 </div>
 
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Full name
-                  </dt> */}
                   <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     www.credequity.com
                   </dd>
@@ -120,42 +74,6 @@ export const ViewInstitution = () => {
                   contentRight="support@credequity.com"
                 />
 
-                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Number of Calls
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Notification Email
-                  </dd>
-                </div>
-
-                <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    1,000
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    support@credequity.com
-                  </dd>
-                </div> */}
-
-                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Website URL
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Industry Category
-                  </dd>
-                </div>
-
-                <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    www.credequity.com
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Support
-                  </dd>
-                </div> */}
-
                 <ViewDescription
                   headingLeft="Website URL"
                   contentLeft=" www.credequity.com"
@@ -169,24 +87,6 @@ export const ViewInstitution = () => {
                   headingRight="Notification Email"
                   contentRight="support@credequity.com"
                 />
-
-                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Balance
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Notification Email
-                  </dd>
-                </div>
-
-                <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    0 NGN
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    support@credequity.com
-                  </dd>
-                </div> */}
 
                 <ViewDescription
                   headingLeft="Website URL"
@@ -202,27 +102,7 @@ export const ViewInstitution = () => {
                   contentRight="009csx982IefFGop5saa34324gd"
                 />
 
-                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Test Token
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Live Token
-                  </dd>
-                </div>
-                <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    csx982Ief5saa34gd
-                  </dd>
-                  <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    009csx982IefFGop5saa34324gd
-                  </dd>
-                </div> */}
-
                 <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Application for
-                  </dt> */}
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Documentation
                   </dd>
@@ -238,9 +118,6 @@ export const ViewInstitution = () => {
                 </div>
 
                 <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Application for
-                  </dt> */}
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Description
                   </dd>
