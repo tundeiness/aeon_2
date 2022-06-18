@@ -10,7 +10,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import './vendorstatus.css';
 
 const VendorStatus = ({ vendor, stat }) => {
-  const [serverStatus, setServerStatus] = useState(null);
+  const [serverStatus, setServerStatus] = useState(false);
   const [activeServer, setActiveServer] = useState(null);
   const { isOnline, setIsOnline } = useStateContext();
   const today = new Date();
@@ -37,6 +37,8 @@ const VendorStatus = ({ vendor, stat }) => {
   useEffect(() => {
     setServerStatus(stat);
   }, [serverStatus]);
+
+  console.log(isOnline);
   return (
     <div className="bg-white rounded-xl shadow border p-5 w-1/3">
       <header className="flex justify-between items-center">
