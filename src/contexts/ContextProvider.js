@@ -20,6 +20,7 @@ export const ContextProvider = ({ children }) => {
   const [activeModal, setActiveModal] = useState(false);
   const [isClicked, setIsClicked] = useState(initialState);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isOnline, setIsOnline] = useState(null);
 
   const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -67,6 +68,8 @@ export const ContextProvider = ({ children }) => {
         isAuthenticated,
         logIn,
         logOut,
+        isOnline,
+        setIsOnline,
       }}
     >
       {children}
