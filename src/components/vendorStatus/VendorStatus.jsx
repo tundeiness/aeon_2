@@ -8,7 +8,7 @@ import { BsArrowDownShort, BsArrowUpShort } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import './vendorstatus.css';
 
-const VendorStatus = ({ vendor, percent, stat }) => {
+const VendorStatus = ({ vendor, stat }) => {
   const [serverStatus, setServerStatus] = useState(null);
   const [activeServer, setActiveServer] = useState(null);
   const today = new Date();
@@ -43,21 +43,8 @@ const VendorStatus = ({ vendor, percent, stat }) => {
         <FiRefreshCcw className="xl:mx-2" />
       </header>
       <h5 className="text-3xl font-bold mb-4 mt-6">{vendor}</h5>
-      <footer className="flex justify-between items-end text-gray-700 text-sm">
-        <p className="flex items-center">
-          {activeServer === stat ? (
-            <BsArrowUpShort className="inline-block text-xl font-extrabold text-green-500" />
-          ) : (
-            <BsArrowDownShort className="inline-block text-xl font-extrabold text-red-500" />
-          )}
-          {' '}
-          <span>
-            {' '}
-            <span>{percent}</span>
-            {' '}
-            vs last month
-          </span>
-        </p>
+      <footer className="flex justify-between items-center text-gray-700 text-sm">
+        <p className="veri-items text-xs">No of verifications  vs Last month</p>
         <button
           type="button"
           className={`flex items-center text-white p-2 rounded-md ${

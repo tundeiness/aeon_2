@@ -81,9 +81,9 @@ const Dashboard = () => {
             <Support />
           </header>
           <div className="vendor-boards flex xl:space-x-6 w-full xl:mt-5 xl:mb-6">
-            <VendorStatus vendor="NIMC" percent="10%" stat={false} />
-            <VendorStatus vendor="FRSC" percent="10%" stat={false} />
-            <VendorStatus vendor="CAC" percent="20%" stat />
+            <VendorStatus vendor="NIMC" stat={false} />
+            <VendorStatus vendor="FRSC" stat={false} />
+            <VendorStatus vendor="CAC" stat />
           </div>
 
           <div className="calls-overview">
