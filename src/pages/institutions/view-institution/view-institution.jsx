@@ -113,10 +113,14 @@ export const ViewInstitution = () => {
                   </dd>
                 </div>
 
-                <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Application for
-                  </dt> */}
+                <DescriptionRow
+                  headingLeft="Number of Calls"
+                  contentLeft="1,000"
+                  headingRight="Notification Email"
+                  contentRight="support@credequity.com"
+                />
+
+                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Number of Calls
                   </dd>
@@ -126,21 +130,15 @@ export const ViewInstitution = () => {
                 </div>
 
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Full name
-                  </dt> */}
                   <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     1,000
                   </dd>
                   <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     support@credequity.com
                   </dd>
-                </div>
+                </div> */}
 
-                <div className="bg-white flex flex-row justify-between px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Application for
-                  </dt> */}
+                {/* <div className="bg-white flex flex-row justify-between px-4 py-5">
                   <dd className="outline outline-red-500 block w-28 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Website URL
                   </dd>
@@ -150,16 +148,20 @@ export const ViewInstitution = () => {
                 </div>
 
                 <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
-                  {/* <dt className="text-sm font-medium text-gray-500">
-                    Full name
-                  </dt> */}
                   <dd className="outline outline-red-500 inline-block mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     www.credequity.com
                   </dd>
                   <dd className="outline outline-red-500 block w-1/3 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Support
                   </dd>
-                </div>
+                </div> */}
+
+                <DescriptionRow
+                  headingLeft="Website URL"
+                  contentLeft=" www.credequity.com"
+                  headingRight="Industry Category"
+                  contentRight="Support"
+                />
 
                 <div className="bg-white flex flex-row justify-between px-4 py-5">
                   {/* <dt className="text-sm font-medium text-gray-500">
