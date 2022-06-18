@@ -92,6 +92,20 @@ export const Export = () => {
   );
 };
 
+export const GetData = () => {
+  const test = 0;
+  return (
+    <>
+      <button
+        className="bg-liteBlue px-3 py-2.5 rounded-md text-white uppercase w-full"
+        type="button"
+      >
+        Get data
+      </button>
+    </>
+  );
+};
+
 AuthButton.propTypes = {
   // buttonType: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
