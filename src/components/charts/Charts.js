@@ -23,16 +23,12 @@ ChartJS.register(
 
 const options = {
   responsive: true,
-  maintainAspectRatio: false,
+  // maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'bottom',
       align: 'end',
     },
-    // title: {
-    //   display: true,
-    //   text: 'Chart.js Bar Chart',
-    // },
   },
   // layout: {
   //   padding: 10,
@@ -58,13 +54,13 @@ const data = {
   datasets: [
     {
       label: 'Dataset 1',
-      data: labels.map(() => Math.floor(Math.random() * 100)),
+      data: labels.map(() => Math.floor(Math.random() * 120)),
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
       barThickness: 22,
     },
     {
       label: 'Dataset 2',
-      data: labels.map(() => Math.floor(Math.random() * 100)),
+      data: labels.map(() => Math.floor(Math.random() * 120)),
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
       barThickness: 22,
       hoverBackgroundColor: '#000B93',
@@ -74,7 +70,7 @@ const data = {
 
 export const Charts = () => {
   const test = 0;
-  return <Bar options={options} data={data} height={150} />;
+  return <Bar options={options} data={data} />;
 };
 
 export default Charts;

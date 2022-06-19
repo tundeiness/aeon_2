@@ -148,7 +148,9 @@ const Dashboard = () => {
           </div>
 
           <div className="institution-call py-6 w-full">
-            <p className="font-semibold text-2xl mb-3">API Calls by Institution</p>
+            <p className="font-semibold text-2xl mb-3">
+              API Calls by Institution
+            </p>
             <div className="category-block flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                 <select
@@ -158,8 +160,9 @@ const Dashboard = () => {
                   className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-gray-300 rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                   aria-label=".form-select-sm example"
                 >
-
-                  <option className="uppercase" selected>CREDEQUITY</option>
+                  <option className="uppercase" selected>
+                    CREDEQUITY
+                  </option>
                   <option>Bi-Anunal</option>
                   <option>Quarterly</option>
                   <option>Monthly</option>
@@ -173,7 +176,9 @@ const Dashboard = () => {
                   autoComplete="category-name"
                   className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
-                  <option className="uppercase" selected>TODAY</option>
+                  <option className="uppercase" selected>
+                    TODAY
+                  </option>
                   <option>Bi-Anunal</option>
                   <option>Quarterly</option>
                   <option>Monthly</option>
@@ -190,7 +195,14 @@ const Dashboard = () => {
             <div className="bg-white rounded-xl shadow border p-6 w-2/3">
               <div className="flex justify-between">
                 <p>API Calls by month</p>
-                <span>Month</span>
+                <select id="month-category">
+                  <option className="uppercase" selected>
+                    Month
+                  </option>
+                  <option>Jan</option>
+                  <option>Feb</option>
+                  <option>Mar</option>
+                </select>
               </div>
               <p>No. of successful and Failed API calls made</p>
               <div>
