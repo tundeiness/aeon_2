@@ -195,7 +195,7 @@ const Dashboard = () => {
             <div className="bg-white rounded-xl shadow border p-6 w-2/3">
               <div className="flex justify-between">
                 <p>API Calls by month</p>
-                <select id="month-category">
+                <select id="month-category" name="month-category">
                   <option className="uppercase" selected>
                     Month
                   </option>
