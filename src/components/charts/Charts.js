@@ -31,6 +31,9 @@ const options = {
     legend: {
       position: 'bottom',
       align: 'end',
+      labels: {
+        boxWidth: 12,
+      },
     },
     // title: {
     //   display: true,

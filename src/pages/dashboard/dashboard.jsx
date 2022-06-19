@@ -204,7 +204,7 @@ const Dashboard = () => {
                   <option>Mar</option>
                 </select>
               </div>
-              <p>No. of successful and Failed API calls made</p>
+              <p className="py-3">No. of successful and Failed API calls made</p>
               <div>
                 {' '}
                 <BarChart />
