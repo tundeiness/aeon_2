@@ -23,12 +23,19 @@ ChartJS.register(
 
 const options = {
   responsive: true,
-  // maintainAspectRatio: false,
+  maintainAspectRatio: false,
+  // CategoryScale: 0.8,
+  // categoryPercentage: 0.8,
+  // barPercentage: 0.8,
   plugins: {
     legend: {
       position: 'bottom',
       align: 'end',
     },
+    // title: {
+    //   display: true,
+    //   text: 'Chart.js Bar Chart',
+    // },
   },
   // layout: {
   //   padding: 10,
@@ -37,6 +44,7 @@ const options = {
     x: {
       grid: {
         display: false,
+        offset: true,
       },
     },
     y: {
@@ -51,18 +59,24 @@ const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
 
 const data = {
   labels,
+
   datasets: [
     {
       label: 'Dataset 1',
-      data: labels.map(() => Math.floor(Math.random() * 120)),
+      data: labels.map(() => Math.floor(Math.random() * 15000)),
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      barThickness: 22,
+      // barThickness: 22,
+      barPercentage: 0.9,
+      maxBarThickness: 35,
+      // minBarLength: 2,
     },
     {
       label: 'Dataset 2',
-      data: labels.map(() => Math.floor(Math.random() * 120)),
+      data: labels.map(() => Math.floor(Math.random() * 15000)),
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      barThickness: 22,
+      // barThickness: 22,
+      maxBarThickness: 35,
+      barPercentage: 0.9,
       hoverBackgroundColor: '#000B93',
     },
   ],
@@ -70,7 +84,7 @@ const data = {
 
 export const Charts = () => {
   const test = 0;
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data} height={220} />;
 };
 
 export default Charts;
