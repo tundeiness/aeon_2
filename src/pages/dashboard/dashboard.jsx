@@ -211,10 +211,10 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="bg-white rounded-xl shadow border p-6 w-1/3">
-              <p className="text-center">API Calls by institution</p>
-              <div className="flex justify-between">
+              <p className="text-center mb-8">Institutions</p>
+              <div className="flex justify-center pb-12">
                 <p className="uppercase inline-block">credequity</p>
-                <p className="capitalize inline-block">today</p>
+                {/* <p className="capitalize inline-block">today</p> */}
               </div>
               <GuageChart />
             </div>
