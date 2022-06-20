@@ -88,7 +88,7 @@ const GaugeDonut = () => {
   const option = {
     plugins: {
       title: {
-        display: true,
+        display: false,
         text: 'API Calls',
         fontSize: 20,
         align: 'center',
@@ -112,19 +112,19 @@ const GaugeDonut = () => {
     //     text: 'total',
     //   }],
     // },
-    title: {
-      display: true,
-      text: 'Average Rainfall per month',
-      fontSize: 20,
-      padding: {
-        top: 10,
-        bottom: 30,
-      },
-    },
-    legend: {
-      display: true,
-      position: 'bottom',
-    },
+    // title: {
+    //   display: true,
+    //   text: 'Average Rainfall per month',
+    //   fontSize: 20,
+    //   padding: {
+    //     top: 10,
+    //     bottom: 30,
+    //   },
+    // },
+    // legend: {
+    //   display: true,
+    //   position: 'bottom',
+    // },
     fullSize: true,
     rotation: -90,
     circumference: 180,
@@ -141,7 +141,7 @@ const GaugeDonut = () => {
       data={state}
       options={option}
       // width={350}
-      // height="160px"
+      height={260}
     />
     // </div>
   );

@@ -210,12 +210,13 @@ const Dashboard = () => {
                 <BarChart />
               </div>
             </div>
-            <div className="bg-white rounded-xl shadow border p-6 w-1/3">
-              <p className="text-center mb-8">Institutions</p>
-              <div className="flex justify-center pb-12">
+            <div className="relative bg-white rounded-xl shadow border p-6 w-1/3">
+              <p className="text-center mb-1">Institutions:</p>
+              <div className="flex justify-center">
                 <p className="uppercase inline-block">credequity</p>
                 {/* <p className="capitalize inline-block">today</p> */}
               </div>
+              <p className="absolute left-36 bottom-24">API Calls</p>
               <GuageChart />
             </div>
           </div>
