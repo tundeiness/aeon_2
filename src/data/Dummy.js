@@ -11,10 +11,10 @@ import {
   BsArrowUpShort,
 } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
-import { RiDeleteBinLine } from 'react-icons/ri';
+import { RiDeleteBinLine, RiCheckboxIndeterminateLine } from 'react-icons/ri';
 import { BiHomeAlt, BiFile } from 'react-icons/bi';
 import { ImStack } from 'react-icons/im';
-import { MdLogout } from 'react-icons/md';
+import { MdLogout, MdOutlineIndeterminateCheckBox } from 'react-icons/md';
 import { AiOutlineIdcard } from 'react-icons/ai';
 import { IoWarningOutline } from 'react-icons/io5';
 
@@ -28,6 +28,11 @@ export const Dummy = () => {
 export const DangerIcon = {
   title: 'Danger',
   symbol: <CgDanger />,
+};
+
+export const IndeterminateIcon = {
+  title: 'Indeterminate',
+  symbol: <MdOutlineIndeterminateCheckBox />,
 };
 
 export const WarningIcon = {
@@ -49,6 +54,13 @@ export const DotIcon = [{
   title: 'Dot',
   symbol: <GoPrimitiveDot />,
 }];
+
+export const SquareCheckIcon = [
+  {
+    title: 'SquareCheck',
+    symbol: <BsCheck2Square />,
+  },
+];
 
 export const DeleteIcon = [{
   title: 'Delete',
