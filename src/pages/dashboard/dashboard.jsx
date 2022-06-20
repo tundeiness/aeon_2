@@ -157,7 +157,7 @@ const Dashboard = () => {
                   id="payment-category"
                   name="payment-category"
                   autoComplete="category-name"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-gray-300 rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-gray-200 rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                   aria-label=".form-select-sm example"
                 >
                   <option className="uppercase" selected>
@@ -174,7 +174,7 @@ const Dashboard = () => {
                   id="payment-category"
                   name="payment-category"
                   autoComplete="category-name"
-                  className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
                   <option className="uppercase" selected>
                     TODAY
