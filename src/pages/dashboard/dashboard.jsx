@@ -214,9 +214,8 @@ const Dashboard = () => {
               <p className="text-center mb-1">Institutions:</p>
               <div className="flex justify-center">
                 <p className="uppercase inline-block">credequity</p>
-                {/* <p className="capitalize inline-block">today</p> */}
               </div>
-              <p className="absolute left-36 bottom-24">API Calls</p>
+              <p className="cut-out-label absolute left-36 bottom-24 font-normal">API Calls</p>
               <GuageChart />
             </div>
           </div>
