@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from 'react';
 import ReactPortal from '../../ReactPortal/ReactPortal';
-import { DangerIcon } from '../../../data/Dummy';
+import { DangerIcon, WarningIcon } from '../../../data/Dummy';
 
 const UpdateModal = ({ isOpen, handleClose }) => {
   if (!isOpen) return null;
@@ -27,8 +27,8 @@ const UpdateModal = ({ isOpen, handleClose }) => {
                 type="button"
                 className="flex justify-center items-center btnWrap w-12 h-12 rounded-3xl bg-red-50"
               >
-                <span className="flex justify-center items-center w-9 h-9 text-3xl text-red-700 rounded-3xl bg-red-200">
-                  {DangerIcon.symbol}
+                <span className="flex justify-center items-center w-9 h-9 text-3xl text-warning rounded-3xl bg-red-200">
+                  {WarningIcon.symbol}
                 </span>
               </button>
             </div>
