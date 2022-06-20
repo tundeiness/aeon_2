@@ -16,6 +16,7 @@ import { BiHomeAlt, BiFile } from 'react-icons/bi';
 import { ImStack } from 'react-icons/im';
 import { MdLogout } from 'react-icons/md';
 import { AiOutlineIdcard } from 'react-icons/ai';
+import { IoWarningOutline } from 'react-icons/io5';
 
 export const Dummy = () => {
   const test = 0;
@@ -27,6 +28,11 @@ export const Dummy = () => {
 export const DangerIcon = {
   title: 'Danger',
   symbol: <CgDanger />,
+};
+
+export const WarningIcon = {
+  title: 'Warning',
+  symbol: <IoWarningOutline />,
 };
 
 export const SearchIcon = [{
