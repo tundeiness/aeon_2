@@ -35,11 +35,10 @@ const UpdateModal = ({ isOpen, handleClose }) => {
             {/* body */}
             <div className="relative p-6 flex-auto">
               <h3 className="text-lg font-medium text-center">
-                Deactivate Institution
+                Please update your KYB
               </h3>
               <p className="mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
-                Are you sure you want to deactivate this institution? This
-                action cannot be undone.
+                we would like you to upload your CAC document as part of the KYB process
               </p>
             </div>
 
@@ -50,13 +49,13 @@ const UpdateModal = ({ isOpen, handleClose }) => {
                 type="button"
                 onClick={() => handleClose()}
               >
-                Cancel
+                I&apos;ve done it
               </button>
               <button
-                className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
+                className="bg-buttonTwo text-white font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
               >
-                Deactivate
+                Upload CAC
               </button>
             </div>
           </div>
