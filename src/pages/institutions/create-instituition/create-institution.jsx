@@ -262,20 +262,6 @@ const CreateInstitution = () => {
                     className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                     aria-label=".form-select-sm example"
                   >
-                    <svg
-                      className="w-4 h-4 ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
                     <option selected>Select Category</option>
                     <option>Bi-Anunal</option>
                     <option>Quarterly</option>

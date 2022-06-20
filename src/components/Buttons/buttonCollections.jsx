@@ -106,6 +106,33 @@ export const GetData = () => {
   );
 };
 
+export const GoButton = () => {
+  const test = 0;
+  return (
+    <>
+      <button
+        className="bg-buttonTwo px-4 py-3 rounded-md text-white font-medium text-sm"
+        type="button"
+      >
+        Go
+      </button>
+    </>
+  );
+};
+
+export const FilterButton = () => {
+  const test = 0;
+  return (
+    <>
+      <button
+        className="bg-liteBlue px-5 py-3 rounded-md text-white font-medium text-sm"
+        type="button"
+      >
+        Filter
+      </button>
+    </>
+  );
+};
 AuthButton.propTypes = {
   // buttonType: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
