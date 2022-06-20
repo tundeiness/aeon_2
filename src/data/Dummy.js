@@ -17,6 +17,7 @@ import { ImStack } from 'react-icons/im';
 import { MdLogout, MdOutlineIndeterminateCheckBox } from 'react-icons/md';
 import { AiOutlineIdcard } from 'react-icons/ai';
 import { IoWarningOutline } from 'react-icons/io5';
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 
 export const Dummy = () => {
   const test = 0;
@@ -33,6 +34,11 @@ export const DangerIcon = {
 export const IndeterminateIcon = {
   title: 'Indeterminate',
   symbol: <MdOutlineIndeterminateCheckBox />,
+};
+
+export const CircleCheckIcon = {
+  title: 'CircleCheck',
+  symbol: <IoMdCheckmarkCircleOutline />,
 };
 
 export const WarningIcon = {
