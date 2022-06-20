@@ -141,7 +141,7 @@ const GaugeDonut = () => {
       data={state}
       options={option}
       // width={350}
-      height={260}
+      height={240}
     />
     // </div>
   );

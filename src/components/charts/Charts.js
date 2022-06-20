@@ -33,6 +33,7 @@ const options = {
       align: 'end',
       labels: {
         boxWidth: 12,
+        padding: 30,
       },
     },
     // title: {
