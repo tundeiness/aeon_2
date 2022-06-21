@@ -19,6 +19,7 @@ const SubMenu = ({ item, key }) => {
   const [activePage, setActivePage] = useState(true);
   const [childPage, setChildPage] = useState(false);
   const resolvedLocation = useResolvedPath(location.pathname);
+  const [linkName, setLinkName] = useState(item.path);
 
   console.log(resolvedLocation.pathname);
 
