@@ -111,7 +111,7 @@ const ProductList = () => {
             </header>
 
             <hr className="mb-5" />
-            <div className="flex flex-row justify-between w-full outline outline-red-500">
+            <div className="flex flex-row justify-between w-full mb-5">
               <div className="w-1/4 mr-2">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
@@ -162,7 +162,7 @@ const ProductList = () => {
                 </select>
               </div>
 
-              <div className="flex flex-col justify-end w-1/4 outline outline-red-500">
+              <div className="flex flex-col justify-end w-1/4">
                 <SearchButton />
               </div>
               {/* <div className="flex flex-row justify-between w-1/2 py-4">

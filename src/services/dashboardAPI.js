@@ -11,7 +11,7 @@ export const dashboardAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getMetrics: builder.query({
-      query: () => createRequest('/api/v1/Institution/RetrieveAll'),
+      query: () => '/api/v1/Institution/RetrieveAll',
     }),
   }),
 });

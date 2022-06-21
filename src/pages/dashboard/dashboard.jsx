@@ -64,10 +64,15 @@ import Support from '../../components/support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { GetData } from '../../components/Buttons/buttonCollections';
 import NIMC from '../../static/assets/img/nimc.webp';
+import { useGetDashboardQuery } from '../../services/dashboardAPI';
 import './dashboard.css';
 
 const Dashboard = () => {
   const test = 0;
+  // const { data, isFetching } = useGetDashboardQuery;
+
+  // if (isFetching) return 'loading...';
+  // console.log(data);
   const {
     activeModal, setActiveModal, isOnline, setIsOnline,
   } = useStateContext();
