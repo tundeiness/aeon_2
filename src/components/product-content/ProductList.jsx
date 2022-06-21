@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
@@ -109,8 +111,64 @@ const ProductList = () => {
             </header>
 
             <hr className="mb-5" />
-            <div className="flex flex-row w-full">
-              <div className="flex flex-row justify-between w-1/2 py-4">
+            <div className="flex flex-row w-full outline outline-red-500">
+              <div className="w-full md:w-1/4">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="email-address"
+                >
+                  threshold (NGN)
+                  {' '}
+                </label>
+                <input
+                  className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  "
+                  type="text"
+                  placeholder="0"
+                  name="email-address"
+                  id="email-address"
+                />
+              </div>
+
+              <div className="w-full md:w-1/4 px-3">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="email-address"
+                >
+                  threshold (NGN)
+                  {' '}
+                </label>
+                <input
+                  className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  "
+                  type="text"
+                  placeholder="0"
+                  name="email-address"
+                  id="email-address"
+                />
+              </div>
+
+              <div className="w-1/4 px-3 mb-6 md:mb-0">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="status-category"
+                >
+                  status
+                </label>
+                <select
+                  id="status-category"
+                  name="status-category"
+                  className="mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                  aria-label=".form-select-sm example"
+                >
+                  <option selected>Status</option>
+                  <option>Active</option>
+                  <option>Inactive</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col justify-end w-1/4 outline outline-red-500">
+                <GoButton />
+              </div>
+              {/* <div className="flex flex-row justify-between w-1/2 py-4">
                 <input
                   placeholder="Institution Name"
                   className="relative py-2 pl-3 w-1/2 rounded-lg border border-gray-200"
@@ -147,7 +205,7 @@ const ProductList = () => {
                     <GoButton />
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="border border-gray-200 rounded-lg">
