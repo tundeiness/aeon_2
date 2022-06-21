@@ -4,11 +4,31 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
+  const params = useParams();
+  console.log(params.id);
+
+  const institution = useSelector((store) => store.institution);
+
+  const existingInstitution = institution.filter((insti) => insti.id === params.id);
+
+  const dispatch = useDispatch();
+
+  const handleUpdateInstitution = (value) => {
+    dispatch(updateInstitution({
+      id: params.id,
+      email: value.email,
+      name: value.name,
+      rc_number: value.rc_number,
+    }));
+  };
+
   const validate = (value) => {
     const errors = {};
     if (!value.email) {

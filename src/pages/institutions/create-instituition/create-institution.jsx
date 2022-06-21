@@ -4,12 +4,26 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
+import { addInstitution } from '../../../features/institutions/institutionSlice';
 import './createInstituiton.css';
 
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleAddInstitution = (value) => {
+    dispatch(addInstitution({
+      id: uuidv4(),
+      email: value.email,
+      name: value.name,
+      rc_number: value.rc_number,
+    }));
+  };
   const validate = (value) => {
     const errors = {};
     if (!value.email) {

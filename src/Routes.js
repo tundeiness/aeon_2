@@ -201,6 +201,7 @@ const MainRoutes = () => {
             element={<CreateInstitutionView />}
           />
           <Route path="view-institution" element={<ViewInstitutionView />} />
+          {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
           {/* <Route
             path="institutions/delete-institution"
             element={<DeleteInstitutionView />}

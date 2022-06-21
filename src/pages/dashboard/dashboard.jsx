@@ -55,6 +55,7 @@ import { MdLogout } from 'react-icons/md';
 import { AiOutlineIdcard } from 'react-icons/ai';
 import { CgChevronDown } from 'react-icons/cg';
 import { FaRegThumbsUp, FaRegCheckCircle } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import VendorStatus from '../../components/vendorStatus/VendorStatus';
 import BarChart from '../../components/charts/Charts';
 import GuageChart from '../../components/charts/Donut';
@@ -64,12 +65,15 @@ import Support from '../../components/support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { GetData } from '../../components/Buttons/buttonCollections';
 import NIMC from '../../static/assets/img/nimc.webp';
-import { useGetDashboardQuery } from '../../services/dashboardAPI';
+// import { useGetDashboardQuery } from '../../services/dashboardAPI';
 import './dashboard.css';
 
 const Dashboard = () => {
   const test = 0;
   // const { data, isFetching } = useGetDashboardQuery;
+  const institution = useSelector((store) => store.institution);
+
+  console.log(institution);
 
   // if (isFetching) return 'loading...';
   // console.log(data);
