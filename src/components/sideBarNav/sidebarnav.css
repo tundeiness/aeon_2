@@ -21,3 +21,7 @@ nav{
 .sub-menu-deactivate{
    display: none;
 }
+
+.active{
+  background-color: #000B93;
+}

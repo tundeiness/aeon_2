@@ -197,7 +197,7 @@ const MainRoutes = () => {
           <Route path="dashboard" element={<DashboardView />} />
           <Route path="institutions" element={<InstitutionView />} />
           <Route
-            path="create-institution"
+            path="institutions/create-institution"
             element={<CreateInstitutionView />}
           />
           <Route path="view-institution" element={<ViewInstitutionView />} />

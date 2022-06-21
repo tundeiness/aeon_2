@@ -94,26 +94,26 @@ export const iconArray = [
 export const SideBarData = [
   {
     title: 'Dashboard',
-    path: '/layout/dashboard',
+    path: '/dashboard',
     icon: <BiHomeAlt key="0" className="xl:w-6 xl:h-7" />,
   },
   {
     title: 'Institutions',
-    path: '/layout/institutions',
+    path: '/institutions',
     icon: <FiBarChart2 key="1" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
     subnav: [
       {
         title: 'Create',
-        path: '/layout/institutions/create-institution',
+        path: '/institutions/create-institution',
         icon: <GoPrimitiveDot />,
       },
     ],
   },
   {
     title: 'Products',
-    path: '/layout/products',
+    path: '/products',
     icon: <ImStack key="2" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
@@ -127,7 +127,7 @@ export const SideBarData = [
   },
   {
     title: 'Users',
-    path: '/layout/users',
+    path: '/users',
     icon: <BsCheck2Square key="3" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
@@ -141,7 +141,7 @@ export const SideBarData = [
   },
   {
     title: 'Accounts',
-    path: '/layout/accounts',
+    path: '/accounts',
     icon: <FiFlag key="4" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
@@ -155,7 +155,7 @@ export const SideBarData = [
   },
   {
     title: 'Reports',
-    path: '/layout/reports',
+    path: '/reports',
     icon: <BiFile key="5" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
@@ -169,7 +169,7 @@ export const SideBarData = [
   },
   {
     title: 'CE-ID',
-    path: '/layout/ce-id',
+    path: '/ce-id',
     icon: <AiOutlineIdcard key="6" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
@@ -183,7 +183,7 @@ export const SideBarData = [
   },
   {
     title: 'Profile',
-    path: '/layout/profile',
+    path: '/profile',
     icon: <FiUser key="7" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
@@ -197,7 +197,7 @@ export const SideBarData = [
   },
   {
     title: 'Log Out',
-    path: '/layout/log-out',
+    path: '/log-out',
     icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
   },
 ];

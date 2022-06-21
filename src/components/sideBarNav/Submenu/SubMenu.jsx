@@ -4,14 +4,16 @@
 /* eslint-disable no-unused-vars */
 
 import React, { useState } from 'react';
-import { Link, useLocation, useResolvedPath } from 'react-router-dom';
+import {
+  Link, useLocation, useResolvedPath, NavLink,
+} from 'react-router-dom';
 
 const SubMenu = ({ item, key }) => {
   const temi = 0;
   const location = useLocation();
   // const routeMatches = matchRoutes(location);
   // console.log(routeMatches);
-  // const isActive = location.pathname;
+  const isActive = location.pathname;
   const [subLink, setSubLink] = useState(false);
   const [pathlink, setPathlink] = useState(location.pathname);
   const [activePage, setActivePage] = useState(true);
@@ -21,14 +23,15 @@ const SubMenu = ({ item, key }) => {
   console.log(resolvedLocation.pathname);
 
   const showSubLink = () => setSubLink(!subLink);
-  // console.log(item);
+  console.log(pathlink);
+  console.log(item.path);
   return (
     <>
-      <Link
+      <NavLink
         to={item.path}
         key={key}
         className={`flex justify-between items-center py-2 px-3 rounded ${
-          pathlink === item.path ? 'bg-authBtn' : ''
+          pathlink === item.path ? '' : ''
         }`}
         onClick={item.subnav && showSubLink}
       >
@@ -43,19 +46,19 @@ const SubMenu = ({ item, key }) => {
               ? item.iconClosed
               : null}
         </span>
-      </Link>
+      </NavLink>
       {subLink
         && item.subnav.map((itm, _indx) => (
-          <Link
+          <NavLink
             key={itm.id}
-            className={`flex items-center mt-2 mb-1 py-1 pl-5 w-[96%] rounded hover:cursor-pointer bg-authBtn ${
-              pathlink === item.path ? 'bg-authBtn' : ''
+            className={`flex items-center mt-2 mb-1 py-1 pl-5 w-[96%] rounded hover:cursor-pointer ${
+              pathlink === item.path ? '' : ''
             }`}
             to={itm.path}
           >
             {itm.icon}
             <span className="inline-block">{itm.title}</span>
-          </Link>
+          </NavLink>
         ))}
     </>
   );

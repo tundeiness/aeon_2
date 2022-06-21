@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Navlink } from 'react-router-dom';
 import { BiHomeAlt, BiFile } from 'react-icons/bi';
 import { FiBarChart2, FiFlag, FiUser } from 'react-icons/fi';
 import { ImStack } from 'react-icons/im';
@@ -67,7 +67,7 @@ const SidebarNav = () => {
           {SideBarData.map((child, _index) => (
             <li
               key={child.id}
-              className="flex flex-col w-[95%] space-x-1 mb-2 hover:bg-authBtn rounded transition duration-200"
+              className="flex flex-col w-[95%] space-x-1 mb-2 hover:bg-authBtn rounded transition duration-200 "
               role="presentation"
             >
               <Submenu item={child} key={child.id} className="py-2" />
