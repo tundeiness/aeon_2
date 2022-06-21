@@ -16,7 +16,7 @@ import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
-import { GoButton, FilterButton } from '../Buttons/buttonCollections';
+import { GoButton, FilterButton, SearchButton } from '../Buttons/buttonCollections';
 
 const ProductList = () => {
   const { activeModal, setActiveModal } = useStateContext();
@@ -112,7 +112,7 @@ const ProductList = () => {
 
             <hr className="mb-5" />
             <div className="flex flex-row w-full outline outline-red-500">
-              <div className="w-full md:w-1/4">
+              <div className="w-1/4">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="email-address"
@@ -129,7 +129,7 @@ const ProductList = () => {
                 />
               </div>
 
-              <div className="w-full md:w-1/4 px-3">
+              <div className="w-1/4 px-3">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="email-address"
@@ -166,7 +166,7 @@ const ProductList = () => {
               </div>
 
               <div className="flex flex-col justify-end w-1/4 outline outline-red-500">
-                <GoButton />
+                <SearchButton />
               </div>
               {/* <div className="flex flex-row justify-between w-1/2 py-4">
                 <input
