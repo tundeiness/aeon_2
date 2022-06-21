@@ -111,19 +111,18 @@ const ProductList = () => {
             </header>
 
             <hr className="mb-5" />
-            <div className="flex flex-row w-full outline outline-red-500">
-              <div className="w-1/4">
+            <div className="flex flex-row justify-between w-full outline outline-red-500">
+              <div className="w-1/4 mr-2">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="email-address"
                 >
-                  threshold (NGN)
+                  Name
                   {' '}
                 </label>
                 <input
                   className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  "
                   type="text"
-                  placeholder="0"
                   name="email-address"
                   id="email-address"
                 />
@@ -134,19 +133,18 @@ const ProductList = () => {
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="email-address"
                 >
-                  threshold (NGN)
+                  Code
                   {' '}
                 </label>
                 <input
                   className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  "
                   type="text"
-                  placeholder="0"
                   name="email-address"
                   id="email-address"
                 />
               </div>
 
-              <div className="w-1/4 px-3 mb-6 md:mb-0">
+              <div className="w-1/4 px-3">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="status-category"
@@ -156,10 +154,9 @@ const ProductList = () => {
                 <select
                   id="status-category"
                   name="status-category"
-                  className="mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                  aria-label=".form-select-sm example"
+                  className="mt-1 block w-full py-3 px-2 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                 >
-                  <option selected>Status</option>
+                  <option selected />
                   <option>Active</option>
                   <option>Inactive</option>
                 </select>

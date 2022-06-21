@@ -12,7 +12,7 @@ const initialState = {
   edit: false,
 };
 
-const StateContext = createContext();
+const StateContext = createContext(null);
 // const AuthContext = createContext(null);
 
 export const ContextProvider = ({ children }) => {
@@ -21,6 +21,9 @@ export const ContextProvider = ({ children }) => {
   const [isClicked, setIsClicked] = useState(initialState);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isOnline, setIsOnline] = useState(false);
+
+  const [userInfo, setUserInfo] = useState(null);
+  const [isAuth, setIsAuth] = useState(false);
 
   const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -35,22 +38,39 @@ export const ContextProvider = ({ children }) => {
     setIsClicked({ ...initialState, [toggle]: true });
   };
 
-  // const login = (user) => {
-  //   setUser(user);
-  //   Navigate('/dashboard');
-  // };
+  const login = () => {
+    fetch('/login').then((res) => {
+      setIsAuth(true);
+      setUserInfo(res.user);
+    });
+
+    // Navigate('/dashboard');
+  };
+
+  const logout = () => {
+    fetch('/logout').then((res) => {
+      setIsAuth(false);
+      setUserInfo(null);
+    });
+
+    // Navigate('/dashboard');
+  };
+
+  const value = {
+    userInfo,
+  };
 
   // const logout = () => {
   //   setUser(null);
   //   Navigate('/', { replace: true });
   // };
 
-  const logIn = () => {
-    setIsLoggedIn(true);
-  };
-  const logOut = () => {
-    setIsLoggedIn(false);
-  };
+  // const logIn = () => {
+  //   setIsLoggedIn(true);
+  // };
+  // const logOut = () => {
+  //   setIsLoggedIn(false);
+  // };
 
   return (
     <StateContext.Provider
@@ -66,10 +86,14 @@ export const ContextProvider = ({ children }) => {
         isLoggedIn,
         setIsLoggedIn,
         isAuthenticated,
-        logIn,
-        logOut,
         isOnline,
         setIsOnline,
+        userInfo,
+        setUserInfo,
+        isAuth,
+        setIsAuth,
+        login,
+        logout,
       }}
     >
       {children}
