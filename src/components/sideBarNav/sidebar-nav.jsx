@@ -56,7 +56,7 @@ const SidebarNav = () => {
       <div className="logo-wrapper">
         <Link
           to="/dashboard/*"
-          className="inline-block xl:ml-9 xl:mt-9 border border-red-800"
+          className="inline-block xl:ml-9 xl:mt-9"
         >
           <img src={Logo} alt="brand-logo" className="xl:w-40 xl:h-10" />
         </Link>
