@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const baseUrl = 'http://13.59.94.46/aeon';
 
@@ -15,3 +15,5 @@ export const dashboardAPI = createApi({
     }),
   }),
 });
+
+export const { useGetDashboardQuery } = dashboardAPI;
