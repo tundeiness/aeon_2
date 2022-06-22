@@ -8,4 +8,5 @@ export const store = configureStore({
     [dashboardAPI.reducerPath]: dashboardAPI.reducer,
     institution: institutionReducer,
   },
+
 });

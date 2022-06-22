@@ -6,17 +6,20 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ContextProvider } from './contexts/ContextProvider';
 import App from './App';
-import { store } from './app/store';
+// import { store } from './app/store';
+import store from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter forceRefresh>
     <React.StrictMode>
-      <ContextProvider>
-        <Provider store={store}>
+      <Provider store={store}>
+        <ContextProvider>
+
           <App />
-        </Provider>
-      </ContextProvider>
+
+        </ContextProvider>
+      </Provider>
     </React.StrictMode>
   </BrowserRouter>,
 );

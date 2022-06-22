@@ -4,11 +4,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
-import { addInstitution } from '../../../features/institutions/institutionSlice';
+import {
+  createInstitution,
+} from '../../../redux/features/institutionSlice';
 import './createInstituiton.css';
 
 const CreateInstitution = () => {
@@ -16,8 +18,8 @@ const CreateInstitution = () => {
 
   const dispatch = useDispatch();
 
-  const handleAddInstitution = (value) => {
-    dispatch(addInstitution({
+  const handleCreateInstitution = (value) => {
+    dispatch(createInstitution({
       id: uuidv4(),
       email: value.email,
       name: value.name,
@@ -67,6 +69,8 @@ const CreateInstitution = () => {
       alert(`You have loggedin succesfully! Email: ${values.email}`);
     },
   });
+
+  console.log(formic);
   return (
     <>
       {/* <SidebarNav /> */}

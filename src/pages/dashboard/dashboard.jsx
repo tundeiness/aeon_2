@@ -55,7 +55,7 @@ import { MdLogout } from 'react-icons/md';
 import { AiOutlineIdcard } from 'react-icons/ai';
 import { CgChevronDown } from 'react-icons/cg';
 import { FaRegThumbsUp, FaRegCheckCircle } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import VendorStatus from '../../components/vendorStatus/VendorStatus';
 import BarChart from '../../components/charts/Charts';
 import GuageChart from '../../components/charts/Donut';
@@ -65,18 +65,27 @@ import Support from '../../components/support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { GetData } from '../../components/Buttons/buttonCollections';
 import NIMC from '../../static/assets/img/nimc.webp';
+import { getInstitution, deleteInstitution, setUpdate } from '../../redux/features/institutionSlice';
+import {
+  setUserUpdate,
+} from '../../redux/features/userSlice';
 // import { useGetDashboardQuery } from '../../services/dashboardAPI';
 import './dashboard.css';
 
 const Dashboard = () => {
   const test = 0;
   // const { data, isFetching } = useGetDashboardQuery;
-  const institution = useSelector((store) => store.institution);
+  // const { loading, institution } = useSelector((state) => ({ ...state.app }));
+  // const details = useSelector((state) => state.user);
+  // const [getData, setGetData] = useState(institution);
+  // const dispatch = useDispatch();
 
-  console.log(institution);
+  // dispatch(getInstitution());
+
+  // console.log(details);
 
   // if (isFetching) return 'loading...';
-  // console.log(data);
+  // console.log(testing);
   const {
     activeModal, setActiveModal, isOnline, setIsOnline,
   } = useStateContext();

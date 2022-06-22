@@ -5,6 +5,8 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginPending, loginSuccess, loginFail } from '../../redux/features/loginSlice';
 import AeonLogo from '../../static/assets/img/logo-blue.png';
 import LandingImage from '../../static/assets/img/landing-image.png';
 import LogoImage from '../../static/assets/img/logo-transparent.png';
@@ -23,6 +25,10 @@ const SignIn = () => {
     return errors;
   };
 
+  const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
+  const { isLoading, isAuth } = useSelector((state) => state.login);
+
   const formic = useFormik({
     initialValues: {
       email: '',
@@ -33,6 +39,20 @@ const SignIn = () => {
       alert(`You have loggedin succesfully! Email: ${values.email}`);
     },
   });
+
+  // const handleSubmit = async() => {
+  //   setFormData(formic.values);
+  //   dispatch(loginPending());
+
+  //   try {
+  //     const isAuth = await
+  //   } catch (error) {
+  //     dispatch(loginFail(error.message))
+  //   }
+  //   dispatch(formData);
+  // };
+
+  console.log(formic.values);
 
   return (
     <main className="landing-container flex flex-col justify-between">
