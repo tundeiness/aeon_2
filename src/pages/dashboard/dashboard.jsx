@@ -36,7 +36,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 // import { lazy } from 'react';
-import React, { lazy, useState } from 'react';
+import React, { lazy, useState, useEffect } from 'react';
 import {
   Routes, Link, Outlet, Route, useLocation,
 } from 'react-router-dom';
@@ -78,7 +78,7 @@ const Dashboard = () => {
   // const { loading, institution } = useSelector((state) => ({ ...state.app }));
   // const details = useSelector((state) => state.user);
   // const [getData, setGetData] = useState(institution);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // dispatch(getInstitution());
 
@@ -90,6 +90,10 @@ const Dashboard = () => {
     activeModal, setActiveModal, isOnline, setIsOnline,
   } = useStateContext();
   const Badge = <img src={NIMC} alt="NIMC" className="h-14 w-16" />;
+
+  useEffect(() => {
+    dispatch(getInstitution());
+  }, [dispatch]);
 
   return (
   // <article className="flex-1 border border-red-500">
