@@ -23,17 +23,17 @@ import { getAllProducts } from '../../redux/features/productSlice';
 
 const ProductList = () => {
   const { activeModal, setActiveModal } = useStateContext();
-  const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
-  const [mockData, setMockData] = useState(Data);
-  const [pageNum, setPageNum] = useState(0);
-  const dispatch = useDispatch();
 
   const { product } = useSelector((state) => ({
     ...state.product,
   }));
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const [mockData, setMockData] = useState(product[0]);
+  const [pageNum, setPageNum] = useState(0);
+  const dispatch = useDispatch();
 
-  console.log(product);
+  console.log(product[0]);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -46,27 +46,27 @@ const ProductList = () => {
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     ?.map((datum) => (
       <tr key={datum['S/N']}>
-        <td className="text-sm leading-5 py-4 px-3">{datum.Code}</td>
-        <td className="py-4 uppercase text-center">{datum.Name}</td>
+        <td className="text-sm leading-5 py-4 px-3">{datum.code}</td>
+        <td className="py-4 uppercase text-center">{datum.name}</td>
         <td className="py-4 pl-28">
-          {datum.Status === 'Active' ? (
+          {datum.status === 'Active' ? (
             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
 
-              {datum.Status}
+              {datum.status}
             </span>
           ) : (
             <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
 
-              {datum.Status}
+              {datum.status}
             </span>
           )}
         </td>
         {/* <td className="py-4 pl-4">{datum.Created}</td> */}
         <td className="py-4 pl-22 text-center">
-          <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
-            {datum.Team}
+          <span className="inline-block text-gray-900 py-0.5 px-0.4 rounded-lg text-center hover:cursor-pointer">
+            {datum.dateCreated}
           </span>
         </td>
         <td className="py-4 px-6">
@@ -205,7 +205,7 @@ const ProductList = () => {
                     <tr className="outline outline-red-400 space-x-1">
                       <th
                         scope="col"
-                        className="w-12 text-gray-500 py-4 px-2 text-left outline outline-blue-400"
+                        className="w-20 text-gray-500 py-4 px-2 text-center outline outline-blue-400"
                       >
                         Code
                       </th>
