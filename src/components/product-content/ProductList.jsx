@@ -20,6 +20,7 @@ import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { GoButton, FilterButton, SearchButton } from '../Buttons/buttonCollections';
 // import { getInstitution } from '../../redux/features/institutionSlice';
 import { getAllProducts } from '../../redux/features/productSlice';
+import { handleDate } from '../../utils/dateParser';
 import './productlist.css';
 
 const ProductList = () => {
@@ -40,26 +41,25 @@ const ProductList = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const handleDate = (rawDate) => {
-    const dateData = new Date(rawDate);
-    const dateString = new Date(dateData.getTime() - dateData.getTimezoneOffset() * 60000)
-      .toISOString()
-      .split('T')[0];
+  // const handleDate = (rawDate) => {
+  //   const dateData = new Date(rawDate);
+  //   const dateString = new Date(dateData.getTime() - dateData.getTimezoneOffset() * 60000)
+  //     .toISOString()
+  //     .split('T')[0];
 
-    const timeString = new Date(
-      dateData.getTime() - dateData.getTimezoneOffset() * 60000,
-    )
-      .toISOString()
-      .split('T')[1];
+  //   const timeString = new Date(
+  //     dateData.getTime() - dateData.getTimezoneOffset() * 60000,
+  //   )
+  //     .toISOString()
+  //     .split('T')[1];
 
-    return `${dateString} ${timeString.slice(0, 8)}`;
-  };
+  //   return `${dateString} ${timeString.slice(0, 8)}`;
+  // };
 
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = mockData
-    .slice(dataPageVisited, dataPageVisited + dataPerPage)
+  const displayData = mockData?.slice(dataPageVisited, dataPageVisited + dataPerPage)
     ?.map((datum) => (
       <tr key={datum['S/N']}>
         <td className="text-sm leading-5 py-4 px-3">{datum.code}</td>
