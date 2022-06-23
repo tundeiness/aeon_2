@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
@@ -15,13 +16,24 @@ import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { GoButton, FilterButton } from '../Buttons/buttonCollections';
+import { getInstitution } from '../../redux/features/institutionSlice';
 
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
+  const { loading, institution } = useSelector((state) => ({
+    ...state.institution,
+  }));
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [mockData, setMockData] = useState(Data);
+  const [mockData, setMockData] = useState(institution[0]);
   const [pageNum, setPageNum] = useState(0);
+  const dispatch = useDispatch();
+
+  console.log(institution[0]);
+
+  useEffect(() => {
+    dispatch(getInstitution());
+  }, [dispatch]);
 
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
@@ -30,27 +42,27 @@ const InstitutionList = () => {
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     ?.map((datum) => (
       <tr key={datum['S/N']}>
-        <td className="text-sm leading-5 py-4 px-3">{datum['S/N']}</td>
-        <td className="py-4 uppercase text-center">{datum.Name}</td>
+        <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
+        <td className="py-4 uppercase text-center">{datum.name}</td>
         <td className="py-4 pr-4 pl-20">
-          {datum.Status === 'Active' ? (
+          {datum.status === 'Active' ? (
             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
               {/* <span className="text-white">{DotIcon}</span> */}
-              {datum.Status}
+              {datum.status}
             </span>
           ) : (
             <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
               {/* <span className="text-white">{DotIcon}</span> */}
-              {datum.Status}
+              {datum.status}
             </span>
           )}
         </td>
-        <td className="py-4 pl-4">{datum.Website}</td>
+        <td className="py-4 pl-4">{datum.websiteUrl}</td>
         <td className="py-4 pl-10">
           <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
-            {datum.Team}
+            {datum.category}
           </span>
         </td>
         <td className="py-4 px-6">
