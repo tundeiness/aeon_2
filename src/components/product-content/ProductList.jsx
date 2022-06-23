@@ -39,6 +39,25 @@ const ProductList = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
+  // const handleDate = (rawDate) => rawDate.toISOString().split('T')[0];
+  const dat = new Date('2021-03-04T11:22:17.447766');
+  // console.log('2021-03-04T11:22:17.447766'.toISOString().split('T')[0]);
+
+  const handleDate = (rawDate) => {
+    const dateData = new Date(rawDate);
+    const dateString = new Date(dateData.getTime() - dateData.getTimezoneOffset() * 60000)
+      .toISOString()
+      .split('T')[0];
+
+    const timeString = new Date(
+      dateData.getTime() - dateData.getTimezoneOffset() * 60000,
+    )
+      .toISOString()
+      .split('T')[1];
+
+    return `${dateString} ${timeString.slice(0, 8)}`;
+  };
+
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
@@ -66,7 +85,7 @@ const ProductList = () => {
         {/* <td className="py-4 pl-4">{datum.Created}</td> */}
         <td className="py-4 pl-22 text-center">
           <span className="inline-block text-gray-900 py-0.5 px-0.4 rounded-lg text-center hover:cursor-pointer">
-            {datum.dateCreated}
+            {handleDate(datum.dateCreated)}
           </span>
         </td>
         <td className="py-4 px-6">
