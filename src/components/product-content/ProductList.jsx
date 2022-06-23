@@ -20,6 +20,7 @@ import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { GoButton, FilterButton, SearchButton } from '../Buttons/buttonCollections';
 // import { getInstitution } from '../../redux/features/institutionSlice';
 import { getAllProducts } from '../../redux/features/productSlice';
+import './productlist.css';
 
 const ProductList = () => {
   const { activeModal, setActiveModal } = useStateContext();
@@ -38,10 +39,6 @@ const ProductList = () => {
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
-
-  // const handleDate = (rawDate) => rawDate.toISOString().split('T')[0];
-  const dat = new Date('2021-03-04T11:22:17.447766');
-  // console.log('2021-03-04T11:22:17.447766'.toISOString().split('T')[0]);
 
   const handleDate = (rawDate) => {
     const dateData = new Date(rawDate);
@@ -221,22 +218,22 @@ const ProductList = () => {
               <div className="name-list">
                 <table className="table-fixed w-full text-xs">
                   <thead className=" bg-gray-50 text-xs capitalize w-full ">
-                    <tr className="outline outline-red-400 space-x-1">
+                    <tr className="space-x-1">
                       <th
                         scope="col"
-                        className="w-20 text-gray-500 py-4 px-2 text-center outline outline-blue-400"
+                        className="w-20 text-gray-500 py-4 px-2 text-center"
                       >
                         Code
                       </th>
                       <th
                         scope="col"
-                        className="w-52 text-gray-500 py-4 text-center outline outline-blue-400"
+                        className="w-52 text-gray-500 py-4 text-center"
                       >
                         Name
                       </th>
                       <th
                         scope="col"
-                        className="flex items-center  text-gray-500 py-4 pl-28 outline outline-blue-400"
+                        className="flex items-center  text-gray-500 py-4 pl-28"
                       >
                         Status
                         {/* <span>{ArrowDownIcon.symbol}</span> */}
@@ -244,13 +241,13 @@ const ProductList = () => {
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500  py-4 text-center outline outline-blue-400"
+                        className=" text-gray-500  py-4 text-center"
                       >
                         Created
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500  py-4 pl-28  outline outline-blue-400 text-left"
+                        className=" text-gray-500  py-4 pl-28 text-left"
                       >
                         Action
                       </th>
