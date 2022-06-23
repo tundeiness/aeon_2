@@ -8,7 +8,7 @@ import RoleReducer from './features/roleSlice';
 
 export default configureStore({
   reducer: {
-    app: InstitutionReducer,
+    institution: InstitutionReducer,
     user: UserReducer,
     login: LoginReducer,
     product: ProductReducer,
