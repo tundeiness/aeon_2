@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-
 import InstitutionReducer from './features/institutionSlice';
 import UserReducer from './features/userSlice';
 import LoginReducer from './features/loginSlice';
