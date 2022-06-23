@@ -29,8 +29,6 @@ const InstitutionList = () => {
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
 
-  // console.log(institution[0]);
-
   useEffect(() => {
     dispatch(getInstitution());
   }, [dispatch]);
@@ -48,13 +46,11 @@ const InstitutionList = () => {
           {datum.status === 'Active' ? (
             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
-              {/* <span className="text-white">{DotIcon}</span> */}
               {datum.status}
             </span>
           ) : (
             <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
-              {/* <span className="text-white">{DotIcon}</span> */}
               {datum.status}
             </span>
           )}
@@ -68,34 +64,13 @@ const InstitutionList = () => {
         <td className="py-4 px-6">
           <span className="flex justify-between">
             <button type="button">
-              {/* <span className="inline-block search-icon hover:cursor-pointer w-5 h-5 text-searchColor">
-                {SearchIcon}
-              </span> */}
               <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
-            {/* <Link
-              // to="delete-institution"
-              // state={{ background: location }}
-              // onClick={() => handleModal('This is component modal content')}
-              // to={{
-              //   pathname: 'delete-institution',
-              //   state: { background: location },
-              // }}
-              // onClick={() => setActiveModal((prevActiveModal) => !prevActiveModal)}
-              // onClick={() => setActiveModal(true)}
-            > */}
             <RiDeleteBinLine
               className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
               onClick={() => setIsOpen(true)}
             />
-            {/* <span className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor">
-                {DeleteIcon}
-              </span> */}
-            {/* </Link> */}
             <button type="button">
-              {/* <span className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor">
-                {CreateIcon}
-              </span> */}
               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
             </button>
           </span>
@@ -103,7 +78,6 @@ const InstitutionList = () => {
       </tr>
     ));
 
-  // console.log(displayData);
   const pagingCount = Math.ceil(mockData?.length / dataPerPage);
 
   const changePage = ({ selected }) => {
@@ -229,9 +203,6 @@ const InstitutionList = () => {
           </div>
         </section>
       </article>
-      {/* <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-        <DeleteInstitution />
-      </Modal> */}
       <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
     </>
   );
