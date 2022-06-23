@@ -9,6 +9,16 @@ export const getAllProducts = createAsyncThunk('product/getAllProducts', async (
   return res.data;
 });
 
+export const getProductBand = createAsyncThunk(
+  'product/getProductBand',
+  async () => {
+    const res = await axios.get(
+      'http://13.59.94.46/aeon//api/v1/Product/GetBands',
+    );
+    return res.data;
+  },
+);
+
 export const productSlice = createSlice({
   name: 'product',
   initialState: {
@@ -42,6 +52,19 @@ export const productSlice = createSlice({
       state.userInfo = action.payload;
     },
     [getAllProducts.rejected]: (state) => {
+      state.pending = false;
+      state.error = true;
+    },
+
+    [getProductBand.pending]: (state) => {
+      state.pending = true;
+      state.error = false;
+    },
+    [getProductBand.fulfilled]: (state, action) => {
+      state.pending = true;
+      state.userInfo = action.payload;
+    },
+    [getProductBand.rejected]: (state) => {
       state.pending = false;
       state.error = true;
     },
