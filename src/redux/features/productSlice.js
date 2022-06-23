@@ -1,13 +1,20 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getAllProducts = createAsyncThunk('product/getAllProducts', async () => {
-  const res = await axios.get(
-    'http://13.59.94.46/aeon/api/v1/Product/RetrieveAll',
-  );
-  return res.data;
-});
+// export const getAllProducts = createAsyncThunk('product/getAllProducts', async () => {
+//   const res = await axios.get(
+//     'http://13.59.94.46/aeon/api/v1/Product/RetrieveAll',
+//   );
+//   return res.data;
+// });
+
+export const getAllProducts = createAsyncThunk(
+  'product/getAllProducts',
+  async (_id) => fetch('http://13.59.94.46/aeon/api/v1/Product/RetrieveAll').then((res) => res.json()),
+);
 
 export const getProductBand = createAsyncThunk(
   'product/getProductBand',
@@ -22,51 +29,54 @@ export const getProductBand = createAsyncThunk(
 export const productSlice = createSlice({
   name: 'product',
   initialState: {
-    productInfo: {
-      name: 'BVN Service',
-      summary:
-        'The BVN Full Details Service is used to confirm the authenticity of a BVN and/or phone number by matching any one or more of the request against the last name and date of birth of the customer.',
-      inputParameters: 'Bvn',
-      url: 'https://credequityapi.com/CredBvn/api/v1/Bvn/GetCustomerBvn',
-      pricePerCall: 0.0,
-      code: '100301',
-      dateCreated: '2021-03-04T11:22:17.447766',
-      dateLastModified: '2021-03-05T10:11:32.5831291',
-      lastUpdatedBy: 'support@credequity.com',
-      apiDocumentation: 'none',
-      testUrl: 'http://102.164.38.38/CredBvn/api/v1/Bvn/GetCustomerBvn',
-      status: 'Active',
-    },
-    pending: false,
-    error: false,
+    product: [],
+    loading: false,
+    error: null,
   },
+  // initialState: {
+  //   productInfo: {
+  //     name: 'BVN Service',
+  //     summary:
+  //       'The BVN Full Details Service is used to confirm the authenticity of a BVN and/or phone number by matching any one or more of the request against the last name and date of birth of the customer.',
+  //     inputParameters: 'Bvn',
+  //     url: 'https://credequityapi.com/CredBvn/api/v1/Bvn/GetCustomerBvn',
+  //     pricePerCall: 0.0,
+  //     code: '100301',
+  //     dateCreated: '2021-03-04T11:22:17.447766',
+  //     dateLastModified: '2021-03-05T10:11:32.5831291',
+  //     lastUpdatedBy: 'support@credequity.com',
+  //     apiDocumentation: 'none',
+  //     testUrl: 'http://102.164.38.38/CredBvn/api/v1/Bvn/GetCustomerBvn',
+  //     status: 'Active',
+  //   },
+  //   pending: false,
+  //   error: false,
+  // },
 
   reducers: {},
   extraReducers: {
     [getAllProducts.pending]: (state) => {
-      state.pending = true;
-      state.error = false;
+      state.loading = true;
     },
     [getAllProducts.fulfilled]: (state, action) => {
-      state.pending = true;
-      state.userInfo = action.payload;
+      state.loading = false;
+      state.product = [action.payload];
     },
-    [getAllProducts.rejected]: (state) => {
-      state.pending = false;
-      state.error = true;
+    [getAllProducts.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
 
     [getProductBand.pending]: (state) => {
-      state.pending = true;
-      state.error = false;
+      state.loading = true;
     },
     [getProductBand.fulfilled]: (state, action) => {
-      state.pending = true;
-      state.userInfo = action.payload;
+      state.loading = false;
+      state.product = [action.payload];
     },
-    [getProductBand.rejected]: (state) => {
-      state.pending = false;
-      state.error = true;
+    [getProductBand.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
   },
 });

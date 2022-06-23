@@ -29,7 +29,7 @@ const InstitutionList = () => {
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
 
-  console.log(institution[0]);
+  // console.log(institution[0]);
 
   useEffect(() => {
     dispatch(getInstitution());

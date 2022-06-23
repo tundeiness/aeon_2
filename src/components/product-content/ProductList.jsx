@@ -3,7 +3,8 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
@@ -17,6 +18,8 @@ import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { GoButton, FilterButton, SearchButton } from '../Buttons/buttonCollections';
+// import { getInstitution } from '../../redux/features/institutionSlice';
+import { getAllProducts } from '../../redux/features/productSlice';
 
 const ProductList = () => {
   const { activeModal, setActiveModal } = useStateContext();
@@ -24,6 +27,17 @@ const ProductList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mockData, setMockData] = useState(Data);
   const [pageNum, setPageNum] = useState(0);
+  const dispatch = useDispatch();
+
+  const { product } = useSelector((state) => ({
+    ...state.product,
+  }));
+
+  console.log(product);
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
@@ -34,7 +48,7 @@ const ProductList = () => {
       <tr key={datum['S/N']}>
         <td className="text-sm leading-5 py-4 px-3">{datum.Code}</td>
         <td className="py-4 uppercase text-center">{datum.Name}</td>
-        <td className="py-4 pr-4 pl-20">
+        <td className="py-4 pl-28">
           {datum.Status === 'Active' ? (
             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
               <GoPrimitiveDot className="text-white" />
@@ -49,42 +63,21 @@ const ProductList = () => {
             </span>
           )}
         </td>
-        <td className="py-4 pl-4">{datum.Created}</td>
-        <td className="py-4 pl-10">
+        {/* <td className="py-4 pl-4">{datum.Created}</td> */}
+        <td className="py-4 pl-22 text-center">
           <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
             {datum.Team}
           </span>
         </td>
         <td className="py-4 px-6">
-          <span className="flex justify-between">
+          <span className="flex justify-around px-12">
             <button type="button">
-              {/* <span className="inline-block search-icon hover:cursor-pointer w-5 h-5 text-searchColor">
-                {SearchIcon}
-              </span> */}
               <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
-            {/* <Link
-              // to="delete-institution"
-              // state={{ background: location }}
-              // onClick={() => handleModal('This is component modal content')}
-              // to={{
-              //   pathname: 'delete-institution',
-              //   state: { background: location },
-              // }}
-              // onClick={() => setActiveModal((prevActiveModal) => !prevActiveModal)}
-              // onClick={() => setActiveModal(true)}
-            > */}
             <RiDeleteBinLine
               className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
               onClick={() => setIsOpen(true)}
             />
-            {/* <span className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor">
-                {DeleteIcon}
-              </span> */}
-            {/* </Link> */}
-            {/* <button type="button">
-              <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-            </button> */}
           </span>
         </td>
       </tr>
@@ -208,23 +201,23 @@ const ProductList = () => {
             <div className="border border-gray-200 rounded-lg">
               <div className="name-list">
                 <table className="table-fixed w-full text-xs">
-                  <thead className=" bg-gray-50 text-xs capitalize">
-                    <tr>
+                  <thead className=" bg-gray-50 text-xs capitalize w-full ">
+                    <tr className="outline outline-red-400 space-x-1">
                       <th
                         scope="col"
-                        className="w-12 text-gray-500 py-4 px-2 text-left"
+                        className="w-12 text-gray-500 py-4 px-2 text-left outline outline-blue-400"
                       >
-                        S/N
+                        Code
                       </th>
                       <th
                         scope="col"
-                        className="w-52 text-gray-500 py-4 text-center"
+                        className="w-52 text-gray-500 py-4 text-center outline outline-blue-400"
                       >
                         Name
                       </th>
                       <th
                         scope="col"
-                        className=" flex items-center  text-gray-500 py-4 pl-20"
+                        className="flex items-center  text-gray-500 py-4 pl-28 outline outline-blue-400"
                       >
                         Status
                         {/* <span>{ArrowDownIcon.symbol}</span> */}
@@ -232,20 +225,20 @@ const ProductList = () => {
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500 py-4 pl-4 text-left"
+                        className=" text-gray-500  py-4 text-center outline outline-blue-400"
                       >
-                        Website
+                        Created
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500  py-4 pl-10 text-left"
+                        className=" text-gray-500  py-4 pl-28  outline outline-blue-400 text-left"
                       >
-                        Teams
+                        Action
                       </th>
-                      <th
+                      {/* <th
                         scope="col"
                         className=" text-gray-500 py-4 text-left"
-                      />
+                      /> */}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
