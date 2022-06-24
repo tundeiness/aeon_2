@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 import { createInstitution } from '../../../redux/features/institutionSlice';
 import './createproduct.css';
@@ -74,10 +73,10 @@ const CreateProduct = () => {
       {/* <SidebarNav /> */}
       <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
-          <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
+          <div className="create-product-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between">
-              <h1 className="create-institution-header font-medium text-3xl">
-                Create Institution
+              <h1 className="create-product-header font-medium text-3xl">
+                Create Products
                 {' '}
               </h1>
               <SupportButton />
@@ -103,7 +102,7 @@ const CreateProduct = () => {
                       value={formic.values.name}
                       id="grid-first-name"
                       type="text"
-                      placeholder="Institution's name"
+                      placeholder=""
                     />
                     {formic.touched.name && formic.errors.name && (
                       <span className="text-red-300 text-xs">
@@ -118,7 +117,7 @@ const CreateProduct = () => {
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                     htmlFor="grid-last-name"
                   >
-                    RC Number
+                    Code
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
                         formic.rc_number && formic.errors.rc_number
@@ -146,7 +145,7 @@ const CreateProduct = () => {
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                     htmlFor="grid-address"
                   >
-                    address
+                    input parameters
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
                         formic.address && formic.errors.address
@@ -158,7 +157,7 @@ const CreateProduct = () => {
                       value={formic.values.address}
                       id="grid-address"
                       type="text"
-                      placeholder="Institution's Address"
+                      placeholder=""
                     />
                     {formic.touched.address && formic.errors.address && (
                       <span className="text-red-300 text-xs">
@@ -173,7 +172,7 @@ const CreateProduct = () => {
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                     htmlFor="grid-phone"
                   >
-                    contact phone number
+                    URL
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
                         formic.phone && formic.errors.phone
@@ -195,153 +194,97 @@ const CreateProduct = () => {
                 </div>
               </div>
 
-              <div className="url-email-block flex flex-wrap -mx-3 mb-8 px-6">
+              <div className="address-phone-block flex flex-wrap -mx-3 mb-3 px-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="institution-website"
+                    htmlFor="grid-address"
                   >
-                    website URL
-                    {' '}
-                  </label>
-                  <div className="mt-1 flex rounded-md shadow-sm">
-                    <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                      {' '}
-                      https://
-                      {' '}
-                    </span>
+                    test URL
                     <input
-                      type="text"
-                      name="company-website"
-                      id="company-website"
-                      onChange={formic.handleChange}
-                      onBlur={formic.handleBlur}
-                      value={formic.values.website}
-                      className={`flex-1 block w-full text-gray-700 rounded-none rounded-r-md sm:text-sm border  py-3 px-4 leading-tight focus:outline-none  focus:bg-white ${
-                        formic.website && formic.errors.website
+                      className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
+                        formic.address && formic.errors.address
                           ? 'border-red-400'
                           : 'border-gray-200'
                       }`}
-                      placeholder="www.companyname.com"
+                      onChange={formic.handleChange}
+                      onBlur={formic.handleBlur}
+                      value={formic.values.address}
+                      id="grid-address"
+                      type="text"
+                      placeholder=""
                     />
-                    {formic.touched.website && formic.errors.website && (
+                    {formic.touched.address && formic.errors.address && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.website}
+                        {formic.errors.address}
                       </span>
                     )}
-                  </div>
+                  </label>
                 </div>
 
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="email-address"
+                    htmlFor="grid-phone"
                   >
-                    notification email
-                    {' '}
+                    API Documentation
+                    <input
+                      className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                        formic.phone && formic.errors.phone
+                          ? 'border-red-400'
+                          : 'border-gray-200'
+                      } `}
+                      onChange={formic.handleChange}
+                      onBlur={formic.handleBlur}
+                      value={formic.values.phone}
+                      id="grid-phone"
+                      type="phone"
+                    />
+                    {formic.touched.phone && formic.errors.phone && (
+                      <span className="text-red-300 text-xs">
+                        {formic.errors.phone}
+                      </span>
+                    )}
                   </label>
-                  <input
-                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.rc_number && formic.errors.rc_number
-                        ? 'border-red-400'
-                        : 'border-gray-200'
-                    } `}
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.rc_number}
-                    type="text"
-                    placeholder="info@companyname.com"
-                    name="email-address"
-                    id="email-address"
-                  />
-                  {formic.touched.rc_number && formic.errors.rc_number && (
-                    <span className="text-red-300 text-xs">
-                      {formic.errors.rc_number}
-                    </span>
-                  )}
                 </div>
               </div>
 
-              <div className="category-block flex flex-wrap -mx-3 mb-6 px-6">
-                <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <div className="address-phone-block flex flex-wrap -mx-3 mb-3 px-6">
+                <div className="w-full md:w-full px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="payment-category"
+                    htmlFor="grid-address"
                   >
-                    payment category
-                    {' '}
+                    summary
+                    <input
+                      className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
+                        formic.address && formic.errors.address
+                          ? 'border-red-400'
+                          : 'border-gray-200'
+                      }`}
+                      onChange={formic.handleChange}
+                      onBlur={formic.handleBlur}
+                      value={formic.values.address}
+                      id="grid-address"
+                      type="text"
+                      placeholder=""
+                    />
+                    {formic.touched.address && formic.errors.address && (
+                      <span className="text-red-300 text-xs">
+                        {formic.errors.address}
+                      </span>
+                    )}
                   </label>
-                  <select
-                    id="payment-category"
-                    name="payment-category"
-                    autoComplete="category-name"
-                    className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                    aria-label=".form-select-sm example"
-                  >
-                    <option selected>Select Category</option>
-                    <option>Bi-Anunal</option>
-                    <option>Quarterly</option>
-                    <option>Monthly</option>
-                  </select>
-                </div>
-
-                <div className="w-full md:w-1/3 px-3">
-                  <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="payment-category"
-                  >
-                    number of calls
-                    {' '}
-                  </label>
-                  <select
-                    id="payment-category"
-                    name="payment-category"
-                    autoComplete="category-name"
-                    className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  >
-                    <option>Bi-Anunal</option>
-                    <option>Quarterly</option>
-                    <option>Monthly</option>
-                  </select>
-                </div>
-
-                <div className="w-full md:w-1/3 px-3">
-                  <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="email-address"
-                  >
-                    threshold (NGN)
-                    {' '}
-                  </label>
-                  <input
-                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.rc_number && formic.errors.rc_number
-                        ? 'border-red-400'
-                        : 'border-gray-200'
-                    } `}
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.rc_number}
-                    type="text"
-                    placeholder="0"
-                    name="email-address"
-                    id="email-address"
-                  />
-                  {formic.touched.rc_number && formic.errors.rc_number && (
-                    <span className="text-red-300 text-xs">
-                      {formic.errors.rc_number}
-                    </span>
-                  )}
                 </div>
               </div>
 
               <div className="documentation-description-block flex flex-wrap -mx-3 mb-9 px-6">
-                <div className="w-full md:w-1/2 px-3">
+                <div className="w-full md:w-full px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                     htmlFor="documentation"
                   >
-                    documentation
+                    response
                     {' '}
                   </label>
                   <div className="mt-1">
@@ -350,26 +293,7 @@ const CreateProduct = () => {
                       name="documentation"
                       rows="3"
                       className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      placeholder="Enter the documentation..."
-                    />
-                  </div>
-                </div>
-
-                <div className="w-full md:w-1/2 px-3">
-                  <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="description"
-                  >
-                    description
-                    {' '}
-                  </label>
-                  <div className="mt-1">
-                    <textarea
-                      id="description"
-                      name="description"
-                      rows="3"
-                      className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      placeholder="Enter a Description..."
+                      placeholder="Enter response..."
                     />
                   </div>
                 </div>
@@ -380,7 +304,7 @@ const CreateProduct = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                     >
-                      Create Institution
+                      Create Product
                     </button>
                     <button
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
