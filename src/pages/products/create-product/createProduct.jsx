@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import SupportButton from '../../../components/support/support';
 import { createInstitution } from '../../../redux/features/institutionSlice';
-// import { createProduct } from '../../../redux/features/productSlice';
+import { createProduct } from '../../../redux/features/productSlice';
 import './createproduct.css';
 
 const CreateProduct = () => {
@@ -26,6 +26,12 @@ const CreateProduct = () => {
         name: value.name,
         status: value.status,
         created: dateCreated,
+        inputParameters: '',
+        url: '',
+        testUrl: '',
+        documentation: '',
+        summary: '',
+        response: '',
       }),
     );
   };
@@ -58,12 +64,14 @@ const CreateProduct = () => {
 
   const formic = useFormik({
     initialValues: {
+      code: '',
       name: '',
-      rc_number: '',
-      address: '',
-      phone: '',
-      website: '',
-      email: '',
+      inputParameters: '',
+      url: '',
+      testUrl: '',
+      documentation: '',
+      summary: '',
+      response: '',
     },
     validate,
     onSubmit: (values) => {
@@ -92,7 +100,7 @@ const CreateProduct = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-first-name"
+                    htmlFor="grid-name"
                   >
                     Name
                     <input
@@ -104,7 +112,7 @@ const CreateProduct = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.name}
-                      id="grid-first-name"
+                      id="grid-name"
                       type="text"
                       placeholder=""
                     />
@@ -119,53 +127,53 @@ const CreateProduct = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-last-name"
+                    htmlFor="grid-code"
                   >
                     Code
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                        formic.rc_number && formic.errors.rc_number
+                        formic.code && formic.errors.code
                           ? 'border-red-400'
                           : 'border-gray-200'
                       } `}
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.rc_number}
-                      id="grid-last-name"
+                      value={formic.values.code}
+                      id="grid-code"
                       type="text"
                     />
-                    {formic.touched.rc_number && formic.errors.rc_number && (
+                    {formic.touched.code && formic.errors.code && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.rc_number}
+                        {formic.errors.code}
                       </span>
                     )}
                   </label>
                 </div>
               </div>
 
-              <div className="address-phone-block flex flex-wrap -mx-3 mb-3 px-6">
+              <div className="parameter-url-block flex flex-wrap -mx-3 mb-3 px-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-address"
+                    htmlFor="grid-params"
                   >
                     input parameters
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
-                        formic.address && formic.errors.address
+                        formic.parameter && formic.errors.parameter
                           ? 'border-red-400'
                           : 'border-gray-200'
                       }`}
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.address}
-                      id="grid-address"
+                      value={formic.values.parameter}
+                      id="grid-params"
                       type="text"
                       placeholder=""
                     />
-                    {formic.touched.address && formic.errors.address && (
+                    {formic.touched.parameter && formic.errors.parameter && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.address}
+                        {formic.errors.parameter}
                       </span>
                     )}
                   </label>
@@ -174,53 +182,53 @@ const CreateProduct = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-phone"
+                    htmlFor="grid-url"
                   >
                     URL
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                        formic.phone && formic.errors.phone
+                        formic.url && formic.errors.url
                           ? 'border-red-400'
                           : 'border-gray-200'
                       } `}
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.phone}
-                      id="grid-phone"
-                      type="phone"
+                      value={formic.values.url}
+                      id="grid-url"
+                      type="url"
                     />
-                    {formic.touched.phone && formic.errors.phone && (
+                    {formic.touched.url && formic.errors.url && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.phone}
+                        {formic.errors.url}
                       </span>
                     )}
                   </label>
                 </div>
               </div>
 
-              <div className="address-phone-block flex flex-wrap -mx-3 mb-3 px-6">
+              <div className="url-docs-block flex flex-wrap -mx-3 mb-3 px-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-address"
+                    htmlFor="grid-testUrl"
                   >
                     test URL
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
-                        formic.address && formic.errors.address
+                        formic.testUrl && formic.errors.testUrl
                           ? 'border-red-400'
                           : 'border-gray-200'
                       }`}
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.address}
-                      id="grid-address"
+                      value={formic.values.testUrl}
+                      id="grid-testUrl"
                       type="text"
                       placeholder=""
                     />
-                    {formic.touched.address && formic.errors.address && (
+                    {formic.touched.testUrl && formic.errors.testUrl && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.address}
+                        {formic.errors.testUrl}
                       </span>
                     )}
                   </label>
@@ -229,72 +237,72 @@ const CreateProduct = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-phone"
+                    htmlFor="grid-documentation"
                   >
                     API Documentation
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                        formic.phone && formic.errors.phone
+                        formic.documentation && formic.errors.documentation
                           ? 'border-red-400'
                           : 'border-gray-200'
                       } `}
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.phone}
-                      id="grid-phone"
-                      type="phone"
+                      value={formic.values.documentation}
+                      id="grid-documentation"
+                      type="text"
                     />
-                    {formic.touched.phone && formic.errors.phone && (
+                    {formic.touched.documentation && formic.errors.documentation && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.phone}
+                        {formic.errors.documentation}
                       </span>
                     )}
                   </label>
                 </div>
               </div>
 
-              <div className="address-phone-block flex flex-wrap -mx-3 mb-3 px-6">
+              <div className="summary-block flex flex-wrap -mx-3 mb-3 px-6">
                 <div className="w-full md:w-full px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-address"
+                    htmlFor="grid-summary"
                   >
                     summary
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
-                        formic.address && formic.errors.address
+                        formic.summary && formic.errors.summary
                           ? 'border-red-400'
                           : 'border-gray-200'
                       }`}
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.address}
-                      id="grid-address"
+                      value={formic.values.summary}
+                      id="grid-summary"
                       type="text"
                       placeholder=""
                     />
-                    {formic.touched.address && formic.errors.address && (
+                    {formic.touched.summary && formic.errors.summary && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.address}
+                        {formic.errors.summary}
                       </span>
                     )}
                   </label>
                 </div>
               </div>
 
-              <div className="documentation-description-block flex flex-wrap -mx-3 mb-9 px-6">
+              <div className="response-block flex flex-wrap -mx-3 mb-9 px-6">
                 <div className="w-full md:w-full px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="documentation"
+                    htmlFor="response"
                   >
                     response
                     {' '}
                   </label>
                   <div className="mt-1">
                     <textarea
-                      id="documentation"
-                      name="documentation"
+                      id="response"
+                      name="response"
                       rows="3"
                       className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       placeholder="Enter response..."
