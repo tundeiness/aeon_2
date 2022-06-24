@@ -12,10 +12,10 @@ import axios from 'axios';
 //   return res.data;
 // });
 
-export const getAllProducts = createAsyncThunk(
-  'product/getAllProducts',
-  async (_id) => fetch('http://13.59.94.46/aeon/api/v1/Product/RetrieveAll').then((res) => res.json()),
-);
+// export const getAllProducts = createAsyncThunk(
+//   'product/getAllProducts',
+//   async (_id) => fetch('http://13.59.94.46/aeon/api/v1/Product/RetrieveAll').then((res) => res.json()),
+// );
 
 // export const getAllProducts = createAsyncThunk(
 //   'product/getAllProducts',
@@ -31,6 +31,20 @@ export const getAllProducts = createAsyncThunk(
 //     }
 //   },
 // );
+
+export const getAllProducts = createAsyncThunk(
+  'product/getAllProducts',
+  async (_arg, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        'http://13.59.94.46/aeon/api/v1/Product/RetrieveAll',
+      );
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  },
+);
 
 export const getProductBand = createAsyncThunk(
   'product/getProductBand',
