@@ -99,7 +99,7 @@ export const productSlice = createSlice({
       {
         name: 'BVN Service',
         summary:
-        'The BVN Full Details Service is used to confirm the authenticity of a BVN and/or phone number by matching any one or more of the request against the last name and date of birth of the customer.',
+          'The BVN Full Details Service is used to confirm the authenticity of a BVN and/or phone number by matching any one or more of the request against the last name and date of birth of the customer.',
         inputParameters: 'Bvn',
         url: 'https://credequityapi.com/CredBvn/api/v1/Bvn/GetCustomerBvn',
         pricePerCall: 0.0,
@@ -138,6 +138,18 @@ export const productSlice = createSlice({
       state.product = [action.payload];
     },
     [getProductBand.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    [createProduct.pending]: (state) => {
+      state.loading = true;
+    },
+    [createProduct.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.product = [action.payload];
+    },
+    [createProduct.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
