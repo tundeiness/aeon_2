@@ -25,6 +25,7 @@ import './productlist.css';
 
 const ProductList = () => {
   const { activeModal, setActiveModal } = useStateContext();
+  const dispatch = useDispatch();
 
   const { product } = useSelector((state) => ({
     ...state.product,
@@ -33,9 +34,8 @@ const ProductList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mockData, setMockData] = useState(product[0]);
   const [pageNum, setPageNum] = useState(0);
-  const dispatch = useDispatch();
 
-  console.log(product[0]);
+  console.log(product);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -59,7 +59,7 @@ const ProductList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = mockData?.slice(dataPageVisited, dataPageVisited + dataPerPage)
+  const displayData = mockData.slice(dataPageVisited, dataPageVisited + dataPerPage)
     ?.map((datum) => (
       <tr key={datum['S/N']}>
         <td className="text-sm leading-5 py-4 px-3">{datum.code}</td>

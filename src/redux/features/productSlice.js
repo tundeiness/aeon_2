@@ -29,21 +29,23 @@ export const getProductBand = createAsyncThunk(
 export const productSlice = createSlice({
   name: 'product',
   initialState: {
-    product: [{
-      name: 'BVN Service',
-      summary:
+    product: [
+      {
+        name: 'BVN Service',
+        summary:
         'The BVN Full Details Service is used to confirm the authenticity of a BVN and/or phone number by matching any one or more of the request against the last name and date of birth of the customer.',
-      inputParameters: 'Bvn',
-      url: 'https://credequityapi.com/CredBvn/api/v1/Bvn/GetCustomerBvn',
-      pricePerCall: 0.0,
-      code: '100301',
-      dateCreated: '2021-03-04T11:22:17.447766',
-      dateLastModified: '2021-03-05T10:11:32.5831291',
-      lastUpdatedBy: 'support@credequity.com',
-      apiDocumentation: 'none',
-      testUrl: 'http://102.164.38.38/CredBvn/api/v1/Bvn/GetCustomerBvn',
-      status: 'Active',
-    }],
+        inputParameters: 'Bvn',
+        url: 'https://credequityapi.com/CredBvn/api/v1/Bvn/GetCustomerBvn',
+        pricePerCall: 0.0,
+        code: '100301',
+        dateCreated: '2021-03-04T11:22:17.447766',
+        dateLastModified: '2021-03-05T10:11:32.5831291',
+        lastUpdatedBy: 'support@credequity.com',
+        apiDocumentation: 'none',
+        testUrl: 'http://102.164.38.38/CredBvn/api/v1/Bvn/GetCustomerBvn',
+        status: 'Active',
+      },
+    ],
     loading: false,
     error: null,
   },

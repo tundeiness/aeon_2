@@ -39,7 +39,7 @@ const InstitutionList = () => {
   const displayData = mockData
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     ?.map((datum) => (
-      <tr key={datum['S/N']}>
+      <tr key={datum.id}>
         <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
         <td className="py-4 uppercase text-center">{datum.name}</td>
         <td className="py-4 pr-4 pl-20">
