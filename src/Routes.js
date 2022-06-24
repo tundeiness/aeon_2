@@ -169,6 +169,7 @@ const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 const CreateInstitutionView = lazy(() => import('./pages/institutions/create-instituition/create-institution'));
 const ViewInstitutionView = lazy(() => import('./pages/institutions/view-institution/view-institution'));
 const ProductView = lazy(() => import('./pages/products/products'));
+const CreateProductView = lazy(() => import('./pages/products/create-product/createProduct'));
 
 const MainRoutes = () => {
   // const location = useLocation();
@@ -206,6 +207,10 @@ const MainRoutes = () => {
             path="institutions/delete-institution"
             element={<DeleteInstitutionView />}
           /> */}
+          <Route
+            path="products/create-product"
+            element={<CreateProductView />}
+          />
 
           <Route path="products" element={<ProductView />} />
         </Route>
