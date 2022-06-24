@@ -11,9 +11,9 @@ import axios from 'axios';
 export const getInstitution = createAsyncThunk('institution/getInstitution', async (_id) => fetch('http://13.59.94.46/aeon/api/v1/Institution/RetrieveAll').then((res) => res.json()));
 
 export const getAllInstitutions = createAsyncThunk(
-  'institution/getInstitution', (_arg, { rejectWithValue }) => {
+  'institution/getInstitution', async (_arg, { rejectWithValue }) => {
     try {
-      const { data } = axios.get('http://13.59.94.46/aeon/api/v1/Institution/RetrieveAll');
+      const { data } = await axios.get('http://13.59.94.46/aeon/api/v1/Institution/RetrieveAll');
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);

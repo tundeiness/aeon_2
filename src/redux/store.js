@@ -13,4 +13,5 @@ export default configureStore({
     product: ProductReducer,
     role: RoleReducer,
   },
+
 });

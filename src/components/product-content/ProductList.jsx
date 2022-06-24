@@ -27,15 +27,14 @@ const ProductList = () => {
   const { activeModal, setActiveModal } = useStateContext();
   const dispatch = useDispatch();
 
-  const { product } = useSelector((state) => ({
-    ...state.product,
-  }));
+  const product = useSelector((state) => state.product.product);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [mockData, setMockData] = useState(product[0]);
+  const [mockData, setMockData] = useState(product);
   const [pageNum, setPageNum] = useState(0);
 
   console.log(product);
+  console.log(mockData);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -59,47 +58,45 @@ const ProductList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = mockData.slice(dataPageVisited, dataPageVisited + dataPerPage)
-    ?.map((datum) => (
-      <tr key={datum['S/N']}>
-        <td className="text-sm leading-5 py-4 px-3">{datum.code}</td>
-        <td className="py-4 uppercase text-center">{datum.name}</td>
-        <td className="py-4 pl-28">
-          {datum.status === 'Active' ? (
-            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
-              <GoPrimitiveDot className="text-white" />
+  const displayData = product?.slice(dataPageVisited, dataPageVisited + dataPerPage)?.map((datum) => (
+    <tr key={datum['S/N']}>
+      <td className="text-sm leading-5 py-4 px-3">{datum.code}</td>
+      <td className="py-4 uppercase text-center">{datum.name}</td>
+      <td className="py-4 pl-28">
+        {datum.status === 'Active' ? (
+          <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
+            <GoPrimitiveDot className="text-white" />
 
-              {datum.status}
-            </span>
-          ) : (
-            <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
-              <GoPrimitiveDot className="text-white" />
-
-              {datum.status}
-            </span>
-          )}
-        </td>
-        {/* <td className="py-4 pl-4">{datum.Created}</td> */}
-        <td className="py-4 pl-22 text-center">
-          <span className="inline-block text-gray-900 py-0.5 px-0.4 rounded-lg text-center hover:cursor-pointer">
-            {handleDate(datum.dateCreated)}
+            {datum.status}
           </span>
-        </td>
-        <td className="py-4 px-6">
-          <span className="flex justify-around px-12">
-            <button type="button">
-              <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-            </button>
-            <RiDeleteBinLine
-              className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-              onClick={() => setIsOpen(true)}
-            />
-          </span>
-        </td>
-      </tr>
-    ));
+        ) : (
+          <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
+            <GoPrimitiveDot className="text-white" />
 
-  // console.log(displayData);
+            {datum.status}
+          </span>
+        )}
+      </td>
+      {/* <td className="py-4 pl-4">{datum.Created}</td> */}
+      <td className="py-4 pl-22 text-center">
+        <span className="inline-block text-gray-900 py-0.5 px-0.4 rounded-lg text-center hover:cursor-pointer">
+          {handleDate(datum.dateCreated)}
+        </span>
+      </td>
+      <td className="py-4 px-6">
+        <span className="flex justify-around px-12">
+          <button type="button">
+            <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+          </button>
+          <RiDeleteBinLine
+            className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
+            onClick={() => setIsOpen(true)}
+          />
+        </span>
+      </td>
+    </tr>
+  ));
+
   const pagingCount = Math.ceil(mockData?.length / dataPerPage);
 
   const changePage = ({ selected }) => {
