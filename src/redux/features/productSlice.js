@@ -46,6 +46,20 @@ export const getAllProducts = createAsyncThunk(
   },
 );
 
+export const createProduct = createAsyncThunk(
+  'product/createProduct',
+  async (_arg, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(
+        'http://13.59.94.46/aeon/api/v1/Product/RetrieveAll', { name: 'BVN', status: 'active' },
+      );
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  },
+);
+
 export const getProductBand = createAsyncThunk(
   'product/getProductBand',
   async () => {

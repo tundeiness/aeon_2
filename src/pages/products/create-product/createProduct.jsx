@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import SupportButton from '../../../components/support/support';
 import { createInstitution } from '../../../redux/features/institutionSlice';
+// import { createProduct } from '../../../redux/features/productSlice';
 import './createproduct.css';
 
 const CreateProduct = () => {
@@ -15,13 +16,16 @@ const CreateProduct = () => {
 
   const dispatch = useDispatch();
 
+  const dateCreated = new Date();
+
   const handleCreateInstitution = (value) => {
     dispatch(
       createInstitution({
-        id: uuidv4(),
-        email: value.email,
+        // id: uuidv4(),
+        code: value.code,
         name: value.name,
-        rc_number: value.rc_number,
+        status: value.status,
+        created: dateCreated,
       }),
     );
   };
