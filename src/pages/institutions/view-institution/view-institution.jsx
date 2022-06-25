@@ -30,8 +30,33 @@ export const ViewInstitution = () => {
             <hr className="my-3" />
             <BackToList text="Back to List" />
             <div className="w-full border-t border-gray-200">
-              <dl>
-                <div className="flex flex-row justify-between bg-gray-50 px-4 py-5">
+              <dl className=" flex flex-row outline outline-red-500 mx-2">
+                <div className="w-1/4">
+                  <div className="flex flex-col">
+                    <div className="py-4 bg-blue-400">
+                      <dd className="block text-md font-medium pl-10 text-white">
+                        CREDEQUITY
+                      </dd>
+                    </div>
+
+                    <div className="py-4 bg-gray-50">
+                      <dd className="block text-md font-normal pl-10 text-black">
+                        Code
+                      </dd>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-3/4 py-5">
+                  <div className="flex flex-col bg-gray-50">
+                    <dd className="block text-md font-normal text-black pl-12">
+                      RC Number: 147749
+                    </dd>
+                    <dd className="block text-md font-normal text-black pl-12">
+                      RC Number: 147749
+                    </dd>
+                  </div>
+                </div>
+                {/* <div className="flex flex-row justify-between bg-gray-50 px-4 py-5 ">
                   <dd className="block w-28 mt-1 text-xl text-black font-medium sm:mt-0 sm:col-span-2">
                     CREDEQUITY
                   </dd>
@@ -127,7 +152,7 @@ export const ViewInstitution = () => {
                     in ea officia proident. Irure nostrud pariatur mollit ad
                     adipisicing reprehenderit deserunt qui eu.
                   </dd>
-                </div>
+                </div> */}
               </dl>
             </div>
           </div>

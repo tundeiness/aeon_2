@@ -39,45 +39,47 @@ const InstitutionList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = mockData?.slice(dataPageVisited, dataPageVisited + dataPerPage).map((datum) => (
-    <tr key={datum.id}>
-      <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
-      <td className="py-4 uppercase text-center">{datum.name}</td>
-      <td className="py-4 pr-4 pl-20">
-        {datum.status === 'Active' ? (
-          <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
-            <GoPrimitiveDot className="text-white" />
-            {datum.status}
+  const displayData = mockData
+    ?.slice(dataPageVisited, dataPageVisited + dataPerPage)
+    .map((datum) => (
+      <tr key={datum.id}>
+        <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
+        <td className="py-4 uppercase text-center">{datum.name}</td>
+        <td className="py-4 pr-4 pl-20">
+          {datum.status === 'Active' ? (
+            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
+              <GoPrimitiveDot className="text-white" />
+              {datum.status}
+            </span>
+          ) : (
+            <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
+              <GoPrimitiveDot className="text-white" />
+              {datum.status}
+            </span>
+          )}
+        </td>
+        <td className="py-4 pl-4">{datum.websiteUrl}</td>
+        <td className="py-4 pl-10">
+          <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
+            {datum.category}
           </span>
-        ) : (
-          <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
-            <GoPrimitiveDot className="text-white" />
-            {datum.status}
+        </td>
+        <td className="py-4 px-6">
+          <span className="flex justify-between">
+            <button type="button">
+              <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+            </button>
+            <RiDeleteBinLine
+              className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
+              onClick={() => setIsOpen(true)}
+            />
+            <button type="button">
+              <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
+            </button>
           </span>
-        )}
-      </td>
-      <td className="py-4 pl-4">{datum.websiteUrl}</td>
-      <td className="py-4 pl-10">
-        <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
-          {datum.category}
-        </span>
-      </td>
-      <td className="py-4 px-6">
-        <span className="flex justify-between">
-          <button type="button">
-            <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-          </button>
-          <RiDeleteBinLine
-            className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-            onClick={() => setIsOpen(true)}
-          />
-          <button type="button">
-            <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-          </button>
-        </span>
-      </td>
-    </tr>
-  ));
+        </td>
+      </tr>
+    ));
 
   const pagingCount = Math.ceil(mockData?.length / dataPerPage);
 
