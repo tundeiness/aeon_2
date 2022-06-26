@@ -71,7 +71,7 @@ export const ViewInstitution = () => {
 
                   <DataDisplayRow
                     classText="notification"
-                    title="Notificataion Email"
+                    title="Notification Email"
                     content="support@credequity.com"
                   />
 
