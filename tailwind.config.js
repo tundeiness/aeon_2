@@ -30,6 +30,7 @@ module.exports = {
         failed: '#D92d20',
         successGreen: '#02b94b',
         warning: '#DC6803',
+        headingBg: '#0F91D2',
       },
     },
   },

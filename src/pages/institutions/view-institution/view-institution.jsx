@@ -29,8 +29,8 @@ export const ViewInstitution = () => {
 
             <hr className="my-3" />
             <BackToList text="Back to List" />
-            <div className="w-full border-t border-gray-200">
-              <dl className="outline outline-red-500 mx-2">
+            <div className="w-full border-t border-gray-200 mt-3">
+              <dl className="mx-2">
                 <div className="flex flex-col divide-y divide-slate-200">
                   <HeadingDisplayRow
                     classText="company-number"
