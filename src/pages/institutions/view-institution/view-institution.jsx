@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { ViewDescription } from '../../../components/viewDescription/ViewDescription';
+import { HeadingDisplayRow, DataDisplayRow } from '../../../components/viewDescription/ViewDescription';
 import SupportButton from '../../../components/support/support';
 import {
   BackToList,
@@ -30,8 +30,33 @@ export const ViewInstitution = () => {
             <hr className="my-3" />
             <BackToList text="Back to List" />
             <div className="w-full border-t border-gray-200">
-              <dl className=" flex flex-row outline outline-red-500 mx-2">
-                <div className="w-1/4">
+              <dl className="outline outline-red-500 mx-2">
+                <div className="flex flex-col">
+                  {/* <div className="company-number-block flex flex-row">
+                    <div className="w-1/4 py-4 bg-blue-400">
+                      <dd className="block text-md font-medium pl-10 text-white">
+                        CREDEQUITY
+                      </dd>
+                    </div>
+                    <div className="w-3/4 py-4 bg-gray-100">
+                      <dd className="block text-md font-normal text-black pl-12">
+                        RC Number: 147749
+                      </dd>
+                    </div>
+                  </div> */}
+                  <HeadingDisplayRow
+                    classText="company-number-block"
+                    title="CREDEQUITY"
+                    content="RC Number: 147749"
+                  />
+                  <DataDisplayRow
+                    classText="code-block"
+                    title="Code"
+                    content="14749"
+                  />
+                </div>
+
+                {/* <div className="w-1/4">
                   <div className="flex flex-col">
                     <div className="py-4 bg-blue-400">
                       <dd className="block text-md font-medium pl-10 text-white">
@@ -39,23 +64,28 @@ export const ViewInstitution = () => {
                       </dd>
                     </div>
 
-                    <div className="py-4 bg-gray-50">
-                      <dd className="block text-md font-normal pl-10 text-black">
+                    <div className="py-4 bg-gray-100">
+                      <dd className="block text-md font-medium pl-10 text-gray-900">
                         Code
                       </dd>
                     </div>
                   </div>
                 </div>
-                <div className="w-3/4 py-5">
-                  <div className="flex flex-col bg-gray-50">
-                    <dd className="block text-md font-normal text-black pl-12">
-                      RC Number: 147749
-                    </dd>
-                    <dd className="block text-md font-normal text-black pl-12">
-                      RC Number: 147749
-                    </dd>
+
+                <div className="w-3/4">
+                  <div className="flex flex-col">
+                    <div className="py-4 bg-gray-100">
+                      <dd className="block text-md font-normal text-black pl-12">
+                        RC Number: 147749
+                      </dd>
+                    </div>
+                    <div className="py-4 bg-white">
+                      <dd className="block text-md font-normal text-black pl-12">
+                        99999
+                      </dd>
+                    </div>
                   </div>
-                </div>
+                </div> */}
                 {/* <div className="flex flex-row justify-between bg-gray-50 px-4 py-5 ">
                   <dd className="block w-28 mt-1 text-xl text-black font-medium sm:mt-0 sm:col-span-2">
                     CREDEQUITY
