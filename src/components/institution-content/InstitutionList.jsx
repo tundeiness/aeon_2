@@ -39,9 +39,8 @@ const InstitutionList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = mockData
-    ?.slice(dataPageVisited, dataPageVisited + dataPerPage)
-    .map((datum) => (
+  const displayData = mockData?.slice(dataPageVisited, dataPageVisited + dataPerPage)
+    ?.map((datum) => (
       <tr key={datum.id}>
         <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
         <td className="py-4 uppercase text-center">{datum.name}</td>
