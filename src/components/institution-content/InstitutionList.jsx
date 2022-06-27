@@ -17,6 +17,7 @@ import DeleteInstitution from '../../pages/institutions/deleteInstitution/Delete
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { GoButton, FilterButton } from '../Buttons/buttonCollections';
 import { getInstitution } from '../../redux/features/institutionSlice';
+import InstitutionExcerpt from './InstitutionExcerpt';
 
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
