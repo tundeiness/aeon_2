@@ -1,9 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { useFormik } from 'formik';
+import { useFormik, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
@@ -76,6 +77,8 @@ const CreateInstitution = () => {
     },
   });
 
+  const { getFieldProps } = formic;
+
   const handleSubmit = () => {
     console.log('here is submit');
   };
@@ -117,6 +120,7 @@ const CreateInstitution = () => {
                       id="grid-first-name"
                       type="text"
                       placeholder="Institution's name"
+                      {...getFieldProps('name')}
                     />
                     {formic.touched.name && formic.errors.name && (
                       <span className="text-red-300 text-xs">
@@ -143,6 +147,7 @@ const CreateInstitution = () => {
                       value={formic.values.rc_number}
                       id="grid-last-name"
                       type="text"
+                      {...getFieldProps('rc_number')}
                     />
                     {formic.touched.rc_number && formic.errors.rc_number && (
                       <span className="text-red-300 text-xs">
@@ -172,6 +177,7 @@ const CreateInstitution = () => {
                       id="grid-address"
                       type="text"
                       placeholder="Institution's Address"
+                      {...getFieldProps('address')}
                     />
                     {formic.touched.address && formic.errors.address && (
                       <span className="text-red-300 text-xs">
@@ -198,6 +204,7 @@ const CreateInstitution = () => {
                       value={formic.values.phone}
                       id="grid-phone"
                       type="phone"
+                      {...getFieldProps('phone')}
                     />
                     {formic.touched.phone && formic.errors.phone && (
                       <span className="text-red-300 text-xs">
@@ -236,6 +243,7 @@ const CreateInstitution = () => {
                           : 'border-gray-200'
                       }`}
                       placeholder="www.companyname.com"
+                      {...getFieldProps('website')}
                     />
                     {formic.touched.website && formic.errors.website && (
                       <span className="text-red-300 text-xs">
@@ -254,18 +262,19 @@ const CreateInstitution = () => {
                     {' '}
                   </label>
                   <input
+                    type="email"
+                    name="email-address"
+                    id="email-address"
+                    onChange={formic.handleChange}
+                    onBlur={formic.handleBlur}
+                    value={formic.values.email}
                     className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
                       formic.rc_number && formic.errors.rc_number
                         ? 'border-red-400'
                         : 'border-gray-200'
                     } `}
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.rc_number}
-                    type="text"
                     placeholder="info@companyname.com"
-                    name="email-address"
-                    id="email-address"
+                    {...getFieldProps('email')}
                   />
                   {formic.touched.email && formic.errors.email && (
                     <span className="text-red-300 text-xs">
@@ -392,6 +401,7 @@ const CreateInstitution = () => {
                     <button
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
+                      disabled={!formic.isSubmitting}
                     >
                       Create Institution
                     </button>
