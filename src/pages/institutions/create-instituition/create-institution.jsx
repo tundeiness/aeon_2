@@ -75,7 +75,12 @@ const CreateInstitution = () => {
     },
   });
 
+  const handleSubmit = () => {
+    console.log('here is submit');
+  };
+
   console.log(formic);
+
   return (
     <>
       {/* <SidebarNav /> */}
@@ -261,9 +266,9 @@ const CreateInstitution = () => {
                     name="email-address"
                     id="email-address"
                   />
-                  {formic.touched.rc_number && formic.errors.rc_number && (
+                  {formic.touched.email && formic.errors.email && (
                     <span className="text-red-300 text-xs">
-                      {formic.errors.rc_number}
+                      {formic.errors.email}
                     </span>
                   )}
                 </div>
@@ -315,28 +320,28 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/3 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="email-address"
+                    htmlFor="threshold"
                   >
                     threshold (NGN)
                     {' '}
                   </label>
                   <input
                     className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.rc_number && formic.errors.rc_number
+                      formic.threshold && formic.errors.threshold
                         ? 'border-red-400'
                         : 'border-gray-200'
                     } `}
                     onChange={formic.handleChange}
                     onBlur={formic.handleBlur}
-                    value={formic.values.rc_number}
+                    value={formic.values.threshold}
                     type="text"
                     placeholder="0"
-                    name="email-address"
-                    id="email-address"
+                    name="threshold"
+                    id="threshold"
                   />
-                  {formic.touched.rc_number && formic.errors.rc_number && (
+                  {formic.touched.threshold && formic.errors.threshold && (
                     <span className="text-red-300 text-xs">
-                      {formic.errors.rc_number}
+                      {formic.errors.threshold}
                     </span>
                   )}
                 </div>
