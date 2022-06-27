@@ -83,7 +83,7 @@ const CreateInstitution = () => {
     console.log('here is submit');
   };
 
-  // console.log(formic);
+  console.log(formic.values);
 
   return (
     <>
@@ -288,7 +288,7 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="payment-category"
+                    htmlFor="category"
                   >
                     payment category
                     {' '}
@@ -298,32 +298,50 @@ const CreateInstitution = () => {
                     name="payment-category"
                     autoComplete="category-name"
                     className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                    aria-label=".form-select-sm example"
+                    value={formic.values.category}
+                    onChange={formic.handleChange}
+                    {...getFieldProps('category')}
                   >
-                    <option selected>Select Category</option>
-                    <option>Bi-Anunal</option>
-                    <option>Quarterly</option>
-                    <option>Monthly</option>
+                    <option value="" label="Select Category">
+                      Select Category
+                    </option>
+                    <option value="PrePaid" label=" PrePaid">
+                      PrePaid
+                    </option>
+                    <option value="PostPaid" label="PostPaid">
+                      PostPaid
+                    </option>
                   </select>
                 </div>
 
                 <div className="w-full md:w-1/3 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="payment-category"
+                    htmlFor="calls"
                   >
                     number of calls
                     {' '}
                   </label>
                   <select
-                    id="payment-category"
-                    name="payment-category"
-                    autoComplete="category-name"
+                    id="calls"
+                    name="calls"
                     className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    value={formic.values.calls}
+                    onChange={formic.handleChange}
+                    {...getFieldProps('calls')}
                   >
-                    <option>Bi-Anunal</option>
-                    <option>Quarterly</option>
-                    <option>Monthly</option>
+                    <option value="" label="Select...">
+                      Select...
+                    </option>
+                    <option value="1000" label="1000">
+                      1000
+                    </option>
+                    <option value="2000" label="2000">
+                      2000
+                    </option>
+                    <option value="5000" label="5000">
+                      5000
+                    </option>
                   </select>
                 </div>
 
@@ -345,9 +363,10 @@ const CreateInstitution = () => {
                     onBlur={formic.handleBlur}
                     value={formic.values.threshold}
                     type="text"
-                    placeholder="0"
+                    placeholder="0.00"
                     name="threshold"
                     id="threshold"
+                    {...getFieldProps('threshold')}
                   />
                   {formic.touched.threshold && formic.errors.threshold && (
                     <span className="text-red-300 text-xs">
@@ -373,6 +392,9 @@ const CreateInstitution = () => {
                       rows="3"
                       className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       placeholder="Enter the documentation..."
+                      value={formic.values.documentation}
+                      onChange={formic.handleChange}
+                      {...getFieldProps('documentation')}
                     />
                   </div>
                 </div>
@@ -392,6 +414,9 @@ const CreateInstitution = () => {
                       rows="3"
                       className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       placeholder="Enter a Description..."
+                      value={formic.values.description}
+                      onChange={formic.handleChange}
+                      {...getFieldProps('description')}
                     />
                   </div>
                 </div>
@@ -401,9 +426,11 @@ const CreateInstitution = () => {
                     <button
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
-                      disabled={!formic.isSubmitting}
+                      disabled={formic.isSubmitting}
                     >
-                      Create Institution
+                      {formic.isSubmitting
+                        ? 'Please wait...'
+                        : 'Create Institution'}
                     </button>
                     <button
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
