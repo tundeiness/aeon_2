@@ -72,6 +72,7 @@ const CreateInstitution = () => {
     validate,
     onSubmit: (values) => {
       alert(`You have loggedin succesfully! Email: ${values.email}`);
+      console.log(values);
     },
   });
 
@@ -79,7 +80,7 @@ const CreateInstitution = () => {
     console.log('here is submit');
   };
 
-  console.log(formic);
+  // console.log(formic);
 
   return (
     <>
@@ -96,7 +97,7 @@ const CreateInstitution = () => {
             </header>
 
             <hr className="my-7" />
-            <form className="w-full">
+            <form className="w-full" onSubmit={formic.handleSubmit}>
               <div className="flex flex-wrap -mx-3 mb-3 px-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
@@ -105,7 +106,7 @@ const CreateInstitution = () => {
                   >
                     Name
                     <input
-                      className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
+                      className={`block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
                         formic.name && formic.errors.name
                           ? 'border-red-400'
                           : 'border-gray-200'
