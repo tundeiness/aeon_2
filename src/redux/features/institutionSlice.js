@@ -33,20 +33,17 @@ export const deleteInstitution = createAsyncThunk(
 
 export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
-  async ({ values }) => fetch(
-    `http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=${code}`,
-    {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: values.title,
-        body: values.body,
-      }),
+  async ({ values }) => fetch('http://13.59.94.46/aeon/api/v1/Institution/Create', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  ).then((res) => res.json()),
+    body: JSON.stringify({
+      title: values.title,
+      body: values.body,
+    }),
+  }).then((res) => res.json()),
 );
 
 export const updateInstitution = createAsyncThunk(

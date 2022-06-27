@@ -20,13 +20,9 @@ const CreateInstitution = () => {
   const dispatch = useDispatch();
 
   const handleCreateInstitution = (value) => {
-    dispatch(createInstitution({
-      id: uuidv4(),
-      email: value.email,
-      name: value.name,
-      rc_number: value.rc_number,
-    }));
+    dispatch(createInstitution({ value }));
   };
+
   const validate = (value) => {
     const errors = {};
     if (!value.email) {
@@ -426,6 +422,7 @@ const CreateInstitution = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                       disabled={formic.isSubmitting}
+                      onClick={handleCreateInstitution(formic.values)}
                     >
                       {formic.isSubmitting
                         ? 'Please wait...'
