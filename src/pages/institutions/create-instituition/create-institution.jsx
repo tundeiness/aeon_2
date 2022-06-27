@@ -105,7 +105,7 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-first-name"
+                    htmlFor="institution-name"
                   >
                     Name
                     <input
@@ -117,7 +117,7 @@ const CreateInstitution = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.name}
-                      id="grid-first-name"
+                      id="institution-name"
                       type="text"
                       placeholder="Institution's name"
                       {...getFieldProps('name')}
@@ -133,7 +133,7 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-last-name"
+                    htmlFor="reg-number"
                   >
                     RC Number
                     <input
@@ -145,7 +145,7 @@ const CreateInstitution = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.rc_number}
-                      id="grid-last-name"
+                      id="reg-number"
                       type="text"
                       {...getFieldProps('rc_number')}
                     />
@@ -162,7 +162,7 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-address"
+                    htmlFor="address"
                   >
                     address
                     <input
@@ -174,7 +174,7 @@ const CreateInstitution = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.address}
-                      id="grid-address"
+                      id="address"
                       type="text"
                       placeholder="Institution's Address"
                       {...getFieldProps('address')}
@@ -232,8 +232,8 @@ const CreateInstitution = () => {
                     </span>
                     <input
                       type="text"
-                      name="company-website"
-                      id="company-website"
+                      name="institution-website"
+                      id="institution-website"
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.website}
@@ -294,9 +294,8 @@ const CreateInstitution = () => {
                     {' '}
                   </label>
                   <select
-                    id="payment-category"
-                    name="payment-category"
-                    autoComplete="category-name"
+                    id="category"
+                    name="category"
                     className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                     value={formic.values.category}
                     onChange={formic.handleChange}
