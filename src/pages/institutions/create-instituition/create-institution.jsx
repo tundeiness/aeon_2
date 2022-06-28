@@ -1,9 +1,11 @@
+/* eslint-disable consistent-return */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,6 +19,7 @@ import './createInstituiton.css';
 
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -68,11 +71,12 @@ const CreateInstitution = () => {
       notificationEmail: '',
     },
     validate,
-    onSubmit: (values) => {
-      alert(
-        `You have loggedin succesfully! Email: ${values.notificationEmail}`,
-      );
-      console.log(values);
+    onSubmit: (values, { resetForm }) => {
+      // alert(
+      //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
+      // );
+      // console.log(values);
+      resetForm(values);
     },
   });
 
@@ -96,8 +100,36 @@ const CreateInstitution = () => {
         description: formic.values.description,
         notificationEmail: formic.values.notificationEmail,
       }),
-    );
+    ).then(() => {
+      navigate('/institutions');
+    });
   };
+
+  // const handleSubmit = async () => {
+  //   try {
+  //     await dispatch(
+  //       createInstitution({
+  //         ...formic.values,
+  //         id: nanoid(),
+  //         name: formic.values.name,
+  //         rcNumber: formic.values.rcNumber,
+  //         address: formic.values.address,
+  //         phone: formic.values.phone,
+  //         websiteUrl: formic.values.websiteUrl,
+  //         category: formic.values.category,
+  //         noOfcalls: formic.values.noOfcalls,
+  //         threshold: formic.values.threshold,
+  //         documentation: formic.values.documentation,
+  //         description: formic.values.description,
+  //         notificationEmail: formic.values.notificationEmail,
+  //       }),
+  //     );
+  //     navigate('/institutions');
+  //   } catch (error) {
+  //     // handle any rejections/errors
+  //     return error.message;
+  //   }
+  // };
 
   console.log(formic.values);
 

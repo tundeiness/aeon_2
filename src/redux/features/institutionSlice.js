@@ -173,17 +173,23 @@ export const createInstitution = createAsyncThunk(
 //   ).then((res) => res.json()),
 // );
 
+const initialState = {
+  institution: [],
+  status: 'idle',
+  error: null,
+};
+
 const institutionSlice = createSlice({
   name: 'institution', // sliceName:
-  initialState: {
-    institution: [],
-    loading: false,
-    status: 'idle',
-    error: null,
-    edit: false,
-    body: '',
-  },
-
+  // initialState: {
+  //   institution: [],
+  //   loading: false,
+  //   status: 'idle',
+  //   error: null,
+  //   edit: false,
+  //   body: '',
+  // },
+  initialState,
   reducers: {
     // setUpdate: (state, action) => {
     //   state.edit = action.payload.edit;
@@ -191,71 +197,62 @@ const institutionSlice = createSlice({
     // },
   },
 
-  extraReducers: {
-    [getInstitution.pending]: (state) => {
-      state.loading = true;
-    },
-    [getInstitution.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.institution = [action.payload];
-    },
-    [getInstitution.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [deleteInstitution.pending]: (state) => {
-      state.loading = true;
-    },
-    [deleteInstitution.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.institution = action.payload;
-    },
-    [deleteInstitution.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [createInstitution.pending]: (state) => {
-      state.loading = true;
-    },
-    [createInstitution.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.institution = [action.payload];
-    },
-    [createInstitution.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
+  // extraReducers: {
 
-    [updateInstitution.pending]: (state) => {
-      state.loading = true;
-    },
-    [updateInstitution.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.institution = [action.payload];
-    },
-    [updateInstitution.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
+  // [getInstitution.pending]: (state) => {
+  //   state.loading = true;
+  // },
+  // [getInstitution.fulfilled]: (state, action) => {
+  //   state.loading = false;
+  //   state.institution = [action.payload];
+  // },
+  // [getInstitution.rejected]: (state, action) => {
+  //   state.loading = false;
+  //   state.error = action.payload;
+  // },
+  // [deleteInstitution.pending]: (state) => {
+  //   state.loading = true;
+  // },
+  // [deleteInstitution.fulfilled]: (state, action) => {
+  //   state.loading = false;
+  //   state.institution = action.payload;
+  // },
+  // [deleteInstitution.rejected]: (state, action) => {
+  //   state.loading = false;
+  //   state.error = action.payload;
+  // },
+  // [createInstitution.pending]: (state) => {
+  //   state.loading = true;
+  // },
+  // [createInstitution.fulfilled]: (state, action) => {
+  //   state.loading = false;
+  //   state.institution = [action.payload];
+  // },
+  // [createInstitution.rejected]: (state, action) => {
+  //   state.loading = false;
+  //   state.error = action.payload;
+  // },
 
-    // [getAllInstitutions.pending]: (state) => {
-    //   state.loading = true;
-    // },
-    // [getAllInstitutions.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.institution = [action.payload];
-    // },
-    // [getAllInstitutions.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload;
-    // },
-  },
+  // [updateInstitution.pending]: (state) => {
+  //   state.loading = true;
+  // },
+  // [updateInstitution.fulfilled]: (state, action) => {
+  //   state.loading = false;
+  //   state.institution = [action.payload];
+  // },
+  // [updateInstitution.rejected]: (state, action) => {
+  //   state.loading = false;
+  //   state.error = action.payload;
+  // },
 
-  extraReducer(builder) {
-    builder.addCase(fetchInstitutions.pending, (state, action) => {
-      state.status = 'loading';
-    })
-      .addCase(fetchInstitutions.fulfilled, (state, action) => {
+  // },
+
+  extraReducers(builder) {
+    builder
+      .addCase(getInstitution.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getInstitution.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.institution = action.payload;
         // return action.payload;
@@ -264,20 +261,20 @@ const institutionSlice = createSlice({
 
         // state.institution = state.institution.concat(loadedInstitution);
       })
-      .addCase(fetchInstitutions.rejected, (state, action) => {
+      .addCase(getInstitution.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
-      .addCase(addNewInstitution.fulfilled, (state, action) => {
-        action.payload.institutionId = Number(action.payload.institutionId);
-        action.payload.date = new Date().toISOString();
-        console.log(action.payload);
+      .addCase(createInstitution.fulfilled, (state, action) => {
+      // action.payload.institutionId = Number(action.payload.institutionId);
+      // action.payload.date = new Date().toISOString();
+      // console.log(action.payload);
         state.institution.push(action.payload);
       });
   },
 });
 
-export const selectAllInstitution = (state) => state.institution.institution;
+export const selectAllInstitutions = (state) => state.institution.institution;
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
 export const { setUpdate } = institutionSlice.actions;

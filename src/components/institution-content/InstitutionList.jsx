@@ -16,8 +16,13 @@ import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { GoButton, FilterButton } from '../Buttons/buttonCollections';
-import { getInstitution } from '../../redux/features/institutionSlice';
-import InstitutionExcerpt from './InstitutionExcerpt';
+import {
+  getInstitution,
+  selectAllInstitutions,
+  getInstitutionStatus,
+  getInstitutionError,
+} from '../../redux/features/institutionSlice';
+// import InstitutionExcerpt from './InstitutionExcerpt';
 
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
@@ -25,23 +30,33 @@ const InstitutionList = () => {
   //   ...state.institution,
   // }));
 
-  const institution = useSelector((state) => state.institution.institution);
+  // const institution = useSelector((state) => state.institution.institution);
+  const institution = useSelector(selectAllInstitutions);
+  const institutionStatus = useSelector(getInstitutionStatus);
+  const institutionError = useSelector(getInstitutionError);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [mockData, setMockData] = useState(institution[0]);
+  // const [mockData, setMockData] = useState(institution[0]);
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
 
-  console.log(institution[0]);
+  console.log(institution);
+
   useEffect(() => {
-    dispatch(getInstitution());
-  }, [dispatch]);
+    if (institutionStatus === 'idle') {
+      dispatch(getInstitution());
+    }
+  }, [dispatch, institutionStatus]);
+
+  // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
 
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = mockData?.slice(dataPageVisited, dataPageVisited + dataPerPage)
-    ?.map((datum) => (
+  const displayData = institution
+    .slice(dataPageVisited, dataPageVisited + dataPerPage)
+    .map((datum, _idx) => (
+      // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
       <tr key={datum.id}>
         <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
         <td className="py-4 uppercase text-center">{datum.name}</td>
@@ -81,7 +96,7 @@ const InstitutionList = () => {
       </tr>
     ));
 
-  const pagingCount = Math.ceil(mockData?.length / dataPerPage);
+  const pagingCount = Math.ceil(institution?.length / dataPerPage);
 
   const changePage = ({ selected }) => {
     setPageNum(selected);

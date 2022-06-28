@@ -7,9 +7,10 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 // import SupportButton from '../support/support';
 
-const InstitutionExcerpt = ({ institution }) => {
+const InstitutionExcerpt = ({ institution, onClick }) => {
   const test = 0;
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <tr>
       <td className="text-sm leading-5 py-4 px-3">{institution.id}</td>
@@ -40,7 +41,7 @@ const InstitutionExcerpt = ({ institution }) => {
           </button>
           <RiDeleteBinLine
             className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-            onClick={() => setIsOpen(true)}
+            onClick={onClick}
           />
           <button type="button">
             <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
