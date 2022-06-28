@@ -82,11 +82,35 @@ export const deleteInstitution = createAsyncThunk(
 export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
   async (initialInstitution) => {
+    const {
+      name,
+      rcNumber,
+      address,
+      phone,
+      websiteUrl,
+      category,
+      noOfCalls,
+      threshold,
+      documentation,
+      description,
+      notificationEmail,
+    } = initialInstitution;
+
+    const institutionData = {
+      name,
+      rcNumber,
+      address,
+      phone,
+      websiteUrl,
+      category,
+      noOfCalls,
+      threshold,
+      documentation,
+      description,
+      notificationEmail,
+    };
     try {
-      const response = await axios.post(
-        NEW_INSTITUTION_URL,
-        initialInstitution,
-      );
+      const response = await axios.post(NEW_INSTITUTION_URL, institutionData);
       return response.data;
     } catch (error) {
       return error.message;
@@ -270,6 +294,13 @@ const institutionSlice = createSlice({
       // action.payload.date = new Date().toISOString();
       // console.log(action.payload);
         state.institution.push(action.payload);
+        // return {
+        //   ...state,
+        //   loading: false,
+        //   products: state.products
+        //     ? [...state.products, payload.product]
+        //     : [payload.product],
+        // };
       });
   },
 });
