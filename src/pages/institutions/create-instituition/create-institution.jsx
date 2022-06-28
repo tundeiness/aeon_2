@@ -55,16 +55,16 @@ const CreateInstitution = () => {
   const formic = useFormik({
     initialValues: {
       name: '',
-      rc_number: '',
+      rcNumber: '',
       address: '',
       phone: '',
-      website: '',
+      websiteUrl: '',
       category: '',
-      calls: '',
+      noOfcalls: '',
       threshold: '',
       documentation: '',
       description: '',
-      email: '',
+      notificationEmail: '',
     },
     validate,
     onSubmit: (values) => {
@@ -76,7 +76,24 @@ const CreateInstitution = () => {
   const { getFieldProps } = formic;
 
   const handleSubmit = () => {
-    console.log('here is submit');
+    console.log('formic.values', formic.values);
+    dispatch(
+      createInstitution({
+        ...formic.values,
+        id: uuidv4(),
+        name: formic.values.name,
+        rcNumber: formic.values.rcNumber,
+        address: formic.values.address,
+        phone: formic.values.phone,
+        websiteUrl: formic.values.websiteUrl,
+        category: formic.values.category,
+        noOfcalls: formic.values.noOfcalls,
+        threshold: formic.values.threshold,
+        documentation: formic.values.documentation,
+        description: formic.values.description,
+        notificationEmail: formic.values.notificationEmail,
+      }),
+    );
   };
 
   console.log(formic.values);
