@@ -68,7 +68,9 @@ const CreateInstitution = () => {
     },
     validate,
     onSubmit: (values) => {
-      alert(`You have loggedin succesfully! Email: ${values.email}`);
+      alert(
+        `You have loggedin succesfully! Email: ${values.notificationEmail}`,
+      );
       console.log(values);
     },
   });
