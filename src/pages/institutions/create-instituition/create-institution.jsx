@@ -25,20 +25,20 @@ const CreateInstitution = () => {
 
   const validate = (value) => {
     const errors = {};
-    if (!value.email) {
-      errors.email = 'Cannot be blank';
+    if (!value.notificationEmail) {
+      errors.notificationEmail = 'Cannot be blank';
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)
     ) {
-      errors.email = 'Invalid email format';
+      errors.notificationEmail = 'Invalid email format';
     }
 
     if (!value.name) {
       errors.name = 'Name cannot be blank';
     }
 
-    if (!value.rc_number) {
-      errors.rc_number = 'number cannot be blank';
+    if (!value.rcNumber) {
+      errors.rcNumber = 'number cannot be blank';
     }
 
     if (!value.address) {
@@ -60,7 +60,7 @@ const CreateInstitution = () => {
       phone: '',
       websiteUrl: '',
       category: '',
-      noOfcalls: '',
+      noOfCalls: '',
       threshold: '',
       documentation: '',
       description: '',
@@ -330,18 +330,18 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/3 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="calls"
+                    htmlFor="noOfCalls"
                   >
                     number of calls
                     {' '}
                   </label>
                   <select
-                    id="calls"
-                    name="calls"
+                    id="noOfCalls"
+                    name="noOfCalls"
                     className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    value={formic.values.calls}
+                    value={formic.values.noOfCalls}
                     onChange={formic.handleChange}
-                    {...getFieldProps('calls')}
+                    {...getFieldProps('noOfCalls')}
                   >
                     <option value="" label="Select...">
                       Select...
@@ -440,7 +440,7 @@ const CreateInstitution = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                       disabled={formic.isSubmitting}
-                      onClick={handleCreateInstitution(formic.values)}
+                      onClick={handleSubmit()}
                     >
                       {formic.isSubmitting
                         ? 'Please wait...'
