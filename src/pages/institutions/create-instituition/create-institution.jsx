@@ -146,25 +146,25 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="reg-number"
+                    htmlFor="rcNumber"
                   >
                     RC Number
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                        formic.rc_number && formic.errors.rc_number
+                        formic.rcNumber && formic.errors.rcNumber
                           ? 'border-red-400'
                           : 'border-gray-200'
                       } `}
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.rc_number}
-                      id="reg-number"
+                      value={formic.values.rcNumber}
+                      id="rcNumber"
                       type="text"
-                      {...getFieldProps('rc_number')}
+                      {...getFieldProps('rcNumber')}
                     />
-                    {formic.touched.rc_number && formic.errors.rc_number && (
+                    {formic.touched.rcNumber && formic.errors.rcNumber && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.rc_number}
+                        {formic.errors.rcNumber}
                       </span>
                     )}
                   </label>
@@ -188,6 +188,7 @@ const CreateInstitution = () => {
                       onBlur={formic.handleBlur}
                       value={formic.values.address}
                       id="address"
+                      name="address"
                       type="text"
                       placeholder="Institution's Address"
                       {...getFieldProps('address')}
@@ -232,7 +233,7 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="institution-website"
+                    htmlFor="websiteUrl"
                   >
                     website URL
                     {' '}
@@ -245,22 +246,22 @@ const CreateInstitution = () => {
                     </span>
                     <input
                       type="text"
-                      name="institution-website"
-                      id="institution-website"
+                      name="websiteUrl"
+                      id="websiteUrl"
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.website}
+                      value={formic.values.websiteUrl}
                       className={`flex-1 block w-full text-gray-700 rounded-none rounded-r-md sm:text-sm border  py-3 px-4 leading-tight focus:outline-none  focus:bg-white ${
-                        formic.website && formic.errors.website
+                        formic.websiteUrl && formic.errors.websiteUrl
                           ? 'border-red-400'
                           : 'border-gray-200'
                       }`}
                       placeholder="www.companyname.com"
-                      {...getFieldProps('website')}
+                      {...getFieldProps('websiteUrl')}
                     />
-                    {formic.touched.website && formic.errors.website && (
+                    {formic.touched.websiteUrl && formic.errors.websiteUrl && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.website}
+                        {formic.errors.websiteUrl}
                       </span>
                     )}
                   </div>
@@ -269,29 +270,29 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="email-address"
+                    htmlFor="notificationEmail"
                   >
                     notification email
                     {' '}
                   </label>
                   <input
                     type="email"
-                    name="email-address"
-                    id="email-address"
+                    name="notificationEmail"
+                    id="notificationEmail"
                     onChange={formic.handleChange}
                     onBlur={formic.handleBlur}
-                    value={formic.values.email}
+                    value={formic.values.notificationEmail}
                     className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
                       formic.rc_number && formic.errors.rc_number
                         ? 'border-red-400'
                         : 'border-gray-200'
                     } `}
                     placeholder="info@companyname.com"
-                    {...getFieldProps('email')}
+                    {...getFieldProps('notificationEmail')}
                   />
-                  {formic.touched.email && formic.errors.email && (
+                  {formic.touched.notificationEmail && formic.errors.notificationEmail && (
                     <span className="text-red-300 text-xs">
-                      {formic.errors.email}
+                      {formic.errors.notificationEmail}
                     </span>
                   )}
                 </div>
