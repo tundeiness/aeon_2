@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { useFormik, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { nanoid } from '@reduxjs/toolkit';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 import {
@@ -82,7 +83,7 @@ const CreateInstitution = () => {
     dispatch(
       createInstitution({
         ...formic.values,
-        id: uuidv4(),
+        id: nanoid(),
         name: formic.values.name,
         rcNumber: formic.values.rcNumber,
         address: formic.values.address,
