@@ -102,6 +102,38 @@ const InstitutionList = () => {
     setPageNum(selected);
   };
 
+  const renderSelection = () => {
+    let content;
+    switch (institutionStatus) {
+      case 'loading':
+        content = <p>Loading data ...</p>;
+        break;
+      case 'succeeded':
+        content = displayData;
+        break;
+      case 'failed':
+        content = <p>Network Error </p>;
+        break;
+      default:
+        content = displayData;
+        break;
+    }
+
+    return content;
+  };
+
+  //  switch (institutionStatus) {
+  //    case "loading": // if (x === 'value1')
+  //      return <p>Loading data ...</p>;
+  //    case "succeeded": // if (x === 'value2')
+  //      return displayData;
+  //    case "failed":
+  //      return <p>Network Error </p>;
+  //    default: {
+  //      return displayData;
+  //    }
+  //  }
+
   return (
     <>
       <article className="w-4/5 ml-auto">
@@ -201,7 +233,7 @@ const InstitutionList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {(() => {
+                    {/* {(() => {
                       switch (institutionStatus) {
                         case 'loading': // if (x === 'value1')
                           return <p>Loading data ...</p>;
@@ -213,7 +245,8 @@ const InstitutionList = () => {
                           return displayData;
                         }
                       }
-                    })()}
+                    })()} */}
+                    {renderSelection()}
                   </tbody>
                 </table>
               </div>
