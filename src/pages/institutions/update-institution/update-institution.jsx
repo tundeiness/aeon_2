@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
@@ -20,31 +21,31 @@ const CreateInstitution = () => {
 
   const dispatch = useDispatch();
 
-  const handleUpdateInstitution = (value) => {
-    dispatch(updateInstitution({
-      id: params.id,
-      email: value.email,
-      name: value.name,
-      rc_number: value.rc_number,
-    }));
-  };
+  // const handleUpdateInstitution = (value) => {
+  //   dispatch(updateInstitution({
+  //     id: params.id,
+  //     email: value.email,
+  //     name: value.name,
+  //     rc_number: value.rc_number,
+  //   }));
+  // };
 
   const validate = (value) => {
     const errors = {};
-    if (!value.email) {
-      errors.email = 'Cannot be blank';
+    if (!value.notificationEmail) {
+      errors.notificationEmail = 'Cannot be blank';
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)
     ) {
-      errors.email = 'Invalid email format';
+      errors.notificationEmail = 'Invalid email format';
     }
 
     if (!value.name) {
       errors.name = 'Name cannot be blank';
     }
 
-    if (!value.rc_number) {
-      errors.rc_number = 'number cannot be blank';
+    if (!value.rcNumber) {
+      errors.rcNumber = 'number cannot be blank';
     }
 
     if (!value.address) {
@@ -61,17 +62,28 @@ const CreateInstitution = () => {
   const formic = useFormik({
     initialValues: {
       name: '',
-      rc_number: '',
+      rcNumber: '',
       address: '',
       phone: '',
-      website: '',
-      email: '',
+      websiteUrl: '',
+      category: '',
+      noOfCalls: '',
+      threshold: '',
+      documentation: '',
+      description: '',
+      notificationEmail: '',
     },
     validate,
-    onSubmit: (values) => {
-      alert(`You have loggedin succesfully! Email: ${values.email}`);
+    onSubmit: (values, { resetForm }) => {
+      // alert(
+      //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
+      // );
+      // console.log(values);
+      resetForm(values);
     },
   });
+
+  const { getFieldProps } = formic;
   return (
     <>
       <SidebarNav />
@@ -87,16 +99,16 @@ const CreateInstitution = () => {
             </header>
 
             <hr className="my-7" />
-            <form className="w-full">
-              <div className="name-number-block flex flex-wrap -mx-3 mb-3 px-6">
+            <form className="w-full" onSubmit={formic.handleSubmit}>
+              <div className="flex flex-wrap -mx-3 mb-3 px-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-first-name"
+                    htmlFor="institution-name"
                   >
                     Name
                     <input
-                      className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
+                      className={`block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white ${
                         formic.name && formic.errors.name
                           ? 'border-red-400'
                           : 'border-gray-200'
@@ -104,9 +116,10 @@ const CreateInstitution = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.name}
-                      id="grid-first-name"
+                      id="institution-name"
                       type="text"
-                      placeholder="CREDEQUITY"
+                      placeholder="Institution's name"
+                      {...getFieldProps('name')}
                     />
                     {formic.touched.name && formic.errors.name && (
                       <span className="text-red-300 text-xs">
@@ -119,25 +132,25 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-last-name"
+                    htmlFor="rcNumber"
                   >
                     RC Number
                     <input
                       className={`appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                        formic.rc_number && formic.errors.rc_number
+                        formic.rcNumber && formic.errors.rcNumber
                           ? 'border-red-400'
                           : 'border-gray-200'
                       } `}
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.rc_number}
-                      id="grid-last-name"
+                      value={formic.values.rcNumber}
+                      id="rcNumber"
                       type="text"
-                      placeholder="147749"
+                      {...getFieldProps('rcNumber')}
                     />
-                    {formic.touched.rc_number && formic.errors.rc_number && (
+                    {formic.touched.rcNumber && formic.errors.rcNumber && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.rc_number}
+                        {formic.errors.rcNumber}
                       </span>
                     )}
                   </label>
@@ -148,7 +161,7 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="grid-address"
+                    htmlFor="address"
                   >
                     address
                     <input
@@ -160,9 +173,11 @@ const CreateInstitution = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.address}
-                      id="grid-address"
+                      id="address"
+                      name="address"
                       type="text"
                       placeholder="Institution's Address"
+                      {...getFieldProps('address')}
                     />
                     {formic.touched.address && formic.errors.address && (
                       <span className="text-red-300 text-xs">
@@ -189,6 +204,7 @@ const CreateInstitution = () => {
                       value={formic.values.phone}
                       id="grid-phone"
                       type="phone"
+                      {...getFieldProps('phone')}
                     />
                     {formic.touched.phone && formic.errors.phone && (
                       <span className="text-red-300 text-xs">
@@ -203,7 +219,7 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="institution-website"
+                    htmlFor="websiteUrl"
                   >
                     website URL
                     {' '}
@@ -216,21 +232,22 @@ const CreateInstitution = () => {
                     </span>
                     <input
                       type="text"
-                      name="company-website"
-                      id="company-website"
+                      name="websiteUrl"
+                      id="websiteUrl"
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
-                      value={formic.values.website}
+                      value={formic.values.websiteUrl}
                       className={`flex-1 block w-full text-gray-700 rounded-none rounded-r-md sm:text-sm border  py-3 px-4 leading-tight focus:outline-none  focus:bg-white ${
-                        formic.website && formic.errors.website
+                        formic.websiteUrl && formic.errors.websiteUrl
                           ? 'border-red-400'
                           : 'border-gray-200'
                       }`}
                       placeholder="www.companyname.com"
+                      {...getFieldProps('websiteUrl')}
                     />
-                    {formic.touched.website && formic.errors.website && (
+                    {formic.touched.websiteUrl && formic.errors.websiteUrl && (
                       <span className="text-red-300 text-xs">
-                        {formic.errors.website}
+                        {formic.errors.websiteUrl}
                       </span>
                     )}
                   </div>
@@ -239,29 +256,31 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="email-address"
+                    htmlFor="notificationEmail"
                   >
                     notification email
                     {' '}
                   </label>
                   <input
+                    type="email"
+                    name="notificationEmail"
+                    id="notificationEmail"
+                    onChange={formic.handleChange}
+                    onBlur={formic.handleBlur}
+                    value={formic.values.notificationEmail}
                     className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
                       formic.rc_number && formic.errors.rc_number
                         ? 'border-red-400'
                         : 'border-gray-200'
                     } `}
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.rc_number}
-                    type="text"
                     placeholder="info@companyname.com"
-                    name="email-address"
-                    id="email-address"
+                    {...getFieldProps('notificationEmail')}
                   />
-                  {formic.touched.rc_number && formic.errors.rc_number && (
-                    <span className="text-red-300 text-xs">
-                      {formic.errors.rc_number}
-                    </span>
+                  {formic.touched.notificationEmail
+                    && formic.errors.notificationEmail && (
+                      <span className="text-red-300 text-xs">
+                        {formic.errors.notificationEmail}
+                      </span>
                   )}
                 </div>
               </div>
@@ -270,84 +289,88 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="payment-category"
+                    htmlFor="category"
                   >
                     payment category
                     {' '}
                   </label>
                   <select
-                    id="payment-category"
-                    name="payment-category"
-                    autoComplete="category-name"
+                    id="category"
+                    name="category"
                     className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                    aria-label=".form-select-sm example"
+                    value={formic.values.category}
+                    onChange={formic.handleChange}
+                    {...getFieldProps('category')}
                   >
-                    <svg
-                      className="w-4 h-4 ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                    <option selected>Select Category</option>
-                    <option>Bi-Anunal</option>
-                    <option>Quarterly</option>
-                    <option>Monthly</option>
+                    <option value="" label="Select Category">
+                      Select Category
+                    </option>
+                    <option value="PrePaid" label=" PrePaid">
+                      PrePaid
+                    </option>
+                    <option value="PostPaid" label="PostPaid">
+                      PostPaid
+                    </option>
                   </select>
                 </div>
 
                 <div className="w-full md:w-1/3 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="payment-category"
+                    htmlFor="noOfCalls"
                   >
                     number of calls
                     {' '}
                   </label>
                   <select
-                    id="payment-category"
-                    name="payment-category"
-                    autoComplete="category-name"
+                    id="noOfCalls"
+                    name="noOfCalls"
                     className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    value={formic.values.noOfCalls}
+                    onChange={formic.handleChange}
+                    {...getFieldProps('noOfCalls')}
                   >
-                    <option>Bi-Anunal</option>
-                    <option>Quarterly</option>
-                    <option>Monthly</option>
+                    <option value="" label="Select...">
+                      Select...
+                    </option>
+                    <option value="1000" label="1000">
+                      1000
+                    </option>
+                    <option value="2000" label="2000">
+                      2000
+                    </option>
+                    <option value="5000" label="5000">
+                      5000
+                    </option>
                   </select>
                 </div>
 
                 <div className="w-full md:w-1/3 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="email-address"
+                    htmlFor="threshold"
                   >
                     threshold (NGN)
                     {' '}
                   </label>
                   <input
                     className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.rc_number && formic.errors.rc_number
+                      formic.threshold && formic.errors.threshold
                         ? 'border-red-400'
                         : 'border-gray-200'
                     } `}
                     onChange={formic.handleChange}
                     onBlur={formic.handleBlur}
-                    value={formic.values.rc_number}
+                    value={formic.values.threshold}
                     type="text"
-                    placeholder="0"
-                    name="email-address"
-                    id="email-address"
+                    placeholder="0.00"
+                    name="threshold"
+                    id="threshold"
+                    {...getFieldProps('threshold')}
                   />
-                  {formic.touched.rc_number && formic.errors.rc_number && (
+                  {formic.touched.threshold && formic.errors.threshold && (
                     <span className="text-red-300 text-xs">
-                      {formic.errors.rc_number}
+                      {formic.errors.threshold}
                     </span>
                   )}
                 </div>
@@ -369,6 +392,9 @@ const CreateInstitution = () => {
                       rows="3"
                       className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       placeholder="Enter the documentation..."
+                      value={formic.values.documentation}
+                      onChange={formic.handleChange}
+                      {...getFieldProps('documentation')}
                     />
                   </div>
                 </div>
@@ -388,6 +414,9 @@ const CreateInstitution = () => {
                       rows="3"
                       className="appearance-none block w-full text-gray-700 shadow-sm mt-1 sm:text-sm border border-gray-200 rounded-md px-4 py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       placeholder="Enter a Description..."
+                      value={formic.values.description}
+                      onChange={formic.handleChange}
+                      {...getFieldProps('description')}
                     />
                   </div>
                 </div>
@@ -397,8 +426,12 @@ const CreateInstitution = () => {
                     <button
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
+                      disabled={formic.isSubmitting}
+                      // onClick={handleSubmit()}
                     >
-                      Update Institution
+                      {formic.isSubmitting
+                        ? 'Please wait...'
+                        : 'Create Institution'}
                     </button>
                     <button
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"

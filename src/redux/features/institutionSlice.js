@@ -112,6 +112,7 @@ export const createInstitution = createAsyncThunk(
     };
     try {
       const response = await axios.post(NEW_INSTITUTION_URL, institutionData);
+      dispatch({ payload: institutionData });
       return response.data;
     } catch (error) {
       return error.message;
@@ -294,18 +295,18 @@ const institutionSlice = createSlice({
       // action.payload.institutionId = Number(action.payload.institutionId);
       // action.payload.date = new Date().toISOString();
       // console.log(action.payload);
-        // action.payload.id = uuidv4();
-        // action.payload.name = name;
-        // action.payload.rcNumber = rcNumber;
-        // action.payload.address = address;
-        // action.payload.phone = phone;
-        // action.payload.websiteUrl = websiteUrl;
-        // action.payload.category = category;
-        // action.payload.noOfCalls = noOfCalls;
-        // action.payload.threshold = threshold;
-        // action.payload.documentation = documentation;
-        // action.payload.description = description;
-        // action.payload.notificationEmail = notificationEmail;
+        action.payload.id = Number(action.payload.id);
+        action.payload.name = name;
+        action.payload.rcNumber = rcNumber;
+        action.payload.address = address;
+        action.payload.phone = phone;
+        action.payload.websiteUrl = websiteUrl;
+        action.payload.category = category;
+        action.payload.noOfCalls = noOfCalls;
+        action.payload.threshold = threshold;
+        action.payload.documentation = documentation;
+        action.payload.description = description;
+        action.payload.notificationEmail = notificationEmail;
         console.log(action.payload);
         state.institution.push(action.payload);
         // return {
