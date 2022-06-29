@@ -201,7 +201,19 @@ const InstitutionList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {displayData}
+                    {(() => {
+                      switch (institutionStatus) {
+                        case 'loading': // if (x === 'value1')
+                          return <p>Loading data ...</p>;
+                        case 'succeeded': // if (x === 'value2')
+                          return displayData;
+                        case 'failed':
+                          return <p>Network Error </p>;
+                        default: {
+                          return displayData;
+                        }
+                      }
+                    })()}
                   </tbody>
                 </table>
               </div>
