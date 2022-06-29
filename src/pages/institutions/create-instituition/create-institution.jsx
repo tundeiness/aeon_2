@@ -94,7 +94,7 @@ const CreateInstitution = () => {
         phone: formic.values.phone,
         websiteUrl: formic.values.websiteUrl,
         category: formic.values.category,
-        noOfcalls: formic.values.noOfcalls,
+        noOfCalls: formic.values.noOfCalls,
         threshold: formic.values.threshold,
         documentation: formic.values.documentation,
         description: formic.values.description,

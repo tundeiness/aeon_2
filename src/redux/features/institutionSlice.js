@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-param-reassign */
@@ -293,6 +294,19 @@ const institutionSlice = createSlice({
       // action.payload.institutionId = Number(action.payload.institutionId);
       // action.payload.date = new Date().toISOString();
       // console.log(action.payload);
+        // action.payload.id = uuidv4();
+        // action.payload.name = name;
+        // action.payload.rcNumber = rcNumber;
+        // action.payload.address = address;
+        // action.payload.phone = phone;
+        // action.payload.websiteUrl = websiteUrl;
+        // action.payload.category = category;
+        // action.payload.noOfCalls = noOfCalls;
+        // action.payload.threshold = threshold;
+        // action.payload.documentation = documentation;
+        // action.payload.description = description;
+        // action.payload.notificationEmail = notificationEmail;
+        console.log(action.payload);
         state.institution.push(action.payload);
         // return {
         //   ...state,
