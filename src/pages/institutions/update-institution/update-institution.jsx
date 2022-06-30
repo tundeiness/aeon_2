@@ -90,15 +90,16 @@ const CreateInstitution = () => {
     },
   });
 
-  useEffect(() => {
-    if (!formic.isEmpty(existingInstitution)) {
-      formic.setValues({
-        ...existingInstitution,
-      });
-    }
-  }, [existingInstitution]);
+  // useEffect(() => {
+  //   if (!formic.values(existingInstitution)) {
+  //     formic.setValues({
+  //       ...existingInstitution,
+  //     });
+  //   }
+  // }, [existingInstitution]);
 
   const { getFieldProps } = formic;
+  console.warn(params);
   return (
     <>
       <SidebarNav />
@@ -107,7 +108,7 @@ const CreateInstitution = () => {
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between">
               <h1 className="create-institution-header font-medium text-3xl">
-                Create Institution
+                Edit Institution
                 {' '}
               </h1>
               <SupportButton />

@@ -110,33 +110,33 @@ const CreateInstitution = () => {
 
   const canCreate = formic.isValid && createRequestStatus === 'idle';
 
-  const onSaveInstitutionClicked = () => {
-    if (canCreate) {
-      try {
-        setCreateRequestStatus('pending');
-        dispatch(
-          createInstitution({
-            // ...formic.values,
-            id: nanoid(),
-            name: formic.values.name,
-            rcNumber: formic.values.rcNumber,
-            address: formic.values.address,
-            phone: formic.values.phone,
-            websiteUrl: formic.values.websiteUrl,
-            category: formic.values.category,
-            noOfCalls: formic.values.noOfCalls,
-            threshold: formic.values.threshold,
-            documentation: formic.values.documentation,
-            description: formic.values.description,
-            notificationEmail: formic.values.notificationEmail,
-          }),
-        ).unwrap();
-      } catch (error) {
-        return error.message || '';
-      }
-      setCreateRequestStatus('idle');
-    }
-  };
+  // const handleSaveInstitution = () => {
+  //   if (canCreate) {
+  //     try {
+  //       setCreateRequestStatus('pending');
+  //       dispatch(
+  //         createInstitution({
+  //           // ...formic.values,
+  //           id: Number(nanoid()),
+  //           name: formic.values.name,
+  //           rcNumber: formic.values.rcNumber,
+  //           address: formic.values.address,
+  //           phone: formic.values.phone,
+  //           websiteUrl: formic.values.websiteUrl,
+  //           category: formic.values.category,
+  //           noOfCalls: formic.values.noOfCalls,
+  //           threshold: formic.values.threshold,
+  //           documentation: formic.values.documentation,
+  //           description: formic.values.description,
+  //           notificationEmail: formic.values.notificationEmail,
+  //         }),
+  //       );
+  //     } catch (error) {
+  //       return error.message || '';
+  //     }
+  //     setCreateRequestStatus('idle');
+  //   }
+  // };
 
   // const handleSubmit = async () => {
   //   try {
@@ -509,7 +509,7 @@ const CreateInstitution = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                       disabled={formic.isSubmitting}
-                      onClick={onSaveInstitutionClicked()}
+                      // onClick={handleSaveInstitution()}
                     >
                       {formic.isSubmitting
                         ? 'Please wait...'

@@ -204,10 +204,11 @@ const MainRoutes = () => {
           />
 
           <Route
-            path="institutions/edit-institution/:id"
+            path="institutions/edit-institution"
             element={<EditInstitutionView />}
           />
           <Route path="view-institution" element={<ViewInstitutionView />} />
+
           {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
           {/* <Route
             path="institutions/delete-institution"
