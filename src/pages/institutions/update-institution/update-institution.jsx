@@ -420,7 +420,16 @@ const CreateInstitution = () => {
                       CredNIN
                     </option>
                     <option value="Service Two" label="PostPaid">
-                      Service Two
+                      FRSC
+                    </option>
+                    <option value="Service Two" label="PostPaid">
+                      BVN
+                    </option>
+                    <option value="Service Two" label="PostPaid">
+                      CAC
+                    </option>
+                    <option value="Service Two" label="PostPaid">
+                      CreditBureau
                     </option>
                   </select>
                 </div>
