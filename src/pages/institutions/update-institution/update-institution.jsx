@@ -417,7 +417,7 @@ const CreateInstitution = () => {
                       Select Microservices
                     </option>
                     <option value="Service One" label=" PrePaid">
-                      Service One
+                      CredNIN
                     </option>
                     <option value="Service Two" label="PostPaid">
                       Service Two

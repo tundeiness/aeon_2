@@ -21,6 +21,7 @@ import './createInstituiton.css';
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
   const [createRequestStatus, setCreateRequestStatus] = useState('idle');
+  const [enabled, setEnabled] = useState(false);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const CreateInstitution = () => {
       documentation: '',
       description: '',
       notificationEmail: '',
+      microservices: '',
     },
     validate,
     onSubmit: (values, { resetForm }) => {
@@ -102,6 +104,7 @@ const CreateInstitution = () => {
         documentation: formic.values.documentation,
         description: formic.values.description,
         notificationEmail: formic.values.notificationEmail,
+        microservices: formic.values.microservices,
       }),
     ).then(() => {
       // navigate('/institutions');
@@ -455,6 +458,58 @@ const CreateInstitution = () => {
                       {formic.errors.threshold}
                     </span>
                   )}
+                </div>
+              </div>
+
+              <div className="services-block flex flex-wrap -mx-3 mb-8 px-6 pt-14">
+                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="microservices"
+                  >
+                    Microservices
+                    {' '}
+                  </label>
+                  <select
+                    id="microservices"
+                    name="microservices"
+                    className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                    value={formic.values.microservices}
+                    onChange={formic.handleChange}
+                    {...getFieldProps('microservices')}
+                  >
+                    <option value="" label="Select Category">
+                      Select Microservices
+                    </option>
+                    <option value="Service One" label=" PrePaid">
+                      CredNIN
+                    </option>
+                    <option value="Service Two" label="PostPaid">
+                      Service Two
+                    </option>
+                  </select>
+                </div>
+
+                <div className="w-full md:w-1/2 px-3">
+                  <div className="toggle-text-block mt-9 flex items-center">
+                    <div
+                      className={`relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus outline-none focus:ring-2 focus:ring-offset-2 focus-ring-cyan-400 ${
+                        enabled ? 'bg-toggleBg' : 'bg-gray-200'
+                      }`}
+                      onClick={() => setEnabled(!enabled)}
+                      role="presentation"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`${
+                          enabled ? 'translate-x-5' : 'translate-x-0'
+                        } pointer-event-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200`}
+                      />
+                    </div>
+                    <label className="inline-block text-label ml-3 font-normal text-xs text-gray-400">
+                      Set Banded Pricing ( Minimum & Maximum Price range )
+                    </label>
+                  </div>
                 </div>
               </div>
 
