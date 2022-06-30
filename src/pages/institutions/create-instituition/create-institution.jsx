@@ -478,22 +478,22 @@ const CreateInstitution = () => {
                     onChange={formic.handleChange}
                     {...getFieldProps('microservices')}
                   >
-                    <option value="" label="Select Category">
+                    <option value="" label="Select Microservices">
                       Select Microservices
                     </option>
-                    <option value="Service One" label=" PrePaid">
+                    <option value="Service One" label=" CredNIN">
                       CredNIN
                     </option>
-                    <option value="Service Two" label="PostPaid">
+                    <option value="Service Two" label=" FRSC">
                       FRSC
                     </option>
-                    <option value="Service Two" label="PostPaid">
+                    <option value="Service Two" label=" BVN">
                       BVN
                     </option>
-                    <option value="Service Two" label="PostPaid">
+                    <option value="Service Two" label=" CAC">
                       CAC
                     </option>
-                    <option value="Service Two" label="PostPaid">
+                    <option value="Service Two" label="CreditBureau">
                       CreditBureau
                     </option>
                   </select>
