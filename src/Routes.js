@@ -203,16 +203,19 @@ const MainRoutes = () => {
             element={<CreateInstitutionView />}
           />
 
-          {/* <Route
-            path="institutions/edit-institution"
+          <Route
+            path="institutions/edit-institution/:id"
             element={<EditInstitutionView />}
-          /> */}
+          />
           <Route path="view-institution" element={<ViewInstitutionView />} />
           {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
           {/* <Route
             path="institutions/delete-institution"
             element={<DeleteInstitutionView />}
           /> */}
+
+          {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
+
           <Route
             path="products/create-product"
             element={<CreateProductView />}

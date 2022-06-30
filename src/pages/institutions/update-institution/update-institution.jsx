@@ -10,12 +10,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 
+import {
+  selectAllInstitutions,
+} from '../../../redux/features/institutionSlice';
+
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
   const params = useParams();
   console.log(params.id);
 
-  const institution = useSelector((store) => store.institution);
+  const institution = useSelector(selectAllInstitutions);
 
   const existingInstitution = institution.filter((data) => data.id === params.id);
 
@@ -35,7 +39,9 @@ const CreateInstitution = () => {
     if (!values.notificationEmail) {
       errors.notificationEmail = 'Cannot be blank';
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
+        values.notificationEmail,
+      )
     ) {
       errors.notificationEmail = 'Invalid email format';
     }
@@ -79,7 +85,6 @@ const CreateInstitution = () => {
       // alert(
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
-      // console.log(values);
       resetForm(values);
       enableReinitialize(values);
     },
