@@ -14,6 +14,8 @@ import {
   selectAllInstitutions,
 } from '../../../redux/features/institutionSlice';
 
+import './updateInstituiton.css';
+
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
   const params = useParams();
@@ -78,6 +80,7 @@ const CreateInstitution = () => {
       documentation: '',
       description: '',
       notificationEmail: '',
+      microservices: '',
     },
     validate,
     enableReinitialize: true,
@@ -333,6 +336,36 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/3 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="threshold"
+                  >
+                    threshold (NGN)
+                    {' '}
+                  </label>
+                  <input
+                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                      formic.threshold && formic.errors.threshold
+                        ? 'border-red-400'
+                        : 'border-gray-200'
+                    } `}
+                    onChange={formic.handleChange}
+                    onBlur={formic.handleBlur}
+                    value={formic.values.threshold}
+                    type="text"
+                    placeholder="0.00"
+                    name="threshold"
+                    id="threshold"
+                    {...getFieldProps('threshold')}
+                  />
+                  {formic.touched.threshold && formic.errors.threshold && (
+                    <span className="text-red-300 text-xs">
+                      {formic.errors.threshold}
+                    </span>
+                  )}
+                </div>
+
+                <div className="w-full md:w-1/3 px-3">
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                     htmlFor="noOfCalls"
                   >
                     number of calls
@@ -360,35 +393,92 @@ const CreateInstitution = () => {
                     </option>
                   </select>
                 </div>
+              </div>
 
-                <div className="w-full md:w-1/3 px-3">
+              <div className="services-block flex flex-wrap -mx-3 mb-8 px-6 pt-14">
+                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="threshold"
+                    htmlFor="microservices"
                   >
-                    threshold (NGN)
+                    Microservices
+                    {' '}
+                  </label>
+                  <select
+                    id="microservices"
+                    name="microservices"
+                    className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                    value={formic.values.microservices}
+                    onChange={formic.handleChange}
+                    {...getFieldProps('microservices')}
+                  >
+                    <option value="" label="Select Category">
+                      Select Microservices
+                    </option>
+                    <option value="Service One" label=" PrePaid">
+                      Service One
+                    </option>
+                    <option value="Service Two" label="PostPaid">
+                      Service Two
+                    </option>
+                  </select>
+                </div>
+
+                <div className="w-full md:w-1/2 px-3">
+                  {/* <div className="flex w-full"> */}
+
+                  <label
+                    htmlFor="toggle-services"
+                    className="flex items-center cursor-pointer mt-10"
+                  >
+                    {/* <!-- toggle --> */}
+                    <div className="relative">
+                      {/* <!-- input --> */}
+                      <input
+                        type="checkbox"
+                        id="toggle-services"
+                        className="sr-only"
+                      />
+                      {/* <!-- line --> */}
+                      <div className="block bg-gray-600 w-10 h-6 rounded-full" />
+                      {/* <!-- dot --> */}
+                      <div className="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition" />
+                    </div>
+                    {/* <!-- label --> */}
+                    <div className="ml-3 text-gray-500 text-xs font-normal indent-10 ">
+                      Set Banded Pricing (Minimum & Maximum Price range)
+                    </div>
+                  </label>
+
+                  {/* </div> */}
+                  {/* <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="notificationEmail"
+                  >
+                    notification email
                     {' '}
                   </label>
                   <input
+                    type="email"
+                    name="notificationEmail"
+                    id="notificationEmail"
+                    onChange={formic.handleChange}
+                    onBlur={formic.handleBlur}
+                    value={formic.values.notificationEmail}
                     className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.threshold && formic.errors.threshold
+                      formic.rc_number && formic.errors.rc_number
                         ? 'border-red-400'
                         : 'border-gray-200'
                     } `}
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.threshold}
-                    type="text"
-                    placeholder="0.00"
-                    name="threshold"
-                    id="threshold"
-                    {...getFieldProps('threshold')}
+                    placeholder="info@companyname.com"
+                    {...getFieldProps('notificationEmail')}
                   />
-                  {formic.touched.threshold && formic.errors.threshold && (
-                    <span className="text-red-300 text-xs">
-                      {formic.errors.threshold}
-                    </span>
-                  )}
+                  {formic.touched.notificationEmail
+                    && formic.errors.notificationEmail && (
+                      <span className="text-red-300 text-xs">
+                        {formic.errors.notificationEmail}
+                      </span>
+                  )} */}
                 </div>
               </div>
 
@@ -448,7 +538,7 @@ const CreateInstitution = () => {
                     >
                       {formic.isSubmitting
                         ? 'Please wait...'
-                        : 'Create Institution'}
+                        : 'Update Institution'}
                     </button>
                     <button
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
