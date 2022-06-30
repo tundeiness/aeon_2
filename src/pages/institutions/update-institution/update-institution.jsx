@@ -18,6 +18,7 @@ import './updateInstituiton.css';
 
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
+  const [enabled, setEnabled] = useState(false);
   const params = useParams();
   console.log(params.id);
 
@@ -425,60 +426,25 @@ const CreateInstitution = () => {
                 </div>
 
                 <div className="w-full md:w-1/2 px-3">
-                  {/* <div className="flex w-full"> */}
-
-                  <label
-                    htmlFor="toggle-services"
-                    className="flex items-center cursor-pointer mt-10"
-                  >
-                    {/* <!-- toggle --> */}
-                    <div className="relative">
-                      {/* <!-- input --> */}
-                      <input
-                        type="checkbox"
-                        id="toggle-services"
-                        className="sr-only"
+                  <div className="toggle-text-block mt-9 flex items-center">
+                    <div
+                      className={`relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus outline-none focus:ring-2 focus:ring-offset-2 focus-ring-cyan-400 ${
+                        enabled ? 'bg-toggleBg' : 'bg-gray-200'
+                      }`}
+                      onClick={() => setEnabled(!enabled)}
+                      role="presentation"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`${
+                          enabled ? 'translate-x-5' : 'translate-x-0'
+                        } pointer-event-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200`}
                       />
-                      {/* <!-- line --> */}
-                      <div className="block bg-gray-600 w-10 h-6 rounded-full" />
-                      {/* <!-- dot --> */}
-                      <div className="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition" />
                     </div>
-                    {/* <!-- label --> */}
-                    <div className="ml-3 text-gray-500 text-xs font-normal indent-10 ">
-                      Set Banded Pricing (Minimum & Maximum Price range)
-                    </div>
-                  </label>
-
-                  {/* </div> */}
-                  {/* <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="notificationEmail"
-                  >
-                    notification email
-                    {' '}
-                  </label>
-                  <input
-                    type="email"
-                    name="notificationEmail"
-                    id="notificationEmail"
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.notificationEmail}
-                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.rc_number && formic.errors.rc_number
-                        ? 'border-red-400'
-                        : 'border-gray-200'
-                    } `}
-                    placeholder="info@companyname.com"
-                    {...getFieldProps('notificationEmail')}
-                  />
-                  {formic.touched.notificationEmail
-                    && formic.errors.notificationEmail && (
-                      <span className="text-red-300 text-xs">
-                        {formic.errors.notificationEmail}
-                      </span>
-                  )} */}
+                    <label className="inline-block text-label ml-3 font-normal text-xs text-gray-400">
+                      Set Banded Pricing ( Minimum & Maximum Price range )
+                    </label>
+                  </div>
                 </div>
               </div>
 
