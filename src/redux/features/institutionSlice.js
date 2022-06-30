@@ -45,9 +45,9 @@ export const getInstitution = createAsyncThunk(
 
 export const updateInstitution = createAsyncThunk(
   'institution/updateInstitution',
-  async ({ values }) => {
+  async (id, values) => {
     try {
-      const response = await axios.put(EDIT_INSTITUTION_URL, values);
+      const response = await axios.put(`${EDIT_INSTITUTION_URL}${id}`, values);
       return response.data;
     } catch (error) {
       return error.message;

@@ -3,7 +3,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,7 +17,7 @@ const CreateInstitution = () => {
 
   const institution = useSelector((store) => store.institution);
 
-  const existingInstitution = institution.filter((insti) => insti.id === params.id);
+  const existingInstitution = institution.filter((data) => data.id === params.id);
 
   const dispatch = useDispatch();
 
@@ -30,29 +30,29 @@ const CreateInstitution = () => {
   //   }));
   // };
 
-  const validate = (value) => {
+  const validate = (values) => {
     const errors = {};
-    if (!value.notificationEmail) {
+    if (!values.notificationEmail) {
       errors.notificationEmail = 'Cannot be blank';
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
     ) {
       errors.notificationEmail = 'Invalid email format';
     }
 
-    if (!value.name) {
+    if (!values.name) {
       errors.name = 'Name cannot be blank';
     }
 
-    if (!value.rcNumber) {
+    if (!values.rcNumber) {
       errors.rcNumber = 'number cannot be blank';
     }
 
-    if (!value.address) {
+    if (!values.address) {
       errors.address = 'address cannot be blank';
     }
 
-    if (!value.phone) {
+    if (!values.phone) {
       errors.phone = 'phone cannot be blank';
     }
 
@@ -74,14 +74,24 @@ const CreateInstitution = () => {
       notificationEmail: '',
     },
     validate,
-    onSubmit: (values, { resetForm }) => {
+    enableReinitialize: true,
+    onSubmit: (values, { resetForm, enableReinitialize }) => {
       // alert(
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
       // console.log(values);
       resetForm(values);
+      enableReinitialize(values);
     },
   });
+
+  useEffect(() => {
+    if (!formic.isEmpty(existingInstitution)) {
+      formic.setValues({
+        ...existingInstitution,
+      });
+    }
+  }, [existingInstitution]);
 
   const { getFieldProps } = formic;
   return (
@@ -427,6 +437,7 @@ const CreateInstitution = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                       disabled={formic.isSubmitting}
+                      // formic.isValid
                       // onClick={handleSubmit()}
                     >
                       {formic.isSubmitting

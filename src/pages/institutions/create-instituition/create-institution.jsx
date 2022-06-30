@@ -14,14 +14,17 @@ import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 import {
   createInstitution,
+  selectAllInstitutions,
 } from '../../../redux/features/institutionSlice';
 import './createInstituiton.css';
 
 const CreateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
+  const [createRequestStatus, setCreateRequestStatus] = useState('idle');
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  const institutions = useSelector(selectAllInstitutions);
 
   const handleCreateInstitution = (value) => {
     dispatch(createInstitution({ value }));
@@ -103,6 +106,36 @@ const CreateInstitution = () => {
     ).then(() => {
       // navigate('/institutions');
     });
+  };
+
+  const canCreate = formic.isValid && createRequestStatus === 'idle';
+
+  const onSaveInstitutionClicked = () => {
+    if (canCreate) {
+      try {
+        setCreateRequestStatus('pending');
+        dispatch(
+          createInstitution({
+            // ...formic.values,
+            id: nanoid(),
+            name: formic.values.name,
+            rcNumber: formic.values.rcNumber,
+            address: formic.values.address,
+            phone: formic.values.phone,
+            websiteUrl: formic.values.websiteUrl,
+            category: formic.values.category,
+            noOfCalls: formic.values.noOfCalls,
+            threshold: formic.values.threshold,
+            documentation: formic.values.documentation,
+            description: formic.values.description,
+            notificationEmail: formic.values.notificationEmail,
+          }),
+        ).unwrap();
+      } catch (error) {
+        return error.message || '';
+      }
+      setCreateRequestStatus('idle');
+    }
   };
 
   // const handleSubmit = async () => {
@@ -325,10 +358,11 @@ const CreateInstitution = () => {
                     placeholder="info@companyname.com"
                     {...getFieldProps('notificationEmail')}
                   />
-                  {formic.touched.notificationEmail && formic.errors.notificationEmail && (
-                    <span className="text-red-300 text-xs">
-                      {formic.errors.notificationEmail}
-                    </span>
+                  {formic.touched.notificationEmail
+                    && formic.errors.notificationEmail && (
+                      <span className="text-red-300 text-xs">
+                        {formic.errors.notificationEmail}
+                      </span>
                   )}
                 </div>
               </div>
@@ -475,7 +509,7 @@ const CreateInstitution = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                       disabled={formic.isSubmitting}
-                      onClick={handleSubmit()}
+                      onClick={onSaveInstitutionClicked()}
                     >
                       {formic.isSubmitting
                         ? 'Please wait...'
