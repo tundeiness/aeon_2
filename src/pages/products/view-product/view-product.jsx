@@ -88,18 +88,6 @@ export const ViewInstitution = () => {
                     content="The FRSC with Face Match verification checks the authenticity of a supplied means of identification and authenticity of the supplier through face verification"
                   />
 
-                  {/* <DataDisplayRow
-                    classText="test-token"
-                    title="Test Token"
-                    content="csx982Ief5saa34gd"
-                  />
-
-                  <DataDisplayRow
-                    classText="live-token"
-                    title="Live Token"
-                    content="009csx982IefFGop5saa34324gd"
-                  /> */}
-
                   <TextDisplayRow
                     classText="response"
                     title="Response"
@@ -107,14 +95,6 @@ export const ViewInstitution = () => {
                     incididunt cillum culpa consequat. Excepteur qui ipsum
                     aliquip consequat sint."
                   />
-
-                  {/* <TextDisplayRow
-                    classText="description"
-                    title="Description"
-                    content="Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                    incididunt cillum culpa consequat. Excepteur qui ipsum
-                    aliquip consequat sint."
-                  /> */}
                 </div>
               </dl>
             </div>
