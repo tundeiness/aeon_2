@@ -106,7 +106,7 @@ const CreateInstitution = () => {
         // notificationEmail: formic.values.notificationEmail,
         // microservices: formic.values.microservices,
       }),
-    );
+    ).unwrap();
     setSubmitting(false);
 
     // .then(() => {
