@@ -147,6 +147,20 @@ export const SearchButton = () => {
     </>
   );
 };
+
+export const SearchButtonUser = () => {
+  const test = 0;
+  return (
+    <>
+      <button
+        className="bg-headingBg px-4 py-3 rounded-md text-white font-medium text-sm"
+        type="button"
+      >
+        Search
+      </button>
+    </>
+  );
+};
 AuthButton.propTypes = {
   // buttonType: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,

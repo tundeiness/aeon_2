@@ -15,7 +15,11 @@ import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
-import { GoButton, FilterButton } from '../Buttons/buttonCollections';
+import {
+  GoButton,
+  FilterButton,
+  SearchButtonUser,
+} from '../Buttons/buttonCollections';
 import {
   getInstitution,
   selectAllInstitutions,
@@ -160,7 +164,7 @@ const UserList = () => {
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    <GoButton />
+                    <SearchButtonUser />
                   </div>
                 </div>
               </div>
