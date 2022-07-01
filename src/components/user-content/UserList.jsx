@@ -167,6 +167,9 @@ const UserList = () => {
                   <div className="flex flex-col items-center justify-center">
                     <SearchButtonUser />
                   </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <AddUserButton />
+                  </div>
                 </div>
               </div>
             </div>
