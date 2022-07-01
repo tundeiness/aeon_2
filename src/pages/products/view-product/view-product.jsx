@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
-  HeadingDisplayRow,
+  WideHeadingDisplayRow,
   DataDisplayRow,
   TextDisplayRow,
 } from '../../../components/viewDescription/ViewDescription';
@@ -25,7 +25,7 @@ export const ViewInstitution = () => {
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between">
               <h1 className="create-institution-header font-medium text-3xl">
-                View Institution
+                View Product
                 {' '}
               </h1>
               <SupportButton />
@@ -36,7 +36,7 @@ export const ViewInstitution = () => {
             <div className="w-full border-t border-gray-200 mt-3">
               <dl className="mx-2">
                 <div className="flex flex-col divide-y divide-slate-200">
-                  <HeadingDisplayRow
+                  <WideHeadingDisplayRow
                     classText="company-number"
                     title="CREDEQUITY"
                     content="RC Number: 147749"

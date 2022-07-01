@@ -121,3 +121,23 @@ export const TextDisplayRow = ({ classText, title, content }) => {
     </>
   );
 };
+
+export const WideHeadingDisplayRow = ({ classText, title, content }) => {
+  const test = 0;
+  return (
+    <>
+      <div className={`${classText}-block flex flex-row`}>
+        <div className="w-1/4 py-4 bg-headingBg">
+          <dd className="block text-md font-medium pl-10 text-white">
+            {title}
+          </dd>
+        </div>
+        <div className="w-3/4 py-4 bg-gray-100">
+          <dd className="block text-md font-normal text-black pl-12">
+            {content}
+          </dd>
+        </div>
+      </div>
+    </>
+  );
+};
