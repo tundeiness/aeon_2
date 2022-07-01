@@ -154,7 +154,7 @@ const UserList = () => {
 
             <hr className="mb-5" />
             <div className="flex flex-row justify-end w-full outline outline-red-500">
-              <div className="w-3/4 outline outline-green-500">
+              <div className="w-3/5 outline outline-green-500">
                 <div className="flex flex-row  items-center space-x-4 w-4/5">
                   <div className="search-wrapper w-full relative">
                     <FiSearch className="absolute z-10 top-3.5 left-2 text-xl" />
