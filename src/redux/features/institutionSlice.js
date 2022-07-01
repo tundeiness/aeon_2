@@ -93,7 +93,7 @@ export const deleteInstitution = createAsyncThunk(
 
 export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
-  async (initialInstitution, { dispatch }) => {
+  async (initialInstitution, token, { dispatch }) => {
     const {
       id,
       name,
@@ -125,10 +125,16 @@ export const createInstitution = createAsyncThunk(
       notificationEmail,
       microservices,
     };
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
     try {
       const response = await axios.post(NEW_INSTITUTION_URL, {
         institution: institutionData,
-      });
+      }, config);
       // dispatch({ payload: institutionData });
       return response.data;
     } catch (error) {
@@ -331,6 +337,10 @@ const institutionSlice = createSlice({
         // state.entities[institution.id] = institution;
         state.institution[institution.id] = institution;
         state.institution.push(institution);
+      })
+      .addCase(createInstitution.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
   },
 });
