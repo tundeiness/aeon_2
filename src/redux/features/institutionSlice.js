@@ -90,10 +90,10 @@ export const deleteInstitution = createAsyncThunk(
     }
   },
 );
-
+// const token = thunkAPI.getState().auth.user.token;
 export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
-  async (initialInstitution, token, { dispatch }) => {
+  async (initialInstitution, thunkAPI) => {
     const {
       id,
       name,
@@ -126,15 +126,21 @@ export const createInstitution = createAsyncThunk(
       microservices,
     };
 
+    // const token = thunkAPI.getState().auth.user.token;
+
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
     try {
-      const response = await axios.post(NEW_INSTITUTION_URL, {
-        institution: institutionData,
-      }, config);
+      const response = await axios.post(
+        NEW_INSTITUTION_URL,
+        {
+          institution: institutionData,
+        },
+        config,
+      );
       // dispatch({ payload: institutionData });
       return response.data;
     } catch (error) {
