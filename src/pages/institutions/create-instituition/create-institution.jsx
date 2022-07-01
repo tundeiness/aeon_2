@@ -481,19 +481,19 @@ const CreateInstitution = () => {
                     <option value="" label="Select Microservices">
                       Select Microservices
                     </option>
-                    <option value="Service One" label=" CredNIN">
+                    <option value="CredNIN" label=" CredNIN">
                       CredNIN
                     </option>
-                    <option value="Service Two" label=" FRSC">
+                    <option value=" FRSC" label=" FRSC">
                       FRSC
                     </option>
-                    <option value="Service Two" label=" BVN">
+                    <option value=" BVN" label=" BVN">
                       BVN
                     </option>
-                    <option value="Service Two" label=" CAC">
+                    <option value="CAC" label=" CAC">
                       CAC
                     </option>
-                    <option value="Service Two" label="CreditBureau">
+                    <option value="CreditBureau" label="CreditBureau">
                       CreditBureau
                     </option>
                   </select>
