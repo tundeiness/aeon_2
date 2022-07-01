@@ -153,7 +153,7 @@ export const SearchButtonUser = () => {
   return (
     <>
       <button
-        className="bg-headingBg px-4 py-3 rounded-md text-white font-medium text-sm"
+        className="bg-headingBg px-5 py-3 rounded-md text-white font-medium text-sm"
         type="button"
       >
         Search
@@ -167,12 +167,11 @@ export const AddUserButton = () => {
   return (
     <>
       <button
-        className="bg-buttonTwo flex flex-row rounded-md text-white font-normal text-sm"
-        type="button"
+        type="submit"
+        className="flex items-center bg-buttonTwo text-white hover:bg-purple-500 py-3 px-5 my-2.5 rounded-md text-sm w-auto"
       >
-        <BiPlus className="inline-block text-3xl" />
-        {' '}
-        <span className="inline-block">Add New User</span>
+        <BiPlus className="inline-block mr-2" />
+        <span>Add New User</span>
       </button>
     </>
   );

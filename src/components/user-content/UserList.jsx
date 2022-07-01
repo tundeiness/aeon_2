@@ -152,11 +152,11 @@ const UserList = () => {
               <SupportButton />
             </header>
 
-            <hr className="mb-5" />
-            <div className="flex flex-row justify-end w-full outline outline-red-500">
-              <div className="w-3/5 outline outline-green-500">
-                <div className="flex flex-row  items-center space-x-4 w-4/5">
-                  <div className="search-wrapper w-full relative">
+            <hr className="mb-12" />
+            <div className="flex flex-row justify-end w-full">
+              <div className="w-3/5">
+                <div className="flex flex-row justify-around">
+                  <div className="search-wrapper w-3/5 relative my-2">
                     <FiSearch className="absolute z-10 top-3.5 left-2 text-xl" />
                     <input
                       type="search"
@@ -166,14 +166,14 @@ const UserList = () => {
                   </div>
                   <div className="flex flex-row items-center justify-center">
                     <SearchButtonUser />
+                  </div>
+                  <div className="add-user-button w-auto">
                     <AddUserButton />
                   </div>
-                  {/* <div className="add-user-button">
-                    <AddUserButton />
-                  </div> */}
                 </div>
               </div>
             </div>
+            <hr className="mb-3 mt-2" />
             <div className="flex flex-row w-full outline outline-red-500">
               <div className="flex flex-row justify-between w-1/2 py-4 ">
                 <input
