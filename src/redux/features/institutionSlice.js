@@ -127,9 +127,9 @@ export const createInstitution = createAsyncThunk(
     };
     try {
       const response = await axios.post(NEW_INSTITUTION_URL, {
-        payload: institutionData,
+        institution: institutionData,
       });
-      dispatch({ payload: institutionData });
+      // dispatch({ payload: institutionData });
       return response.data;
     } catch (error) {
       return error.message;
