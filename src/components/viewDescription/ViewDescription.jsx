@@ -127,15 +127,18 @@ export const WideHeadingDisplayRow = () => {
   return (
     <>
       <div className="view-product-header">
-        <div className="w-full flex flex-row justify-between py-4 bg-headingBg">
-          <div className="w-2/5">
-            <dd className="block text-md font-medium pl-10 text-white">
+        <div className="w-full flex flex-row justify-between bg-headingBlue">
+          <div className="w-3/5 py-7">
+            <dd className="block font-medium text-xl pl-10 text-gray-900">
               FRSC FACE MATCH SERVICE (OCR)
             </dd>
           </div>
-          <div className="w-1/5">
-            <dd className="block text-md font-medium pl-10 text-white">
-              some address
+          <div className="w-1/5 py-5">
+            <dd className="block pb-1 text-xs font-normal pl-10 text-gray-900">
+              Updated by:
+            </dd>
+            <dd className="block pt-1 text-xs font-semibold pl-10 text-gray-900">
+              support@credequity.com
             </dd>
           </div>
         </div>
