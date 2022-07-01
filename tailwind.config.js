@@ -32,6 +32,7 @@ module.exports = {
         warning: '#DC6803',
         headingBg: '#0F91D2',
         toggleBg: '#7f56d9',
+        headingBlue: '#b5e2fa',
       },
     },
   },
