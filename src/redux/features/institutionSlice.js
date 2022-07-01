@@ -82,7 +82,7 @@ export const deleteInstitution = createAsyncThunk(
 
 export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
-  async (initialInstitution) => {
+  async (initialInstitution, { dispatch }) => {
     const {
       name,
       rcNumber,
