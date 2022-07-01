@@ -2,10 +2,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { BiChevronLeft } from 'react-icons/bi';
+import { BiChevronLeft, BiPlus } from 'react-icons/bi';
 import { Navigate, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { PlusIcon } from '../../data/Dummy';
 
 const AuthButton = ({
   buttonText, loading, condition,
@@ -171,7 +170,7 @@ export const AddUserButton = () => {
         className="bg-buttonTwo px-4 py-3 rounded-md text-white font-medium text-sm"
         type="button"
       >
-        <PlusIcon />
+        <BiPlus />
         {' '}
         Add New User
       </button>
