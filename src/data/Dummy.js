@@ -12,7 +12,7 @@ import {
 } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine, RiCheckboxIndeterminateLine } from 'react-icons/ri';
-import { BiHomeAlt, BiFile } from 'react-icons/bi';
+import { BiHomeAlt, BiFile, BiPlus } from 'react-icons/bi';
 import { ImStack } from 'react-icons/im';
 import { MdLogout, MdOutlineIndeterminateCheckBox } from 'react-icons/md';
 import { AiOutlineIdcard } from 'react-icons/ai';
