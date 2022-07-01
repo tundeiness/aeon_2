@@ -46,6 +46,11 @@ export const WarningIcon = {
   symbol: <IoWarningOutline />,
 };
 
+export const PlusIcon = {
+  title: 'Add',
+  symbol: <BiPlus />,
+};
+
 export const SearchIcon = [{
   title: 'Search',
   symbol: <FiSearch />,
