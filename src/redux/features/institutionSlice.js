@@ -95,6 +95,7 @@ export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
   async (initialInstitution, { dispatch }) => {
     const {
+      id,
       name,
       rcNumber,
       address,
@@ -110,6 +111,7 @@ export const createInstitution = createAsyncThunk(
     } = initialInstitution;
 
     const institutionData = {
+      id,
       name,
       rcNumber,
       address,
@@ -307,30 +309,22 @@ const institutionSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(createInstitution.fulfilled, (state, action) => {
-      // action.payload.institutionId = Number(action.payload.institutionId);
-      // action.payload.date = new Date().toISOString();
-      // console.log(action.payload);
-        action.payload.id = Number(action.payload.id);
-        action.payload.name = name;
-        action.payload.rcNumber = rcNumber;
-        action.payload.address = address;
-        action.payload.phone = phone;
-        action.payload.websiteUrl = websiteUrl;
-        action.payload.category = category;
-        action.payload.noOfCalls = noOfCalls;
-        action.payload.threshold = threshold;
-        action.payload.documentation = documentation;
-        action.payload.description = description;
-        action.payload.notificationEmail = notificationEmail;
-        console.log(action.payload);
-        state.institution.push(action.payload);
-        // return {
-        //   ...state,
-        //   loading: false,
-        //   products: state.products
-        //     ? [...state.products, payload.product]
-        //     : [payload.product],
-        // };
+        // action.payload.id = Number(action.payload.id);
+        // action.payload.name = name;
+        // action.payload.rcNumber = rcNumber;
+        // action.payload.address = address;
+        // action.payload.phone = phone;
+        // action.payload.websiteUrl = websiteUrl;
+        // action.payload.category = category;
+        // action.payload.noOfCalls = noOfCalls;
+        // action.payload.threshold = threshold;
+        // action.payload.documentation = documentation;
+        // action.payload.description = description;
+        // action.payload.notificationEmail = notificationEmail;
+        // console.log(action.payload);
+        // state.institution.push(action.payload);
+        const institution = action.payload;
+        state.entities[institution.id] = institution;
       });
   },
 });
