@@ -85,30 +85,33 @@ const CreateInstitution = () => {
     },
   });
 
-  const { getFieldProps } = formic;
+  const { getFieldProps, setSubmitting } = formic;
 
   const handleSubmit = () => {
     console.log('formic.values', formic.values);
     dispatch(
       createInstitution({
-        ...formic.values,
         id: nanoid(),
-        name: formic.values.name,
-        rcNumber: formic.values.rcNumber,
-        address: formic.values.address,
-        phone: formic.values.phone,
-        websiteUrl: formic.values.websiteUrl,
-        category: formic.values.category,
-        noOfCalls: formic.values.noOfCalls,
-        threshold: formic.values.threshold,
-        documentation: formic.values.documentation,
-        description: formic.values.description,
-        notificationEmail: formic.values.notificationEmail,
-        microservices: formic.values.microservices,
+        ...formic.values,
+        // name: formic.values.name,
+        // rcNumber: formic.values.rcNumber,
+        // address: formic.values.address,
+        // phone: formic.values.phone,
+        // websiteUrl: formic.values.websiteUrl,
+        // category: formic.values.category,
+        // noOfCalls: formic.values.noOfCalls,
+        // threshold: formic.values.threshold,
+        // documentation: formic.values.documentation,
+        // description: formic.values.description,
+        // notificationEmail: formic.values.notificationEmail,
+        // microservices: formic.values.microservices,
       }),
-    ).then(() => {
-      // navigate('/institutions');
-    });
+    );
+    setSubmitting(false);
+
+    // .then(() => {
+    //   // navigate('/institutions');
+    // });
   };
 
   const canCreate = formic.isValid && createRequestStatus === 'idle';
@@ -574,6 +577,7 @@ const CreateInstitution = () => {
                       type="submit"
                       disabled={formic.isSubmitting}
                       // onClick={handleSaveInstitution()}
+                      onClick={handleSubmit}
                     >
                       {formic.isSubmitting
                         ? 'Please wait...'

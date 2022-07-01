@@ -337,36 +337,6 @@ const CreateInstitution = () => {
                 <div className="w-full md:w-1/3 px-3">
                   <label
                     className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="threshold"
-                  >
-                    threshold (NGN)
-                    {' '}
-                  </label>
-                  <input
-                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
-                      formic.threshold && formic.errors.threshold
-                        ? 'border-red-400'
-                        : 'border-gray-200'
-                    } `}
-                    onChange={formic.handleChange}
-                    onBlur={formic.handleBlur}
-                    value={formic.values.threshold}
-                    type="text"
-                    placeholder="0.00"
-                    name="threshold"
-                    id="threshold"
-                    {...getFieldProps('threshold')}
-                  />
-                  {formic.touched.threshold && formic.errors.threshold && (
-                    <span className="text-red-300 text-xs">
-                      {formic.errors.threshold}
-                    </span>
-                  )}
-                </div>
-
-                <div className="w-full md:w-1/3 px-3">
-                  <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                     htmlFor="noOfCalls"
                   >
                     number of calls
@@ -393,6 +363,36 @@ const CreateInstitution = () => {
                       5000
                     </option>
                   </select>
+                </div>
+
+                <div className="w-full md:w-1/3 px-3">
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="threshold"
+                  >
+                    threshold (NGN)
+                    {' '}
+                  </label>
+                  <input
+                    className={`appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                      formic.threshold && formic.errors.threshold
+                        ? 'border-red-400'
+                        : 'border-gray-200'
+                    } `}
+                    onChange={formic.handleChange}
+                    onBlur={formic.handleBlur}
+                    value={formic.values.threshold}
+                    type="text"
+                    placeholder="0.00"
+                    name="threshold"
+                    id="threshold"
+                    {...getFieldProps('threshold')}
+                  />
+                  {formic.touched.threshold && formic.errors.threshold && (
+                    <span className="text-red-300 text-xs">
+                      {formic.errors.threshold}
+                    </span>
+                  )}
                 </div>
               </div>
 
