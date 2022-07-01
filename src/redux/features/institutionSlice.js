@@ -308,7 +308,11 @@ const institutionSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
+      .addCase(createInstitution.pending, (state, action) => {
+        state.status = 'loading';
+      })
       .addCase(createInstitution.fulfilled, (state, action) => {
+        state.status = 'succeeded';
         // action.payload.id = Number(action.payload.id);
         // action.payload.name = name;
         // action.payload.rcNumber = rcNumber;
@@ -324,7 +328,9 @@ const institutionSlice = createSlice({
         // console.log(action.payload);
         // state.institution.push(action.payload);
         const institution = action.payload;
-        state.entities[institution.id] = institution;
+        // state.entities[institution.id] = institution;
+        state.institution[institution.id] = institution;
+        state.institution.push(institution);
       });
   },
 });

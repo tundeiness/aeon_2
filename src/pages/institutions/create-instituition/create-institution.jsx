@@ -27,9 +27,9 @@ const CreateInstitution = () => {
   const dispatch = useDispatch();
   const institutions = useSelector(selectAllInstitutions);
 
-  const handleCreateInstitution = (value) => {
-    dispatch(createInstitution({ value }));
-  };
+  // const handleCreateInstitution = (value) => {
+  //   dispatch(createInstitution({ value }));
+  // };
 
   const validate = (value) => {
     const errors = {};
