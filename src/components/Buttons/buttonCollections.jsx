@@ -5,6 +5,7 @@ import React from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
 import { Navigate, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { PlusIcon } from '../../data/Dummy';
 
 const AuthButton = ({
   buttonText, loading, condition,
@@ -170,6 +171,8 @@ export const AddUserButton = () => {
         className="bg-buttonTwo px-4 py-3 rounded-md text-white font-medium text-sm"
         type="button"
       >
+        <PlusIcon />
+        {' '}
         Add New User
       </button>
     </>
