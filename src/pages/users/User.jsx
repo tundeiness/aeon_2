@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import './institutions.css';
+import './users.css';
 import React, { useState } from 'react';
 // import { FiSearch, FiEdit2 } from 'react-icons/fi';
 // import { BsArrowDownShort } from 'react-icons/bs';
