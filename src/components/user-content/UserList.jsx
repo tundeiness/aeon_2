@@ -141,15 +141,32 @@ const UserList = () => {
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between mb-2">
               <h1 className="institution-header mb-3 font-medium text-3xl">
-                Institutions
+                All Users
                 {' '}
               </h1>
               <SupportButton />
             </header>
 
             <hr className="mb-5" />
-            <div className="flex flex-row w-full">
-              <div className="flex flex-row justify-between w-1/2 py-4">
+            <div className="flex flex-row justify-end w-full outline outline-red-500">
+              <div className="w-3/4 outline outline-green-500">
+                <div className="flex flex-row  items-center space-x-4 w-4/5">
+                  <div className="search-wrapper w-full relative">
+                    <FiSearch className="absolute z-10 top-3.5 left-2 text-xl" />
+                    <input
+                      type="search"
+                      placeholder="Search"
+                      className="relative pl-8 py-3 rounded-lg w-full outline outline-gray-300"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <GoButton />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row w-full outline outline-red-500">
+              <div className="flex flex-row justify-between w-1/2 py-4 ">
                 <input
                   placeholder="Institution Name"
                   className="relative py-2 pl-3 w-1/2 rounded-lg border border-gray-200"
