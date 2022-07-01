@@ -93,18 +93,6 @@ const CreateInstitution = () => {
       createInstitution({
         id: nanoid(),
         ...formic.values,
-        // name: formic.values.name,
-        // rcNumber: formic.values.rcNumber,
-        // address: formic.values.address,
-        // phone: formic.values.phone,
-        // websiteUrl: formic.values.websiteUrl,
-        // category: formic.values.category,
-        // noOfCalls: formic.values.noOfCalls,
-        // threshold: formic.values.threshold,
-        // documentation: formic.values.documentation,
-        // description: formic.values.description,
-        // notificationEmail: formic.values.notificationEmail,
-        // microservices: formic.values.microservices,
       }),
     ).unwrap();
     setSubmitting(false);
