@@ -81,15 +81,17 @@ export const updateInstitution = createAsyncThunk(
 
 export const deleteInstitution = createAsyncThunk(
   'institution/deleteInstitution',
-  async () => {
+  async (id, thunkAPI) => {
+    // const token = thunkAPI.getState().auth.user.token;
     try {
-      const response = await axios.delete(DELETE_INSTITUTION_URL);
+      const response = await axios.delete(`${DELETE_INSTITUTION_URL}${id}, token`);
       return response.data;
     } catch (error) {
       return error.message;
     }
   },
 );
+
 // const token = thunkAPI.getState().auth.user.token;
 export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
