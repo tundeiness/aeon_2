@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-expressions */
@@ -349,6 +350,9 @@ const institutionSlice = createSlice({
       .addCase(createInstitution.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(deleteInstitution.fulfilled, (state, action) => {
+        state.institution = state.institution.filter((institution) => institution.id !== action.payload.id);
       });
   },
 });
