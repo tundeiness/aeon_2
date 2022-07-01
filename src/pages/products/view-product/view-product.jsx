@@ -13,6 +13,7 @@ import {
   ActiveBtn,
   InActiveBtn,
 } from '../../../components/Buttons/buttonCollections';
+import { handleDate } from '../../../utils/dateParser';
 
 export const ViewInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
@@ -48,46 +49,46 @@ export const ViewInstitution = () => {
                     content={<ActiveBtn />}
                   />
                   <DataDisplayRow
-                    classText="address"
-                    title="Address"
-                    content="13A Charles Ifeanyi Street Lekki Phase 1 Lekki, Eti-Osa,"
+                    classText="date-modified"
+                    title="Date Modified"
+                    content="20/03/2021 21:53:20"
                   />
                   <DataDisplayRow
-                    classText="website"
-                    title="Website URL"
-                    content="www.credequity.com"
+                    classText="date-created"
+                    title="Date Created"
+                    content="20/03/2021 21:48:20"
                   />
                   <DataDisplayRow
-                    classText="industry"
-                    title="Industry Category"
-                    content="PostPaid"
-                  />
-
-                  <DataDisplayRow
-                    classText="calls"
-                    title="Number of Calls"
-                    content="1000"
+                    classText="parameters"
+                    title="Input Parameters"
+                    content="Driver's License"
                   />
 
                   <DataDisplayRow
-                    classText="notification"
-                    title="Notification Email"
+                    classText="url"
+                    title="URL"
+                    content="https://www.credequity.com/CredOcr/api/V1/VerifyFrscWithFace"
+                  />
+
+                  <DataDisplayRow
+                    classText="test-url"
+                    title="Test URL"
                     content="support@credequity.com"
                   />
 
                   <DataDisplayRow
-                    classText="balance"
-                    title="Balance"
-                    content="0 NGN"
+                    classText="documentation"
+                    title="API Documentation"
+                    content="None"
                   />
 
                   <DataDisplayRow
-                    classText="threshold"
-                    title="Threshold"
-                    content="0 NGN"
+                    classText="summary"
+                    title="Summary"
+                    content="The FRSC with Face Match verification checks the authenticity of a supplied means of identification and authenticity of the supplier through face verification"
                   />
 
-                  <DataDisplayRow
+                  {/* <DataDisplayRow
                     classText="test-token"
                     title="Test Token"
                     content="csx982Ief5saa34gd"
@@ -97,23 +98,23 @@ export const ViewInstitution = () => {
                     classText="live-token"
                     title="Live Token"
                     content="009csx982IefFGop5saa34324gd"
-                  />
+                  /> */}
 
                   <TextDisplayRow
-                    classText="documentation"
-                    title="Documentation"
+                    classText="response"
+                    title="Response"
                     content="Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
                     incididunt cillum culpa consequat. Excepteur qui ipsum
                     aliquip consequat sint."
                   />
 
-                  <TextDisplayRow
+                  {/* <TextDisplayRow
                     classText="description"
                     title="Description"
                     content="Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
                     incididunt cillum culpa consequat. Excepteur qui ipsum
                     aliquip consequat sint."
-                  />
+                  /> */}
                 </div>
               </dl>
             </div>
