@@ -36,16 +36,12 @@ export const ViewInstitution = () => {
             <div className="w-full border-t border-gray-200 mt-3">
               <dl className="mx-2">
                 <div className="flex flex-col divide-y divide-slate-200">
-                  <WideHeadingDisplayRow
-                    classText="company-number"
-                    title="CREDEQUITY"
-                    content="RC Number: 147749"
-                  />
-                  {/* <DataDisplayRow
+                  <WideHeadingDisplayRow />
+                  <DataDisplayRow
                     classText="code"
                     title="Code"
-                    content="14749"
-                  /> */}
+                    content="100602"
+                  />
                   <DataDisplayRow
                     classText="status"
                     title="Status"
