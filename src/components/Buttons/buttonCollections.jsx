@@ -167,12 +167,12 @@ export const AddUserButton = () => {
   return (
     <>
       <button
-        className="bg-buttonTwo px-4 py-3 rounded-md text-white font-medium text-sm"
+        className="bg-buttonTwo flex flex-row rounded-md text-white font-normal text-sm"
         type="button"
       >
-        <BiPlus />
+        <BiPlus className="inline-block text-3xl" />
         {' '}
-        Add New User
+        <span className="inline-block">Add New User</span>
       </button>
     </>
   );

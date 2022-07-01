@@ -164,12 +164,13 @@ const UserList = () => {
                       className="relative pl-8 py-3 rounded-lg w-full outline outline-gray-300"
                     />
                   </div>
-                  <div className="flex flex-col items-center justify-center">
+                  <div className="flex flex-row items-center justify-center">
                     <SearchButtonUser />
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
                     <AddUserButton />
                   </div>
+                  {/* <div className="add-user-button">
+                    <AddUserButton />
+                  </div> */}
                 </div>
               </div>
             </div>
