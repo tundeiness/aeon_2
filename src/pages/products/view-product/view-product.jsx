@@ -41,11 +41,11 @@ export const ViewInstitution = () => {
                     title="CREDEQUITY"
                     content="RC Number: 147749"
                   />
-                  <DataDisplayRow
+                  {/* <DataDisplayRow
                     classText="code"
                     title="Code"
                     content="14749"
-                  />
+                  /> */}
                   <DataDisplayRow
                     classText="status"
                     title="Status"

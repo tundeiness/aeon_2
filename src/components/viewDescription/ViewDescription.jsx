@@ -122,20 +122,22 @@ export const TextDisplayRow = ({ classText, title, content }) => {
   );
 };
 
-export const WideHeadingDisplayRow = ({ classText, title, content }) => {
+export const WideHeadingDisplayRow = () => {
   const test = 0;
   return (
     <>
-      <div className={`${classText}-block flex flex-row`}>
-        <div className="w-1/4 py-4 bg-headingBg">
-          <dd className="block text-md font-medium pl-10 text-white">
-            {title}
-          </dd>
-        </div>
-        <div className="w-3/4 py-4 bg-gray-100">
-          <dd className="block text-md font-normal text-black pl-12">
-            {content}
-          </dd>
+      <div className="view-product-header">
+        <div className="w-full flex flex-row justify-between py-4 bg-headingBg">
+          <div className="w-2/5">
+            <dd className="block text-md font-medium pl-10 text-white">
+              FRSC FACE MATCH SERVICE (OCR)
+            </dd>
+          </div>
+          <div className="w-1/5">
+            <dd className="block text-md font-medium pl-10 text-white">
+              some address
+            </dd>
+          </div>
         </div>
       </div>
     </>
