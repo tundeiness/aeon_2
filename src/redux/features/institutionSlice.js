@@ -27,6 +27,15 @@ export const getInstitution = createAsyncThunk(
   },
 );
 
+// const getInstitutionById = createAsyncThunk(
+//   "institution/getInstitutionById",
+//   async (institutionId) => {
+//     const response = await axios.get(`https://reqres.in/api/institution/${institutionId}`
+//     return response.data;
+//   },
+//
+// );
+
 // export const updateInstitution = createAsyncThunk(
 //   "institution/updateInstitution",
 //   async ({ id, body, title }) =>
@@ -97,6 +106,7 @@ export const createInstitution = createAsyncThunk(
       documentation,
       description,
       notificationEmail,
+      microservices,
     } = initialInstitution;
 
     const institutionData = {
@@ -111,9 +121,12 @@ export const createInstitution = createAsyncThunk(
       documentation,
       description,
       notificationEmail,
+      microservices,
     };
     try {
-      const response = await axios.post(NEW_INSTITUTION_URL, institutionData);
+      const response = await axios.post(NEW_INSTITUTION_URL, {
+        payload: institutionData,
+      });
       dispatch({ payload: institutionData });
       return response.data;
     } catch (error) {
