@@ -175,43 +175,67 @@ const UserList = () => {
             </div>
             <hr className="mb-3 mt-2" />
             <div className="flex flex-row w-full outline outline-red-500">
-              <div className="flex flex-row justify-between w-1/2 py-4 ">
-                <input
-                  placeholder="Institution Name"
-                  className="relative py-2 pl-3 w-1/2 rounded-lg border border-gray-200"
-                />
-
-                <div className="w-1/3 px-3 mb-6 md:mb-0">
-                  <select
-                    id="status-category"
-                    name="status-category"
-                    className="mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                    aria-label=".form-select-sm example"
-                  >
-                    <option selected>Status</option>
-                    <option>Active</option>
-                    <option>Inactive</option>
-                  </select>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <FilterButton />
-                </div>
+              <div className="w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="institution-name"
+                >
+                  Username
+                  <input
+                    className="block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white "
+                    id="institution-name"
+                    type="text"
+                    placeholder="Enter Username"
+                  />
+                </label>
               </div>
-
-              <div className="flex flex-row justify-end w-1/2 py-2">
-                <div className="flex flex-row  items-center space-x-4 w-4/5">
-                  <div className="search-wrapper w-full relative">
-                    <FiSearch className="absolute z-10 top-3.5 left-2 text-xl" />
-                    <input
-                      type="search"
-                      placeholder="Search"
-                      className="relative pl-8 py-3 rounded-lg w-full outline outline-gray-300"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <GoButton />
-                  </div>
-                </div>
+              <div className="w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="category"
+                >
+                  Status
+                  {' '}
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                >
+                  <option value="" label="Select Status">
+                    Select Status
+                  </option>
+                  <option value="PrePaid" label=" PrePaid">
+                    PrePaid
+                  </option>
+                  <option value="PostPaid" label="PostPaid">
+                    PostPaid
+                  </option>
+                </select>
+              </div>
+              <div className="w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="category"
+                >
+                  Select Role
+                  {' '}
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                >
+                  <option value="" label="Select Role">
+                    Select Role
+                  </option>
+                  <option value="PrePaid" label=" PrePaid">
+                    PrePaid
+                  </option>
+                  <option value="PostPaid" label="PostPaid">
+                    PostPaid
+                  </option>
+                </select>
               </div>
             </div>
 
