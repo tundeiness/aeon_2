@@ -19,6 +19,7 @@ import {
   GoButton,
   FilterButton,
   SearchButtonUser,
+  AddUserButton,
 } from '../Buttons/buttonCollections';
 import {
   getInstitution,
