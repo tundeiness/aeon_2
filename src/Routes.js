@@ -207,7 +207,10 @@ const MainRoutes = () => {
             path="institutions/edit-institution"
             element={<EditInstitutionView />}
           />
-          <Route path="view-institution" element={<ViewInstitutionView />} />
+          <Route
+            path="institutions/view-institution"
+            element={<ViewInstitutionView />}
+          />
 
           {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
           {/* <Route
