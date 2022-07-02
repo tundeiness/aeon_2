@@ -65,7 +65,7 @@ const UserList = () => {
       <tr key={datum.id}>
         <td className="text-sm leading-5 py-4 px-4">{datum.id}</td>
         <td className="py-4 uppercase text-center">{datum.name}</td>
-        <td className="py-4 pr-4 pl-12">{datum.websiteUrl}</td>
+        <td className="py-4 pr-4 pl-5">{datum.websiteUrl}</td>
         <td className="py-4 pl-8">
           {datum.status === 'Active' ? (
             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
