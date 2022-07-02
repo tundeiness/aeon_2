@@ -3,6 +3,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+// import { nanoid } from '@reduxjs/toolkit';
+// import { uuid } from 'uuidv4';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
@@ -45,6 +48,8 @@ const UserList = () => {
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
 
+  const [page, setPage] = useState(1);
+
   console.log(institution);
 
   useEffect(() => {
@@ -54,16 +59,17 @@ const UserList = () => {
   }, [dispatch, institutionStatus]);
 
   // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
+  // const id = uuidv4();
 
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
   const displayData = institution
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
-    .map((datum, _idx) => (
+    .map((datum, idx) => (
       // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
-      <tr key={datum.id}>
-        <td className="text-sm leading-5 py-4 px-4">{datum.id}</td>
+      <tr key={uuidv4()}>
+        <td className="text-sm leading-5 py-4 px-4">{idx + 1}</td>
         <td className="py-4 uppercase text-center">{datum.name}</td>
         <td className="py-4 pr-4 pl-5">{datum.websiteUrl}</td>
         <td className="py-4 pl-8">
