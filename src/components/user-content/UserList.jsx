@@ -22,11 +22,11 @@ import {
   AddUserButton,
 } from '../Buttons/buttonCollections';
 import {
-  getInstitution,
-  selectAllInstitutions,
-  getInstitutionStatus,
-  getInstitutionError,
-} from '../../redux/features/institutionSlice';
+  selectAllUsers,
+  getUserStatus,
+  getUserError,
+  getAllUsers,
+} from '../../redux/features/userSlice';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const UserList = () => {
@@ -36,9 +36,9 @@ const UserList = () => {
   // }));
 
   // const institution = useSelector((state) => state.institution.institution);
-  const institution = useSelector(selectAllInstitutions);
-  const institutionStatus = useSelector(getInstitutionStatus);
-  const institutionError = useSelector(getInstitutionError);
+  const institution = useSelector(selectAllUsers);
+  const institutionStatus = useSelector(getUserStatus);
+  const institutionError = useSelector(getUserError);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   // const [mockData, setMockData] = useState(institution[0]);
@@ -49,7 +49,7 @@ const UserList = () => {
 
   useEffect(() => {
     if (institutionStatus === 'idle') {
-      dispatch(getInstitution());
+      dispatch(getAllUsers());
     }
   }, [dispatch, institutionStatus]);
 

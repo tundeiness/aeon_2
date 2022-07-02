@@ -155,6 +155,10 @@ export const userSlice = createSlice({
   },
 });
 
+export const selectAllUsers = (state) => state.user.user;
+export const getUserStatus = (state) => state.user.status;
+export const getUserError = (state) => state.user.error;
+
 export const {
   setUserUpdate, remove, updateStart, updateSuccess, updateError,
 } = userSlice.actions;

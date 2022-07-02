@@ -33,6 +33,8 @@ module.exports = {
         headingBg: '#0F91D2',
         toggleBg: '#7f56d9',
         headingBlue: '#b5e2fa',
+        iconRed: '#FF0000',
+        iconGreen: '#12B76A',
       },
     },
   },
