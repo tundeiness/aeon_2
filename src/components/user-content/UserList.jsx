@@ -65,10 +65,7 @@ const UserList = () => {
       <tr key={datum.id}>
         <td className="text-sm leading-5 py-4 px-4">{datum.id}</td>
         <td className="py-4 uppercase text-center">{datum.name}</td>
-        <td className="py-4 pr-4 pl-12">
-          {datum.websiteUrl}
-
-        </td>
+        <td className="py-4 pr-4 pl-12">{datum.websiteUrl}</td>
         <td className="py-4 pl-8">
           {datum.status === 'Active' ? (
             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
@@ -81,9 +78,13 @@ const UserList = () => {
               {datum.status}
             </span>
           )}
-
         </td>
-        <td className="py-4 pl-20">
+        <td className="py-4 pl-12">
+          <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
+            {datum.category}
+          </span>
+        </td>
+        <td className="py-4 pl-10">
           <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
             {datum.category}
           </span>
@@ -276,13 +277,13 @@ const UserList = () => {
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500 py-4 text-center outline outline-red-500 w-56"
+                        className=" text-gray-500 py-4 text-center outline outline-red-500 w-42"
                       >
                         Institution
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500  py-4 pl-10 text-left"
+                        className=" text-gray-500  py-4 pl-14 text-left outline outline-red-500"
                       >
                         Role
                       </th>
