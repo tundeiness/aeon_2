@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
-import { BsArrowDownShort } from 'react-icons/bs';
+import { BsArrowDownShort, BsDashSquare } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import SupportButton from '../support/support';
