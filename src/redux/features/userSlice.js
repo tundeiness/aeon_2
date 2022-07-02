@@ -2,8 +2,21 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import axios from 'axios';
+
+const GET_ALL_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
+
+export const getAllUsers = createAsyncThunk(
+  'user/getUsers',
+  async () => {
+    try {
+      const response = await axios.get(GET_ALL_USER_URL);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
 
 export const getUsers = createAsyncThunk('user/getUsers', async () => fetch('http://13.59.94.46/aeon/api/v1/GetUsers').then((res) => res.json()));
 
@@ -27,16 +40,23 @@ export const updateUser = createAsyncThunk('users/update', async (user) => {
   return res.data;
 });
 
+const initialState = {
+  user: [],
+  status: 'idle',
+  error: null,
+};
+
 export const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    userInfo: {
-      name: 'john',
-      email: 'john@rocketmail.com',
-    },
-    pending: false,
-    error: false,
-  },
+  initialState,
+  // initialState: {
+  //   userInfo: {
+  //     name: 'john',
+  //     email: 'john@rocketmail.com',
+  //   },
+  //   pending: false,
+  //   error: false,
+  // },
   reducers: {
     setuserUpdate: (state, action) => {
       state.name = action.payload.name;
@@ -58,68 +78,80 @@ export const userSlice = createSlice({
     },
   },
   //  using create async thunk
-  extraReducers: {
-    [updateUser.pending]: (state) => {
-      state.pending = true;
-      state.error = false;
-    },
-    [updateUser.fulfilled]: (state, action) => {
-      state.pending = true;
-      state.userInfo = action.payload;
-    },
-    [updateUser.rejected]: (state) => {
-      state.pending = false;
-      state.error = true;
-    },
+  extraReducers(builder) {
+    builder
+      .addCase(getAllUsers.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
+    // [updateUser.pending]: (state) => {
+    //   state.pending = true;
+    //   state.error = false;
+    // },
+    // [updateUser.fulfilled]: (state, action) => {
+    //   state.pending = true;
+    //   state.userInfo = action.payload;
+    // },
+    // [updateUser.rejected]: (state) => {
+    //   state.pending = false;
+    //   state.error = true;
+    // },
 
-    [loginUser.pending]: (state) => {
-      state.pending = true;
-      state.error = false;
-    },
-    [loginUser.fulfilled]: (state, action) => {
-      state.pending = true;
-      state.userInfo = action.payload;
-    },
-    [loginUser.rejected]: (state) => {
-      state.pending = false;
-      state.error = true;
-    },
-    [getUsers.pending]: (state) => {
-      state.pending = true;
-      state.error = false;
-    },
-    [getUsers.fulfilled]: (state, action) => {
-      state.pending = true;
-      state.userInfo = action.payload;
-    },
-    [getUsers.rejected]: (state) => {
-      state.pending = false;
-      state.error = true;
-    },
-    [getActiveUsers.pending]: (state) => {
-      state.pending = true;
-      state.error = false;
-    },
-    [getActiveUsers.fulfilled]: (state, action) => {
-      state.pending = true;
-      state.userInfo = action.payload;
-    },
-    [getActiveUsers.rejected]: (state) => {
-      state.pending = false;
-      state.error = true;
-    },
-    [getInActiveUsers.pending]: (state) => {
-      state.pending = true;
-      state.error = false;
-    },
-    [getInActiveUsers.fulfilled]: (state, action) => {
-      state.pending = true;
-      state.userInfo = action.payload;
-    },
-    [getInActiveUsers.rejected]: (state) => {
-      state.pending = false;
-      state.error = true;
-    },
+    // [loginUser.pending]: (state) => {
+    //   state.pending = true;
+    //   state.error = false;
+    // },
+    // [loginUser.fulfilled]: (state, action) => {
+    //   state.pending = true;
+    //   state.userInfo = action.payload;
+    // },
+    // [loginUser.rejected]: (state) => {
+    //   state.pending = false;
+    //   state.error = true;
+    // },
+    // [getUsers.pending]: (state) => {
+    //   state.pending = true;
+    //   state.error = false;
+    // },
+    // [getUsers.fulfilled]: (state, action) => {
+    //   state.pending = true;
+    //   state.userInfo = action.payload;
+    // },
+    // [getUsers.rejected]: (state) => {
+    //   state.pending = false;
+    //   state.error = true;
+    // },
+    // [getActiveUsers.pending]: (state) => {
+    //   state.pending = true;
+    //   state.error = false;
+    // },
+    // [getActiveUsers.fulfilled]: (state, action) => {
+    //   state.pending = true;
+    //   state.userInfo = action.payload;
+    // },
+    // [getActiveUsers.rejected]: (state) => {
+    //   state.pending = false;
+    //   state.error = true;
+    // },
+    // [getInActiveUsers.pending]: (state) => {
+    //   state.pending = true;
+    //   state.error = false;
+    // },
+    // [getInActiveUsers.fulfilled]: (state, action) => {
+    //   state.pending = true;
+    //   state.userInfo = action.payload;
+    // },
+    // [getInActiveUsers.rejected]: (state) => {
+    //   state.pending = false;
+    //   state.error = true;
+    // },
   },
 });
 
