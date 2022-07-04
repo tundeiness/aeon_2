@@ -86,12 +86,12 @@ const UserList = () => {
           )}
         </td>
         <td className="py-4 pl-12">
-          <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
+          <span className="inline-block text-gray-900 py-0.5 px-0.4 w-16 rounded-lg text-center hover:cursor-pointer">
             {datum.institutionCode}
           </span>
         </td>
         <td className="py-4 pl-10">
-          <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
+          <span className="inline-block text-gray-900 py-0.5 px-0.4 w-16 rounded-lg text-center hover:cursor-pointer">
             {datum.roleCode}
           </span>
         </td>
@@ -262,25 +262,25 @@ const UserList = () => {
                     <tr>
                       <th
                         scope="col"
-                        className="w-12 text-gray-500 py-4 px-3 text-left outline outline-red-500"
+                        className="w-12 text-gray-500 py-4 px-3 text-left"
                       >
                         S/N
                       </th>
                       <th
                         scope="col"
-                        className="w-52 text-gray-500 py-4 text-center outline outline-red-500"
+                        className="w-52 text-gray-500 py-4 text-center"
                       >
                         Name
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500 py-4 pl-4 text-center outline outline-red-500 w-60"
+                        className=" text-gray-500 py-4 pl-4 text-center w-60"
                       >
                         Email
                       </th>
                       <th
                         scope="col"
-                        className=" flex items-center  text-gray-500 py-4 pl-10  outline outline-blue-500"
+                        className=" flex items-center  text-gray-500 py-4 pl-10 "
                       >
                         Status
                         {/* <span>{ArrowDownIcon.symbol}</span> */}
@@ -288,13 +288,13 @@ const UserList = () => {
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500 py-4 text-center outline outline-red-500 w-42"
+                        className=" text-gray-500 py-4 text-center w-42"
                       >
                         Institution
                       </th>
                       <th
                         scope="col"
-                        className=" text-gray-500  py-4 pl-14 text-left outline outline-red-500"
+                        className=" text-gray-500  py-4 pl-14 text-left"
                       >
                         Role
                       </th>
