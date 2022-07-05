@@ -221,9 +221,11 @@ const MainRoutes = () => {
           /> */}
           {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
 
+          <Route path="users/create-user" element={<CreateUserView />} />
+
           <Route
-            path="users/create-user"
-            element={<CreateUserView />}
+            path="users/edit-user"
+            element={<EditUserView />}
           />
 
           <Route
