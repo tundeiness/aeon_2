@@ -32,6 +32,7 @@ import {
   getUserError,
   getAllUsers,
 } from '../../redux/features/userSlice';
+import './utilizationlist.css';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const UtilizationList = () => {
@@ -283,10 +284,10 @@ const UtilizationList = () => {
             </div> */}
 
             <div className="bg-white p-6 rounded-lg shadow-xs mb-10 border border-gray-200">
-              <h2 className="text-base font-medium mb-2 text-gray-800">
+              <h2 className="text-base font-medium mb-4 text-gray-800">
                 TOTAL WALLET BALANCE
               </h2>
-              <p className="text-blue-700 font-semibold text-4xl">0 NGN</p>
+              <p className="text-buttonTwo font-semibold text-4xl">0 NGN</p>
             </div>
 
             <div className="border border-gray-200 rounded-lg">
@@ -298,44 +299,44 @@ const UtilizationList = () => {
                         scope="col"
                         className="w-12 text-gray-500 py-4 px-3 text-left"
                       >
-                        S/N
+                        Date
                       </th>
                       <th
                         scope="col"
                         className="w-52 text-gray-500 py-4 text-center"
                       >
-                        Name
+                        Successful Calls
                       </th>
                       <th
                         scope="col"
                         className=" text-gray-500 py-4 pl-4 text-center w-60"
                       >
-                        Email
+                        Costs (#)
                       </th>
                       <th
                         scope="col"
                         className=" flex items-center  text-gray-500 py-4 pl-10 "
                       >
-                        Status
+                        Payments (#)
                         {/* <span>{ArrowDownIcon.symbol}</span> */}
-                        <BsArrowDownShort className="inline-block" />
+                        {/* <BsArrowDownShort className="inline-block" /> */}
                       </th>
                       <th
                         scope="col"
                         className=" text-gray-500 py-4 text-center w-42"
                       >
-                        Institution
+                        Net(#)
                       </th>
                       <th
                         scope="col"
                         className=" text-gray-500  py-4 pl-14 text-left"
                       >
-                        Role
+                        Action
                       </th>
-                      <th
+                      {/* <th
                         scope="col"
                         className=" text-gray-500 py-4 text-left"
-                      />
+                      /> */}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
