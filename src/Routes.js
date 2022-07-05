@@ -14,6 +14,7 @@ import PageLoader from './components/pageLoader/pageLoader';
 // import { ProtectedLayout } from './components/protectedLayout/ProtectedLayout';
 import MainLayout from './pages/main-layout';
 import { useAuth } from './components/auth';
+import CEID from './pages/ceid/CEID';
 
 // const DashboardView = lazy(() => import('./Views/dashboard/dashboard'));
 // const SidebarView = lazy(() => import('./components/sideBarNav/sidebar-nav'));
@@ -233,6 +234,7 @@ const MainRoutes = () => {
           <Route path="products" element={<ProductView />} />
 
           <Route path="users" element={<AllUserView />} />
+          <Route path="ce-id" element={<CEID />} />
         </Route>
         {/* <Route
             path="institutions/create-institution"
