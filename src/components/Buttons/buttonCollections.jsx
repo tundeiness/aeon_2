@@ -176,6 +176,34 @@ export const AddUserButton = () => {
     </>
   );
 };
+
+export const SearchButtonUtilization = () => {
+  const test = 0;
+  return (
+    <>
+      <button
+        className="bg-buttonTwo mr-3 px-14 py-3 rounded-md text-white font-medium text-sm"
+        type="button"
+      >
+        Search
+      </button>
+    </>
+  );
+};
+
+export const ExportButton = () => {
+  const test = 0;
+  return (
+    <>
+      <button
+        className="bg-headingBg ml-3 px-14 py-3 rounded-md text-white font-medium text-sm"
+        type="button"
+      >
+        Export
+      </button>
+    </>
+  );
+};
 AuthButton.propTypes = {
   // buttonType: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,

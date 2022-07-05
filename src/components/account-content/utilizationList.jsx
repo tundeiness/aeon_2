@@ -23,6 +23,8 @@ import {
   FilterButton,
   SearchButtonUser,
   AddUserButton,
+  SearchButtonUtilization,
+  ExportButton,
 } from '../Buttons/buttonCollections';
 import {
   selectAllUsers,
@@ -159,18 +161,61 @@ const UtilizationList = () => {
     <>
       <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
-          <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
+          <div className="utilization-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between mb-2">
-              <h1 className="institution-header mb-3 font-medium text-3xl">
-                All Users
+              <h1 className="utilization-header mb-3 font-medium text-3xl">
+                Daily Utilization
                 {' '}
               </h1>
               <SupportButton />
             </header>
 
             <hr className="mb-12" />
-            <div className="flex flex-row justify-end w-full">
-              <div className="w-3/5">
+            <div className="flex flex-row justify-between w-full">
+              <div className="w-1/3">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="balance"
+                >
+                  Balance as at
+                  <input
+                    className="block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white "
+                    id="balance"
+                    type="text"
+                    placeholder="Day"
+                  />
+                </label>
+              </div>
+              <div className="w-1/3">
+                {' '}
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="category"
+                >
+                  Institutions
+                  {' '}
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                >
+                  <option value="" label="" />
+                  <option value="PrePaid" label=" PrePaid">
+                    PrePaid
+                  </option>
+                  <option value="PostPaid" label="PostPaid">
+                    PostPaid
+                  </option>
+                </select>
+              </div>
+              <div className="w-1/3 outline outline-red-500">
+                <div className=" flex flex-row justify-around outline outline-blue-500 mt-7">
+                  <SearchButtonUtilization />
+                  <ExportButton />
+                </div>
+              </div>
+              {/* <div className="w-3/5">
                 <div className="flex flex-row justify-around">
                   <div className="search-wrapper w-3/5 relative my-2">
                     <FiSearch className="absolute z-10 top-3.5 left-2 text-xl" />
@@ -187,7 +232,7 @@ const UtilizationList = () => {
                     <AddUserButton />
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <hr className="mb-3 mt-2" />
             <div className="flex flex-row w-full mb-4">
