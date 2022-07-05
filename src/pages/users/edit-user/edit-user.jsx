@@ -155,10 +155,10 @@ const CreateUser = () => {
       {/* <SidebarNav /> */}
       <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
-          <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
+          <div className="edit-user-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between">
-              <h1 className="create-institution-header font-medium text-3xl">
-                Create User
+              <h1 className="edit-user-header font-medium text-3xl">
+                Edit User
                 {' '}
               </h1>
               <SupportButton />
