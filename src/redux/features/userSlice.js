@@ -131,6 +131,10 @@ export const userSlice = createSlice({
       .addCase(getAllUsers.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(createUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
       });
     // [updateUser.pending]: (state) => {
     //   state.pending = true;
