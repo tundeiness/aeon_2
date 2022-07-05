@@ -49,13 +49,13 @@ const DeactivateUserModal = ({ isOpen, handleClose }) => {
                 type="button"
                 onClick={() => handleClose()}
               >
-                Cancel
+                NO
               </button>
               <button
                 className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
               >
-                Deactivate
+                YES
               </button>
             </div>
           </div>
