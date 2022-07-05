@@ -134,7 +134,11 @@ export const userSlice = createSlice({
       })
       .addCase(createUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.user = action.payload;
+
+        const user = action.payload;
+        // state.entities[institution.id] = institution;
+        state.user[user.id] = user;
+        state.user.push(user);
       });
     // [updateUser.pending]: (state) => {
     //   state.pending = true;
