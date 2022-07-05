@@ -73,12 +73,12 @@ const UtilizationList = () => {
     .map((datum, idx) => (
       // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
       <tr key={uuidv4()}>
-        <td className="text-sm leading-5 py-4 px-4">{idx + 1}</td>
+        <td className="text-sm leading-5 py-4 px-4 text-left">{idx + 1}</td>
         <td className="py-4 uppercase text-center">{`${datum.lastname} ${datum.othernames}`}</td>
         <td className="py-4 pr-4 pl-5">{datum.email}</td>
-        <td className="py-4 pl-8">
+        <td className="py-4 px-16 inline-block">
           {datum.status === 'Active' ? (
-            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
+            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white text-center">
               <GoPrimitiveDot className="text-white" />
               {datum.status}
             </span>
@@ -94,7 +94,7 @@ const UtilizationList = () => {
             {datum.institutionCode}
           </span>
         </td>
-        <td className="py-4 pl-10">
+        <td className="inline-block py-4 px-20">
           <span className="flex justify-between">
             <button type="button">
               <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
@@ -296,45 +296,27 @@ const UtilizationList = () => {
 
             <div className="border border-gray-200 rounded-lg">
               <div className="name-list">
-                <table className="table-fixed w-full text-xs">
+                <table className="table-fixed w-full text-xs leading-normal">
                   <thead className=" bg-gray-50 text-xs capitalize">
                     <tr>
-                      <th
-                        scope="col"
-                        className="w-12 text-gray-500 py-4 px-3 text-left"
-                      >
+                      <th className="text-gray-500 py-4 px-5 text-left tracking-wider">
                         Date
                       </th>
-                      <th
-                        scope="col"
-                        className="w-52 text-gray-500 py-4 text-center"
-                      >
+                      <th className="text-gray-500 py-4 px-5 text-center tracking-wider">
                         Successful Calls
                       </th>
-                      <th
-                        scope="col"
-                        className=" text-gray-500 py-4 pl-4 text-center w-60"
-                      >
+                      <th className=" text-gray-500 py-4 px-5 text-center tracking-wider">
                         Costs (#)
                       </th>
-                      <th
-                        scope="col"
-                        className=" flex items-center  text-gray-500 py-4 pl-10 "
-                      >
+                      <th className="text-gray-500 py-4 px-10 tracking-wider ">
                         Payments (#)
                         {/* <span>{ArrowDownIcon.symbol}</span> */}
                         {/* <BsArrowDownShort className="inline-block" /> */}
                       </th>
-                      <th
-                        scope="col"
-                        className=" text-gray-500 py-4 text-center w-42"
-                      >
+                      <th className=" text-gray-500 py-4 px-6 text-center tracking-wider">
                         Net(#)
                       </th>
-                      <th
-                        scope="col"
-                        className=" text-gray-500  py-4 pl-14 text-left"
-                      >
+                      <th className=" text-gray-500  py-4 px-6 text-center tracking-wider">
                         Action
                       </th>
                       {/* <th
