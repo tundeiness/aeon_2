@@ -234,12 +234,13 @@ const MainRoutes = () => {
           <Route path="products" element={<ProductView />} />
 
           <Route path="users" element={<AllUserView />} />
+
+          <Route
+            path="accounts/daily-utilization"
+            element={<AccountUtilizationView />}
+          />
         </Route>
 
-        <Route
-          path="accounts/daily-utilization"
-          element={<AccountUtilizationView />}
-        />
         {/* <Route
             path="institutions/create-institution"
             element={<CreateInstitutionView />}

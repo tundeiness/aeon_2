@@ -5,7 +5,9 @@ import UtilizationList from '../../components/account-content/utilizationList';
 const DailyUtilization = () => {
   const test = 0;
   return (
-    <div>{UtilizationList}</div>
+    <div>
+      <UtilizationList />
+    </div>
   );
 };
 
