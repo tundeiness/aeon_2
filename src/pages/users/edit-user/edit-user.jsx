@@ -13,9 +13,11 @@ import { nanoid } from '@reduxjs/toolkit';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 import {
-  createInstitution,
-  selectAllInstitutions,
-} from '../../../redux/features/institutionSlice';
+  selectAllUsers,
+  getUserStatus,
+  getUserError,
+  getAllUsers,
+} from '../../../redux/features/userSlice';
 // import './createInstituiton.css';
 
 const CreateUser = () => {
@@ -25,7 +27,7 @@ const CreateUser = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const institutions = useSelector(selectAllInstitutions);
+  const allUsers = useSelector(selectAllUsers);
 
   // const handleCreateInstitution = (value) => {
   //   dispatch(createInstitution({ value }));
@@ -354,7 +356,7 @@ const CreateUser = () => {
                       // onClick={handleSaveInstitution()}
                       onClick={handleSubmit}
                     >
-                      {formic.isSubmitting ? 'Please wait...' : 'Create User'}
+                      {formic.isSubmitting ? 'Please wait...' : 'Update User'}
                     </button>
                     <button
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"

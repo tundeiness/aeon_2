@@ -96,7 +96,7 @@ export const deleteInstitution = createAsyncThunk(
 // const token = thunkAPI.getState().auth.user.token;
 export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
-  async (initialInstitution, thunkAPI) => {
+  async ({ initialInstitution }, thunkAPI) => {
     const {
       id,
       name,

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/prefer-default-export */
@@ -5,12 +6,52 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const GET_ALL_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
+const NEW_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
 
 export const getAllUsers = createAsyncThunk(
   'user/getUsers',
   async () => {
     try {
       const response = await axios.get(GET_ALL_USER_URL);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
+export const createUser = createAsyncThunk(
+  'user/createUser',
+  async ({ userData }, thunkAPI) => {
+    const {
+      firstName, lastName, phone, institution, email, role,
+    } = userData;
+
+    const newUserData = {
+      firstName,
+      lastName,
+      phone,
+      institution,
+      email,
+      role,
+    };
+
+    // const token = thunkAPI.getState().auth.user.token;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await axios.post(
+        NEW_USER_URL,
+        {
+          user: newUserData,
+        },
+        config,
+      );
       return response.data;
     } catch (error) {
       return error.message;
