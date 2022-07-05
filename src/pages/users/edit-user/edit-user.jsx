@@ -17,6 +17,7 @@ import {
   getUserStatus,
   getUserError,
   getAllUsers,
+  createUser,
 } from '../../../redux/features/userSlice';
 // import './createInstituiton.css';
 
@@ -82,7 +83,7 @@ const CreateUser = () => {
   const handleSubmit = () => {
     console.log('formic.values', formic.values);
     dispatch(
-      createInstitution({
+      createUser({
         id: nanoid(),
         ...formic.values,
       }),
