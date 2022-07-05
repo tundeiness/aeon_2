@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const GET_ALL_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
 const NEW_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
+const UPDATE_USER_URL = 'http://13.59.94.46/aeon/api/v1/EditUser';
 
 export const getAllUsers = createAsyncThunk(
   'user/getUsers',
@@ -59,6 +60,20 @@ export const createUser = createAsyncThunk(
   },
 );
 
+export const updateUser = createAsyncThunk(
+  'user/updateUser',
+  async (values, { rejectWithValue }) => {
+    const { id, ...fields } = values;
+    try {
+      const response = await axios.put(`${UPDATE_USER_URL}${id}`, fields);
+      return response.data;
+    } catch (error) {
+      // return error.message;
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 export const getUsers = createAsyncThunk('user/getUsers', async () => fetch('http://13.59.94.46/aeon/api/v1/GetUsers').then((res) => res.json()));
 
 export const getActiveUsers = createAsyncThunk('user/getActiveUsers', async () => fetch('http://13.59.94.46/aeon/api/v1/GetActiveUser').then((res) => res.json()));
@@ -73,13 +88,13 @@ export const loginUser = createAsyncThunk('user/login', async (user) => {
   return res.data;
 });
 
-export const updateUser = createAsyncThunk('users/update', async (user) => {
-  const res = await axios.post(
-    'http://13.59.94.46/aeon/api/v1/EditUser',
-    user,
-  );
-  return res.data;
-});
+// export const updateUser = createAsyncThunk('users/update', async (user) => {
+//   const res = await axios.post(
+//     'http://13.59.94.46/aeon/api/v1/EditUser',
+//     user,
+//   );
+//   return res.data;
+// });
 
 const initialState = {
   user: [],
@@ -137,6 +152,11 @@ export const userSlice = createSlice({
 
         const user = action.payload;
         // state.entities[institution.id] = institution;
+        state.user[user.id] = user;
+        state.user.push(user);
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
         state.user[user.id] = user;
         state.user.push(user);
       });
