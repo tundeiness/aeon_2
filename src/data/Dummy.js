@@ -18,6 +18,7 @@ import { MdLogout, MdOutlineIndeterminateCheckBox } from 'react-icons/md';
 import { AiOutlineIdcard } from 'react-icons/ai';
 import { IoWarningOutline } from 'react-icons/io5';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
+import { HiOutlineEye } from 'react-icons/hi';
 
 export const Dummy = () => {
   const test = 0;
@@ -82,6 +83,13 @@ export const CreateIcon = [{
   title: 'Create',
   symbol: <FiEdit2 />,
 }];
+
+export const EyeIcon = [
+  {
+    title: 'View',
+    symbol: <HiOutlineEye />,
+  },
+];
 
 export const iconArray = [
   ['dashboard', <BiHomeAlt key="0" />],
