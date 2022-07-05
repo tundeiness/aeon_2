@@ -174,6 +174,7 @@ const EditInstitutionView = lazy(() => import('./pages/institutions/update-insti
 const ViewProductView = lazy(() => import('./pages/products/view-product/view-product'));
 const AllUserView = lazy(() => import('./pages/users/User'));
 const CreateUserView = lazy(() => import('./pages/users/create-user/create-user'));
+const EditUserView = lazy(() => import('./pages/users/edit-user/edit-user'));
 
 const MainRoutes = () => {
   // const location = useLocation();
