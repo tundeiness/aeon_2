@@ -171,22 +171,22 @@ const UtilizationList = () => {
             </header>
 
             <hr className="mb-12" />
-            <div className="flex flex-row justify-between w-full">
-              <div className="w-1/3">
+            <div className="flex flex-row justify-between w-full mb-6">
+              <div className="w-1/3 pr-6">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="balance"
                 >
                   Balance as at
                   <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white "
+                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
                     id="balance"
                     type="text"
                     placeholder="Day"
                   />
                 </label>
               </div>
-              <div className="w-1/3">
+              <div className="w-1/3 pl-6 pr-2">
                 {' '}
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
@@ -209,32 +209,14 @@ const UtilizationList = () => {
                   </option>
                 </select>
               </div>
-              <div className="w-1/3 outline outline-red-500">
-                <div className=" flex flex-row justify-around outline outline-blue-500 mt-7">
+              <div className="w-1/3 pl-4">
+                <div className=" flex flex-row justify-around mt-7">
                   <SearchButtonUtilization />
                   <ExportButton />
                 </div>
               </div>
-              {/* <div className="w-3/5">
-                <div className="flex flex-row justify-around">
-                  <div className="search-wrapper w-3/5 relative my-2">
-                    <FiSearch className="absolute z-10 top-3.5 left-2 text-xl" />
-                    <input
-                      type="search"
-                      placeholder="Search"
-                      className="relative pl-8 py-3 rounded-lg w-full outline outline-gray-300"
-                    />
-                  </div>
-                  <div className="flex flex-row items-center justify-center">
-                    <SearchButtonUser />
-                  </div>
-                  <div className="add-user-button w-auto">
-                    <AddUserButton />
-                  </div>
-                </div>
-              </div> */}
             </div>
-            <hr className="mb-3 mt-2" />
+            {/* <hr className="mb-3 mt-2" />
             <div className="flex flex-row w-full mb-4">
               <div className="w-1/3 px-1 mb-6 md:mb-0">
                 <label
@@ -298,6 +280,13 @@ const UtilizationList = () => {
                   </option>
                 </select>
               </div>
+            </div> */}
+
+            <div className="bg-white p-6 rounded-lg shadow-xs mb-10 border border-gray-200">
+              <h2 className="text-base font-medium mb-2 text-gray-800">
+                TOTAL WALLET BALANCE
+              </h2>
+              <p className="text-blue-700 font-semibold text-4xl">0 NGN</p>
             </div>
 
             <div className="border border-gray-200 rounded-lg">
