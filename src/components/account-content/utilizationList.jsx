@@ -10,6 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
 import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
+import { HiOutlineEye } from 'react-icons/hi';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import SupportButton from '../support/support';
@@ -94,16 +95,11 @@ const UtilizationList = () => {
           </span>
         </td>
         <td className="py-4 pl-10">
-          <span className="inline-block text-gray-900 py-0.5 px-0.4 w-16 rounded-lg text-center hover:cursor-pointer">
-            {datum.roleCode}
-          </span>
-        </td>
-        <td className="py-4 px-6">
           <span className="flex justify-between">
             <button type="button">
-              <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+              <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
-            {datum.status === 'Active' ? (
+            {/* {datum.status === 'Active' ? (
               <span className="flex items-center">
                 <BsDashSquare className="text-iconRed w-4 h-4 font-bold" />
               </span>
@@ -114,9 +110,17 @@ const UtilizationList = () => {
             )}
             <button type="button">
               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-            </button>
+            </button> */}
           </span>
         </td>
+        {/* <td className="py-4 px-6">
+          <span className="flex justify-between">
+            <button type="button">
+              <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+            </button>
+
+          </span>
+        </td> */}
       </tr>
     ));
 
