@@ -177,6 +177,7 @@ const CreateUserView = lazy(() => import('./pages/users/create-user/create-user'
 const EditUserView = lazy(() => import('./pages/users/edit-user/edit-user'));
 const AccountUtilizationView = lazy(() => import('./pages/accounts/daily-utilization'));
 const TransactionsReportView = lazy(() => import('./pages/reports/transactions'));
+const ApiReportView = lazy(() => import('./pages/reports/transactions'));
 
 const MainRoutes = () => {
   // const location = useLocation();
