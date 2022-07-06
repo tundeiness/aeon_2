@@ -176,6 +176,7 @@ const AllUserView = lazy(() => import('./pages/users/User'));
 const CreateUserView = lazy(() => import('./pages/users/create-user/create-user'));
 const EditUserView = lazy(() => import('./pages/users/edit-user/edit-user'));
 const AccountUtilizationView = lazy(() => import('./pages/accounts/daily-utilization'));
+const TransactionsReportView = lazy(() => import('./pages/reports/transactions'));
 
 const MainRoutes = () => {
   // const location = useLocation();
@@ -221,23 +222,23 @@ const MainRoutes = () => {
             element={<DeleteInstitutionView />}
           /> */}
           {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
-
           <Route path="users/create-user" element={<CreateUserView />} />
-
           <Route path="users/edit-user" element={<EditUserView />} />
-
           <Route
             path="products/create-product"
             element={<CreateProductView />}
           />
           <Route path="products/view-product" element={<ViewProductView />} />
           <Route path="products" element={<ProductView />} />
-
           <Route path="users" element={<AllUserView />} />
-
           <Route
             path="accounts/daily-utilization"
             element={<AccountUtilizationView />}
+          />
+
+          <Route
+            path="reports/transactions"
+            element={<TransactionsReportView />}
           />
         </Route>
 
