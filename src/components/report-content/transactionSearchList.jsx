@@ -29,6 +29,7 @@ import './transactionsearchlist.css';
 
 const TransactionSearchList = () => {
   const { activeModal, setActiveModal } = useStateContext();
+  const [query, setQuery] = useState('');
   // const { loading, institution } = useSelector((state) => ({
   //   ...state.institution,
   // }));
@@ -52,6 +53,18 @@ const TransactionSearchList = () => {
       dispatch(getAllUsers());
     }
   }, [dispatch, institutionStatus]);
+
+  const keys = ['name', 'date', 'email'];
+
+  const handleSearch = (val) => {
+    setQuery(val);
+    return institution.filter(
+      (item) => keys.some((key) => item[key].toLowerCase().includes(query)),
+      // item.name.toLowerCase().includes(query)
+      //   || item.date.toLowerCase().includes(query)
+      //   || item.email.toLowerCase().includes(query),
+    );
+  };
 
   // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
   // const id = uuidv4();
@@ -156,12 +169,12 @@ const TransactionSearchList = () => {
               <div className="w-1/3 pr-6">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="balance"
+                  htmlFor="institution"
                 >
                   Institution
                   <input
                     className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="balance"
+                    id="institution"
                     type="text"
                   />
                 </label>
@@ -169,12 +182,12 @@ const TransactionSearchList = () => {
               <div className="w-1/3 pr-6">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="balance"
+                  htmlFor="transaction"
                 >
                   Transaction Reference
                   <input
                     className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="balance"
+                    id="transaction"
                     type="text"
                   />
                 </label>
