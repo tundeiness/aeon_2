@@ -26,7 +26,7 @@ import {
   getUserError,
   getAllUsers,
 } from '../../../redux/features/userSlice';
-import './transactionsearchlist.css';
+// import './transactionsearchlist.css';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const TransactionSearchList = () => {
@@ -40,9 +40,6 @@ const TransactionSearchList = () => {
 
   const formic = useFormik({
     initialValues: {
-      institution: '',
-      transaction: '',
-      apiName: '',
       startDate: '',
       endDate: '',
     },
@@ -179,7 +176,7 @@ const TransactionSearchList = () => {
           <div className="utilization-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
             <header className="flex justify-between mb-2">
               <h1 className="utilization-header mb-3 font-medium text-3xl">
-                Transactions
+                API Usage
                 {' '}
               </h1>
               <SupportButton />
@@ -187,68 +184,6 @@ const TransactionSearchList = () => {
 
             <hr className="mb-12" />
             <form className="w-full" onSubmit={formic.handleSubmit}>
-              <div className="flex flex-row justify-between w-full mb-6">
-                <div className="w-1/3 pr-6">
-                  <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="institution"
-                  >
-                    Institution
-                    <input
-                      className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                      id="institution"
-                      type="text"
-                      onChange={formic.handleChange}
-                      onBlur={formic.handleBlur}
-                      value={formic.values.institution}
-                      {...getFieldProps('institution')}
-                    />
-                  </label>
-                </div>
-                <div className="w-1/3 pr-6">
-                  <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="transaction"
-                  >
-                    Transaction Reference
-                    <input
-                      className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                      id="transaction"
-                      type="text"
-                      onChange={formic.handleChange}
-                      onBlur={formic.handleBlur}
-                      value={formic.values.transaction}
-                      {...getFieldProps('transaction')}
-                    />
-                  </label>
-                </div>
-                <div className="w-1/3 pr-2">
-                  {' '}
-                  <label
-                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                    htmlFor="apiName"
-                  >
-                    API Name
-                    {' '}
-                  </label>
-                  <select
-                    id="apiName"
-                    name="apiName"
-                    className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                    value={formic.values.apiName}
-                    onChange={formic.handleChange}
-                    {...getFieldProps('apiName')}
-                  >
-                    <option value="" label="" />
-                    <option value="PrePaid" label=" PrePaid">
-                      PrePaid
-                    </option>
-                    <option value="PostPaid" label="PostPaid">
-                      PostPaid
-                    </option>
-                  </select>
-                </div>
-              </div>
 
               <div className="flex flex-row justify-between w-full mb-6">
                 <div className="w-1/3 pr-6 relative">
