@@ -27,6 +27,13 @@ export const Dummy = () => {
   );
 };
 
+export const SearchElement = () => (
+  <>
+    {' '}
+    <FiSearch />
+  </>
+);
+
 export const DangerIcon = {
   title: 'Danger',
   symbol: <CgDanger />,
