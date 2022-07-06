@@ -59,61 +59,45 @@ const TransactionSearchList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = institution
-    .slice(dataPageVisited, dataPageVisited + dataPerPage)
-    .map((datum, idx) => (
+  const displayData = institution.length === 0 ? (<NoData />) : (
+
+    institution
+      .slice(dataPageVisited, dataPageVisited + dataPerPage)
+      .map((datum, idx) => (
       // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
-      <tr key={uuidv4()}>
-        <td className="text-sm leading-5 py-4 px-4 text-left">{idx + 1}</td>
-        <td className="py-4 uppercase text-center">{`${datum.lastname} ${datum.othernames}`}</td>
-        <td className="py-4 pr-4 pl-5">{datum.email}</td>
-        <td className="py-4 px-16 inline-block">
-          {datum.status === 'Active' ? (
-            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white text-center">
-              <GoPrimitiveDot className="text-white" />
-              {datum.status}
-            </span>
-          ) : (
-            <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
-              <GoPrimitiveDot className="text-white" />
-              {datum.status}
-            </span>
-          )}
-        </td>
-        <td className="py-4 pl-12">
-          <span className="inline-block text-gray-900 py-0.5 px-0.4 w-16 rounded-lg text-center hover:cursor-pointer">
-            {datum.institutionCode}
-          </span>
-        </td>
-        <td className="inline-block py-4 px-20">
-          <span className="flex justify-between">
-            <button type="button">
-              <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-            </button>
-            {/* {datum.status === 'Active' ? (
-              <span className="flex items-center">
-                <BsDashSquare className="text-iconRed w-4 h-4 font-bold" />
+        <tr key={uuidv4()}>
+          <td className="text-sm leading-5 py-4 px-4 text-left">{idx + 1}</td>
+          <td className="py-4 uppercase text-center">{`${datum.lastname} ${datum.othernames}`}</td>
+          <td className="py-4 pr-4 pl-5">{datum.email}</td>
+          <td className="py-4 px-16 inline-block">
+            {datum.status === 'Active' ? (
+              <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white text-center">
+                <GoPrimitiveDot className="text-white" />
+                {datum.status}
               </span>
             ) : (
-              <span className="flex items-center">
-                <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+              <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
+                <GoPrimitiveDot className="text-white" />
+                {datum.status}
               </span>
             )}
-            <button type="button">
-              <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-            </button> */}
-          </span>
-        </td>
-        {/* <td className="py-4 px-6">
-          <span className="flex justify-between">
-            <button type="button">
-              <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-            </button>
+          </td>
+          <td className="py-4 pl-12">
+            <span className="inline-block text-gray-900 py-0.5 px-0.4 w-16 rounded-lg text-center hover:cursor-pointer">
+              {datum.institutionCode}
+            </span>
+          </td>
+          <td className="inline-block py-4 px-20">
+            <span className="flex justify-between">
+              <button type="button">
+                <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+              </button>
 
-          </span>
-        </td> */}
-      </tr>
-    ));
+            </span>
+          </td>
+        </tr>
+      ))
+  );
 
   const pagingCount = Math.ceil(institution?.length / dataPerPage);
 
@@ -260,13 +244,6 @@ const TransactionSearchList = () => {
                   <ExportButton />
                 </div>
               </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-xs mb-10 border border-gray-200">
-              <h2 className="text-base font-medium mb-4 text-gray-800">
-                TOTAL WALLET BALANCE
-              </h2>
-              <p className="text-buttonTwo font-semibold text-4xl">0 NGN</p>
             </div>
 
             <div className="border border-gray-200 rounded-lg">
