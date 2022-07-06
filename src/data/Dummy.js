@@ -15,7 +15,7 @@ import { RiDeleteBinLine, RiCheckboxIndeterminateLine } from 'react-icons/ri';
 import { BiHomeAlt, BiFile, BiPlus } from 'react-icons/bi';
 import { ImStack } from 'react-icons/im';
 import { MdLogout, MdOutlineIndeterminateCheckBox } from 'react-icons/md';
-import { AiOutlineIdcard } from 'react-icons/ai';
+import { AiOutlineIdcard, AiOutlineCalendar } from 'react-icons/ai';
 import { IoWarningOutline } from 'react-icons/io5';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { HiOutlineEye } from 'react-icons/hi';
@@ -31,6 +31,13 @@ export const SearchElement = () => (
   <>
     {' '}
     <FiSearch />
+  </>
+);
+
+export const CalendarElement = () => (
+  <>
+    {' '}
+    <AiOutlineCalendar />
   </>
 );
 
