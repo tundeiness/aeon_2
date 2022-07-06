@@ -24,10 +24,10 @@ import {
   getUserError,
   getAllUsers,
 } from '../../redux/features/userSlice';
-import './reportlist.css';
+import './transactionsearchlist.css';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
-const ReportList = () => {
+const TransactionSearchList = () => {
   const { activeModal, setActiveModal } = useStateContext();
   // const { loading, institution } = useSelector((state) => ({
   //   ...state.institution,
@@ -284,4 +284,4 @@ const ReportList = () => {
   );
 };
 
-export default ReportList;
+export default TransactionSearchList;

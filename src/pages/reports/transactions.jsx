@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import ReportList from '../../components/report-content/reportList';
+import TransactionSearchList from '../../components/report-content/transactionSearchList';
 
-const Reports = () => {
+const Transactions = () => {
   const test = 0;
   return (
     <div>
-      <ReportList />
+      <TransactionSearchList />
     </div>
   );
 };
 
-export default Reports;
+export default Transactions;
