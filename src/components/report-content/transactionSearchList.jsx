@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
@@ -9,6 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { HiOutlineEye } from 'react-icons/hi';
 import { GoPrimitiveDot } from 'react-icons/go';
+import { useFormik, ErrorMessage } from 'formik';
 import { CalendarElement } from '../../data/Dummy';
 import NoData from '../Nodata/NoData';
 import SupportButton from '../support/support';
@@ -35,6 +37,26 @@ const TransactionSearchList = () => {
   // }));
 
   // const institution = useSelector((state) => state.institution.institution);
+
+  const formic = useFormik({
+    initialValues: {
+      institution: '',
+      transaction: '',
+      apiName: '',
+      startDate: '',
+      endDate: '',
+    },
+    onSubmit: (values, { resetForm }) => {
+      // alert(
+      //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
+      // );
+      // console.log(values);
+      resetForm(values);
+    },
+  });
+
+  const { getFieldProps, setSubmitting } = formic;
+
   const institution = useSelector(selectAllUsers);
   const institutionStatus = useSelector(getUserStatus);
   const institutionError = useSelector(getUserError);
@@ -164,100 +186,120 @@ const TransactionSearchList = () => {
             </header>
 
             <hr className="mb-12" />
-
-            <div className="flex flex-row justify-between w-full mb-6">
-              <div className="w-1/3 pr-6">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="institution"
-                >
-                  Institution
-                  <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="institution"
-                    type="text"
-                  />
-                </label>
-              </div>
-              <div className="w-1/3 pr-6">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="transaction"
-                >
-                  Transaction Reference
-                  <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="transaction"
-                    type="text"
-                  />
-                </label>
-              </div>
-              <div className="w-1/3 pr-2">
-                {' '}
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  API Name
+            <form className="w-full" onSubmit={formic.handleSubmit}>
+              <div className="flex flex-row justify-between w-full mb-6">
+                <div className="w-1/3 pr-6">
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="institution"
+                  >
+                    Institution
+                    <input
+                      className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
+                      id="institution"
+                      type="text"
+                      onChange={formic.handleChange}
+                      onBlur={formic.handleBlur}
+                      value={formic.values.institution}
+                      {...getFieldProps('institution')}
+                    />
+                  </label>
+                </div>
+                <div className="w-1/3 pr-6">
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="transaction"
+                  >
+                    Transaction Reference
+                    <input
+                      className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
+                      id="transaction"
+                      type="text"
+                      onChange={formic.handleChange}
+                      onBlur={formic.handleBlur}
+                      value={formic.values.transaction}
+                      {...getFieldProps('transaction')}
+                    />
+                  </label>
+                </div>
+                <div className="w-1/3 pr-2">
                   {' '}
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option value="" label="" />
-                  <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option>
-                </select>
-              </div>
-            </div>
-
-            <div className="flex flex-row justify-between w-full mb-6">
-              <div className="w-1/3 pr-6 relative">
-                <CalendarElement />
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="start_date"
-                >
-                  Start Date
-                  <input
-                    className="relative block w-full text-gray-700 border rounded-lg py-3 px-10 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="start_date"
-                    type="text"
-                    placeholder="Start Date"
-                  />
-                </label>
-              </div>
-
-              <div className="w-1/3 pr-6 relative">
-                <CalendarElement />
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="balance"
-                >
-                  End Date
-                  {' '}
-                  <input
-                    className="relative block w-full text-gray-700 border rounded-lg py-3 px-10 mt-2 leading-tight focus:outline-none focus:bg-white"
-                    id="balance"
-                    type="text"
-                    placeholder="End Date"
-                  />
-                </label>
-              </div>
-
-              <div className="w-1/3">
-                <div className=" flex flex-row justify-around mt-7">
-                  <SearchButtonUtilization />
-                  <ExportButton />
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="apiName"
+                  >
+                    API Name
+                    {' '}
+                  </label>
+                  <select
+                    id="apiName"
+                    name="apiName"
+                    className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                    value={formic.values.apiName}
+                    onChange={formic.handleChange}
+                    {...getFieldProps('apiName')}
+                  >
+                    <option value="" label="" />
+                    <option value="PrePaid" label=" PrePaid">
+                      PrePaid
+                    </option>
+                    <option value="PostPaid" label="PostPaid">
+                      PostPaid
+                    </option>
+                  </select>
                 </div>
               </div>
-            </div>
+
+              <div className="flex flex-row justify-between w-full mb-6">
+                <div className="w-1/3 pr-6 relative">
+                  <CalendarElement />
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="start_date"
+                  >
+                    Start Date
+                    <input
+                      className="relative block w-full text-gray-700 border rounded-lg py-3 px-10 mt-2 leading-tight focus:outline-none focus:bg-white "
+                      id="start_date"
+                      type="text"
+                      placeholder="Start Date"
+                      onChange={formic.handleChange}
+                      onBlur={formic.handleBlur}
+                      value={formic.values.startDate}
+                      {...getFieldProps('startDate')}
+                    />
+                  </label>
+                </div>
+
+                <div className="w-1/3 pr-6 relative">
+                  <CalendarElement />
+                  <label
+                    className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                    htmlFor="end_date"
+                  >
+                    End Date
+                    {' '}
+                    <input
+                      className="relative block w-full text-gray-700 border rounded-lg py-3 px-10 mt-2 leading-tight focus:outline-none focus:bg-white"
+                      id="end_date"
+                      type="text"
+                      placeholder="End Date"
+                      onChange={formic.handleChange}
+                      onBlur={formic.handleBlur}
+                      value={formic.values.endDate}
+                      {...getFieldProps('endDate')}
+                    />
+                  </label>
+                </div>
+
+                <div className="w-1/3">
+                  <div className=" flex flex-row justify-around mt-7">
+                    <SearchButtonUtilization />
+                    <ExportButton />
+                  </div>
+                </div>
+              </div>
+            </form>
 
             <div className="border border-gray-200 rounded-lg">
               <div className="name-list">
