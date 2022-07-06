@@ -167,28 +167,41 @@ const TransactionSearchList = () => {
             </header>
 
             <hr className="mb-12" />
+
             <div className="flex flex-row justify-between w-full mb-6">
               <div className="w-1/3 pr-6">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="balance"
                 >
-                  Balance as at
+                  Institution
                   <input
                     className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
                     id="balance"
                     type="text"
-                    placeholder="Day"
                   />
                 </label>
               </div>
-              <div className="w-1/3 pl-6 pr-2">
+              <div className="w-1/3 pr-6">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="balance"
+                >
+                  Transaction Reference
+                  <input
+                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
+                    id="balance"
+                    type="text"
+                  />
+                </label>
+              </div>
+              <div className="w-1/3 pr-2">
                 {' '}
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="category"
                 >
-                  Institutions
+                  API Name
                   {' '}
                 </label>
                 <select
@@ -205,7 +218,40 @@ const TransactionSearchList = () => {
                   </option>
                 </select>
               </div>
-              <div className="w-1/3 pl-4">
+            </div>
+
+            <div className="flex flex-row justify-between w-full mb-6">
+              <div className="w-1/3 pr-6">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="balance"
+                >
+                  Start Date
+                  <input
+                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
+                    id="balance"
+                    type="text"
+                    placeholder="Day"
+                  />
+                </label>
+              </div>
+
+              <div className="w-1/3 pr-6">
+                <label
+                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
+                  htmlFor="balance"
+                >
+                  End Date
+                  <input
+                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white"
+                    id="balance"
+                    type="text"
+                    placeholder="End Date"
+                  />
+                </label>
+              </div>
+
+              <div className="w-1/3">
                 <div className=" flex flex-row justify-around mt-7">
                   <SearchButtonUtilization />
                   <ExportButton />
