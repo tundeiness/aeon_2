@@ -7,9 +7,9 @@ import { v4 as uuidv4 } from 'uuid';
 // import { nanoid } from '@reduxjs/toolkit';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-
 import { HiOutlineEye } from 'react-icons/hi';
 import { GoPrimitiveDot } from 'react-icons/go';
+import { CalendarElement } from '../../data/Dummy';
 import NoData from '../Nodata/NoData';
 import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
@@ -221,29 +221,32 @@ const TransactionSearchList = () => {
             </div>
 
             <div className="flex flex-row justify-between w-full mb-6">
-              <div className="w-1/3 pr-6">
+              <div className="w-1/3 pr-6 relative">
+                <CalendarElement />
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="balance"
+                  htmlFor="start_date"
                 >
                   Start Date
                   <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="balance"
+                    className="relative block w-full text-gray-700 border rounded-lg py-3 px-10 mt-2 leading-tight focus:outline-none focus:bg-white "
+                    id="start_date"
                     type="text"
-                    placeholder="Day"
+                    placeholder="Start Date"
                   />
                 </label>
               </div>
 
-              <div className="w-1/3 pr-6">
+              <div className="w-1/3 pr-6 relative">
+                <CalendarElement />
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
                   htmlFor="balance"
                 >
                   End Date
+                  {' '}
                   <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white"
+                    className="relative block w-full text-gray-700 border rounded-lg py-3 px-10 mt-2 leading-tight focus:outline-none focus:bg-white"
                     id="balance"
                     type="text"
                     placeholder="End Date"

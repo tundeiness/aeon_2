@@ -35,10 +35,10 @@ export const SearchElement = () => (
 );
 
 export const CalendarElement = () => (
-  <>
+  <span className="inline-block absolute top-10 left-3 z-10">
     {' '}
     <AiOutlineCalendar />
-  </>
+  </span>
 );
 
 export const DangerIcon = {
