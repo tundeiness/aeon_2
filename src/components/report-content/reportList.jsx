@@ -10,7 +10,7 @@ import ReactPaginate from 'react-paginate';
 
 import { HiOutlineEye } from 'react-icons/hi';
 import { GoPrimitiveDot } from 'react-icons/go';
-
+import NoData from '../Nodata/NoData';
 import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
@@ -140,14 +140,6 @@ const ReportList = () => {
 
     return content;
   };
-
-  const NoData = `<div className="bg-white p-6 rounded-lg shadow-xs mb-10 border border-gray-200">
-                    <h2 className="text-base font-medium mb-4 text-gray-800">
-                      TOTAL WALLET BALANCE
-                    </h2>
-                    <p className="text-buttonTwo font-semibold text-4xl">0 NGN</p>
-                  </div>
-                  `;
 
   //  switch (institutionStatus) {
   //    case "loading": // if (x === 'value1')
