@@ -12,6 +12,7 @@ import ReactPaginate from 'react-paginate';
 import { HiOutlineEye } from 'react-icons/hi';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { useFormik, ErrorMessage } from 'formik';
+import { nanoid } from '@reduxjs/toolkit';
 import { CalendarElement } from '../../data/Dummy';
 import NoData from '../Nodata/NoData';
 import SupportButton from '../support/support';
@@ -55,15 +56,16 @@ const TransactionSearchList = () => {
       // );
       // console.log(values);
 
-      dispatch(createUser(formValues));
-
       setFormValues({
+        id: nanoid(),
         institution: values.institution,
         transaction: values.transaction,
         apiName: values.apiName,
         startDate: values.startDate,
         endDate: values.endDate,
       });
+
+      dispatch(createUser(formValues));
       resetForm({
         values: {
           institution: '', transaction: '', apiName: '', startDate: '', endDate: '',
