@@ -46,7 +46,7 @@ const TransactionSearchList = () => {
       startDate: '',
       endDate: '',
     },
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values, { resetForm, setSubmitting }) => {
       // alert(
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
@@ -201,7 +201,7 @@ const TransactionSearchList = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.institution}
-                      {...getFieldProps('institution')}
+                      {...formic.getFieldProps('institution')}
                     />
                   </label>
                 </div>
@@ -218,7 +218,7 @@ const TransactionSearchList = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.transaction}
-                      {...getFieldProps('transaction')}
+                      {...formic.getFieldProps('transaction')}
                     />
                   </label>
                 </div>
@@ -237,7 +237,7 @@ const TransactionSearchList = () => {
                     className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                     value={formic.values.apiName}
                     onChange={formic.handleChange}
-                    {...getFieldProps('apiName')}
+                    {...formic.getFieldProps('apiName')}
                   >
                     <option value="" label="" />
                     <option value="PrePaid" label=" PrePaid">
@@ -266,7 +266,7 @@ const TransactionSearchList = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.startDate}
-                      {...getFieldProps('startDate')}
+                      {...formic.getFieldProps('startDate')}
                     />
                   </label>
                 </div>
@@ -287,7 +287,7 @@ const TransactionSearchList = () => {
                       onChange={formic.handleChange}
                       onBlur={formic.handleBlur}
                       value={formic.values.endDate}
-                      {...getFieldProps('endDate')}
+                      {...formic.getFieldProps('endDate')}
                     />
                   </label>
                 </div>
