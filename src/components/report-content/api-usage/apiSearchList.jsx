@@ -47,7 +47,8 @@ const TransactionSearchList = () => {
       // alert(
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
-      // console.log(values);
+      console.log(formic.initialValues);
+      console.log(formic.initialStatus);
       resetForm(values);
     },
   });
