@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
@@ -32,6 +33,8 @@ import './transactionsearchlist.css';
 const TransactionSearchList = () => {
   const { activeModal, setActiveModal } = useStateContext();
   const [query, setQuery] = useState('');
+  const [formValues, setFormValues] = useState('');
+  const dispatch = useDispatch();
   // const { loading, institution } = useSelector((state) => ({
   //   ...state.institution,
   // }));
@@ -51,7 +54,21 @@ const TransactionSearchList = () => {
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
       // console.log(values);
-      resetForm(values);
+
+      dispatch(createUser(formValues));
+
+      setFormValues({
+        institution: values.institution,
+        transaction: values.transaction,
+        apiName: values.apiName,
+        startDate: values.startDate,
+        endDate: values.endDate,
+      });
+      resetForm({
+        values: {
+          institution: '', transaction: '', apiName: '', startDate: '', endDate: '',
+        },
+      });
     },
   });
 
@@ -64,7 +81,6 @@ const TransactionSearchList = () => {
   const [isOpen, setIsOpen] = useState(false);
   // const [mockData, setMockData] = useState(institution[0]);
   const [pageNum, setPageNum] = useState(0);
-  const dispatch = useDispatch();
 
   const [page, setPage] = useState(1);
 
