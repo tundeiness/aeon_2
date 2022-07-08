@@ -12,15 +12,15 @@ import AeonLogo from '../../static/assets/img/logo-blue.png';
 import LandingImage from '../../static/assets/img/landing-image.png';
 import LogoImage from '../../static/assets/img/logo-transparent.png';
 import AuthButton from '../../components/authButton/authButton';
-import { register, login } from '../../redux/features/auth/authSlice';
+import { login } from '../../redux/features/auth/authSlice';
 import './sign-in.css';
 
 const SignIn = () => {
-  const validate = (value) => {
+  const validate = (values) => {
     const errors = {};
-    if (!value.email) {
+    if (!values.email) {
       errors.email = 'Cannot be blank';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
       errors.email = 'Invalid email format';
     }
 
@@ -46,11 +46,11 @@ const SignIn = () => {
     onSubmit: (values, { resetForm }) => {
       // alert(`You have loggedin succesfully! Email: ${values.email}`);
       const userData = {
-        name: values.email,
+        email: values.email,
         password: values.password,
       };
       dispatch(login(userData));
-      resetForm(values);
+      // resetForm(values);
     },
   });
 
@@ -175,7 +175,7 @@ const SignIn = () => {
                   type="submit"
                   disabled={formic.isSubmitting}
                 >
-                  Sign in
+                  {formic.isSubmitting ? 'Please wait...' : 'Sign in'}
                 </button>
                 {/* <AuthButton
                   buttonType="submit"
@@ -212,3 +212,6 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+// "email": "timilehin@credequity.com",
+// "password": "QUeO2ZE2"
