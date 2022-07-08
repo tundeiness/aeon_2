@@ -4,7 +4,6 @@
 import React from 'react';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import authService from './authService';
 
 const SIGN_IN = 'http://13.59.94.46/aeon/api/v1/SignIn';
 
