@@ -50,6 +50,9 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     const response = await axios.post(
       SIGN_IN, user,
     );
+    if (response.data) {
+      localStorage.setItem('user', JSON.stringify(response.data));
+    }
     return response.data;
   } catch (error) {
     const message = (error.response && error.response.data.message && error.response.data)
