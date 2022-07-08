@@ -9,8 +9,16 @@ const GET_ALL_ROLES_URL = 'http://13.59.94.46/api/v1/GetAlRoles';
 export const getAllRoles = createAsyncThunk(
   'role/getAllRoles',
   async () => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET',
+
+      // crossorigin: 'true',
+      // Authorization: 'JWT fefege...',
+    };
     try {
-      const response = await axios.get(GET_ALL_ROLES_URL);
+      const response = await axios.get(GET_ALL_ROLES_URL, { headers });
       return response.data;
     } catch (error) {
       return error.message;

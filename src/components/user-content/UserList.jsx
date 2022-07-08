@@ -17,6 +17,12 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
+import {
+  getAllRoles,
+  selectAllRoles,
+  getRoleStatus,
+  getRoleError,
+} from '../../redux/features/roleSlice';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import {
   GoButton,
@@ -38,6 +44,11 @@ const UserList = () => {
   //   ...state.institution,
   // }));
 
+  const roleArray = useSelector(selectAllRoles);
+  console.log(roleArray);
+
+  const roleStatus = useSelector(getRoleStatus);
+
   // const institution = useSelector((state) => state.institution.institution);
   const institution = useSelector(selectAllUsers);
   const institutionStatus = useSelector(getUserStatus);
@@ -56,7 +67,11 @@ const UserList = () => {
     if (institutionStatus === 'idle') {
       dispatch(getAllUsers());
     }
-  }, [dispatch, institutionStatus]);
+
+    if (roleStatus === 'idle') {
+      dispatch(getAllRoles());
+    }
+  }, [dispatch, institutionStatus, roleStatus]);
 
   // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
   // const id = uuidv4();

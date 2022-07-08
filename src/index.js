@@ -8,9 +8,10 @@ import { ContextProvider } from './contexts/ContextProvider';
 import App from './App';
 // import { store } from './app/store';
 import { getInstitution } from './redux/features/institutionSlice';
+import { getAllRoles } from './redux/features/roleSlice';
 import store from './redux/store';
 
-store.dispatch(getInstitution()); // for immediate loading of data.
+store.dispatch(getInstitution(), getAllRoles()); // for immediate loading of data.
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
