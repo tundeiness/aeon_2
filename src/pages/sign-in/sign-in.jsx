@@ -41,7 +41,6 @@ const SignIn = () => {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      // alert(`You have loggedin succesfully! Email: ${values.email}`);
       const userData = {
         email: values.email,
         password: values.password,
