@@ -61,18 +61,6 @@ const SignIn = () => {
     }
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
-  // const handleSubmit = async() => {
-  //   setFormData(formic.values);
-  //   dispatch(loginPending());
-
-  //   try {
-  //     const isAuth = await
-  //   } catch (error) {
-  //     dispatch(loginFail(error.message))
-  //   }
-  //   dispatch(formData);
-  // };
-
   console.log(formic.values);
 
   return (
