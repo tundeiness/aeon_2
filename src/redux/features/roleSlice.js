@@ -3,11 +3,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const GET_ALL_ROLES_URL = 'http://13.59.94.46/api/v1/GetAlRoles';
+
 export const getAllRoles = createAsyncThunk(
-  'product/getAllProducts',
+  'role/getAllRoles',
   async () => {
-    const res = await axios.get('http://13.59.94.46/aeon/api/v1/GetAlRoles');
-    return res.data;
+    try {
+      const response = await axios.get(GET_ALL_ROLES_URL);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
   },
 );
 
