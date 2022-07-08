@@ -170,8 +170,18 @@ const SignIn = () => {
                   </Link>
                 </div>
 
-                {/* <button className="sign-in-button w-full block bg-buttonBlue text-white hover:bg-blue-700 px-4 py-3 mt-8 rounded-lg font-medium focus:bg-blue-700 focus:outline-none" type="submit">Sign in</button> */}
-                <AuthButton buttonType="submit" buttonText="Sign in" />
+                <button
+                  className="sign-in-button w-full block bg-authBtn text-white hover:bg-blue-700 px-4 py-3 mt-8 rounded-lg font-medium focus:bg-blue-700 focus:outline-none"
+                  type="submit"
+                  disabled={formic.isSubmitting}
+                >
+                  Sign in
+                </button>
+                {/* <AuthButton
+                  buttonType="submit"
+                  buttonText="Sign in"
+                  disabled={formic.isSubmitting}
+                /> */}
               </form>
             </div>
           </div>
