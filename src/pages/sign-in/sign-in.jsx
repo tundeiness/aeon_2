@@ -5,9 +5,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginPending, loginSuccess, loginFail } from '../../redux/features/loginSlice';
+
 import AeonLogo from '../../static/assets/img/logo-blue.png';
 import LandingImage from '../../static/assets/img/landing-image.png';
 import LogoImage from '../../static/assets/img/logo-transparent.png';
@@ -28,10 +28,7 @@ const SignIn = () => {
   };
 
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
-  // const { isLoading, isAuth } = useSelector((state) => state.login);
 
   const {
     user, isLoading, isError, isSuccess, message,
