@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -11,6 +12,7 @@ import AeonLogo from '../../static/assets/img/logo-blue.png';
 import LandingImage from '../../static/assets/img/landing-image.png';
 import LogoImage from '../../static/assets/img/logo-transparent.png';
 import AuthButton from '../../components/authButton/authButton';
+import { register, login } from '../../redux/features/auth/authSlice';
 import './sign-in.css';
 
 const SignIn = () => {
@@ -25,9 +27,15 @@ const SignIn = () => {
     return errors;
   };
 
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
-  const { isLoading, isAuth } = useSelector((state) => state.login);
+  // const { isLoading, isAuth } = useSelector((state) => state.login);
+
+  const {
+    user, isLoading, isError, isSuccess, message,
+  } = useSelector((state) => state.auth);
 
   const formic = useFormik({
     initialValues: {
@@ -35,10 +43,23 @@ const SignIn = () => {
       password: '',
     },
     validate,
-    onSubmit: (values) => {
-      alert(`You have loggedin succesfully! Email: ${values.email}`);
+    onSubmit: (values, { resetForm }) => {
+      // alert(`You have loggedin succesfully! Email: ${values.email}`);
+      const userData = {
+        name: values.email,
+        password: values.password,
+      };
+      dispatch(login(userData));
+      resetForm(values);
     },
   });
+
+  useEffect(() => {
+    // some codes
+    if (isSuccess || user) {
+      navigate('/dashboard');
+    }
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   // const handleSubmit = async() => {
   //   setFormData(formic.values);
@@ -60,10 +81,16 @@ const SignIn = () => {
         <section className="login-section bg-white flex  md:mx-auto md-mx-0 md:max-w-md lg:max-w-full w-full md:w-1/2 px-6 lg:px-16 xl:px-20 xl:mx-10">
           <div className="w-full">
             <div className="logo-container flex justify-center lg:mb-8 sm:mb-4 lg:mt-2 sm:mt-6 xs:mt-6 ">
-              <img src={AeonLogo} alt="aeon-logo" className="lg:w-64 lg:h-16 sm:w-56 sm:h-14 xs:w-56 xs:h-14" />
+              <img
+                src={AeonLogo}
+                alt="aeon-logo"
+                className="lg:w-64 lg:h-16 sm:w-56 sm:h-14 xs:w-56 xs:h-14"
+              />
             </div>
             <div className="w-full h-100 lg:px-16 lg:mb-0 xs:mb-14">
-              <h1 className="cta-heading font-bold leading-tight xl:mt-12 lg:mt-10">Log in</h1>
+              <h1 className="cta-heading font-bold leading-tight xl:mt-12 lg:mt-10">
+                Log in
+              </h1>
               <h2 className="cta-sub-heading sm:text-sm text-gray-500 mt-5">
                 Welcome back! Please enter your details
               </h2>
@@ -85,11 +112,12 @@ const SignIn = () => {
                     placeholder="Enter your email"
                     autoComplete="off"
                     required
+                    {...formic.getFieldProps('email')}
                   />
                   {formic.touched.email && formic.errors.email && (
-                  <span className="text-red-300 text-xs">
-                    {formic.errors.email}
-                  </span>
+                    <span className="text-red-300 text-xs">
+                      {formic.errors.email}
+                    </span>
                   )}
                 </div>
 
@@ -110,15 +138,22 @@ const SignIn = () => {
                     minLength={8}
                     placeholder="Enter password"
                     required
+                    {...formic.getFieldProps('password')}
                   />
                   {formic.touched.password && formic.errors.password && (
-                  <span className="text-red-400">{formic.errors.password}</span>
+                    <span className="text-red-400">
+                      {formic.errors.password}
+                    </span>
                   )}
                 </div>
 
                 <div className="flex flex-row lg:justify-center justify-between w-full mt-12">
                   <div className="flex md:hidden flex-row">
-                    <input id="remember" className="remember-input mt-2 mr-2" type="checkbox" />
+                    <input
+                      id="remember"
+                      className="remember-input mt-2 mr-2"
+                      type="checkbox"
+                    />
                     <label
                       className="label block text-gray-700 text-xs font-medium mt-1"
                       htmlFor="remember"
@@ -127,7 +162,12 @@ const SignIn = () => {
                       Remember for 30 days
                     </label>
                   </div>
-                  <Link className="block font-medium text-liteBlue hover:text-black focus:text-black focus:outline-none" to="/forgot-password">Forgot Password</Link>
+                  <Link
+                    className="block font-medium text-liteBlue hover:text-black focus:text-black focus:outline-none"
+                    to="/forgot-password"
+                  >
+                    Forgot Password
+                  </Link>
                 </div>
 
                 {/* <button className="sign-in-button w-full block bg-buttonBlue text-white hover:bg-blue-700 px-4 py-3 mt-8 rounded-lg font-medium focus:bg-blue-700 focus:outline-none" type="submit">Sign in</button> */}
@@ -139,9 +179,17 @@ const SignIn = () => {
 
         <section className="relative banner-section hidden md:w-1/2 lg:block">
           <div className="relative image-wrapper w-full">
-            <img src={LandingImage} alt="landing" className="w-full h-full object-cover" />
+            <img
+              src={LandingImage}
+              alt="landing"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <img className="absolute bottom-0 w-full object-cover" src={LogoImage} alt="transparent-logo" />
+          <img
+            className="absolute bottom-0 w-full object-cover"
+            src={LogoImage}
+            alt="transparent-logo"
+          />
         </section>
       </article>
       <footer className="hidden lg:block footer-matter py-0 font-medium text-sm text-gray-500">
