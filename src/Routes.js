@@ -191,7 +191,7 @@ const MainRoutes = () => {
         <Route path="/login" element={<LoginPage />} />
       </Route> */}
         <Route index element={<LoginView />} />
-        <Route path="/sign-in" element={<LoginView />} />
+        {/* <Route path="/sign-in" element={<LoginView />} /> */}
         <Route path="reset-password" element={<ResetPasswordView />} />
         <Route path="new-password" element={<NewPasswordView />} />
         <Route path="forgot-password" element={<ForgotPasswordView />} />
