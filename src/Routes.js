@@ -14,7 +14,7 @@ import PageLoader from './components/pageLoader/pageLoader';
 // import { ProtectedLayout } from './components/protectedLayout/ProtectedLayout';
 import MainLayout from './pages/main-layout';
 import { useAuth } from './components/auth';
-import CEID from './pages/ceid/CEID';
+// import CEID from './pages/ceid/CEID';
 
 // const DashboardView = lazy(() => import('./Views/dashboard/dashboard'));
 // const SidebarView = lazy(() => import('./components/sideBarNav/sidebar-nav'));
@@ -157,6 +157,12 @@ const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
 const ResetPasswordView = lazy(() => import('./pages/reset-password/reset-password'));
 // const LayoutView = lazy(() => import('./pages/layout/Layout'));
 const DashboardView = lazy(() => import('./pages/dashboard/dashboard'));
+const CEID = lazy(() => import('./pages/ceid/CEID'));
+const CreditReport = lazy(() => import('./pages/ceid/credit-report'));
+const OCR = lazy(() => import('./pages/ceid/ocr'));
+const BusinessSearch = lazy(() => import('./pages/ceid/business-name'));
+const IdentityCheck = lazy(() => import('./pages/ceid/identity-check'));
+
 // const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
 // const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 // const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
@@ -235,6 +241,10 @@ const MainRoutes = () => {
 
           <Route path="users" element={<AllUserView />} />
           <Route path="ce-id" element={<CEID />} />
+          <Route path="ce-id/credit-report" element={<CreditReport />} />
+          <Route path="ce-id/ocr" element={<OCR />} />
+          <Route path="/ce-id/business-name" element={<BusinessSearch />} />
+          {/* <Route path="ce-id/identity-check" element={<IdentityCheck />} /> */}
         </Route>
         {/* <Route
             path="institutions/create-institution"

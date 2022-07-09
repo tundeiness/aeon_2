@@ -178,13 +178,28 @@ export const SideBarData = [
     icon: <AiOutlineIdcard key="6" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      // {
+      //   title: 'Identity-Check',
+      //   path: '/ce-id/identity-check',
+      //   icon: <GoPrimitiveDot />,
+      // },
+      {
+        title: 'Credit-Report',
+        path: '/ce-id/credit-report',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'OCR',
+        path: '/ce-id/ocr',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Business-Name',
+        path: '/ce-id/business-name',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Profile',

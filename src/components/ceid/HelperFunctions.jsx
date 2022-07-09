@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
 /* eslint-disable react/no-unescaped-entities */
@@ -50,59 +51,125 @@ export const CardLayout = (props) => {
   );
 };
 
-export const IdentityCheck = () => (
-  <article className="w-4/5 ml-auto">
-    <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
-      <div className="institution-wrapper p-8 h-full bg-white rounded-tl-3xl rounded-bl-3xl">
-        <Title title="Identity check" />
-        <CardLayout>
-          <h1 className="font-bold text-black"> Terms of use</h1>
-          <p className="text-sm mt-2">
-            {' '}
-            I have consent from the owner of the details I
-            provide below to fetch and display their
-            data for identity verification.
-            {' '}
+export function IdentityCheckResult({ GoBack }) {
+  const options = {
+    nin: 'NIN',
+    frsc: 'FRSC',
+    bvn: 'BVN',
+  };
 
-          </p>
-          <form>
-            <div className="mt-2">
-              <input
-                type="checkbox"
-                id="scales"
-                name="terms"
-              />
-              <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
-            </div>
-            <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
-              <div className="flex flex-col">
-                <label htmlFor="phoneNumber" className="font-medium"> Phone Number:</label>
-                <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="bvn" className="font-medium"> BVN:</label>
-                <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="nin" className="font-medium"> NIN:</label>
-                <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-              </div>
-              <div className="flex flex-col">
-
-                <label htmlFor="nin" className="font-medium"> Driver's License:</label>
-                <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-              </div>
-              <button type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
-                Search
-              </button>
-            </div>
-
-          </form>
-        </CardLayout>
+  const [display, setDisplay] = useState(options.nin);
+  return (
+    <>
+      <div className="w-full mt-4">
+        <button onClick={GoBack} type="submit" className="bg-blue-900 w-1/10 rounded-lg flex items-center gap-1 justify-center text-white p-2">
+          <AiOutlineLeft />
+          {' '}
+          Back
+        </button>
       </div>
-    </section>
-  </article>
-);
+      <div className="flex mt-16 ml-32 align-middle">
+        <div className="flex w-1/2">
+          <img src={time} alt="moment" />
+          <div className="flex flex-col ml-2 w-full ">
+            <small> Search duration</small>
+            <h6> 6.43 Seconds</h6>
+          </div>
+        </div>
+        <div className="border-l-2 mr-6 "> </div>
+        <div className="w-full">
+          <h4 className="font-bold"> Showing result for:</h4>
+          <h1 className="stretch text-4xl">
+            {display}
+          </h1>
+        </div>
+      </div>
+      <CardLayout>
+        <div className="flex flex-col w-full justify-center ">
+          <section className="bg-blue-400 p-2 text-white  rounded-lg flex justify-between">
+            <button onClick={() => setDisplay(options.nin)} autoFocus className=" text-white rounded-lg p-2 w-1/3  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black "> NIN </button>
+            <button onClick={() => setDisplay(options.frsc)} className=" text-white rounded-lg p-2 w-1/3  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black "> FRSC </button>
+            <button onClick={() => setDisplay(options.bvn)} className=" text-white rounded-lg p-2 w-1/3  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black "> BVN </button>
+
+          </section>
+        </div>
+        <hr className="mt-4" />
+        { display === 'BVN' && <BvnData />}
+        { display === 'NIN' && <NinData />}
+        { display === 'FRSC' && <FRSCData />}
+      </CardLayout>
+    </>
+  );
+}
+export function IdentityCheck() {
+  const [result, setResult] = useState(true);
+  // const [title, setTitle] = useState('Identity Check');
+  const title = result ? 'Identity Check' : 'Identity Check Result';
+  const HandleChange = () => {
+    setResult(false);
+    // if (result === true) setTitle('Identity Check');
+    // setTitle('Identity Check Result');
+  };
+  return (
+    <article className="w-4/5 ml-auto">
+      <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
+        <div className="institution-wrapper p-8 h-full bg-white rounded-tl-3xl rounded-bl-3xl">
+          <Title title={title} />
+          <CardLayout>
+            {
+            result ? (
+              <>
+                <h1 className="font-bold text-black"> Terms of use</h1>
+                <p className="text-sm mt-2">
+                  {' '}
+                  I have consent from the owner of the details I
+                  provide below to fetch and display their
+                  data for identity verification.
+                  {' '}
+
+                </p>
+                <form>
+                  <div className="mt-2">
+                    <input
+                      type="checkbox"
+                      id="scales"
+                      name="terms"
+                    />
+                    <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
+                  </div>
+                  <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
+                    <div className="flex flex-col">
+                      <label htmlFor="phoneNumber" className="font-medium"> Phone Number:</label>
+                      <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="bvn" className="font-medium"> BVN:</label>
+                      <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="nin" className="font-medium"> NIN:</label>
+                      <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                    </div>
+                    <div className="flex flex-col">
+
+                      <label htmlFor="nin" className="font-medium"> Driver's License:</label>
+                      <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                    </div>
+                    <button onClick={HandleChange} type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
+                      Search
+                    </button>
+                  </div>
+
+                </form>
+              </>
+            ) : <IdentityCheckResult GoBack={() => setResult(true)} />
+           }
+          </CardLayout>
+        </div>
+      </section>
+    </article>
+  );
+}
 
 export function NinData() {
   return (
@@ -416,12 +483,13 @@ export function BvnData() {
     </div>
   );
 }
-export function IdentityCheckResult() {
+
+export function IdentityCheck2({ GoBack }) {
+  const [data, setData] = useState(true);
   return (
-    <CardBodyLayout>
-      <Title title="Identity check result" />
+    <div>
       <div className="w-full mt-4">
-        <button type="submit" className="bg-blue-900 w-1/6 rounded-lg flex items-center gap-4 justify-center text-white p-2">
+        <button onClick={GoBack} type="submit" className="bg-blue-900 w-2/10 rounded-lg flex items-center gap-2 justify-center text-white p-2">
           <AiOutlineLeft />
           {' '}
           Back
@@ -438,65 +506,73 @@ export function IdentityCheckResult() {
         <div className="border-l-2 mr-6 "> </div>
         <div className="w-full">
           <h4 className="font-bold"> Showing result for:</h4>
-          <h1 className="stretch text-4xl"> NIN</h1>
+          <h1 className="stretch text-4xl"> Credit Report </h1>
         </div>
       </div>
-      <CardLayout>
-        <div className="flex flex-col w-full justify-center ">
-          <section className="bg-blue-400 p-2 text-white  rounded-lg flex justify-between">
-            <button className=" text-white rounded-lg p-2 w-1/3  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black "> NIN </button>
-            <button className=" text-white rounded-lg p-2 w-1/3  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black "> FRSC </button>
-            <button className=" text-white rounded-lg p-2 w-1/3  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black "> BVN </button>
-
-          </section>
+      <div className="flex flex-col w-full justify-center mt-8">
+        <section className="bg-blue-400 p-2 text-white  rounded-lg flex justify-between">
+          <button autoFocus className=" text-white rounded-lg p-2 w-1/2  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black " onClick={() => setData(true)}> DATA </button>
+          <button className=" text-white rounded-lg p-2 w-1/2  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black " onClick={() => setData(false)}> PERFORMANCE SUMMARY </button>
+        </section>
+      </div>
+      <hr className="mt-4" />
+      {data ? (
+        <Data />
+      ) : (
+        <div>
+          <Performance />
         </div>
-        <hr className="mt-4" />
-        {/* <NinData /> */}
-        {/* <FRSCData /> */}
-        <BvnData />
-      </CardLayout>
-    </CardBodyLayout>
+      ) }
+    </div>
   );
 }
 
 export function CreditReport() {
+  const [show, setShow] = useState(true);
+  const title = show ? 'Credit Report' : 'Credit Report Result';
+  // const title = result ? 'Identity Check' : 'Identity Check Result';
   return (
     <CardBodyLayout>
-      <Title title="Credit Report" />
+      <Title title={title} />
       <CardLayout>
-        <h1 className="font-bold text-black"> Terms of use</h1>
-        <p className="text-sm mt-2">
-          {' '}
-          I have consent from the owner of the details I
-          provide below to fetch and display their
-          data for identity verification.
-          {' '}
+        {show
+          ? (
+            <>
+              <h1 className="font-bold text-black mt-6"> Terms of use</h1>
+              <p className="text-sm mt-2">
+                {' '}
+                I have consent from the owner of the details I
+                provide below to fetch and display their
+                data for identity verification.
+                {' '}
 
-        </p>
-        <form>
-          <div className="mt-2">
-            <input
-              type="checkbox"
-              id="scales"
-              name="terms"
-            />
-            <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
-          </div>
-          <div className="rounded-lg w-11/12 h-75 mt-4  bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
-            <div className="flex flex-col">
-              <label htmlFor="firstname" className="font-medium"> Customer First Name</label>
-              <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-            </div>
-            <div className="flex flex-col mt-8">
-              <label htmlFor="phone_number" className="font-medium"> Phone Number:</label>
-              <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-            </div>
-            <button type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
-              Search
-            </button>
-          </div>
+              </p>
+              <form>
+                <div className="mt-2">
+                  <input
+                    type="checkbox"
+                    id="scales"
+                    name="terms"
+                  />
+                  <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
+                </div>
+                <div className="rounded-lg w-11/12 h-75 mt-4  bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
+                  <div className="flex flex-col">
+                    <label htmlFor="firstname" className="font-medium"> Customer First Name</label>
+                    <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                  </div>
+                  <div className="flex flex-col mt-8">
+                    <label htmlFor="phone_number" className="font-medium"> Phone Number:</label>
+                    <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                  </div>
+                  <button onClick={() => setShow(false)} type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
+                    Search
+                  </button>
+                </div>
 
-        </form>
+              </form>
+            </>
+          ) : <IdentityCheck2 GoBack={() => setShow(true)} />}
       </CardLayout>
     </CardBodyLayout>
   );
@@ -731,91 +807,50 @@ const Performance = () => (
     </div>
   </>
 );
-export function IdentityCheck2() {
-  const [data, setData] = useState(true);
-  return (
-    <CardBodyLayout>
-      <Title title="Identity Check result" />
-      <div className="w-full mt-4">
-        <button type="submit" className="bg-blue-900 w-2/10 rounded-lg flex items-center gap-2 justify-center text-white p-2">
-          <AiOutlineLeft />
-          {' '}
-          Back
-        </button>
-      </div>
-      <div className="flex mt-16 ml-32 align-middle">
-        <div className="flex w-1/2">
-          <img src={time} alt="moment" />
-          <div className="flex flex-col ml-2 w-full ">
-            <small> Search duration</small>
-            <h6> 6.43 Seconds</h6>
-          </div>
-        </div>
-        <div className="border-l-2 mr-6 "> </div>
-        <div className="w-full">
-          <h4 className="font-bold"> Showing result for:</h4>
-          <h1 className="stretch text-4xl"> Credit Report </h1>
-        </div>
-      </div>
-      <div className="flex flex-col w-full justify-center mt-8">
-        <section className="bg-blue-400 p-2 text-white  rounded-lg flex justify-between">
-          <button className=" text-white rounded-lg p-2 w-1/2  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black " onClick={() => setData(true)}> DATA </button>
-          <button className=" text-white rounded-lg p-2 w-1/2  hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-white active:text-black " onClick={() => setData(false)}> PERFORMANCE SUMMARY </button>
-        </section>
-      </div>
-      <hr className="mt-4" />
-      <CardLayout>
-        {data ? (
-          <Data />
-        ) : (
-          <div>
-            <Performance />
-          </div>
-        ) }
-      </CardLayout>
-    </CardBodyLayout>
-  );
-}
 
 export function OCRUpload() {
   const checkBoxRef = useRef();
-  // console.log('Checkbox value::', checkBoxRef.current.checked);
   return (
     <CardBodyLayout>
       <Title title="Optical Character Recognition" />
-      <h1 className="font-bold text-black"> Terms of use</h1>
-      <p className="text-sm mt-2">
-        {' '}
-        I have consent from the owner of the details I
-        provide below to fetch and display their
-        data for identity verification.
-        {' '}
+      <CardLayout>
+        <h1 className="font-bold text-black"> Terms of use</h1>
+        <p className="text-sm mt-2">
+          {' '}
+          I have consent from the owner of the details I
+          provide below to fetch and display their
+          data for identity verification.
+          {' '}
 
-      </p>
-      <form>
-        <div className="mt-2">
-          <input
-            type="checkbox"
-            id="scales"
-            name="terms"
-            ref={checkBoxRef}
-          />
-          <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
-        </div>
-        <div className="flex justify-center items-center w-full mt-12">
-          <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-1/2 h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-            <div className="flex flex-col justify-center items-center pt-5 pb-6">
-              <AiOutlineCloudUpload className=" w-1/4 h-1/4" />
-              <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                <span className="font-semibold">Select file  or drag and drop</span>
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">JPG, PNG or PDF, file size no more than 10MB </p>
-              <button className="rounded-lg border-blue-700 border-2 bg-white text-blue-700 p-2 mt-4 "> Select File</button>
-            </div>
-            <input id="dropzone-file" type="file" className="hidden" />
-          </label>
-        </div>
-      </form>
+        </p>
+        <form>
+          <div className="mt-2">
+            <input
+              type="checkbox"
+              id="scales"
+              name="terms"
+              ref={checkBoxRef}
+            />
+            <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
+          </div>
+          <div className="flex justify-center items-center w-full mt-12">
+            <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-1/2 h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+              <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                <AiOutlineCloudUpload className=" w-1/4 h-1/4" />
+                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <span className="font-semibold">Select file  or drag and drop</span>
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">JPG, PNG or PDF, file size no more than 10MB </p>
+                <span className="rounded-lg border-blue-700 border-2 bg-white text-blue-700 p-2 mt-4 " type="file">
+                  {' '}
+                  Select File
+                </span>
+              </div>
+              <input id="dropzone-file" type="file" className="hidden" />
+            </label>
+          </div>
+        </form>
+      </CardLayout>
     </CardBodyLayout>
   );
 }
@@ -827,7 +862,7 @@ export function SearchResultTop(props) {
   return (
     <>
       <div className="w-full mt-4">
-        <button onClick={HandleBack} type="submit" className="bg-blue-900 w-1/6 rounded-lg flex items-center gap-4 justify-center text-white p-2">
+        <button onClick={HandleBack} type="submit" className="bg-blue-900 w-1/4 rounded-lg flex items-center gap-4 justify-center text-white p-2">
           <AiOutlineLeft />
           {' '}
           {buttonText}
@@ -858,139 +893,142 @@ export function SearchResultTop(props) {
   );
 }
 
-export const BusinessSearchResult = () => (
-  <CardBodyLayout>
-    <Title title=" Business Search Result" />
-    <SearchResultTop duration="0.09938983" result="Business Search" buttonText="Back to search" HandleBack={() => console.log('Done!')} />
-    <CardLayout>
-      <div className="w-full flex border-y-2 mt-6">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 ">
-          <h1 className="pl-10 text-[#A3A3A3]"> Company Name</h1>
-        </div>
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium"> CREDEQUITY </h5>
-        </div>
+export const BusinessSearchResult = ({ GoBack }) => (
+  <>
+    <SearchResultTop duration="0.09938983" result="Business Search" buttonText="Back to search" HandleBack={GoBack} />
+    <div className="w-full flex border-y-2 mt-6">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 ">
+        <h1 className="pl-10 text-[#A3A3A3]"> Company Name</h1>
       </div>
-      <div className="w-full flex border-y-2">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 ">
-          <h1 className="pl-10 text-[#A3A3A3]"> RC Number</h1>
-        </div>
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium"> RC1477749 </h5>
-        </div>
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium"> CREDEQUITY </h5>
       </div>
-      <div className="w-full flex border-y-2">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 ">
-          <h1 className="pl-10 text-[#A3A3A3]"> Date of Incorporation</h1>
-        </div>
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium"> 2020-11-10 </h5>
-        </div>
+    </div>
+    <div className="w-full flex border-y-2">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 ">
+        <h1 className="pl-10 text-[#A3A3A3]"> RC Number</h1>
       </div>
-      <div className="w-full flex border-y-2">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 ">
-          <h1 className="pl-10 text-[#A3A3A3]"> Business Address</h1>
-        </div>
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium"> 13A, Charles Ifeanyi street, Off Adebayo Doherty road, Lekki Phase 1,Lagos, Nigeria</h5>
-        </div>
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium"> RC1477749 </h5>
       </div>
-      <div className="w-full flex border-y-2">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 ">
-          <h1 className="pl-10 text-[#A3A3A3]"> Email Address</h1>
-        </div>
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium"> text@example.com </h5>
-        </div>
+    </div>
+    <div className="w-full flex border-y-2">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 ">
+        <h1 className="pl-10 text-[#A3A3A3]"> Date of Incorporation</h1>
       </div>
-      <div className="w-full flex border-y-2">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 ">
-          <h1 className="pl-10 text-[#A3A3A3]"> Company Status </h1>
-        </div>
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium">
-            <button className="p-2 rounded-lg bg-green-500 text-white"> Active</button>
-            {' '}
-          </h5>
-        </div>
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium"> 2020-11-10 </h5>
       </div>
-      <div className="w-full flex border-y-2">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 ">
-          <h1 className="pl-10 text-[#A3A3A3]"> Directors</h1>
-        </div>
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium">
-            Mr. A
-            Designation: Director
+    </div>
+    <div className="w-full flex border-y-2">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 ">
+        <h1 className="pl-10 text-[#A3A3A3]"> Business Address</h1>
+      </div>
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium"> 13A, Charles Ifeanyi street, Off Adebayo Doherty road, Lekki Phase 1,Lagos, Nigeria</h5>
+      </div>
+    </div>
+    <div className="w-full flex border-y-2">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 ">
+        <h1 className="pl-10 text-[#A3A3A3]"> Email Address</h1>
+      </div>
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium"> text @example.com </h5>
+      </div>
+    </div>
+    <div className="w-full flex border-y-2">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 ">
+        <h1 className="pl-10 text-[#A3A3A3]"> Company Status </h1>
+      </div>
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium">
+          <button className="p-2 rounded-lg bg-green-500 text-white"> Active</button>
+          {' '}
+        </h5>
+      </div>
+    </div>
+    <div className="w-full flex border-y-2">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 ">
+        <h1 className="pl-10 text-[#A3A3A3]"> Directors</h1>
+      </div>
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium">
+          Mr. A
+          Designation: Director
 
-          </h5>
-        </div>
+        </h5>
       </div>
-      <div className="w-full flex border-y-2">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 ">
-          <h1 className="pl-10 text-[#A3A3A3]"> </h1>
-        </div>
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium">
-            Mr. B
-            Designation: Company Secretary
-            {' '}
+    </div>
+    <div className="w-full flex border-y-2">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 ">
+        <h1 className="pl-10 text-[#A3A3A3]"> </h1>
+      </div>
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium">
+          Mr. B
+          Designation: Company Secretary
+          {' '}
 
-          </h5>
-        </div>
+        </h5>
       </div>
-      <div className="w-full flex border-y-2">
-        <div className="bg-[#F4F8FF] p-2 w-2/4 " />
-        <div className="w-full p-2">
-          <h5 className="pl-10 font-medium">
-            Mr. C
-            Designation: Shareholder
+    </div>
+    <div className="w-full flex border-y-2">
+      <div className="bg-[#F4F8FF] p-2 w-2/4 " />
+      <div className="w-full p-2">
+        <h5 className="pl-10 font-medium">
+          Mr. C
+          Designation: Shareholder
 
-          </h5>
-        </div>
+        </h5>
       </div>
-    </CardLayout>
-  </CardBodyLayout>
+    </div>
+  </>
 );
 
 export function BusinessSearch() {
+  const [check, setCheck] = useState(true);
+  const title = check ? 'Business Search (CAC)' : 'Business Search Result';
   return (
     <CardBodyLayout>
-      <Title title="Business Search (CAC)" />
+      <Title title={title} />
       <CardLayout>
-        <h1 className="font-bold text-black"> Terms of use</h1>
-        <p className="text-sm mt-2">
-          {' '}
-          I have consent from the owner of the details I
-          provide below to fetch and display their
-          data for identity verification.
-          {' '}
+        {check ? (
+          <>
+            <h1 className="font-bold text-black"> Terms of use</h1>
+            <p className="text-sm mt-2">
+              {' '}
+              I have consent from the owner of the details I
+              provide below to fetch and display their
+              data for identity verification.
+              {' '}
 
-        </p>
-        <form>
-          <div className="mt-2">
-            <input
-              type="checkbox"
-              id="scales"
-              name="terms"
-            />
-            <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
-          </div>
-          <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
-            <div className="flex flex-col">
-              <label htmlFor="phoneNumber" className="font-medium"> RC Number</label>
-              <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" placeholder="Enter RC number here" />
-            </div>
-            <div className="flex flex-col mt-6">
-              <label htmlFor="bvn" className="font-medium"> Company Name </label>
-              <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" placeholder="Enter Company name here" />
-            </div>
-            <button type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
-              Search
-            </button>
-          </div>
+            </p>
+            <form>
+              <div className="mt-2">
+                <input
+                  type="checkbox"
+                  id="scales"
+                  name="terms"
+                />
+                <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
+              </div>
+              <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
+                <div className="flex flex-col">
+                  <label htmlFor="phoneNumber" className="font-medium"> RC Number</label>
+                  <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" placeholder="Enter RC number here" />
+                </div>
+                <div className="flex flex-col mt-6">
+                  <label htmlFor="bvn" className="font-medium"> Company Name </label>
+                  <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" placeholder="Enter Company name here" />
+                </div>
+                <button onClick={() => setCheck(false)} type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
+                  Search
+                </button>
+              </div>
 
-        </form>
+            </form>
+          </>
+        ) : <BusinessSearchResult GoBack={() => setCheck(true)} />}
       </CardLayout>
     </CardBodyLayout>
   );

@@ -10,12 +10,7 @@ import {
 
 function CeidComponent() {
   return (
-    // <IdentityCheck />
-    // <IdentityCheckResult />
-    // <CreditReport />
-    // <IdentityCheck2 />
-    // <OCRUpload />
-    <BusinessSearchResult />
+    <IdentityCheck />
   );
 }
 
