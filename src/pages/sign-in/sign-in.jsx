@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import AeonLogo from '../../static/assets/img/logo-blue.png';
@@ -51,11 +51,14 @@ const SignIn = () => {
     },
   });
 
+  const loc = useLocation();
   useEffect(() => {
     // some codes
+    // const from = loc.state?.from?.pathname || '/';
     if (isSuccess || user) {
       navigate('/dashboard');
     }
+    // navigate(from, { replace: true });
 
     // if (isLoading) {
     //   <SpinnerModal />;

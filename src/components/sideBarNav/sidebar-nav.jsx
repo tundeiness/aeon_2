@@ -3,16 +3,18 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Link, useLocation, useNavigate,
 } from 'react-router-dom';
+import { useFormik } from 'formik';
 import { MdLogout } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
 import Submenu from './Submenu/SubMenu';
 import { SideBarData } from '../../data/Dummy';
 import Logo from '../../static/assets/img/logo-white.png';
 import './sidebarnav.css';
+
 import { logout } from '../../redux/features/auth/authSlice';
 
 const SidebarNav = () => {
@@ -29,14 +31,50 @@ const SidebarNav = () => {
     setDefaultHome(linkName);
   };
 
+  const {
+    user, isLoading, isError, isSuccess, message,
+  } = useSelector(
+    (state) => state.auth,
+  );
+
   const handleMenuDrawer = () => {
     setIsOpen(!isOpen);
   };
 
+  const loc = useLocation();
+  const from = loc.state?.from?.pathname || '/';
+
+  const formic = useFormik({
+    initialValues: {},
+    onSubmit: () => {
+      dispatch(logout());
+      navigate('/', { replace: true });
+    },
+  });
+  // const user = localStorage.getItem('user');
+
   const handleLogOut = () => {
+    localStorage.removeItem('user');
     dispatch(logout());
-    navigate('/');
+    navigate(from, { replace: true });
+    // navigate('/', { replace: true });
+
+    // navigate('/', { replace: true });
+    // dispatch(logout()).then(() => {
+    //   navigate('/', { replace: true });
+    // });
   };
+
+  useEffect(() => {
+    // dispatch(logout()).then(() => {
+    //   navigate('/', { replace: true });
+    // });
+    // dispatch(logout());
+    // navigate('/', { replace: true });
+    // if (isSuccess) {
+    //   navigate('/', { replace: true });
+    // }
+  }, []);
 
   console.log(isActive);
 
@@ -62,7 +100,17 @@ const SidebarNav = () => {
               <Submenu item={child} key={child.id} className="py-2" />
             </li>
           ))}
-          <li
+
+          <form
+            className="outline outline-red-500 py-3 px-4"
+            onSubmit={formic.handleSubmit}
+          >
+            <button className="flex flex-row" type="submit">
+              <MdLogout className="xl:w-6 xl:h-7" />
+              <span className="inline-block pl-2">Log Out</span>
+            </button>
+          </form>
+          {/* <li
             className="flex items-center space-x-1 py-3 px-4 hover:bg-linkDeep rounded transition duration-200"
             onClick={handleLogOut()}
             role="presentation"
@@ -75,7 +123,7 @@ const SidebarNav = () => {
             >
               Log Out
             </Link>
-          </li>
+          </li> */}
           {/* flex items-center mt-2 mb-1 py-1 pl-5 */}
           {/* <li
             className={`flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${

@@ -190,7 +190,8 @@ const MainRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
       </Route> */}
-        <Route index element={<LoginView />} />
+        {/* <Route index element={<LoginView />} /> */}
+        <Route path="/" element={<LoginView />} />
         {/* <Route path="/sign-in" element={<LoginView />} /> */}
         <Route path="reset-password" element={<ResetPasswordView />} />
         <Route path="new-password" element={<NewPasswordView />} />
@@ -202,7 +203,7 @@ const MainRoutes = () => {
           element={<MainLayout />}
         > */}
         <Route element={<MainLayout />}>
-          <Route index element={<DashboardView />} />
+          {/* <Route index element={<DashboardView />} /> */}
           <Route path="dashboard" element={<DashboardView />} />
           <Route path="institutions" element={<InstitutionView />} />
           <Route
