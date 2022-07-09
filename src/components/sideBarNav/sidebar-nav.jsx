@@ -5,33 +5,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
-  Link, useLocation, Navlink, useNavigate,
+  Link, useLocation, useNavigate,
 } from 'react-router-dom';
-import { BiHomeAlt, BiFile } from 'react-icons/bi';
-import { FiBarChart2, FiFlag, FiUser } from 'react-icons/fi';
-import { ImStack } from 'react-icons/im';
-import { BsCheck2Square } from 'react-icons/bs';
 import { MdLogout } from 'react-icons/md';
-import { AiOutlineIdcard } from 'react-icons/ai';
-import { CgChevronDown } from 'react-icons/cg';
 import { useSelector, useDispatch } from 'react-redux';
 import Submenu from './Submenu/SubMenu';
 import { SideBarData } from '../../data/Dummy';
-// import Logo from '../../static/assets/img/logo-white.png';
 import Logo from '../../static/assets/img/logo-white.png';
 import './sidebarnav.css';
 import { logout } from '../../redux/features/auth/authSlice';
-
-// const NavLink = ({
-//   to, className, activeClassName, inactiveClassName, ...rest
-// }) => {
-//   const location = useLocation();
-//   const isActive = location.pathname === to;
-
-//   const allClassNames = className + (isActive ? `${activeClassName}` : `${inactiveClassName}`);
-//   return (
-//     <link className={allClassNames} to={to} {...rest} />);
-// };
 
 const SidebarNav = () => {
   const location = useLocation();
