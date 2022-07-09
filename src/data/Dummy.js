@@ -20,6 +20,8 @@ import { IoWarningOutline } from 'react-icons/io5';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { HiOutlineEye } from 'react-icons/hi';
 
+import { logout } from '../redux/features/auth/authSlice';
+
 export const Dummy = () => {
   const test = 0;
   return (
@@ -222,9 +224,16 @@ export const SideBarData = [
     //   },
     // ],
   },
-  {
-    title: 'Log Out',
-    path: '/log-out',
-    icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
-  },
+  // {
+  //   title: 'Log Out',
+  //   path: '/',
+  //   icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
+  //   path2: () => {
+  //     const dispatch = useDispatch();
+  //     const navigate = useNavigate();
+
+  //     dispatch(logout());
+  //     navigate('/');
+  //   },
+  // },
 ];
