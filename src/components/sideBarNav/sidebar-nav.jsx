@@ -35,7 +35,7 @@ const SidebarNav = () => {
 
   const handleLogOut = () => {
     dispatch(logout());
-    navigate('/');
+    navigate('/sign-in');
   };
 
   console.log(isActive);
