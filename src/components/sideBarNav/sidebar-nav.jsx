@@ -41,22 +41,14 @@ const SidebarNav = () => {
     setIsOpen(!isOpen);
   };
 
-  const loc = useLocation();
-  const from = loc.state?.from?.pathname || '/';
-
-  const formic = useFormik({
-    initialValues: {},
-    onSubmit: () => {
-      dispatch(logout());
-      navigate('/', { replace: true });
-    },
-  });
   // const user = localStorage.getItem('user');
 
   const handleLogOut = () => {
-    localStorage.removeItem('user');
     dispatch(logout());
-    navigate(from, { replace: true });
+    // navigate('/', { replace: true });
+    // localStorage.removeItem('user');
+    // dispatch(logout());
+    // navigate(from, { replace: true });
     // navigate('/', { replace: true });
 
     // navigate('/', { replace: true });
@@ -101,7 +93,7 @@ const SidebarNav = () => {
             </li>
           ))}
 
-          <form
+          {/* <form
             className="outline outline-red-500 py-3 px-4"
             onSubmit={formic.handleSubmit}
           >
@@ -109,10 +101,10 @@ const SidebarNav = () => {
               <MdLogout className="xl:w-6 xl:h-7" />
               <span className="inline-block pl-2">Log Out</span>
             </button>
-          </form>
-          {/* <li
+          </form> */}
+          <li
             className="flex items-center space-x-1 py-3 px-4 hover:bg-linkDeep rounded transition duration-200"
-            onClick={handleLogOut()}
+            onClick={handleLogOut}
             role="presentation"
           >
             <MdLogout className="xl:w-6 xl:h-7" />
@@ -123,7 +115,7 @@ const SidebarNav = () => {
             >
               Log Out
             </Link>
-          </li> */}
+          </li>
           {/* flex items-center mt-2 mb-1 py-1 pl-5 */}
           {/* <li
             className={`flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${

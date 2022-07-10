@@ -61,7 +61,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   }
 });
 
-export const logout = createAsyncThunk('auth/logout', async (user) => {
+export const logout = createAsyncThunk('auth/logout', async () => {
   localStorage.removeItem('user');
 });
 
@@ -100,7 +100,6 @@ export const AuthSlice = createSlice({
         state.user = null;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.isSuccess = true;
         state.user = null;
       });
   },
