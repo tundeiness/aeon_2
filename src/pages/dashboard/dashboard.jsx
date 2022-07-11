@@ -81,6 +81,9 @@ const Dashboard = () => {
   // const [getData, setGetData] = useState(institution);
   const dispatch = useDispatch();
 
+  const testUser = JSON.parse(localStorage.getItem('user'));
+  // console.log(testUser.userId);
+
   // dispatch(getInstitution());
 
   // console.log(details);
@@ -92,9 +95,9 @@ const Dashboard = () => {
   } = useStateContext();
   const Badge = <img src={NIMC} alt="NIMC" className="h-14 w-16" />;
 
-  useEffect(() => {
-    dispatch(getInstitution());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getInstitution());
+  // }, [dispatch]);
 
   return (
   // <article className="flex-1 border border-red-500">

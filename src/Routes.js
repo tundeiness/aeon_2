@@ -138,6 +138,7 @@ import { useAuth } from './components/auth';
 // export default routes;
 
 import { useStateContext } from './contexts/ContextProvider';
+import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
 
 // import AuthLayout from './layouts/AuthLayout';
 // import MainLayout from './layouts/MainLayout';
@@ -182,7 +183,9 @@ const ApiReportView = lazy(() => import('./pages/reports/api-usage'));
 const MainRoutes = () => {
   // const location = useLocation();
   // const background = location.state && location.state.background;
-  const [user, setUser] = React.useState(null);
+  // const [user, setUser] = React.useState(null);
+  const user = JSON.parse(localStorage.getItem('user'));
+  // console.log(testUser.userId);
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
@@ -191,59 +194,88 @@ const MainRoutes = () => {
         <Route path="/login" element={<LoginPage />} />
       </Route> */}
         {/* <Route index element={<LoginView />} /> */}
-        <Route path="/" element={<LoginView />} />
-        {/* <Route path="/sign-in" element={<LoginView />} /> */}
+        {/* <Route path="/" element={<LoginView />} /> */}
+        <Route index element={<LoginView />} />
+        <Route path="sign-in" element={<LoginView />} />
+
         <Route path="reset-password" element={<ResetPasswordView />} />
         <Route path="new-password" element={<NewPasswordView />} />
         <Route path="forgot-password" element={<ForgotPasswordView />} />
         <Route path="check-email" element={<CheckEmailView />} />
 
+        <Route element={<ProtectedRoutes isAllowed={!user} />}>
+          <Route element={<MainLayout />}>
+            {/* <Route index element={<DashboardView />} /> */}
+            <Route path="dashboard" element={<DashboardView />} />
+            <Route path="institutions" element={<InstitutionView />} />
+            <Route
+              path="institutions/create-institution"
+              element={<CreateInstitutionView />}
+            />
+            <Route
+              path="institutions/edit-institution"
+              element={<EditInstitutionView />}
+            />
+            <Route
+              path="institutions/view-institution"
+              element={<ViewInstitutionView />}
+            />
+            {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
+            {/* <Route
+            path="institutions/delete-institution"
+            element={<DeleteInstitutionView />}
+          /> */}
+            {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
+            <Route path="users/create-user" element={<CreateUserView />} />
+            <Route path="users/edit-user" element={<EditUserView />} />
+            <Route
+              path="products/create-product"
+              element={<CreateProductView />}
+            />
+            <Route path="products/view-product" element={<ViewProductView />} />
+            <Route path="products" element={<ProductView />} />
+            <Route path="users" element={<AllUserView />} />
+            <Route
+              path="accounts/daily-utilization"
+              element={<AccountUtilizationView />}
+            />
+            <Route
+              path="reports/transactions"
+              element={<TransactionsReportView />}
+            />
+
+            <Route path="reports/api-usage" element={<ApiReportView />} />
+          </Route>
+        </Route>
+        {/* <Route
+          path="ce-id"
+          element={(
+            <ProtectedRoutes
+              redirectPath="/dashboard"
+              isAllowed={!!user && user.role.includes('admin')}
+            >
+              <CE_ID />
+            </ProtectedRoutes>
+          )}
+        />
+        <Route
+          path="profile"
+          element={(
+            <ProtectedRoutes
+              redirectPath="/dashboard"
+              isAllowed={!!user && user.roles.includes('admin')}
+            >
+              <Profile />
+            </ProtectedRoutes>
+          )}
+        /> */}
+
+        {/* <Route path="/sign-in" element={<LoginView />} /> */}
+
         {/* <Route
           path="/dashboard"
           element={<MainLayout />}
         > */}
-        <Route element={<MainLayout />}>
-          {/* <Route index element={<DashboardView />} /> */}
-          <Route path="dashboard" element={<DashboardView />} />
-          <Route path="institutions" element={<InstitutionView />} />
-          <Route
-            path="institutions/create-institution"
-            element={<CreateInstitutionView />}
-          />
-          <Route
-            path="institutions/edit-institution"
-            element={<EditInstitutionView />}
-          />
-          <Route
-            path="institutions/view-institution"
-            element={<ViewInstitutionView />}
-          />
-          {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
-          {/* <Route
-            path="institutions/delete-institution"
-            element={<DeleteInstitutionView />}
-          /> */}
-          {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
-          <Route path="users/create-user" element={<CreateUserView />} />
-          <Route path="users/edit-user" element={<EditUserView />} />
-          <Route
-            path="products/create-product"
-            element={<CreateProductView />}
-          />
-          <Route path="products/view-product" element={<ViewProductView />} />
-          <Route path="products" element={<ProductView />} />
-          <Route path="users" element={<AllUserView />} />
-          <Route
-            path="accounts/daily-utilization"
-            element={<AccountUtilizationView />}
-          />
-          <Route
-            path="reports/transactions"
-            element={<TransactionsReportView />}
-          />
-
-          <Route path="reports/api-usage" element={<ApiReportView />} />
-        </Route>
 
         {/* <Route
             path="institutions/create-institution"

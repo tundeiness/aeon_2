@@ -13,6 +13,7 @@ import LandingImage from '../../static/assets/img/landing-image.png';
 import LogoImage from '../../static/assets/img/logo-transparent.png';
 import AuthButton from '../../components/authButton/authButton';
 import { login } from '../../redux/features/auth/authSlice';
+
 // import SpinnerModal from '../../components/Modal/spinnerModal/SpinnerModal';
 import './sign-in.css';
 
