@@ -127,7 +127,6 @@ const Dashboard = () => {
                 <div className="content-wrap flex justify-between items-center mt-8">
                   <p className="inline-block text-white text-4xl font-semibold">
                     <CountUp end={3010} duration={5} />
-                    {/* 3,010 */}
                   </p>
                   <FaRegThumbsUp className="text-white text-4xl font-semibold" />
                 </div>
@@ -140,7 +139,6 @@ const Dashboard = () => {
                 <div className="content-wrap flex justify-between items-center mt-8">
                   <p className="inline-block text-gray-900 text-4xl font-semibold">
                     <CountUp end={3000} duration={5} />
-                    {/* 3,000 */}
                   </p>
                   <FaRegCheckCircle className="text-gray-900 text-4xl font-semibold" />
                 </div>
@@ -153,7 +151,6 @@ const Dashboard = () => {
                 <div className="content-wrap flex justify-between items-center mt-8">
                   <p className="inline-block text-gray-900 text-4xl font-semibold">
                     <CountUp end={10} duration={5} />
-                    {/* 10 */}
                   </p>
                   <BiXCircle className="text-gray-900 text-4xl font-semibold" />
                 </div>
@@ -167,7 +164,6 @@ const Dashboard = () => {
                   <p className="inline-block text-white text-4xl font-semibold">
                     <CountUp end={100} duration={5} />
                     %
-                    {/* 100% */}
                   </p>
                   <BsPatchCheck className="text-white text-4xl font-semibold" />
                 </div>
