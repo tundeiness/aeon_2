@@ -162,8 +162,7 @@ const Dashboard = () => {
                 </h5>
                 <div className="content-wrap flex justify-between items-center mt-8">
                   <p className="inline-block text-white text-4xl font-semibold">
-                    <CountUp end={100} duration={5} />
-                    %
+                    <CountUp end={100} duration={5} suffix="%" />
                   </p>
                   <BsPatchCheck className="text-white text-4xl font-semibold" />
                 </div>
