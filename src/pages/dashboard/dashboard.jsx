@@ -146,7 +146,10 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="institution-call py-6 w-full">
+          <form
+            className="institution-call py-6 w-full"
+            onSubmit={formic.handleSubmit}
+          >
             <p className="font-semibold text-2xl mb-3">
               API Calls by Institution
             </p>
@@ -203,11 +206,14 @@ const Dashboard = () => {
                 <GetData />
               </div>
             </div>
-          </div>
+          </form>
 
           <div className="chart-group flex xl:space-x-6 w-full">
             <div className="bg-white rounded-xl shadow border p-6 w-2/3">
-              <div className="flex justify-between">
+              <form
+                className="flex justify-between"
+                onSubmit={formic.handleSubmit}
+              >
                 <p>Today</p>
                 <select
                   id="api"
@@ -229,7 +235,7 @@ const Dashboard = () => {
                     Business Search
                   </option>
                 </select>
-              </div>
+              </form>
               <p className="text-xs pb-8 text-gray-400">
                 No. of successful and Failed API calls made
               </p>
