@@ -16,6 +16,7 @@ import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
+import ActivateModal from '../Modal/ActivateModal/ActivateModal';
 import { GoButton, FilterButton } from '../Buttons/buttonCollections';
 import {
   getInstitution,
@@ -276,6 +277,7 @@ const InstitutionList = () => {
         </section>
       </article>
       <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      <ActivateModal />
     </>
   );
 };
