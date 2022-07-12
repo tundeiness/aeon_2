@@ -56,6 +56,7 @@ const Dashboard = () => {
     initialValues: {
       institution: '',
       day: '',
+      api: '',
     },
     // validate,
     onSubmit: (values) => {
@@ -196,8 +197,8 @@ const Dashboard = () => {
                   onChange={formic.handleChange}
                   {...formic.getFieldProps('day')}
                 >
-                  <option value="TODAY" label="TODAY">
-                    TODAY
+                  <option value="Today" label="Today">
+                    Today
                   </option>
                   <option value="Bi-Annual" label=" Bi-Annual">
                     Bi-Anunal
@@ -220,17 +221,29 @@ const Dashboard = () => {
           <div className="chart-group flex xl:space-x-6 w-full">
             <div className="bg-white rounded-xl shadow border p-6 w-2/3">
               <div className="flex justify-between">
-                <p>API Calls by month</p>
-                <select id="month-category" name="month-category">
-                  <option className="uppercase" selected>
-                    Month
+                <p>Today</p>
+                <select
+                  id="api"
+                  name="api"
+                  value={formic.values.api}
+                  onChange={formic.handleChange}
+                  {...formic.getFieldProps('api')}
+                >
+                  <option value="NIN" label="NIN">
+                    NIN
                   </option>
-                  <option>Jan</option>
-                  <option>Feb</option>
-                  <option>Mar</option>
+                  <option value="FRSC" label="FRSC">
+                    FRSC
+                  </option>
+                  <option value="Credit Bureau" label="Credit Bureau">
+                    Credit Bureau
+                  </option>
+                  <option value="Business Search" label="Business Search">
+                    Business Search
+                  </option>
                 </select>
               </div>
-              <p className="py-3">
+              <p className="text-xs pb-8 text-gray-400">
                 No. of successful and Failed API calls made
               </p>
               <div>
