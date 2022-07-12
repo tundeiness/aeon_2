@@ -35,6 +35,7 @@ module.exports = {
         headingBlue: '#b5e2fa',
         iconRed: '#FF0000',
         iconGreen: '#12B76A',
+        dashGrey: '#d0d5dd',
       },
     },
   },

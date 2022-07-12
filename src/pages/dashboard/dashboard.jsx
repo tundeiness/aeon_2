@@ -1,42 +1,10 @@
-/* eslint-disable import/named */
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
-// /* eslint-disable jsx-a11y/anchor-is-valid */
-// /* eslint-disable max-len */
-// /* eslint-disable no-unused-vars */
-// import React from 'react';
-
-// const Dashboard = () => {
-//   const text = 0;
-//   return (
-//     <div className="min-h-full">
-
-//       <header className="bg-white shadow">
-//         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-//           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-//         </div>
-//       </header>
-//       <main>
-//         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-//           {/* <!-- Replace with your content --> */}
-//           <div className="px-4 py-6 sm:px-0">
-//             <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-//           </div>
-//           {/* <!-- /End replace --> */}
-//         </div>
-//       </main>
-//     </div>
-//   );
-// };
-
 // export default Dashboard;
-
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 // import { lazy } from 'react';
 import React, { lazy, useState, useEffect } from 'react';
+import { useFormik } from 'formik';
 import {
   Routes, Link, Outlet, Route, useLocation,
 } from 'react-router-dom';
@@ -183,7 +151,7 @@ const Dashboard = () => {
                   id="payment-category"
                   name="payment-category"
                   autoComplete="category-name"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-gray-200 rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-gray-100 text-gray-400 rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                   aria-label=".form-select-sm example"
                 >
                   <option className="uppercase" selected>
@@ -200,7 +168,7 @@ const Dashboard = () => {
                   id="payment-category"
                   name="payment-category"
                   autoComplete="category-name"
-                  className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-gray-100 text-gray-400 rounded-md shadow-sm focus:outline-none sm:text-sm"
                 >
                   <option className="uppercase" selected>
                     TODAY
