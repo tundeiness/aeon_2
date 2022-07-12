@@ -170,7 +170,7 @@ const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 const CreateInstitutionView = lazy(() => import('./pages/institutions/create-instituition/create-institution'));
 const ViewInstitutionView = lazy(() => import('./pages/institutions/view-institution/view-institution'));
 const ProductView = lazy(() => import('./pages/products/products'));
-const CreateProductView = lazy(() => import('./pages/products/create-product/createProduct'));
+const CreateProductView = lazy(() => import('./pages/products/create-product/create-product'));
 const EditInstitutionView = lazy(() => import('./pages/institutions/update-institution/update-institution'));
 const ViewProductView = lazy(() => import('./pages/products/view-product/view-product'));
 const AllUserView = lazy(() => import('./pages/users/User'));
