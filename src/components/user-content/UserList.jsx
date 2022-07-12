@@ -10,6 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
 import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
+import { HiOutlineEye } from 'react-icons/hi';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import SupportButton from '../support/support';
@@ -113,7 +114,7 @@ const UserList = () => {
         <td className="py-4 px-6">
           <span className="flex justify-between">
             <button type="button">
-              <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+              <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
             {datum.status === 'Active' ? (
               <span className="flex items-center">
