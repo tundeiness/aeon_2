@@ -149,7 +149,7 @@ export const SideBarData = [
     subnav: [
       {
         title: 'Create Product',
-        path: '',
+        path: '/products/create-product',
         icon: <GoPrimitiveDot />,
       },
     ],
@@ -163,7 +163,7 @@ export const SideBarData = [
     subnav: [
       {
         title: 'Create User',
-        path: '',
+        path: '/users/create-user',
         icon: <GoPrimitiveDot />,
       },
     ],
@@ -177,17 +177,17 @@ export const SideBarData = [
     subnav: [
       {
         title: 'Posts',
-        path: '',
+        path: '/accounts/posts',
         icon: <GoPrimitiveDot />,
       },
       {
         title: 'Statement',
-        path: '',
+        path: '/accounts/account-statement',
         icon: <GoPrimitiveDot />,
       },
       {
         title: 'Daily Utilisation',
-        path: '',
+        path: '/accounts/daily-utilisation',
         icon: <GoPrimitiveDot />,
       },
     ],
@@ -201,12 +201,12 @@ export const SideBarData = [
     subnav: [
       {
         title: 'Transaction',
-        path: '',
+        path: '/reports/transaction',
         icon: <GoPrimitiveDot />,
       },
       {
         title: 'API Usage',
-        path: '',
+        path: '/reports/api-usage',
         icon: <GoPrimitiveDot />,
       },
     ],
@@ -220,22 +220,22 @@ export const SideBarData = [
     subnav: [
       {
         title: 'KYC',
-        path: '',
+        path: '/ce-id/kyc',
         icon: <GoPrimitiveDot />,
       },
       {
         title: 'Bank Statement',
-        path: '',
+        path: '/ce-id/statement',
         icon: <GoPrimitiveDot />,
       },
       {
         title: 'Credit Report',
-        path: '',
+        path: '/ce-id/report',
         icon: <GoPrimitiveDot />,
       },
       {
         title: 'OCR',
-        path: '',
+        path: '/ce-id/ocr',
         icon: <GoPrimitiveDot />,
       },
     ],
@@ -249,12 +249,12 @@ export const SideBarData = [
     subnav: [
       {
         title: 'Update KYB',
-        path: '',
+        path: '/profile/update-kyb',
         icon: <GoPrimitiveDot />,
       },
       {
         title: 'Change Password',
-        path: '',
+        path: '/profile/change-password',
         icon: <GoPrimitiveDot />,
       },
     ],
