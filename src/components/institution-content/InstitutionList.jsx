@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
-import { BsArrowDownShort } from 'react-icons/bs';
+import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { HiOutlineEye } from 'react-icons/hi';
 import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
@@ -82,12 +83,17 @@ const InstitutionList = () => {
         <td className="py-4 px-6">
           <span className="flex justify-between">
             <button type="button">
-              <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+              <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
-            <RiDeleteBinLine
-              className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-              onClick={() => setIsOpen(true)}
-            />
+            {datum.status === 'Active' ? (
+              <span className="flex items-center">
+                <BsDashSquare className="text-iconRed w-4 h-4 font-bold" />
+              </span>
+            ) : (
+              <span className="flex items-center">
+                <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+              </span>
+            )}
             <button type="button">
               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
             </button>
