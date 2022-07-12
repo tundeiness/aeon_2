@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 // export default Dashboard;
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -53,8 +54,8 @@ const Dashboard = () => {
 
   const formic = useFormik({
     initialValues: {
-      // email: "",
-      // password: "",
+      institution: '',
+      day: '',
     },
     // validate,
     onSubmit: (values) => {
@@ -164,34 +165,49 @@ const Dashboard = () => {
             <div className="category-block flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                 <select
-                  id="payment-category"
-                  name="payment-category"
-                  autoComplete="category-name"
+                  id="institution"
+                  name="institution"
                   className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-gray-100 text-gray-400 rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                  aria-label=".form-select-sm example"
+                  value={formic.values.institution}
+                  onChange={formic.handleChange}
+                  {...formic.getFieldProps('institution')}
                 >
-                  <option className="uppercase" selected>
+                  <option value="CREDEQUITY" label="CREDEQUITY">
                     CREDEQUITY
                   </option>
-                  <option>Bi-Anunal</option>
-                  <option>Quarterly</option>
-                  <option>Monthly</option>
+                  <option value="Bi-Annual" label=" Bi-Annual">
+                    Bi-Anunal
+                  </option>
+                  <option value="Quarterly" label="Quarterly">
+                    Quarterly
+                  </option>
+                  <option value="Monthly" label="Monthly">
+                    Monthly
+                  </option>
                 </select>
               </div>
 
               <div className="w-full md:w-1/3 px-3">
                 <select
-                  id="payment-category"
-                  name="payment-category"
-                  autoComplete="category-name"
+                  id="day"
+                  name="day"
                   className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-gray-100 text-gray-400 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                  value={formic.values.day}
+                  onChange={formic.handleChange}
+                  {...formic.getFieldProps('day')}
                 >
-                  <option className="uppercase" selected>
+                  <option value="TODAY" label="TODAY">
                     TODAY
                   </option>
-                  <option>Bi-Anunal</option>
-                  <option>Quarterly</option>
-                  <option>Monthly</option>
+                  <option value="Bi-Annual" label=" Bi-Annual">
+                    Bi-Anunal
+                  </option>
+                  <option value="Quarterly" label="Quarterly">
+                    Quarterly
+                  </option>
+                  <option value="Monthly" label="Monthly">
+                    Monthly
+                  </option>
                 </select>
               </div>
 
