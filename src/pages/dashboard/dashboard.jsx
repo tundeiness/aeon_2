@@ -6,23 +6,10 @@
 // import { lazy } from 'react';
 import React, { lazy, useState, useEffect } from 'react';
 import { useFormik } from 'formik';
+import { BiXCircle } from 'react-icons/bi';
 import {
-  Routes, Link, Outlet, Route, useLocation,
-} from 'react-router-dom';
-import { BiHomeAlt, BiFile, BiXCircle } from 'react-icons/bi';
-import {
-  FiBarChart2, FiFlag, FiUser, FiRefreshCcw,
-} from 'react-icons/fi';
-import { ImStack } from 'react-icons/im';
-import {
-  BsCheck2Square,
-  BsCheckCircle,
-  BsXCircle,
   BsPatchCheck,
 } from 'react-icons/bs';
-import { MdLogout } from 'react-icons/md';
-import { AiOutlineIdcard } from 'react-icons/ai';
-import { CgChevronDown } from 'react-icons/cg';
 import { FaRegThumbsUp, FaRegCheckCircle } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import CountUp from 'react-countup';
