@@ -50,6 +50,22 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   const testUser = JSON.parse(localStorage.getItem('user'));
+
+  const formic = useFormik({
+    initialValues: {
+      // email: "",
+      // password: "",
+    },
+    // validate,
+    onSubmit: (values) => {
+      // const userData = {
+      //   email: values.email,
+      //   password: values.password,
+      // };
+      // dispatch(login(userData));
+      // resetForm(values);
+    },
+  });
   // console.log(testUser.userId);
 
   // dispatch(getInstitution());
