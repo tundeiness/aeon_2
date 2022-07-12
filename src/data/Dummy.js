@@ -134,7 +134,7 @@ export const SideBarData = [
     iconOpen: <CgChevronUp />,
     subnav: [
       {
-        title: 'Create',
+        title: 'Create Institution',
         path: '/institutions/create-institution',
         icon: <GoPrimitiveDot />,
       },
@@ -146,13 +146,13 @@ export const SideBarData = [
     icon: <ImStack key="2" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Create Product',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Users',
@@ -160,13 +160,13 @@ export const SideBarData = [
     icon: <BsCheck2Square key="3" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Create User',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Accounts',
@@ -174,13 +174,23 @@ export const SideBarData = [
     icon: <FiFlag key="4" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Posts',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Statement',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Daily Utilisation',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Reports',
@@ -188,13 +198,18 @@ export const SideBarData = [
     icon: <BiFile key="5" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Transaction',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'API Usage',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'CE-ID',
@@ -202,13 +217,28 @@ export const SideBarData = [
     icon: <AiOutlineIdcard key="6" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'KYC',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Bank Statement',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Credit Report',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'OCR',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Profile',
@@ -216,24 +246,17 @@ export const SideBarData = [
     icon: <FiUser key="7" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Update KYB',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Change Password',
+        path: '',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
-  // {
-  //   title: 'Log Out',
-  //   path: '/',
-  //   icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
-  //   path2: () => {
-  //     const dispatch = useDispatch();
-  //     const navigate = useNavigate();
-
-  //     dispatch(logout());
-  //     navigate('/');
-  //   },
-  // },
 ];
