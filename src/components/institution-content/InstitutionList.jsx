@@ -87,7 +87,10 @@ const InstitutionList = () => {
             </button>
             {datum.status === 'Active' ? (
               <span className="flex items-center">
-                <BsDashSquare className="text-iconRed w-4 h-4 font-bold" />
+                <BsDashSquare
+                  className="text-iconRed w-4 h-4 font-bold"
+                  onClick={() => setIsOpen(true)}
+                />
               </span>
             ) : (
               <span className="flex items-center">
