@@ -59,7 +59,8 @@ const options = {
   },
 };
 
-const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+const labels = ['Total', 'Successful', 'Failed'];
+const backgroundColor = ['#36b9ff', '#1756c2', '#ff650E'];
 
 const data = {
   labels,
@@ -68,21 +69,23 @@ const data = {
     {
       label: 'Dataset 1',
       data: labels.map(() => Math.floor(Math.random() * 15000)),
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      backgroundColor: (c) => backgroundColor[c.dataIndex % backgroundColor.length],
+      // backgroundColor: 'rgba(255, 99, 132, 0.5)',
       // barThickness: 22,
       barPercentage: 0.9,
       maxBarThickness: 35,
+      hoverBackgroundColor: '#000B93',
       // minBarLength: 2,
     },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => Math.floor(Math.random() * 15000)),
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      // barThickness: 22,
-      maxBarThickness: 35,
-      barPercentage: 0.9,
-      hoverBackgroundColor: '#000B93',
-    },
+    // {
+    //   label: 'Dataset 2',
+    //   data: labels.map(() => Math.floor(Math.random() * 15000)),
+    //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    //   // barThickness: 22,
+    //   maxBarThickness: 35,
+    //   barPercentage: 0.9,
+    //   hoverBackgroundColor: '#000B93',
+    // },
   ],
 };
 
