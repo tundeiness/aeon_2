@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
@@ -15,6 +16,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
+import ViewInstitution from '../../pages/institutions/view-institution/view-institution';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import ActivateModal from '../Modal/ActivateModal/ActivateModal';
 import { GoButton, FilterButton } from '../Buttons/buttonCollections';
@@ -28,6 +30,7 @@ import {
 
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
+  const [viewInstitution, setViewInstitution] = useState(null);
   // const { loading, institution } = useSelector((state) => ({
   //   ...state.institution,
   // }));
@@ -59,51 +62,57 @@ const InstitutionList = () => {
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     .map((datum, _idx) => (
       // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
-      <tr key={datum.id}>
-        <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
-        <td className="py-4 uppercase text-center">{datum.name}</td>
-        <td className="py-4 pr-4 pl-20">
-          {datum.status === 'Active' ? (
-            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
-              <GoPrimitiveDot className="text-white" />
-              {datum.status}
-            </span>
-          ) : (
-            <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
-              <GoPrimitiveDot className="text-white" />
-              {datum.status}
-            </span>
-          )}
-        </td>
-        <td className="py-4 pl-4">{datum.websiteUrl}</td>
-        <td className="py-4 pl-10">
-          <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
-            {datum.category}
-          </span>
-        </td>
-        <td className="py-4 px-6">
-          <span className="flex justify-between">
-            <button type="button">
-              <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-            </button>
+      <>
+        <tr key={datum.id}>
+          <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
+          <td className="py-4 uppercase text-center">{datum.name}</td>
+          <td className="py-4 pr-4 pl-20">
             {datum.status === 'Active' ? (
-              <span className="flex items-center">
-                <BsDashSquare
-                  className="text-iconRed w-4 h-4 font-bold"
-                  onClick={() => setIsOpen(true)}
-                />
+              <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
+                <GoPrimitiveDot className="text-white" />
+                {datum.status}
               </span>
             ) : (
-              <span className="flex items-center">
-                <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+              <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
+                <GoPrimitiveDot className="text-white" />
+                {datum.status}
               </span>
             )}
-            <button type="button">
-              <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-            </button>
-          </span>
-        </td>
-      </tr>
+          </td>
+          <td className="py-4 pl-4">{datum.websiteUrl}</td>
+          <td className="py-4 pl-10">
+            <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
+              {datum.category}
+            </span>
+          </td>
+          <td className="py-4 px-6">
+            <span className="flex justify-between">
+              <button
+                type="button"
+                onClick={() => setViewInstitution((viewInstitution) => (viewInstitution === _idx ? null : _idx))}
+              >
+                <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+                <ViewInstitution institution={datum} key={datum.id} />
+              </button>
+              {datum.status === 'Active' ? (
+                <span className="flex items-center">
+                  <BsDashSquare
+                    className="text-iconRed w-4 h-4 font-bold"
+                    onClick={() => setIsOpen(true)}
+                  />
+                </span>
+              ) : (
+                <span className="flex items-center">
+                  <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+                </span>
+              )}
+              <button type="button">
+                <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
+              </button>
+            </span>
+          </td>
+        </tr>
+      </>
     ));
 
   const pagingCount = Math.ceil(institution?.length / dataPerPage);
