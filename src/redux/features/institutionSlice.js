@@ -15,6 +15,7 @@ const NEW_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
 const EDIT_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
 const DELETE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
 const GET_ALL_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/RetrieveAll';
+const GET_ONE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Retrieve?code=';
 
 export const getInstitution = createAsyncThunk(
   'institution/getInstitution',
@@ -24,6 +25,20 @@ export const getInstitution = createAsyncThunk(
       return response.data;
     } catch (error) {
       return error.message;
+    }
+  },
+);
+
+export const getOneInstitution = createAsyncThunk(
+  'institution/getOneInstitution',
+  async (code, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `${GET_ONE_INSTITUTION_URL}${code}`,
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Cannot find Institution');
     }
   },
 );
@@ -347,12 +362,18 @@ const institutionSlice = createSlice({
         state.institution[institution.id] = institution;
         state.institution.push(institution);
       })
+      .addCase(getOneInstitution.fulfilled, (state) => {
+        state.status = 'succeeded';
+        state.institution = action.payload;
+      })
       .addCase(createInstitution.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
       .addCase(deleteInstitution.fulfilled, (state, action) => {
-        state.institution = state.institution.filter((institution) => institution.id !== action.payload.id);
+        state.institution = state.institution.filter(
+          (institution) => institution.id !== action.payload.id,
+        );
       });
   },
 });

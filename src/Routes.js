@@ -179,6 +179,7 @@ const EditUserView = lazy(() => import('./pages/users/edit-user/edit-user'));
 const AccountUtilizationView = lazy(() => import('./pages/accounts/daily-utilization'));
 const TransactionsReportView = lazy(() => import('./pages/reports/transactions'));
 const ApiReportView = lazy(() => import('./pages/reports/api-usage'));
+const OneInstitutionView = lazy(() => import('./pages/institutions/view-institution/view-institution'));
 
 const MainRoutes = () => {
   // const location = useLocation();
@@ -218,7 +219,7 @@ const MainRoutes = () => {
             />
             <Route
               path="institutions/view-institution"
-              element={<ViewInstitutionView />}
+              element={<OneInstitutionView />}
             />
             {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
             {/* <Route

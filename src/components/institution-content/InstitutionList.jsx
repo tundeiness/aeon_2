@@ -25,6 +25,7 @@ import {
   selectAllInstitutions,
   getInstitutionStatus,
   getInstitutionError,
+  getOneInstitution,
 } from '../../redux/features/institutionSlice';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
@@ -87,13 +88,13 @@ const InstitutionList = () => {
           </td>
           <td className="py-4 px-6">
             <span className="flex justify-between">
-              <button
-                type="button"
-                onClick={() => setViewInstitution((viewInstitution) => (viewInstitution === _idx ? null : _idx))}
+              <Link
+                to="/view-institution"
+                onClick={getOneInstitution(datum.code)}
+                // onClick={() => setViewInstitution((viewInstitution) => (viewInstitution === _idx ? null : _idx))}
               >
                 <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-                <ViewInstitution institution={datum} key={datum.id} />
-              </button>
+              </Link>
               {datum.status === 'Active' ? (
                 <span className="flex items-center">
                   <BsDashSquare

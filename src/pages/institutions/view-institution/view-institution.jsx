@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { HeadingDisplayRow, DataDisplayRow, TextDisplayRow } from '../../../components/viewDescription/ViewDescription';
 import SupportButton from '../../../components/support/support';
 import {
@@ -9,9 +10,14 @@ import {
   ActiveBtn,
   InActiveBtn,
 } from '../../../components/Buttons/buttonCollections';
+import {
+  getOneInstitution,
+} from '../../../redux/features/institutionSlice';
 
 export const ViewInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
+  const oneInstitution = useSelector(getOneInstitution);
+  console.log(oneInstitution);
 
   return (
     <>
