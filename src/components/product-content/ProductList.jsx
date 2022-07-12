@@ -8,7 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
-import { BsArrowDownShort } from 'react-icons/bs';
+import { HiOutlineEye } from 'react-icons/hi';
+import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import SupportButton from '../support/support';
@@ -58,44 +59,58 @@ const ProductList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = product?.slice(dataPageVisited, dataPageVisited + dataPerPage)?.map((datum) => (
-    <tr key={datum['S/N']}>
-      <td className="text-sm leading-5 py-4 px-3">{datum.code}</td>
-      <td className="py-4 uppercase text-center">{datum.name}</td>
-      <td className="py-4 pl-28">
-        {datum.status === 'Active' ? (
-          <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
-            <GoPrimitiveDot className="text-white" />
+  const displayData = product
+    ?.slice(dataPageVisited, dataPageVisited + dataPerPage)
+    ?.map((datum) => (
+      <tr key={datum['S/N']}>
+        <td className="text-sm leading-5 py-4 px-3">{datum.code}</td>
+        <td className="py-4 uppercase text-center">{datum.name}</td>
+        <td className="py-4 pl-28">
+          {datum.status === 'Active' ? (
+            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
+              <GoPrimitiveDot className="text-white" />
 
-            {datum.status}
-          </span>
-        ) : (
-          <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
-            <GoPrimitiveDot className="text-white" />
+              {datum.status}
+            </span>
+          ) : (
+            <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
+              <GoPrimitiveDot className="text-white" />
 
-            {datum.status}
+              {datum.status}
+            </span>
+          )}
+        </td>
+        {/* <td className="py-4 pl-4">{datum.Created}</td> */}
+        <td className="py-4 pl-22 text-center">
+          <span className="inline-block text-gray-900 py-0.5 px-0.4 rounded-lg text-center hover:cursor-pointer">
+            {handleDate(datum.dateCreated)}
           </span>
-        )}
-      </td>
-      {/* <td className="py-4 pl-4">{datum.Created}</td> */}
-      <td className="py-4 pl-22 text-center">
-        <span className="inline-block text-gray-900 py-0.5 px-0.4 rounded-lg text-center hover:cursor-pointer">
-          {handleDate(datum.dateCreated)}
-        </span>
-      </td>
-      <td className="py-4 px-6">
-        <span className="flex justify-around px-12">
-          <button type="button">
-            <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-          </button>
-          <RiDeleteBinLine
-            className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
-            onClick={() => setIsOpen(true)}
-          />
-        </span>
-      </td>
-    </tr>
-  ));
+        </td>
+        <td className="py-4 px-6">
+          <span className="flex justify-around px-12">
+            <button type="button">
+              <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+            </button>
+            {/* <RiDeleteBinLine
+              className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
+              onClick={() => setIsOpen(true)}
+            /> */}
+            {datum.status === 'Active' ? (
+              <span className="flex items-center">
+                <BsDashSquare
+                  className="text-iconRed w-4 h-4 font-bold"
+                  onClick={() => setIsOpen(true)}
+                />
+              </span>
+            ) : (
+              <span className="flex items-center">
+                <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+              </span>
+            )}
+          </span>
+        </td>
+      </tr>
+    ));
 
   const pagingCount = Math.ceil(mockData?.length / dataPerPage);
 
