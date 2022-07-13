@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeadingDisplayRow, DataDisplayRow, TextDisplayRow } from '../../../components/viewDescription/ViewDescription';
 import SupportButton from '../../../components/support/support';
@@ -12,12 +12,20 @@ import {
 } from '../../../components/Buttons/buttonCollections';
 import {
   getOneInstitution,
+  selectAllInstitutions,
+  selectOneInstitution,
 } from '../../../redux/features/institutionSlice';
 
 export const ViewInstitution = () => {
+  const dispatch = useDispatch();
+  // const institutionStatus = useSelector(getInstitutionStatus);
   const [updateInstitution, setUpdateInstitution] = useState(false);
   const oneInstitution = useSelector(getOneInstitution);
   console.log(oneInstitution);
+
+  useEffect(() => {
+    dispatch(getOneInstitution());
+  }, [dispatch]);
 
   return (
     <>

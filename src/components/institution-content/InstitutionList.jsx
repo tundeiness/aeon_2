@@ -89,7 +89,7 @@ const InstitutionList = () => {
           <td className="py-4 px-6">
             <span className="flex justify-between">
               <Link
-                to="institutions/view-institution"
+                to="view-institution"
                 onClick={getOneInstitution(datum.code)}
                 // onClick={() => setViewInstitution((viewInstitution) => (viewInstitution === _idx ? null : _idx))}
               >

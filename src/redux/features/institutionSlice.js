@@ -379,6 +379,7 @@ const institutionSlice = createSlice({
 });
 
 export const selectAllInstitutions = (state) => state.institution.institution;
+export const selectOneInstitution = (state) => state.institution;
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
 export const { setUpdate } = institutionSlice.actions;
