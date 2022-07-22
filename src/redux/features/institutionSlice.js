@@ -268,6 +268,15 @@ const institutionSlice = createSlice({
     //   state.edit = action.payload.edit;
     //   state.body = action.payload.body;
     // },
+    viewInstitution: (state, action) => {
+      const { id } = action.payload;
+      const soloInstitution = state.find((institution) => institution.id === id);
+      if (soloInstitution) {
+        // return state.filter((item) => item.id === id);
+        state.institution = state.filter((item) => item.id === id);
+      }
+      // state.institution = soloInstitution;
+    },
   },
 
   // extraReducers: {
@@ -362,10 +371,10 @@ const institutionSlice = createSlice({
         state.institution[institution.id] = institution;
         state.institution.push(institution);
       })
-      .addCase(getOneInstitution.fulfilled, (state) => {
-        state.status = 'succeeded';
-        state.institution = action.payload;
-      })
+      // .addCase(getOneInstitution.fulfilled, (state, action) => {
+      //   state.status = 'succeeded';
+      //   state.institution = state.institution.find((institution) => institution.code === action.payload.code);
+      // })
       .addCase(createInstitution.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
@@ -379,8 +388,8 @@ const institutionSlice = createSlice({
 });
 
 export const selectAllInstitutions = (state) => state.institution.institution;
-export const selectOneInstitution = (state) => state.institution;
+export const selectInstitutionByCode = (state, code) => state.institution.institution.find((institution) => institution.code === code);
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
-export const { setUpdate } = institutionSlice.actions;
+export const { viewInstitution } = institutionSlice.actions;
 export default institutionSlice.reducer;

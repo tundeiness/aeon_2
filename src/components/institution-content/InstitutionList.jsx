@@ -1,10 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
 import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
@@ -26,12 +27,13 @@ import {
   getInstitutionStatus,
   getInstitutionError,
   getOneInstitution,
+  viewInstitution,
 } from '../../redux/features/institutionSlice';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
-  const [viewInstitution, setViewInstitution] = useState(null);
+  const [viewInstitutionId, setViewInstitutionId] = useState(null);
   // const { loading, institution } = useSelector((state) => ({
   //   ...state.institution,
   // }));
@@ -46,13 +48,26 @@ const InstitutionList = () => {
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
 
+  const [singleInstitution, setSingleInstitution] = useState(null);
+
   console.log(institution);
 
   useEffect(() => {
     if (institutionStatus === 'idle') {
       dispatch(getInstitution());
+      // <ViewInstitution institution={institution} />;
     }
   }, [dispatch, institutionStatus]);
+
+  const navigate = useNavigate();
+
+  const handleViewInstitution = (data) => {
+    setSingleInstitution(data);
+    localStorage.setItem('singleInstitution', JSON.stringify(data));
+    // dispatch(viewInstitution({ id: data.id }));
+  };
+
+  console.log(singleInstitution);
 
   // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
 
@@ -90,8 +105,10 @@ const InstitutionList = () => {
             <span className="flex justify-between">
               <Link
                 to="view-institution"
-                onClick={getOneInstitution(datum.code)}
-                // onClick={() => setViewInstitution((viewInstitution) => (viewInstitution === _idx ? null : _idx))}
+                // onClick={handleViewInstitution(datum)}
+                // onClick={() => getOneInstitution(() => (datum.id === _idx ? datum.code : null))}
+                // onClick={setSingleInstitution(datum)}
+                onClick={() => handleViewInstitution(datum)}
               >
                 <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
               </Link>
@@ -141,6 +158,8 @@ const InstitutionList = () => {
 
     return content;
   };
+
+  // const daetuh = '<ViewInstitution institution={institution} />';
 
   //  switch (institutionStatus) {
   //    case "loading": // if (x === 'value1')
@@ -288,6 +307,7 @@ const InstitutionList = () => {
       </article>
       <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
       <ActivateModal />
+      {/* <ViewInstitution institution={institution} /> */}
     </>
   );
 };

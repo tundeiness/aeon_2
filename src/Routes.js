@@ -221,6 +221,11 @@ const MainRoutes = () => {
               path="institutions/view-institution"
               element={<OneInstitutionView />}
             />
+
+            {/* <Route
+              path="institutions/view-institution/:id"
+              element={<OneInstitutionView />}
+            /> */}
             {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
             {/* <Route
             path="institutions/delete-institution"
