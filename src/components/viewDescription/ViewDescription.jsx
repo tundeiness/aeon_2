@@ -68,7 +68,7 @@ export const HeadingDisplayRow = ({
     <>
       <div className={`${classText}-block flex flex-row`}>
         <div className="w-1/4 py-4 bg-headingBg">
-          <dd className="block text-md font-medium pl-10 text-white">
+          <dd className="block text-md font-medium pl-10 text-white uppercase">
             {title}
           </dd>
         </div>

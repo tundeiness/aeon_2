@@ -20,13 +20,14 @@ const AuthButton = ({
   );
 };
 
-export const BackToList = ({ text }) => {
+export const BackToList = ({ text, onClick }) => {
   const test = 0;
   return (
     <div className="inline-block px-1 mb-3">
       <Link
         className="flex flex-row items-center justify-start bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white py-2 pl-2 pr-3 rounded-md font-medium text-base"
         to="/institutions"
+        onClick={localStorage.removeItem('singleInstitution')}
       >
         <BiChevronLeft />
         {' '}
