@@ -13,9 +13,9 @@ import {
   InActiveBtn,
 } from '../../../components/Buttons/buttonCollections';
 import {
-  getOneInstitution,
+
   selectAllInstitutions,
-  selectInstitutionByCode,
+
 } from '../../../redux/features/institutionSlice';
 
 const ViewInstitution = () => {
@@ -25,23 +25,23 @@ const ViewInstitution = () => {
   const singleItem = localStorage.getItem('singleInstitution');
   const parseData = JSON.parse(singleItem);
   // const [saveInstitution, setSaveInstitution] = useState(null);
-  const oneInstitution = useSelector(selectInstitutionByCode);
+  // const oneInstitution = useSelector(selectInstitutionByCode);
   const params = useParams();
   console.log(params.id);
-  const institution = useSelector(selectAllInstitutions);
+  // const institution = useSelector(selectAllInstitutions);
 
   // const oneData = useSelector((state) => selectInstitutionByCode(state, code));
-  console.log(institution);
+  // console.log(institution);
 
-  const soloInstitution = institution.filter((obj) => obj.id === params.id);
+  // const soloInstitution = institution.filter((obj) => obj.id === params.id);
 
   // const insti = useSelector((state) => state.institution.find((institution) => institution.id === institutionId));
 
   console.log(parseData);
 
-  useEffect(() => {
-    dispatch(getOneInstitution());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getOneInstitution());
+  // }, [dispatch]);
 
   return (
     <>

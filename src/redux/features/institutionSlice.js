@@ -29,19 +29,19 @@ export const getInstitution = createAsyncThunk(
   },
 );
 
-export const getOneInstitution = createAsyncThunk(
-  'institution/getOneInstitution',
-  async (code, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        `${GET_ONE_INSTITUTION_URL}${code}`,
-      );
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue('Cannot find Institution');
-    }
-  },
-);
+// export const getOneInstitution = createAsyncThunk(
+//   'institution/getOneInstitution',
+//   async (code, thunkAPI) => {
+//     try {
+//       const response = await axios.post(
+//         `${GET_ONE_INSTITUTION_URL}${code}`,
+//       );
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue('Cannot find Institution');
+//     }
+//   },
+// );
 
 // const getInstitutionById = createAsyncThunk(
 //   "institution/getInstitutionById",
@@ -273,7 +273,7 @@ const institutionSlice = createSlice({
       const soloInstitution = state.find((institution) => institution.id === id);
       if (soloInstitution) {
         // return state.filter((item) => item.id === id);
-        state.institution = state.filter((item) => item.id === id);
+        // state.institution = state.filter((item) => item.id === id);
       }
       // state.institution = soloInstitution;
     },
@@ -388,7 +388,7 @@ const institutionSlice = createSlice({
 });
 
 export const selectAllInstitutions = (state) => state.institution.institution;
-export const selectInstitutionByCode = (state, code) => state.institution.institution.find((institution) => institution.code === code);
+// export const selectInstitutionByCode = (state, code) => state.institution.institution.find((institution) => institution.code === code);
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
 export const { viewInstitution } = institutionSlice.actions;
