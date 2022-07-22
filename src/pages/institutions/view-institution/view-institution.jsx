@@ -36,11 +36,6 @@ const ViewInstitution = () => {
   const soloInstitution = institution.filter((obj) => obj.id === params.id);
 
   // const insti = useSelector((state) => state.institution.find((institution) => institution.id === institutionId));
-  // console.log(insti);
-
-  // const { code } = soloInstitution[0];
-
-  // const test = localStorage.getItem('singleInstitution');
 
   console.log(parseData);
 
