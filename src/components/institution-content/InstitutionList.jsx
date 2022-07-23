@@ -26,8 +26,6 @@ import {
   selectAllInstitutions,
   getInstitutionStatus,
   getInstitutionError,
-  getOneInstitution,
-  viewInstitution,
 } from '../../redux/features/institutionSlice';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 

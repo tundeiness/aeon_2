@@ -56,7 +56,7 @@ export const InActiveBtn = () => {
   return (
     <>
       <button
-        className="bg-red-400 px-3 py-1 rounded-md text-white"
+        className="bg-red-400 px-3 py-1 rounded-full text-white"
         type="button"
       >
         Inactive
