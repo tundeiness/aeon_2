@@ -26,6 +26,7 @@ import {
   selectAllInstitutions,
   getInstitutionStatus,
   getInstitutionError,
+  selectInstitutionById,
 } from '../../redux/features/institutionSlice';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
@@ -62,7 +63,16 @@ const InstitutionList = () => {
   const handleViewInstitution = (data) => {
     setSingleInstitution(data);
     localStorage.setItem('singleInstitution', JSON.stringify(data));
+
     // dispatch(viewInstitution({ id: data.id }));
+  };
+
+  const iData = useSelector((state) => selectInstitutionById(state, 7));
+  console.log('backend =>', iData);
+
+  const handleSelectOneInstitution = (id) => {
+    const iData = useSelector((state) => selectInstitutionById(state, id));
+    console.log(iData);
   };
 
   console.log(singleInstitution);
@@ -107,6 +117,7 @@ const InstitutionList = () => {
                 // onClick={() => getOneInstitution(() => (datum.id === _idx ? datum.code : null))}
                 // onClick={setSingleInstitution(datum)}
                 onClick={() => handleViewInstitution(datum)}
+                // onClick={() => handleSelectOneInstitution(datum.id)}
               >
                 <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
               </Link>

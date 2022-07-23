@@ -388,7 +388,7 @@ const institutionSlice = createSlice({
 });
 
 export const selectAllInstitutions = (state) => state.institution.institution;
-// export const selectInstitutionByCode = (state, code) => state.institution.institution.find((institution) => institution.code === code);
+export const selectInstitutionById = (state, id) => state.institution.institution.find((institution) => institution.id === id);
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
 export const { viewInstitution } = institutionSlice.actions;
