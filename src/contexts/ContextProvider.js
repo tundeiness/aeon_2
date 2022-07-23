@@ -6,6 +6,11 @@ import React, {
   createContext, useContext, useState, Navigate,
 } from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectInstitutionById,
+} from '../redux/features/institutionSlice';
+
 const initialState = {
   // serverStatus: false,
   modal: false,
@@ -21,6 +26,7 @@ export const ContextProvider = ({ children }) => {
   const [isClicked, setIsClicked] = useState(initialState);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isOnline, setIsOnline] = useState(false);
+  const [singleInstitution, setSingleInstitution] = useState(null);
 
   const [userInfo, setUserInfo] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
@@ -29,6 +35,13 @@ export const ContextProvider = ({ children }) => {
   // const navigate = useNavigate();
 
   const [isAuthenticated, seIsAuthenticated] = useState(false);
+
+  // const iData = useSelector((state) => selectInstitutionById(state, id));
+  //  return iData;
+
+  const handleViewInstitution = (id) => {
+    setSingleInstitution(useSelector((state) => selectInstitutionById(state, id)));
+  };
 
   const handleClick = (clicked) => {
     setIsClicked({ ...initialState, [clicked]: true });
@@ -94,6 +107,8 @@ export const ContextProvider = ({ children }) => {
         setIsAuth,
         login,
         logout,
+        handleViewInstitution,
+        singleInstitution,
       }}
     >
       {children}

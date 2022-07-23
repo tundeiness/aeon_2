@@ -2,10 +2,12 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+// import { useContext } from 'react';
 import { HeadingDisplayRow, DataDisplayRow, TextDisplayRow } from '../../../components/viewDescription/ViewDescription';
+import { useStateContext, ContextProvider } from '../../../contexts/ContextProvider';
 import SupportButton from '../../../components/support/support';
 import {
   BackToList,
@@ -13,22 +15,23 @@ import {
   InActiveBtn,
 } from '../../../components/Buttons/buttonCollections';
 import {
-
   selectAllInstitutions,
-
+  selectInstitutionById,
 } from '../../../redux/features/institutionSlice';
 
 const ViewInstitution = () => {
   const dispatch = useDispatch();
   const [updateInstitution, setUpdateInstitution] = useState(false);
+  const { singleInstitution } = useContext(useStateContext);
 
-  const singleItem = localStorage.getItem('singleInstitution');
-  const parseData = JSON.parse(singleItem);
+  // const singleItem = localStorage.getItem('singleInstitution');
+  // const parseData = JSON.parse(singleItem);
+
   // const [saveInstitution, setSaveInstitution] = useState(null);
   // const oneInstitution = useSelector(selectInstitutionByCode);
-  const params = useParams();
-  console.log(params.id);
-  // const institution = useSelector(selectAllInstitutions);
+
+  // const singleInstitution = useSelector(selectInstitutionById);
+  // console.log(singleInstitution);
 
   // const oneData = useSelector((state) => selectInstitutionByCode(state, code));
   // console.log(institution);
@@ -37,10 +40,10 @@ const ViewInstitution = () => {
 
   // const insti = useSelector((state) => state.institution.find((institution) => institution.id === institutionId));
 
-  console.log(parseData);
+  // console.log(parseData);
 
   // useEffect(() => {
-  //   dispatch(getOneInstitution());
+  //   dispatch(selectInstitutionById);
   // }, [dispatch]);
 
   return (
@@ -67,19 +70,19 @@ const ViewInstitution = () => {
                 <div className="flex flex-col divide-y divide-slate-200">
                   <HeadingDisplayRow
                     classText="company-number"
-                    title={parseData.name}
-                    content={`RC Number: ${parseData.rcNumber}`}
+                    title={singleInstitution.name}
+                    content={`RC Number: ${singleInstitution.rcNumber}`}
                   />
                   <DataDisplayRow
                     classText="code"
                     title="Code"
-                    content={parseData.code}
+                    content={singleInstitution.code}
                   />
                   <DataDisplayRow
                     classText="status"
                     title="Status"
                     content={
-                      parseData.status === 'Active' ? (
+                      singleInstitution.status === 'Active' ? (
                         <ActiveBtn />
                       ) : (
                         <InActiveBtn />
@@ -89,65 +92,65 @@ const ViewInstitution = () => {
                   <DataDisplayRow
                     classText="address"
                     title="Address"
-                    content={parseData.address}
+                    content={singleInstitution.address}
                   />
                   <DataDisplayRow
                     classText="website"
                     title="Website URL"
-                    content={parseData.websiteUrl}
+                    content={singleInstitution.websiteUrl}
                   />
                   <DataDisplayRow
                     classText="industry"
                     title="Industry Category"
-                    content={parseData.category}
+                    content={singleInstitution.category}
                   />
 
                   <DataDisplayRow
                     classText="calls"
                     title="Number of Calls"
-                    content={parseData.noOfCalls}
+                    content={singleInstitution.noOfCalls}
                   />
 
                   <DataDisplayRow
                     classText="notification"
                     title="Notification Email"
-                    content={parseData.notificationEmail}
+                    content={singleInstitution.notificationEmail}
                   />
 
                   <DataDisplayRow
                     classText="balance"
                     title="Balance"
-                    content={`${parseData.balance} NGN`}
+                    content={`${singleInstitution.balance} NGN`}
                   />
 
                   <DataDisplayRow
                     classText="threshold"
                     title="Threshold"
-                    content={`${parseData.threshold} NGN`}
+                    content={`${singleInstitution.threshold} NGN`}
                   />
 
                   <DataDisplayRow
                     classText="test-token"
                     title="Test Token"
-                    content={parseData.testToken}
+                    content={singleInstitution.testToken}
                   />
 
                   <DataDisplayRow
                     classText="live-token"
                     title="Live Token"
-                    content={parseData.token}
+                    content={singleInstitution.token}
                   />
 
                   <TextDisplayRow
                     classText="documentation"
                     title="Documentation"
-                    content={parseData.documentation}
+                    content={singleInstitution.documentation}
                   />
 
                   <TextDisplayRow
                     classText="description"
                     title="Description"
-                    content={parseData.description}
+                    content={singleInstitution.description}
                   />
                 </div>
               </dl>

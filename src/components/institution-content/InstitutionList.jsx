@@ -3,7 +3,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -13,7 +13,7 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { HiOutlineEye } from 'react-icons/hi';
 import SupportButton from '../support/support';
-import { useStateContext } from '../../contexts/ContextProvider';
+import { useStateContext, ContextProvider } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
@@ -33,6 +33,9 @@ import {
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
   const [viewInstitutionId, setViewInstitutionId] = useState(null);
+  const [getItemId, setGetItemId] = useState(null);
+
+  // const { handleViewInstitution } = useContext(useStateContext);
   // const { loading, institution } = useSelector((state) => ({
   //   ...state.institution,
   // }));
@@ -60,9 +63,13 @@ const InstitutionList = () => {
 
   const navigate = useNavigate();
 
-  const handleViewInstitution = (data) => {
-    setSingleInstitution(data);
-    localStorage.setItem('singleInstitution', JSON.stringify(data));
+  const handleViewInstitution = (id) => {
+    setSingleInstitution(id);
+    setGetItemId(id);
+    const iData = useSelector((state) => selectInstitutionById(state, id));
+    return iData;
+
+    // localStorage.setItem('singleInstitution', JSON.stringify(data));
 
     // dispatch(viewInstitution({ id: data.id }));
   };
@@ -116,7 +123,7 @@ const InstitutionList = () => {
                 // onClick={handleViewInstitution(datum)}
                 // onClick={() => getOneInstitution(() => (datum.id === _idx ? datum.code : null))}
                 // onClick={setSingleInstitution(datum)}
-                onClick={() => handleViewInstitution(datum)}
+                onClick={() => handleViewInstitution(datum.id)}
                 // onClick={() => handleSelectOneInstitution(datum.id)}
               >
                 <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
