@@ -1,11 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useContext } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-// import { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { HeadingDisplayRow, DataDisplayRow, TextDisplayRow } from '../../../components/viewDescription/ViewDescription';
 import { useStateContext } from '../../../contexts/ContextProvider';
 import SupportButton from '../../../components/support/support';
@@ -15,7 +9,6 @@ import {
   InActiveBtn,
 } from '../../../components/Buttons/buttonCollections';
 import {
-  selectAllInstitutions,
   selectInstitutionById,
 } from '../../../redux/features/institutionSlice';
 
@@ -25,7 +18,6 @@ const ViewInstitution = () => {
 
   return (
     <>
-      {/* <SidebarNav /> */}
       <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
