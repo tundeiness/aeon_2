@@ -13,7 +13,7 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { HiOutlineEye } from 'react-icons/hi';
 import SupportButton from '../support/support';
-import { useStateContext, ContextProvider } from '../../contexts/ContextProvider';
+import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
@@ -28,12 +28,15 @@ import {
   getInstitutionError,
   selectInstitutionById,
 } from '../../redux/features/institutionSlice';
+// import { useStateContext } from '../../contexts/ContextProvider'
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
   const [viewInstitutionId, setViewInstitutionId] = useState(null);
-  const [getItemId, setGetItemId] = useState(null);
+
+  const { setGetItemId } = useStateContext();
+  // const [getItemId, setGetItemId] = useState(null);
 
   // const { handleViewInstitution } = useContext(useStateContext);
   // const { loading, institution } = useSelector((state) => ({
@@ -64,10 +67,10 @@ const InstitutionList = () => {
   const navigate = useNavigate();
 
   const handleViewInstitution = (id) => {
-    setSingleInstitution(id);
+    // setSingleInstitution(id);
     setGetItemId(id);
-    const iData = useSelector((state) => selectInstitutionById(state, id));
-    return iData;
+    // const iData = useSelector((state) => selectInstitutionById(state, id));
+    // return iData;
 
     // localStorage.setItem('singleInstitution', JSON.stringify(data));
 

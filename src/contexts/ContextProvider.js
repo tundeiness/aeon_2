@@ -15,6 +15,7 @@ const initialState = {
   // serverStatus: false,
   modal: false,
   edit: false,
+  id: null,
 };
 
 const StateContext = createContext(null);
@@ -30,6 +31,7 @@ export const ContextProvider = ({ children }) => {
 
   const [userInfo, setUserInfo] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
+  const [getItemId, setGetItemId] = useState(null);
 
   const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -109,6 +111,8 @@ export const ContextProvider = ({ children }) => {
         logout,
         handleViewInstitution,
         singleInstitution,
+        getItemId,
+        setGetItemId,
       }}
     >
       {children}

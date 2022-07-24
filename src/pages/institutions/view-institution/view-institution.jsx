@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 // import { useContext } from 'react';
 import { HeadingDisplayRow, DataDisplayRow, TextDisplayRow } from '../../../components/viewDescription/ViewDescription';
-import { useStateContext, ContextProvider } from '../../../contexts/ContextProvider';
+import { useStateContext } from '../../../contexts/ContextProvider';
 import SupportButton from '../../../components/support/support';
 import {
   BackToList,
@@ -20,31 +20,8 @@ import {
 } from '../../../redux/features/institutionSlice';
 
 const ViewInstitution = () => {
-  const dispatch = useDispatch();
-  const [updateInstitution, setUpdateInstitution] = useState(false);
-  const { singleInstitution } = useContext(useStateContext);
-
-  // const singleItem = localStorage.getItem('singleInstitution');
-  // const parseData = JSON.parse(singleItem);
-
-  // const [saveInstitution, setSaveInstitution] = useState(null);
-  // const oneInstitution = useSelector(selectInstitutionByCode);
-
-  // const singleInstitution = useSelector(selectInstitutionById);
-  // console.log(singleInstitution);
-
-  // const oneData = useSelector((state) => selectInstitutionByCode(state, code));
-  // console.log(institution);
-
-  // const soloInstitution = institution.filter((obj) => obj.id === params.id);
-
-  // const insti = useSelector((state) => state.institution.find((institution) => institution.id === institutionId));
-
-  // console.log(parseData);
-
-  // useEffect(() => {
-  //   dispatch(selectInstitutionById);
-  // }, [dispatch]);
+  const { getItemId } = useStateContext();
+  const singleInstitution = useSelector((state) => selectInstitutionById(state, getItemId));
 
   return (
     <>
