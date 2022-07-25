@@ -12,9 +12,10 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 const NEW_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
-const EDIT_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
+const EDIT_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Update';
 const DELETE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
 const GET_ALL_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/RetrieveAll';
+const ENABLE_DISABLE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=';
 
 export const getInstitution = createAsyncThunk(
   'institution/getInstitution',
@@ -72,7 +73,7 @@ export const updateInstitution = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     const { id, ...fields } = values;
     try {
-      const response = await axios.put(`${EDIT_INSTITUTION_URL}${id}`, fields);
+      const response = await axios.put(EDIT_INSTITUTION_URL, fields);
       return response.data;
     } catch (error) {
       // return error.message;
@@ -378,3 +379,45 @@ export const selectInstitutionById = (state, id) => state.institution.institutio
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
 export default institutionSlice.reducer;
+
+// {
+//   "category": "elit tempor commodo",
+//   "code": "dolore",
+//   "name": "ut veniam in ad",
+//   "websiteUrl": "dolore ipsum",
+//   "id": 87625212,
+//   "token": "ad ut et consequat irure",
+//   "description": "incididunt velit ut",
+//   "status": "aute commodo esse",
+//   "noOfCalls": 40971092,
+//   "documentation": "id Excepteur dolor",
+//   "address": "cupidatat dolore",
+//   "rcNumber": "esse consectetur",
+//   "testToken": "commodo quis labore",
+//   "balance": -31821650.294540763,
+//   "threshold": 36754816.875798196,
+//   "notificationEmail": "tempor adipisicing ",
+//   "productPriceBands": [
+//     {
+//       "id": -52324399,
+//       "institutionCode": "eu nos",
+//       "prodcutCode": "magna cupidatat",
+//       "price": -81906633.71117774,
+//       "min": 81902529,
+//       "max": 62167332
+//     },
+//     {
+//       "id": 97980890,
+//       "institutionCode": "minim nostrud ex aliq",
+//       "prodcutCode": "labore eu",
+//       "price": 3252162.2702086866,
+//       "min": 28528649,
+//       "max": 7910489
+//     }
+//   ],
+//   "ninCost": 89062816.50313893,
+//   "frscCost": -92253699.0012023,
+//   "bvnCost": 25903769.332107857,
+//   "creditBureauCost": -23640245.88614875,
+//   "cacCost": -21282443.02990651
+// }
