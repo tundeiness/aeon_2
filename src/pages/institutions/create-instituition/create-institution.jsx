@@ -59,7 +59,7 @@ const CreateInstitution = () => {
 
     return errors;
   };
-
+  // const { getFieldProps, setSubmitting } = formic;
   const formic = useFormik({
     initialValues: {
       name: '',
@@ -77,33 +77,27 @@ const CreateInstitution = () => {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      // alert(
-      //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
-      // );
-      // console.log(values);
+      dispatch(createInstitution({ id: nanoid(), ...values }));
       resetForm(values);
       setTimeout(() => {
         navigate('/institutions');
       }, 4000);
+      formic.setSubmitting(false);
     },
   });
 
-  const { getFieldProps, setSubmitting } = formic;
+  const { getFieldProps } = formic;
 
-  const handleSubmit = () => {
-    console.log('formic.values', formic.values);
-    dispatch(
-      createInstitution({
-        id: nanoid(),
-        ...formic.values,
-      }),
-    ).unwrap();
-    setSubmitting(false);
-
-    // .then(() => {
-    //   // navigate('/institutions');
-    // });
-  };
+  // const handleSubmit = () => {
+  //   console.log('formic.values', formic.values);
+  //   dispatch(
+  //     createInstitution({
+  //       id: nanoid(),
+  //       ...formic.values,
+  //     }),
+  //   ).unwrap();
+  //   setSubmitting(false);
+  // };
 
   const canCreate = formic.isValid && createRequestStatus === 'idle';
 
@@ -568,8 +562,6 @@ const CreateInstitution = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                       disabled={formic.isSubmitting}
-                      // onClick={handleSaveInstitution()}
-                      onClick={handleSubmit}
                     >
                       {formic.isSubmitting
                         ? 'Please wait...'
