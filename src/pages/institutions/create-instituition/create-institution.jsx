@@ -222,6 +222,7 @@ const CreateInstitution = () => {
                       value={formic.values.rcNumber}
                       id="rcNumber"
                       type="text"
+                      maxLength="8"
                       {...getFieldProps('rcNumber')}
                     />
                     {formic.touched.rcNumber && formic.errors.rcNumber && (
