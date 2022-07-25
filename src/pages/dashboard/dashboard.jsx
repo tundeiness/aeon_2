@@ -17,8 +17,6 @@ import VendorStatus from '../../components/vendorStatus/VendorStatus';
 import BarChart from '../../components/charts/Charts';
 import GuageChart from '../../components/charts/Donut';
 import SidebarNav from '../../components/sideBarNav/sidebar-nav';
-
-// import Logo from '../../static/assets/img/logo-white.png';
 import Support from '../../components/support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { GetData } from '../../components/Buttons/buttonCollections';
@@ -30,15 +28,9 @@ import {
 import {
   setUserUpdate,
 } from '../../redux/features/userSlice';
-// import { useGetDashboardQuery } from '../../services/dashboardAPI';
 import './dashboard.css';
 
 const Dashboard = () => {
-  const test = 0;
-  // const { data, isFetching } = useGetDashboardQuery;
-  // const { loading, institution } = useSelector((state) => ({ ...state.app }));
-  // const details = useSelector((state) => state.user);
-  // const [getData, setGetData] = useState(institution);
   const dispatch = useDispatch();
 
   const testUser = JSON.parse(localStorage.getItem('user'));
