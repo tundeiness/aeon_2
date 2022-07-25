@@ -82,6 +82,9 @@ const CreateInstitution = () => {
       // );
       // console.log(values);
       resetForm(values);
+      setTimeout(() => {
+        navigate('/institutions');
+      }, 4000);
     },
   });
 
