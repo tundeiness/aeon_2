@@ -35,7 +35,7 @@ const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
   const [viewInstitutionId, setViewInstitutionId] = useState(null);
 
-  const { setGetItemId } = useStateContext();
+  const { setGetItemId, setGetInstitutionId } = useStateContext();
   // const [getItemId, setGetItemId] = useState(null);
 
   // const { handleViewInstitution } = useContext(useStateContext);
@@ -60,7 +60,6 @@ const InstitutionList = () => {
   useEffect(() => {
     if (institutionStatus === 'idle') {
       dispatch(getInstitution());
-      // <ViewInstitution institution={institution} />;
     }
   }, [dispatch, institutionStatus]);
 
@@ -77,17 +76,10 @@ const InstitutionList = () => {
     // dispatch(viewInstitution({ id: data.id }));
   };
 
-  const iData = useSelector((state) => selectInstitutionById(state, 7));
-  console.log('backend =>', iData);
-
-  const handleSelectOneInstitution = (id) => {
-    const iData = useSelector((state) => selectInstitutionById(state, id));
-    console.log(iData);
+  const handleEditInstitution = (id) => {
+    // some code blocks
+    setGetInstitutionId(id);
   };
-
-  console.log(singleInstitution);
-
-  // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
 
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
@@ -123,13 +115,7 @@ const InstitutionList = () => {
             <span className="flex justify-between">
               <Link
                 to="view-institution"
-                // onClick={handleViewInstitution(datum)}
-                // onClick={() => getOneInstitution(() => (datum.id === _idx ? datum.code : null))}
-                // onClick={setSingleInstitution(datum)}
-                onClick={
-                  (() => handleViewInstitution(datum.id))
-                }
-                // onClick={() => handleSelectOneInstitution(datum.id)}
+                onClick={() => handleViewInstitution(datum.id)}
               >
                 <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
               </Link>
@@ -145,9 +131,9 @@ const InstitutionList = () => {
                   <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
                 </span>
               )}
-              <button type="button">
+              <Link to="edit-institution" onClick={() => handleEditInstitution(datum.id)}>
                 <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-              </button>
+              </Link>
             </span>
           </td>
         </tr>
@@ -179,20 +165,6 @@ const InstitutionList = () => {
 
     return content;
   };
-
-  // const daetuh = '<ViewInstitution institution={institution} />';
-
-  //  switch (institutionStatus) {
-  //    case "loading": // if (x === 'value1')
-  //      return <p>Loading data ...</p>;
-  //    case "succeeded": // if (x === 'value2')
-  //      return displayData;
-  //    case "failed":
-  //      return <p>Network Error </p>;
-  //    default: {
-  //      return displayData;
-  //    }
-  //  }
 
   return (
     <>
@@ -293,19 +265,6 @@ const InstitutionList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {/* {(() => {
-                      switch (institutionStatus) {
-                        case 'loading': // if (x === 'value1')
-                          return <p>Loading data ...</p>;
-                        case 'succeeded': // if (x === 'value2')
-                          return displayData;
-                        case 'failed':
-                          return <p>Network Error </p>;
-                        default: {
-                          return displayData;
-                        }
-                      }
-                    })()} */}
                     {renderSelection()}
                   </tbody>
                 </table>
@@ -328,7 +287,6 @@ const InstitutionList = () => {
       </article>
       <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
       <ActivateModal />
-      {/* <ViewInstitution institution={institution} /> */}
     </>
   );
 };
