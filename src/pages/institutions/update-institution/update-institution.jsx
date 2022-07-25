@@ -9,33 +9,28 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
+import { useStateContext } from '../../../contexts/ContextProvider';
 
-import {
-  selectAllInstitutions,
-} from '../../../redux/features/institutionSlice';
+import { selectInstitutionById } from '../../../redux/features/institutionSlice';
 
 import './updateInstituiton.css';
 
-const CreateInstitution = () => {
+const UpdateInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
   const [enabled, setEnabled] = useState(false);
-  const params = useParams();
-  console.log(params.id);
+  // const params = useParams();
+  // console.log(params.id);
 
-  const institution = useSelector(selectAllInstitutions);
+  // const institution = useSelector(selectAllInstitutions);
 
-  const existingInstitution = institution.filter((data) => data.id === params.id);
+  // const existingInstitution = institution.filter((data) => data.id === params.id);
 
   const dispatch = useDispatch();
 
-  // const handleUpdateInstitution = (value) => {
-  //   dispatch(updateInstitution({
-  //     id: params.id,
-  //     email: value.email,
-  //     name: value.name,
-  //     rc_number: value.rc_number,
-  //   }));
-  // };
+  const { getInstitutionId } = useStateContext();
+  const singleInstitution = useSelector((state) => selectInstitutionById(state, getInstitutionId));
+
+  console.log(singleInstitution);
 
   const validate = (values) => {
     const errors = {};
@@ -61,52 +56,47 @@ const CreateInstitution = () => {
       errors.address = 'address cannot be blank';
     }
 
-    if (!values.phone) {
-      errors.phone = 'phone cannot be blank';
-    }
+    // if (!values.phone) {
+    //   errors.phone = 'phone cannot be blank';
+    // }
 
     return errors;
   };
 
   const formic = useFormik({
     initialValues: {
-      name: '',
-      rcNumber: '',
-      address: '',
+      name: singleInstitution.name,
+      rcNumber: singleInstitution.rcNumber,
+      address: singleInstitution.address,
       phone: '',
-      websiteUrl: '',
-      category: '',
-      noOfCalls: '',
-      threshold: '',
-      documentation: '',
-      description: '',
-      notificationEmail: '',
+      websiteUrl: singleInstitution.websiteUrl,
+      category: singleInstitution.category,
+      noOfCalls: singleInstitution.noOfCalls,
+      threshold: singleInstitution.threshold,
+      documentation: singleInstitution.documentation,
+      description: singleInstitution.description,
+      notificationEmail: singleInstitution.notificationEmail,
       microservices: '',
     },
     validate,
     enableReinitialize: true,
     onSubmit: (values, { resetForm, enableReinitialize }) => {
-      // alert(
-      //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
-      // );
       resetForm(values);
       enableReinitialize(values);
     },
   });
 
   // useEffect(() => {
-  //   if (!formic.values(existingInstitution)) {
-  //     formic.setValues({
-  //       ...existingInstitution,
-  //     });
+  //   if (isSuccess || user) {
+  //     navigate('/dashboard');
   //   }
-  // }, [existingInstitution]);
+  // }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const { getFieldProps } = formic;
-  console.warn(params);
+  // console.warn(params);
   return (
     <>
-      <SidebarNav />
+      {/* <SidebarNav /> */}
       <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
@@ -532,4 +522,4 @@ const CreateInstitution = () => {
   );
 };
 
-export default CreateInstitution;
+export default UpdateInstitution;
