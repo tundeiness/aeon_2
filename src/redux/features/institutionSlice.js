@@ -29,6 +29,18 @@ export const getInstitution = createAsyncThunk(
   },
 );
 
+export const enableDisableInstitution = createAsyncThunk(
+  'institution/enableDisableInstitution',
+  async (code) => {
+    try {
+      const response = await axios.post(`ENABLE_DISABLE_INSTITUTION_URL ${code}`);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
 // export const getOneInstitution = createAsyncThunk(
 //   'institution/getOneInstitution',
 //   async (code, thunkAPI) => {
@@ -370,6 +382,10 @@ const institutionSlice = createSlice({
         state.institution = state.institution.filter(
           (institution) => institution.id !== action.payload.id,
         );
+      })
+      .addCase(enableDisableInstitution.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.institution = action.payload;
       });
   },
 });
