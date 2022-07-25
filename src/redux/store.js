@@ -5,6 +5,7 @@ import LoginReducer from './features/loginSlice';
 import ProductReducer from './features/productSlice';
 import RoleReducer from './features/roleSlice';
 import AuthReducer from './features/auth/authSlice';
+import ConnectionReducer from './features/connectionSlice';
 
 export default configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export default configureStore({
     product: ProductReducer,
     role: RoleReducer,
     auth: AuthReducer,
+    connection: ConnectionReducer,
   },
 
 });
