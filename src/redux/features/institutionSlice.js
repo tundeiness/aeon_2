@@ -15,7 +15,6 @@ const NEW_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
 const EDIT_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
 const DELETE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
 const GET_ALL_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/RetrieveAll';
-const GET_ONE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Retrieve?code=';
 
 export const getInstitution = createAsyncThunk(
   'institution/getInstitution',
