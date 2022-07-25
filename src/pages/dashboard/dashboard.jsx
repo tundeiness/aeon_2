@@ -17,12 +17,16 @@ import VendorStatus from '../../components/vendorStatus/VendorStatus';
 import BarChart from '../../components/charts/Charts';
 import GuageChart from '../../components/charts/Donut';
 import SidebarNav from '../../components/sideBarNav/sidebar-nav';
+
 // import Logo from '../../static/assets/img/logo-white.png';
 import Support from '../../components/support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { GetData } from '../../components/Buttons/buttonCollections';
 import NIMC from '../../static/assets/img/nimc.webp';
-import { getInstitution, deleteInstitution, setUpdate } from '../../redux/features/institutionSlice';
+import { getInstitution, deleteInstitution } from '../../redux/features/institutionSlice';
+import {
+  getConnection, getConnectionStatus, getConnectionError, selectAllConnections,
+} from '../../redux/features/connectionSlice';
 import {
   setUserUpdate,
 } from '../../redux/features/userSlice';
@@ -68,9 +72,23 @@ const Dashboard = () => {
   } = useStateContext();
   const Badge = <img src={NIMC} alt="NIMC" className="h-14 w-16" />;
 
-  // useEffect(() => {
-  //   dispatch(getInstitution());
-  // }, [dispatch]);
+  const connection = useSelector(selectAllConnections);
+  const connectionStatus = useSelector(getConnectionStatus);
+  const connectionError = useSelector(getConnectionError);
+
+  console.log(connection);
+
+  const NIMCCheck = connection.serviceName === 'NIN' && connection.info.status === '200';
+  const FRSCCheck = connection.serviceName === 'FRSC' && connection.info.status === '200';
+  const CACCheck = connection.serviceName === 'BVN' && connection.info.status === '200';
+
+  console.log(NIMCCheck);
+
+  useEffect(() => {
+    if (connectionStatus === 'idle') {
+      dispatch(getConnection());
+    }
+  }, [dispatch, connectionStatus]);
 
   return (
   // <article className="flex-1 border border-red-500">
@@ -85,9 +103,9 @@ const Dashboard = () => {
             <Support />
           </header>
           <div className="vendor-boards flex xl:space-x-6 w-full xl:mt-5 xl:mb-6">
-            <VendorStatus vendor={Badge} stat={false} bottomSpace={4} />
-            <VendorStatus vendor="FRSC" stat={false} bottomSpace={8} />
-            <VendorStatus vendor="CAC" stat bottomSpace={8} />
+            <VendorStatus vendor={Badge} stat={NIMCCheck} bottomSpace={4} />
+            <VendorStatus vendor="FRSC" stat={FRSCCheck} bottomSpace={8} />
+            <VendorStatus vendor="CAC" stat={CACCheck} bottomSpace={8} />
           </div>
 
           <div className="calls-overview mb-8">

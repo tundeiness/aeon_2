@@ -46,4 +46,6 @@ const connectionSlice = createSlice({
 
 });
 export const selectAllConnections = (state) => state.connection.connection;
+export const getConnectionStatus = (state) => state.connection.status;
+export const getConnectionError = (state) => state.connection.error;
 export default connectionSlice.reducer;
