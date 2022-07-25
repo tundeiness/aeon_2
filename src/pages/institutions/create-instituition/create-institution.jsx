@@ -59,7 +59,7 @@ const CreateInstitution = () => {
 
     return errors;
   };
-  // const { getFieldProps, setSubmitting } = formic;
+
   const formic = useFormik({
     initialValues: {
       name: '',
@@ -81,23 +81,12 @@ const CreateInstitution = () => {
       resetForm(values);
       setTimeout(() => {
         navigate('/institutions');
-      }, 4000);
+      }, 3200);
       formic.setSubmitting(false);
     },
   });
 
   const { getFieldProps } = formic;
-
-  // const handleSubmit = () => {
-  //   console.log('formic.values', formic.values);
-  //   dispatch(
-  //     createInstitution({
-  //       id: nanoid(),
-  //       ...formic.values,
-  //     }),
-  //   ).unwrap();
-  //   setSubmitting(false);
-  // };
 
   const canCreate = formic.isValid && createRequestStatus === 'idle';
 
