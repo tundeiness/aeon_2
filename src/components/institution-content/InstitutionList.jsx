@@ -126,7 +126,9 @@ const InstitutionList = () => {
                 // onClick={handleViewInstitution(datum)}
                 // onClick={() => getOneInstitution(() => (datum.id === _idx ? datum.code : null))}
                 // onClick={setSingleInstitution(datum)}
-                onClick={() => handleViewInstitution(datum.id)}
+                onClick={
+                  (() => handleViewInstitution(datum.id))
+                }
                 // onClick={() => handleSelectOneInstitution(datum.id)}
               >
                 <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />

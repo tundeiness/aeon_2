@@ -264,19 +264,6 @@ const institutionSlice = createSlice({
   // },
   initialState,
   reducers: {
-    // setUpdate: (state, action) => {
-    //   state.edit = action.payload.edit;
-    //   state.body = action.payload.body;
-    // },
-    viewInstitution: (state, action) => {
-      const { id } = action.payload;
-      const soloInstitution = state.find((institution) => institution.id === id);
-      if (soloInstitution) {
-        // return state.filter((item) => item.id === id);
-        // state.institution = state.filter((item) => item.id === id);
-      }
-      // state.institution = soloInstitution;
-    },
   },
 
   // extraReducers: {
@@ -391,5 +378,4 @@ export const selectAllInstitutions = (state) => state.institution.institution;
 export const selectInstitutionById = (state, id) => state.institution.institution.find((institution) => institution.id === id);
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
-export const { viewInstitution } = institutionSlice.actions;
 export default institutionSlice.reducer;
