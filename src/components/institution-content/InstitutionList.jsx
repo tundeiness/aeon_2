@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable max-len */
@@ -10,7 +11,6 @@ import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
 import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
-import { RiDeleteBinLine } from 'react-icons/ri';
 import { HiOutlineEye } from 'react-icons/hi';
 import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
@@ -26,7 +26,6 @@ import {
   selectAllInstitutions,
   getInstitutionStatus,
   getInstitutionError,
-  selectInstitutionById,
 } from '../../redux/features/institutionSlice';
 // import { useStateContext } from '../../contexts/ContextProvider'
 // import InstitutionExcerpt from './InstitutionExcerpt';
@@ -34,6 +33,11 @@ import {
 const InstitutionList = () => {
   const { activeModal, setActiveModal } = useStateContext();
   const [viewInstitutionId, setViewInstitutionId] = useState(null);
+  const [results, setResults] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
+  const [q, setQ] = useState('');
+  const [searchParam] = useState(['name']);
+  const [filterParam, setFilterParam] = useState(['Active', 'Inactive']);
 
   const { setGetItemId, setGetInstitutionId } = useStateContext();
   // const [getItemId, setGetItemId] = useState(null);
@@ -49,7 +53,6 @@ const InstitutionList = () => {
   const institutionError = useSelector(getInstitutionError);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  // const [mockData, setMockData] = useState(institution[0]);
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
 
@@ -63,17 +66,9 @@ const InstitutionList = () => {
     }
   }, [dispatch, institutionStatus]);
 
-  const navigate = useNavigate();
-
   const handleViewInstitution = (id) => {
     // setSingleInstitution(id);
     setGetItemId(id);
-    // const iData = useSelector((state) => selectInstitutionById(state, id));
-    // return iData;
-
-    // localStorage.setItem('singleInstitution', JSON.stringify(data));
-
-    // dispatch(viewInstitution({ id: data.id }));
   };
 
   const handleEditInstitution = (id) => {
@@ -166,6 +161,97 @@ const InstitutionList = () => {
     return content;
   };
 
+  const handleSearch = () => {
+    // some codes
+    institution.filter((item) => searchParam.some(
+      (newItem) => item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1,
+    ));
+  };
+
+  // const search = (items) => items.filter((item) => {
+  //   if (item.region === filterParam) {
+  //     return searchParam.some((newItem) => (
+  //       item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+  //     ));
+  //   } if (filterParam === 'All') {
+  //     return searchParam.some((newItem) => (
+  //       item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+  //     ));
+  //   }
+  // });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleSearchChange = (e) => {
+    if (!e.target.value) return setSearchResults(results);
+
+    const resultArr = results.filter((item) => item.name.includes(e.target.value) || item.status.includes(e.target.value));
+
+    setSearchResults(resultArr);
+  };
+
+  // const resData = searchResults
+  //   .slice(dataPageVisited, dataPageVisited + dataPerPage)
+  //   .map((datum, _idx) => (
+  //     <>
+  //       <tr key={datum.id}>
+  //         <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
+  //         <td className="py-4 uppercase text-center">{datum.name}</td>
+  //         <td className="py-4 pr-4 pl-20">
+  //           {datum.status === 'Active' ? (
+  //             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
+  //               <GoPrimitiveDot className="text-white" />
+  //               {datum.status}
+  //             </span>
+  //           ) : (
+  //             <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
+  //               <GoPrimitiveDot className="text-white" />
+  //               {datum.status}
+  //             </span>
+  //           )}
+  //         </td>
+  //         <td className="py-4 pl-4">{datum.websiteUrl}</td>
+  //         <td className="py-4 pl-10">
+  //           <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
+  //             {datum.category}
+  //           </span>
+  //         </td>
+  //         <td className="py-4 px-6">
+  //           <span className="flex justify-between">
+  //             <Link
+  //               to="view-institution"
+  //               onClick={() => handleViewInstitution(datum.id)}
+  //             >
+  //               <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+  //             </Link>
+  //             {datum.status === 'Active' ? (
+  //               <span className="flex items-center">
+  //                 <BsDashSquare
+  //                   className="text-iconRed w-4 h-4 font-bold"
+  //                   onClick={() => setIsOpen(true)}
+  //                 />
+  //               </span>
+  //             ) : (
+  //               <span className="flex items-center">
+  //                 <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+  //               </span>
+  //             )}
+  //             <Link
+  //               to="edit-institution"
+  //               onClick={() => handleEditInstitution(datum.id)}
+  //             >
+  //               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
+  //             </Link>
+  //           </span>
+  //         </td>
+  //       </tr>
+  //     </>
+  //   ));
+
+  // const content = resData?.length ? resData : <article><p>No Result</p></article>;
+
   return (
     <>
       <article className="w-4/5 ml-auto">
@@ -180,11 +266,12 @@ const InstitutionList = () => {
             </header>
 
             <hr className="mb-5" />
-            <div className="flex flex-row w-full">
+            <form className="flex flex-row w-full" onSubmit={handleSubmit}>
               <div className="flex flex-row justify-between w-1/2 py-4">
                 <input
                   placeholder="Institution Name"
                   className="relative py-2 pl-3 w-1/2 rounded-lg border border-gray-200"
+                  onChange={handleSearchChange}
                 />
 
                 <div className="w-1/3 px-3 mb-6 md:mb-0">
@@ -192,7 +279,9 @@ const InstitutionList = () => {
                     id="status-category"
                     name="status-category"
                     className="mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                    aria-label=".form-select-sm example"
+                    onChange={(e) => {
+                      setFilterParam(e.target.value);
+                    }}
                   >
                     <option selected>Status</option>
                     <option>Active</option>
@@ -212,6 +301,8 @@ const InstitutionList = () => {
                       type="search"
                       placeholder="Search"
                       className="relative pl-8 py-3 rounded-lg w-full outline outline-gray-300"
+                      value={q}
+                      onChange={(e) => setQ(e.target.value)}
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
@@ -219,7 +310,7 @@ const InstitutionList = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
 
             <div className="border border-gray-200 rounded-lg">
               <div className="name-list">

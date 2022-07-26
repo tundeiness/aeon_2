@@ -276,6 +276,9 @@ const institutionSlice = createSlice({
   // },
   initialState,
   reducers: {
+    filteredInstitutions: (state, action) => {
+      state.institution = state.institution.filter((institutionItem) => institutionItem.name.toLowerCase().includes(action.payload));
+    },
   },
 
   // extraReducers: {
@@ -394,6 +397,7 @@ export const selectAllInstitutions = (state) => state.institution.institution;
 export const selectInstitutionById = (state, id) => state.institution.institution.find((institution) => institution.id === id);
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
+export const { filteredInstitutions } = institutionSlice.actions;
 export default institutionSlice.reducer;
 
 // {
