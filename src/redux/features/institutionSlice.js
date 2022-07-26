@@ -260,6 +260,7 @@ export const createInstitution = createAsyncThunk(
 
 const initialState = {
   institution: [],
+  institutionContainer: [],
   status: 'idle',
   error: null,
 };
@@ -277,7 +278,7 @@ const institutionSlice = createSlice({
   initialState,
   reducers: {
     filteredInstitutions: (state, action) => {
-      state.institution = state.institution.filter((institutionItem) => institutionItem.name.toLowerCase().includes(action.payload));
+      state.institution = state.institutionContainer.filter((institutionItem) => institutionItem.name.toLowerCase().includes(action.payload));
     },
   },
 
@@ -339,6 +340,7 @@ const institutionSlice = createSlice({
       .addCase(getInstitution.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.institution = action.payload;
+        state.institutionContainer = action.payload;
         // return action.payload;
 
         // const loadedInstitution = action.payload.map((item) => item);
