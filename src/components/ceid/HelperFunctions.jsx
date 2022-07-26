@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
@@ -6,12 +7,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/prefer-default-export */
 // eslint-disable-next-line react/no-unescaped-entities
-import { AiOutlineLeft, AiOutlineCloudUpload } from 'react-icons/ai';
+import axios from 'axios';
+import { AiOutlineLeft, AiOutlineCloudUpload, AiOutlineFileImage } from 'react-icons/ai';
 import { FiFeather } from 'react-icons/fi';
+import { IoIosArrowUp } from 'react-icons/io';
 import React, { useState, useRef } from 'react';
 import SupportButton from '../support/support';
 import time from '../../static/assets/img/time.svg';
 import userimage from '../../static/assets/img/userimage.svg';
+// import ReactPortal from '../ReactPortal/ReactPortal';
 
 export const Title = (props) => {
   const { title } = props;
@@ -94,9 +98,9 @@ export function IdentityCheckResult({ GoBack }) {
           </section>
         </div>
         <hr className="mt-4" />
-        { display === 'BVN' && <BvnData />}
-        { display === 'NIN' && <NinData />}
-        { display === 'FRSC' && <FRSCData />}
+        {display === 'BVN' && <BvnData />}
+        {display === 'NIN' && <NinData />}
+        {display === 'FRSC' && <FRSCData />}
       </CardLayout>
     </>
   );
@@ -117,53 +121,53 @@ export function IdentityCheck() {
           <Title title={title} />
           <CardLayout>
             {
-            result ? (
-              <>
-                <h1 className="font-bold text-black"> Terms of use</h1>
-                <p className="text-sm mt-2">
-                  {' '}
-                  I have consent from the owner of the details I
-                  provide below to fetch and display their
-                  data for identity verification.
-                  {' '}
+              result ? (
+                <>
+                  <h1 className="font-bold text-black"> Terms of use</h1>
+                  <p className="text-sm mt-2">
+                    {' '}
+                    I have consent from the owner of the details I
+                    provide below to fetch and display their
+                    data for identity verification.
+                    {' '}
 
-                </p>
-                <form>
-                  <div className="mt-2">
-                    <input
-                      type="checkbox"
-                      id="scales"
-                      name="terms"
-                    />
-                    <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
-                  </div>
-                  <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
-                    <div className="flex flex-col">
-                      <label htmlFor="phoneNumber" className="font-medium"> Phone Number:</label>
-                      <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                  </p>
+                  <form>
+                    <div className="mt-2">
+                      <input
+                        type="checkbox"
+                        id="scales"
+                        name="terms"
+                      />
+                      <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
                     </div>
-                    <div className="flex flex-col">
-                      <label htmlFor="bvn" className="font-medium"> BVN:</label>
-                      <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-                    </div>
-                    <div className="flex flex-col">
-                      <label htmlFor="nin" className="font-medium"> NIN:</label>
-                      <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-                    </div>
-                    <div className="flex flex-col">
+                    <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
+                      <div className="flex flex-col">
+                        <label htmlFor="phoneNumber" className="font-medium"> Phone Number:</label>
+                        <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                      </div>
+                      <div className="flex flex-col">
+                        <label htmlFor="bvn" className="font-medium"> BVN:</label>
+                        <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                      </div>
+                      <div className="flex flex-col">
+                        <label htmlFor="nin" className="font-medium"> NIN:</label>
+                        <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                      </div>
+                      <div className="flex flex-col">
 
-                      <label htmlFor="nin" className="font-medium"> Driver's License:</label>
-                      <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                        <label htmlFor="nin" className="font-medium"> Driver's License:</label>
+                        <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
+                      </div>
+                      <button onClick={HandleChange} type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
+                        Search
+                      </button>
                     </div>
-                    <button onClick={HandleChange} type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
-                      Search
-                    </button>
-                  </div>
 
-                </form>
-              </>
-            ) : <IdentityCheckResult GoBack={() => setResult(true)} />
-           }
+                  </form>
+                </>
+              ) : <IdentityCheckResult GoBack={() => setResult(true)} />
+            }
           </CardLayout>
         </div>
       </section>
@@ -522,7 +526,7 @@ export function IdentityCheck2({ GoBack }) {
         <div>
           <Performance />
         </div>
-      ) }
+      )}
     </div>
   );
 }
@@ -809,7 +813,60 @@ const Performance = () => (
 );
 
 export function OCRUpload() {
+  // const [per, setPer] = useState(0);
+  const [fileName, setFileName] = useState('img.png');
+  const [fileSize, setFileSize] = useState('2mb');
+  const [fileReady, setFileReady] = useState(false);
+  const [file, setFile] = useState('');
+  const [progress, setProgress] = useState(0);
   const checkBoxRef = useRef();
+
+  const FileNameShow = () => (
+    <div className="flex bg-black text-white p-[24px] w-[284px] h-[72px] align-middle justify-between fixed bottom-[40%] left-[50%] translate-x-[-50] translate-y-[-50]">
+      <AiOutlineFileImage />
+      <p>
+        {fileReady && fileName}
+      </p>
+      <IoIosArrowUp />
+    </div>
+  );
+
+  function GetFile({ target }) {
+    setFile(target[0]);
+    const filename = target.files[0].name;
+    const filesize = target.files[0].size;
+    if (target.files[0]) {
+      setFileReady(true);
+      setTimeout(() => {
+        setFileReady(false);
+      }, 2000);
+    } else {
+      return null;
+    }
+    setFileName(filename);
+    setFileSize(filesize);
+  }
+
+  console.log('SIZE', file);
+  // console.log('FILE', file);
+  let pro = 0;
+  const HandleForm = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const config = {
+      onUploadProgress: (event) => {
+        pro = Math.round((event.loaded / event.total) * 100);
+        setProgress(pro);
+      },
+    };
+    axios.post('https://httpbin.org/post', formData, config)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  };
+  console.log('READY', fileSize);
+  console.log(progress + '%');
   return (
     <CardBodyLayout>
       <Title title="Optical Character Recognition" />
@@ -823,7 +880,7 @@ export function OCRUpload() {
           {' '}
 
         </p>
-        <form>
+        <form id="form" onSubmit={HandleForm}>
           <div className="mt-2">
             <input
               type="checkbox"
@@ -833,9 +890,9 @@ export function OCRUpload() {
             />
             <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
           </div>
-          <div className="flex justify-center items-center w-full mt-12">
-            <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-1/2 h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-              <div className="flex flex-col justify-center items-center pt-5 pb-6">
+          <div className="flex justify-center items-center w-full mt-8 ">
+            <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-1/2 h-46 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+              <div className="flex flex-col justify-center items-center pt-3 pb-4">
                 <AiOutlineCloudUpload className=" w-1/4 h-1/4" />
                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                   <span className="font-semibold">Select file  or drag and drop</span>
@@ -846,8 +903,17 @@ export function OCRUpload() {
                   Select File
                 </span>
               </div>
-              <input id="dropzone-file" type="file" className="hidden" />
+              <input id="dropzone-file" type="file" className="hidden" onChange={GetFile} />
             </label>
+          </div>
+          {fileReady && <FileNameShow />}
+          <p> File added</p>
+          <AiOutlineFileImage />
+          <div style={{ width: progress + '%' }} className="bg-blue-400 rounded-lg h-1/6 mt-4 text-white text-center text-sm">
+            {progress + '%'}
+          </div>
+          <div className="flex justify-center">
+            <button type="submit" className="p-2 w-1/4 border-2 border-blue-500 bg-white text-blue-500 rounded-lg float-none mt-4"> Process</button>
           </div>
         </form>
       </CardLayout>
@@ -883,7 +949,7 @@ export function SearchResultTop(props) {
         <div className="w-full">
           <h4 className="font-bold"> Showing result for:</h4>
           <h1 className="stretch text-4xl">
-            { result }
+            {result}
             {' '}
           </h1>
         </div>
