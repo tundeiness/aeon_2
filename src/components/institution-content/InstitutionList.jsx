@@ -14,6 +14,7 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { HiOutlineEye } from 'react-icons/hi';
 import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
+import FilterBar from './filter-institution/FilterBar';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
@@ -267,7 +268,7 @@ const InstitutionList = () => {
 
             <hr className="mb-5" />
             <form className="flex flex-row w-full" onSubmit={handleSubmit}>
-              <div className="flex flex-row justify-between w-1/2 py-4">
+              {/* <div className="flex flex-row justify-between w-1/2 py-4">
                 <input
                   placeholder="Institution Name"
                   className="relative py-2 pl-3 w-1/2 rounded-lg border border-gray-200"
@@ -291,7 +292,8 @@ const InstitutionList = () => {
                 <div className="flex flex-col items-center justify-center">
                   <FilterButton />
                 </div>
-              </div>
+              </div> */}
+              <FilterBar />
 
               <div className="flex flex-row justify-end w-1/2 py-2">
                 <div className="flex flex-row  items-center space-x-4 w-4/5">

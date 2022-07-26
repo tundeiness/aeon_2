@@ -261,6 +261,8 @@ export const createInstitution = createAsyncThunk(
 const initialState = {
   institution: [],
   institutionContainer: [],
+  institutionSearchContainer: [],
+  institutionStatusContainer: [],
   status: 'idle',
   error: null,
 };
@@ -278,7 +280,21 @@ const institutionSlice = createSlice({
   initialState,
   reducers: {
     filteredInstitutions: (state, action) => {
-      state.institution = state.institutionContainer.filter((institutionItem) => institutionItem.name.toLowerCase().includes(action.payload));
+      state.institution = state.institutionContainer.filter(
+        (institutionItem) => institutionItem.name.toLowerCase().includes(action.payload),
+      );
+    },
+    searchedInstitution: (state, action) => {
+      state.institution = state.institutionSearchContainer.find(
+        (searchParam) => searchParam.name.toLowerCase().includes(action.payload)
+          || searchParam.code.includes(action.payload),
+      );
+    },
+
+    filterInstitutionStatus: (state, action) => {
+      state.institution = state.institutionStatusContainer.filter(
+        (itemStatus) => itemStatus.status === action.payload,
+      );
     },
   },
 
@@ -399,7 +415,7 @@ export const selectAllInstitutions = (state) => state.institution.institution;
 export const selectInstitutionById = (state, id) => state.institution.institution.find((institution) => institution.id === id);
 export const getInstitutionStatus = (state) => state.institution.status;
 export const getInstitutionError = (state) => state.institution.error;
-export const { filteredInstitutions } = institutionSlice.actions;
+export const { filteredInstitutions, searchedInstitution, filterInstitutionStatus } = institutionSlice.actions;
 export default institutionSlice.reducer;
 
 // {
