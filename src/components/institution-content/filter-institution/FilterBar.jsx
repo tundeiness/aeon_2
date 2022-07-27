@@ -14,7 +14,7 @@ const FilterBar = () => {
   const selectRef = useRef('');
   const dispatch = useDispatch();
 
-  const [choice, setChoice] = useState();
+  const [status, setStatus] = useState('');
 
   // const options = new Array(10).fill(0).map((item, index) => ({
   //   value: index,
@@ -25,12 +25,16 @@ const FilterBar = () => {
     dispatch(filteredInstitutions(inputRef.current.value));
   };
 
-  const handleFilterInstitutionByStatus = () => {
-    selectRef.current.focus();
-    dispatch(filterInstitutionStatus(selectRef.current.focus()));
+  // useEffect(() => {
+
+  // })
+
+  const handleFilterInstitutionByStatus = (category) => {
+    // selectRef.current.focus();
+    dispatch(filterInstitutionStatus(category));
   };
 
-  console.log(selectRef.current.focus);
+  console.log(status);
   return (
     <form
       className="flex flex-row justify-between w-1/2 py-4"
@@ -47,6 +51,12 @@ const FilterBar = () => {
           id="status"
           name="status"
           className="mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+          onChange={(e) => {
+            const selectedStatus = e.target.value;
+            setStatus(selectedStatus);
+            handleFilterInstitutionByStatus(e.target.value);
+          }}
+          value={status}
         >
           <option value="" label="Status">
             Status
@@ -54,10 +64,11 @@ const FilterBar = () => {
           <option value="Active" label="Active">
             Active
           </option>
-          <option value="Inactive" label="Inactive">
-            Inactive
+          <option value="InActive" label="InActive">
+            InActive
           </option>
         </select>
+        {/* {status} */}
       </div>
       <div className="flex flex-col items-center justify-center">
         <FilterButton />

@@ -269,14 +269,6 @@ const initialState = {
 
 const institutionSlice = createSlice({
   name: 'institution', // sliceName:
-  // initialState: {
-  //   institution: [],
-  //   loading: false,
-  //   status: 'idle',
-  //   error: null,
-  //   edit: false,
-  //   body: '',
-  // },
   initialState,
   reducers: {
     filteredInstitutions: (state, action) => {
@@ -285,16 +277,22 @@ const institutionSlice = createSlice({
       );
     },
     searchedInstitution: (state, action) => {
-      state.institution = state.institutionSearchContainer.find(
+      state.institution = state.institution.find(
         (searchParam) => searchParam.name.toLowerCase().includes(action.payload)
           || searchParam.code.includes(action.payload),
       );
     },
 
     filterInstitutionStatus: (state, action) => {
-      state.institution = state.institutionStatusContainer.filter(
+      const statusCategory = state.institution.filter(
         (itemStatus) => itemStatus.status === action.payload,
       );
+
+      const allCategory = state.institution.filter(
+        (itemStatus) => itemStatus.status !== action.payload,
+      );
+
+      state.institution = statusCategory || allCategory;
     },
   },
 
