@@ -29,7 +29,7 @@ const FilterBar = () => {
     >
       <input
         placeholder="Institution Name"
-        className="relative py-2 pl-3 w-1/2 rounded-lg border border-gray-200"
+        className="relative py-2 pl-3 w-1/2 rounded-lg border border-gray-200 focus:outline-none"
         onChange={handleFilterInstitutions}
         ref={inputRef}
       />
