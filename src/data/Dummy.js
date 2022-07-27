@@ -32,7 +32,7 @@ export const Dummy = () => {
 export const SearchElement = () => (
   <>
     {' '}
-    <FiSearch />
+    <FiSearch className="text-lg text-buttonTwo" />
   </>
 );
 

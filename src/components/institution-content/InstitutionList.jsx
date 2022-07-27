@@ -29,6 +29,8 @@ import {
   getInstitutionStatus,
   getInstitutionError,
 } from '../../redux/features/institutionSlice';
+import PageLoader from '../pageLoader/pageLoader';
+import NoData from '../Nodata/NoData';
 // import { useStateContext } from '../../contexts/ContextProvider'
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
@@ -147,7 +149,7 @@ const InstitutionList = () => {
     let content;
     switch (institutionStatus) {
       case 'loading':
-        content = <p>Loading data ...</p>;
+        content = <PageLoader />;
         break;
       case 'succeeded':
         content = displayData;
@@ -274,7 +276,7 @@ const InstitutionList = () => {
             </form>
 
             <div className="border border-gray-200 rounded-lg">
-              <div className="name-list">
+              <div className="name-list min-h-screen -mb-36">
                 <table className="table-fixed w-full text-xs">
                   <thead className=" bg-gray-50 text-xs capitalize">
                     <tr>
@@ -317,7 +319,10 @@ const InstitutionList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {renderSelection()}
+                    {/* {renderSelection()} */}
+                    {/* {institution.length > 0 ? renderSelection() : <NoData />} */}
+                    {/* <PageLoader /> */}
+                    <NoData />
                   </tbody>
                 </table>
               </div>

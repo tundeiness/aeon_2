@@ -36,6 +36,8 @@ module.exports = {
         iconRed: '#FF0000',
         iconGreen: '#12B76A',
         dashGrey: '#d0d5dd',
+        outerRing: '#f4ebff',
+        noDataText: '#667085',
       },
     },
   },
