@@ -277,7 +277,7 @@ const institutionSlice = createSlice({
       );
     },
     searchedInstitution: (state, action) => {
-      state.institution = state.institution.find(
+      state.institution = state.institution.filter(
         (searchParam) => searchParam.name.toLowerCase().includes(action.payload)
           || searchParam.code.includes(action.payload),
       );
