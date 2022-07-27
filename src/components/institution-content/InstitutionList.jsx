@@ -319,11 +319,11 @@ const InstitutionList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {institution.length > 0 ? renderSelection() : <NoData />}
+                    {institution?.length > 0 ? renderSelection() : <NoData />}
                   </tbody>
                 </table>
               </div>
-              {institution.length > 0 ? (
+              {institution?.length > 0 ? (
                 <ReactPaginate
                   previousLabel="Previous"
                   nextLabel="Next"
