@@ -24,12 +24,3 @@ const NoData = () => {
 };
 
 export default NoData;
-
-// const PageLoader = () => {
-//   const test = 0;
-//   return (
-//     <div className="flex flex-row items-center justify-center w-screen h-96 relative">
-//       <h1 className="text-lg leading-5 absolute left-1/3 top-3/4">Loading...</h1>
-//     </div>
-//   );
-// };
