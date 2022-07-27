@@ -319,25 +319,24 @@ const InstitutionList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {/* {renderSelection()} */}
-                    {/* {institution.length > 0 ? renderSelection() : <NoData />} */}
-                    {/* <PageLoader /> */}
-                    <NoData />
+                    {institution.length > 0 ? renderSelection() : <NoData />}
                   </tbody>
                 </table>
               </div>
-              <ReactPaginate
-                previousLabel="Previous"
-                nextLabel="Next"
-                pageCount={pagingCount}
-                onPageChange={changePage}
-                containerClassName="pagination-button"
-                previousLinkClassName="previousButton"
-                nextLinkClassName="nextButton"
-                disabledClassName="paginationDisabled"
-                activeClassName="paginationActive"
-                className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
-              />
+              {institution.length > 0 ? (
+                <ReactPaginate
+                  previousLabel="Previous"
+                  nextLabel="Next"
+                  pageCount={pagingCount}
+                  onPageChange={changePage}
+                  containerClassName="pagination-button"
+                  previousLinkClassName="previousButton"
+                  nextLinkClassName="nextButton"
+                  disabledClassName="paginationDisabled"
+                  activeClassName="paginationActive"
+                  className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
+                />
+              ) : ''}
             </div>
           </div>
         </section>
