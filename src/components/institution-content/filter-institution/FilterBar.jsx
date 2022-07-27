@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterButton } from '../../Buttons/buttonCollections';
 import {
   filteredInstitutions,
   filterInstitutionStatus,
+  getInstitution,
 } from '../../../redux/features/institutionSlice';
 
 const FilterBar = () => {
@@ -21,6 +22,16 @@ const FilterBar = () => {
   const handleFilterInstitutionByStatus = (category) => {
     dispatch(filterInstitutionStatus(category));
   };
+
+  useEffect(() => {
+    dispatch(getInstitution());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (institutionStatus === "idle") {
+  //     dispatch(getInstitution());
+  //   }
+  // }, [dispatch, institutionStatus]);
 
   console.log(status);
   return (

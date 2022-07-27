@@ -285,14 +285,18 @@ const institutionSlice = createSlice({
 
     filterInstitutionStatus: (state, action) => {
       const statusCategory = state.institutionContainer.filter(
-        (itemStatus) => itemStatus.status === action.payload,
+        (itemStatus) => (itemStatus.status === action.payload),
       );
 
       const allCategory = state.institutionContainer.filter(
         (itemStatus) => itemStatus.status !== action.payload,
       );
 
-      state.institution = statusCategory || allCategory;
+      state.institution = action.payload ? statusCategory : allCategory;
+    },
+
+    selectById: (state, action) => {
+      state.institution = state.institution.find((item) => item.id === action.payload);
     },
   },
 
