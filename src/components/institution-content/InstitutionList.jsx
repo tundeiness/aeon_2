@@ -16,8 +16,8 @@ import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import FilterBar from './filter-institution/FilterBar';
 import SearchBar from './search-institution/SearchBar';
-import DeleteModal from '../Modal/DeleteModal/DeleteModal';
-import ActivateModal from '../Modal/ActivateModal/ActivateModal';
+// import DeleteModal from '../Modal/DeleteModal/DeleteModal';
+// import ActivateModal from '../Modal/ActivateModal/ActivateModal';
 import {
   getInstitution,
   selectAllInstitutions,
@@ -226,8 +226,8 @@ const InstitutionList = () => {
           </div>
         </section>
       </article>
-      <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
-      <ActivateModal />
+      {/* <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      <ActivateModal /> */}
     </>
   );
 };
