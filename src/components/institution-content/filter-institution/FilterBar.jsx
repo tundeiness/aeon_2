@@ -27,12 +27,6 @@ const FilterBar = () => {
     dispatch(getInstitution());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (institutionStatus === "idle") {
-  //     dispatch(getInstitution());
-  //   }
-  // }, [dispatch, institutionStatus]);
-
   console.log(status);
   return (
     <div
