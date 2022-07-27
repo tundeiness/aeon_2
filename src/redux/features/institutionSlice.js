@@ -277,18 +277,18 @@ const institutionSlice = createSlice({
       );
     },
     searchedInstitution: (state, action) => {
-      state.institution = state.institution.filter(
+      state.institution = state.institutionContainer.filter(
         (searchParam) => searchParam.name.toLowerCase().includes(action.payload)
           || searchParam.code.includes(action.payload),
       );
     },
 
     filterInstitutionStatus: (state, action) => {
-      const statusCategory = state.institution.filter(
+      const statusCategory = state.institutionContainer.filter(
         (itemStatus) => itemStatus.status === action.payload,
       );
 
-      const allCategory = state.institution.filter(
+      const allCategory = state.institutionContainer.filter(
         (itemStatus) => itemStatus.status !== action.payload,
       );
 
