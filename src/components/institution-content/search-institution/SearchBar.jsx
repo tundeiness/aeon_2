@@ -19,9 +19,7 @@ const SearchBar = () => {
           <input
             type="search"
             placeholder="Search"
-            className="relative pl-8 py-3 rounded-lg w-full outline outline-gray-300"
-            // value={q}
-            // onChange={(e) => setQ(e.target.value)}
+            className="relative pl-8 py-3 rounded-lg w-full border border-gray-200 focus:outline-none"
             onChange={handleSearchInstitution}
             ref={searchRef}
           />
