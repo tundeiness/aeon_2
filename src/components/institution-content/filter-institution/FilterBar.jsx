@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useFormik } from 'formik';
 import { FilterButton } from '../../Buttons/buttonCollections';
 import {
   filteredInstitutions,
@@ -11,32 +10,21 @@ import {
 
 const FilterBar = () => {
   const inputRef = useRef('');
-  const selectRef = useRef('');
   const dispatch = useDispatch();
 
   const [status, setStatus] = useState('');
-
-  // const options = new Array(10).fill(0).map((item, index) => ({
-  //   value: index,
-  //   label: `Option ${index}`,
-  // }));
 
   const handleFilterInstitutions = () => {
     dispatch(filteredInstitutions(inputRef.current.value));
   };
 
-  // useEffect(() => {
-
-  // })
-
   const handleFilterInstitutionByStatus = (category) => {
-    // selectRef.current.focus();
     dispatch(filterInstitutionStatus(category));
   };
 
   console.log(status);
   return (
-    <form
+    <div
       className="flex flex-row justify-between w-1/2 py-4"
     >
       <input
@@ -68,12 +56,11 @@ const FilterBar = () => {
             InActive
           </option>
         </select>
-        {/* {status} */}
       </div>
       <div className="flex flex-col items-center justify-center">
         <FilterButton />
       </div>
-    </form>
+    </div>
   );
 };
 
