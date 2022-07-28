@@ -27,7 +27,6 @@ import {
   selectAllProducts,
   getProductStatus,
   getProductError,
-  selectProductByCode,
 } from '../../redux/features/productSlice';
 import { handleDate } from '../../utils/dateParser';
 import './productlist.css';
