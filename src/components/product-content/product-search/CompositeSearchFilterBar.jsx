@@ -5,7 +5,10 @@ import { useDispatch } from 'react-redux';
 import { FiSearch } from 'react-icons/fi';
 import { GoButton, SearchButton } from '../../Buttons/buttonCollections';
 import { searchedInstitution } from '../../../redux/features/institutionSlice';
-import { searchProduct } from '../../../redux/features/productSlice';
+import {
+  searchProductByCode,
+  searchProductByName,
+} from '../../../redux/features/productSlice';
 import ProductFilterBar from '../product-filter/ProductFilterBar';
 
 const CompositeSearchFilterBar = () => {
@@ -13,11 +16,14 @@ const CompositeSearchFilterBar = () => {
   const searchRef = useRef('');
   const codeRef = useRef('');
   const dispatch = useDispatch();
+
   const handleSearchProduct = () => {
-    // dispatch(searchProduct(nameRef.current.value));
-    // dispatch(searchProduct(codeRef.current.value));
     if (searchRef.current.value) {
-      dispatch(searchProduct(searchRef.current.value));
+      dispatch(searchProductByCode(searchRef.current.value));
+    }
+
+    if (nameRef.current.value) {
+      dispatch(searchProductByName(nameRef.current.value));
     }
   };
   return (
@@ -53,7 +59,7 @@ const CompositeSearchFilterBar = () => {
           type="text"
           name="name"
           id="name"
-          ref={searchRef}
+          ref={nameRef}
           // onChange={handleSearchProduct}
         />
       </div>

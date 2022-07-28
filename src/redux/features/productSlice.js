@@ -105,10 +105,15 @@ export const productSlice = createSlice({
   initialState,
 
   reducers: {
-    searchProduct: (state, action) => {
+    searchProductByCode: (state, action) => {
       state.product = state.productContainer.filter(
-        (productItem) => productItem.name.toLowerCase().includes(action.payload)
-          || productItem.code.includes(action.payload),
+        (productItem) => productItem.code.includes(action.payload),
+      );
+    },
+
+    searchProductByName: (state, action) => {
+      state.product = state.productContainer.filter(
+        (productItem) => productItem.name.toLowerCase().includes(action.payload),
       );
     },
     filterProductStatus: (state, action) => {
@@ -122,7 +127,6 @@ export const productSlice = createSlice({
 
       state.product = action.payload ? statusCategory : allCategory;
     },
-
   },
   extraReducers: {
     [getAllProducts.pending]: (state) => {
@@ -167,5 +171,5 @@ export const selectAllProducts = (state) => state.product.product;
 export const getProductStatus = (state) => state.product.status;
 export const getProductError = (state) => state.product.error;
 export const selectProductByCode = (state, code) => state.product.product.find((product) => product.code === code);
-export const { searchProduct, filterProductStatus, projectFilter } = productSlice.actions;
+export const { searchProductByCode, filterProductStatus, searchProductByName } = productSlice.actions;
 export default productSlice.reducer;
