@@ -64,17 +64,6 @@ const ProductList = () => {
     setGetProductByCode(code);
   };
 
-  // const newProducts = useSelector(
-  //   (state) => {
-  //     const all = state.product.product;
-  //     const filterId = state.product.filter;
-  //     if (filterId === null) {
-  //       return all;
-  //     }
-  //     return all.filter((project) => project.id === filterId);
-  //   },
-  // );
-
   useEffect(() => {
     if (productStatus === 'idle') {
       dispatch(getAllProducts());
@@ -180,44 +169,6 @@ const ProductList = () => {
             </header>
 
             <hr className="mb-5" />
-            {/* <div className="flex flex-row justify-between w-full mb-5">
-              <div className="w-1/4 mr-2">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="name"
-                >
-                  Name
-                  {' '}
-                </label>
-                <input
-                  className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  "
-                  type="text"
-                  name="name"
-                  id="name"
-                />
-              </div>
-
-              <div className="w-1/4 px-3">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="code"
-                >
-                  Code
-                  {' '}
-                </label>
-                <input
-                  className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  "
-                  type="text"
-                  name="code"
-                  id="code"
-                />
-              </div>
-              <ProductFilterBar />
-
-              <div className="flex flex-col justify-end w-1/4">
-                <SearchButton />
-              </div>
-            </div> */}
             <CompositeSearchFilterBar />
             <div className="border border-gray-200 rounded-lg">
               <div className="product-list min-h-screen -mb-48">
