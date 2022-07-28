@@ -35,6 +35,10 @@ import './productlist.css';
 const ProductList = () => {
   // const { activeModal, setActiveModal } = useStateContext();
   const dispatch = useDispatch();
+  const {
+    getProductByCode,
+    setGetProductByCode,
+  } = useStateContext();
 
   const product = useSelector(selectAllProducts);
   const productStatus = useSelector(getProductStatus);
@@ -52,6 +56,10 @@ const ProductList = () => {
   // useEffect(() => {
   //   dispatch(getAllProducts());
   // }, [dispatch]);
+
+  const handleViewProduct = (code) => {
+    setGetProductByCode(code);
+  };
 
   useEffect(() => {
     if (productStatus === 'idle') {
@@ -91,7 +99,10 @@ const ProductList = () => {
         </td>
         <td className="py-4 px-6">
           <span className="flex justify-around px-12">
-            <Link to="view-product">
+            <Link
+              to="view-product"
+              onClick={() => handleViewProduct(datum.code)}
+            >
               <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </Link>
             {/* <RiDeleteBinLine
