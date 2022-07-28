@@ -33,6 +33,7 @@ export const ContextProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [getItemId, setGetItemId] = useState(null);
   const [getInstitutionId, setGetInstitutionId] = useState(null);
+  const [getProductByCode, setGetProductByCode] = useState(null);
 
   const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -116,6 +117,8 @@ export const ContextProvider = ({ children }) => {
         setGetItemId,
         getInstitutionId,
         setGetInstitutionId,
+        getProductByCode,
+        setGetProductByCode,
       }}
     >
       {children}
