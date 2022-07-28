@@ -3,7 +3,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -33,6 +33,8 @@ import './productlist.css';
 
 const ProductList = () => {
   // const { activeModal, setActiveModal } = useStateContext();
+  const nameRef = useRef();
+  const codeRef = useRef();
   const dispatch = useDispatch();
   const {
     getProductByCode,
