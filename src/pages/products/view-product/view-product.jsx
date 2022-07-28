@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   WideHeadingDisplayRow,
@@ -19,7 +19,6 @@ import { handleDate } from '../../../utils/dateParser';
 import { selectProductByCode } from '../../../redux/features/productSlice';
 
 export const ViewInstitution = () => {
-  const [updateInstitution, setUpdateInstitution] = useState(false);
   const { getProductByCode } = useStateContext();
   const singleProduct = useSelector((state) => selectProductByCode(state, getProductByCode));
 
@@ -27,7 +26,6 @@ export const ViewInstitution = () => {
 
   return (
     <>
-      {/* <SidebarNav /> */}
       <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
@@ -53,54 +51,52 @@ export const ViewInstitution = () => {
                   <DataDisplayRow
                     classText="status"
                     title="Status"
-                    content={<ActiveBtn />}
+                    content={singleProduct.status === 'Active' ? <ActiveBtn /> : <InActiveBtn />}
                   />
                   <DataDisplayRow
                     classText="date-modified"
                     title="Date Modified"
-                    content="20/03/2021 21:53:20"
+                    content={handleDate(singleProduct.dateLastModified)}
                   />
                   <DataDisplayRow
                     classText="date-created"
                     title="Date Created"
-                    content="20/03/2021 21:48:20"
+                    content={handleDate(singleProduct.dateCreated)}
                   />
                   <DataDisplayRow
                     classText="parameters"
                     title="Input Parameters"
-                    content="Driver's License"
+                    content={singleProduct.inputParameters}
                   />
 
                   <DataDisplayRow
                     classText="url"
                     title="URL"
-                    content="https://www.credequity.com/CredOcr/api/V1/VerifyFrscWithFace"
+                    content={singleProduct.url}
                   />
 
                   <DataDisplayRow
                     classText="test-url"
                     title="Test URL"
-                    content="support@credequity.com"
+                    content={singleProduct.testUrl}
                   />
 
                   <DataDisplayRow
                     classText="documentation"
                     title="API Documentation"
-                    content="None"
+                    content={singleProduct.apiDocumentation}
                   />
 
                   <DataDisplayRow
                     classText="summary"
                     title="Summary"
-                    content="The FRSC with Face Match verification checks the authenticity of a supplied means of identification and authenticity of the supplier through face verification"
+                    content={singleProduct.summary}
                   />
 
                   <TextDisplayRow
                     classText="response"
                     title="Response"
-                    content="Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                    incididunt cillum culpa consequat. Excepteur qui ipsum
-                    aliquip consequat sint."
+                    content={singleProduct.response}
                   />
                 </div>
               </dl>
