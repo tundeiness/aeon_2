@@ -13,6 +13,8 @@ import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import SupportButton from '../support/support';
+import PageLoader from '../pageLoader/pageLoader';
+import NoData from '../Nodata/NoData';
 import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
@@ -20,26 +22,42 @@ import DeleteInstitution from '../../pages/institutions/deleteInstitution/Delete
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { GoButton, FilterButton, SearchButton } from '../Buttons/buttonCollections';
 // import { getInstitution } from '../../redux/features/institutionSlice';
-import { getAllProducts } from '../../redux/features/productSlice';
+import {
+  getAllProducts,
+  selectAllProducts,
+  getProductStatus,
+  getProductError,
+  selectProductByCode,
+} from '../../redux/features/productSlice';
 import { handleDate } from '../../utils/dateParser';
 import './productlist.css';
 
 const ProductList = () => {
-  const { activeModal, setActiveModal } = useStateContext();
+  // const { activeModal, setActiveModal } = useStateContext();
   const dispatch = useDispatch();
 
-  const product = useSelector((state) => state.product.product);
+  const product = useSelector(selectAllProducts);
+  const productStatus = useSelector(getProductStatus);
+  const productError = useSelector(getProductError);
+
+  // const product = useSelector((state) => state.product.product);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [mockData, setMockData] = useState(product);
+  // const [mockData, setMockData] = useState(product);
   const [pageNum, setPageNum] = useState(0);
 
   console.log(product);
-  console.log(mockData);
+  // console.log(mockData);
+
+  // useEffect(() => {
+  //   dispatch(getAllProducts());
+  // }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+    if (productStatus === 'idle') {
+      dispatch(getAllProducts());
+    }
+  }, [dispatch, productStatus]);
 
   // const handleDate = (rawDate) => {
   //   const dateData = new Date(rawDate);
@@ -112,10 +130,30 @@ const ProductList = () => {
       </tr>
     ));
 
-  const pagingCount = Math.ceil(mockData?.length / dataPerPage);
+  const pagingCount = Math.ceil(product?.length / dataPerPage);
 
   const changePage = ({ selected }) => {
     setPageNum(selected);
+  };
+
+  const renderList = () => {
+    let content;
+    switch (productStatus) {
+      case 'loading':
+        content = <PageLoader />;
+        break;
+      case 'succeeded':
+        content = displayData;
+        break;
+      case 'failed':
+        content = <p>Network Error </p>;
+        break;
+      default:
+        content = displayData;
+        break;
+    }
+
+    return content;
   };
 
   return (
@@ -270,22 +308,24 @@ const ProductList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {displayData}
+                    {product?.length > 0 ? renderList() : <NoData />}
                   </tbody>
                 </table>
               </div>
-              <ReactPaginate
-                previousLabel="Previous"
-                nextLabel="Next"
-                pageCount={pagingCount}
-                onPageChange={changePage}
-                containerClassName="pagination-button"
-                previousLinkClassName="previousButton"
-                nextLinkClassName="nextButton"
-                disabledClassName="paginationDisabled"
-                activeClassName="paginationActive"
-                className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
-              />
+              {product?.length > 0 ? (
+                <ReactPaginate
+                  previousLabel="Previous"
+                  nextLabel="Next"
+                  pageCount={pagingCount}
+                  onPageChange={changePage}
+                  containerClassName="pagination-button"
+                  previousLinkClassName="previousButton"
+                  nextLinkClassName="nextButton"
+                  disabledClassName="paginationDisabled"
+                  activeClassName="paginationActive"
+                  className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
+                />
+              ) : ''}
             </div>
           </div>
         </section>
@@ -293,7 +333,7 @@ const ProductList = () => {
       {/* <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
         <DeleteInstitution />
       </Modal> */}
-      <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      {/* <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} /> */}
     </>
   );
 };
