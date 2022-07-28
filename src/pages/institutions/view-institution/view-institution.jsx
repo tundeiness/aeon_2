@@ -32,6 +32,7 @@ const ViewInstitution = () => {
             <hr className="my-3" />
             <BackToList
               text="Back to List"
+              to="/institutions"
               onClick={() => localStorage.removeItem('singleInstitution')}
             />
             <div className="w-full border-t border-gray-200 mt-3">

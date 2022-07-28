@@ -33,7 +33,7 @@ export const ViewInstitution = () => {
             </header>
 
             <hr className="my-3" />
-            <BackToList text="Back to List" />
+            <BackToList text="Back to List" to="/products" />
             <div className="w-full border-t border-gray-200 mt-3">
               <dl className="mx-2">
                 <div className="flex flex-col divide-y divide-slate-200">
