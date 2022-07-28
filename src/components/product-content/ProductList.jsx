@@ -59,21 +59,6 @@ const ProductList = () => {
     }
   }, [dispatch, productStatus]);
 
-  // const handleDate = (rawDate) => {
-  //   const dateData = new Date(rawDate);
-  //   const dateString = new Date(dateData.getTime() - dateData.getTimezoneOffset() * 60000)
-  //     .toISOString()
-  //     .split('T')[0];
-
-  //   const timeString = new Date(
-  //     dateData.getTime() - dateData.getTimezoneOffset() * 60000,
-  //   )
-  //     .toISOString()
-  //     .split('T')[1];
-
-  //   return `${dateString} ${timeString.slice(0, 8)}`;
-  // };
-
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
@@ -106,9 +91,9 @@ const ProductList = () => {
         </td>
         <td className="py-4 px-6">
           <span className="flex justify-around px-12">
-            <button type="button">
+            <Link to="view-product">
               <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-            </button>
+            </Link>
             {/* <RiDeleteBinLine
               className="delete-icon hover:cursor-pointer w-5 h-5 text-binColor"
               onClick={() => setIsOpen(true)}
@@ -224,48 +209,10 @@ const ProductList = () => {
               <div className="flex flex-col justify-end w-1/4">
                 <SearchButton />
               </div>
-              {/* <div className="flex flex-row justify-between w-1/2 py-4">
-                <input
-                  placeholder="Institution Name"
-                  className="relative py-2 pl-3 w-1/2 rounded-lg border border-gray-200"
-                />
-
-                <div className="w-1/3 px-3 mb-6 md:mb-0">
-                  <select
-                    id="status-category"
-                    name="status-category"
-                    className="mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                    aria-label=".form-select-sm example"
-                  >
-                    <option selected>Status</option>
-                    <option>Active</option>
-                    <option>Inactive</option>
-                  </select>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <FilterButton />
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-end w-1/2 py-2">
-                <div className="flex flex-row  items-center space-x-4 w-4/5">
-                  <div className="search-wrapper w-full relative">
-                    <FiSearch className="absolute z-10 top-3.5 left-2 text-xl" />
-                    <input
-                      type="search"
-                      placeholder="Search"
-                      className="relative pl-8 py-3 rounded-lg w-full outline outline-gray-300"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <GoButton />
-                  </div>
-                </div>
-              </div> */}
             </div>
 
             <div className="border border-gray-200 rounded-lg">
-              <div className="name-list">
+              <div className="product-list min-h-screen -mb-48">
                 <table className="table-fixed w-full text-xs">
                   <thead className=" bg-gray-50 text-xs capitalize w-full ">
                     <tr className="space-x-1">
@@ -286,8 +233,8 @@ const ProductList = () => {
                         className="flex items-center  text-gray-500 py-4 pl-28"
                       >
                         Status
-                        {/* <span>{ArrowDownIcon.symbol}</span> */}
-                        <BsArrowDownShort />
+
+                        <BsArrowDownShort className="text-lg font-semibold" />
                       </th>
                       <th
                         scope="col"
@@ -325,7 +272,9 @@ const ProductList = () => {
                   activeClassName="paginationActive"
                   className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
                 />
-              ) : ''}
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </section>
