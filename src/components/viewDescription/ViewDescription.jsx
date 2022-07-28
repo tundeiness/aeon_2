@@ -122,7 +122,7 @@ export const TextDisplayRow = ({ classText, title, content }) => {
   );
 };
 
-export const WideHeadingDisplayRow = () => {
+export const WideHeadingDisplayRow = ({ data }) => {
   const test = 0;
   return (
     <>
@@ -130,7 +130,7 @@ export const WideHeadingDisplayRow = () => {
         <div className="w-full flex flex-row justify-between bg-headingBlue">
           <div className="w-3/5 py-7">
             <dd className="block font-medium text-xl pl-10 text-gray-900">
-              FRSC FACE MATCH SERVICE (OCR)
+              {data}
             </dd>
           </div>
           <div className="w-1/5 py-5">

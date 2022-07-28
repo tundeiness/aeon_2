@@ -2,21 +2,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   WideHeadingDisplayRow,
   DataDisplayRow,
   TextDisplayRow,
 } from '../../../components/viewDescription/ViewDescription';
 import SupportButton from '../../../components/support/support';
+import { useStateContext } from '../../../contexts/ContextProvider';
 import {
   BackToList,
   ActiveBtn,
   InActiveBtn,
 } from '../../../components/Buttons/buttonCollections';
 import { handleDate } from '../../../utils/dateParser';
+import { selectProductByCode } from '../../../redux/features/productSlice';
 
 export const ViewInstitution = () => {
   const [updateInstitution, setUpdateInstitution] = useState(false);
+  const { getProductByCode } = useStateContext();
+  const singleProduct = useSelector((state) => selectProductByCode(state, getProductByCode));
+
+  console.log(singleProduct);
 
   return (
     <>
@@ -37,11 +44,11 @@ export const ViewInstitution = () => {
             <div className="w-full border-t border-gray-200 mt-3">
               <dl className="mx-2">
                 <div className="flex flex-col divide-y divide-slate-200">
-                  <WideHeadingDisplayRow />
+                  <WideHeadingDisplayRow data={singleProduct.name} />
                   <DataDisplayRow
                     classText="code"
                     title="Code"
-                    content="100602"
+                    content={singleProduct.code}
                   />
                   <DataDisplayRow
                     classText="status"
