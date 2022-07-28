@@ -97,6 +97,7 @@ const initialState = {
   productContainer: [],
   status: 'idle',
   error: null,
+
 };
 
 export const productSlice = createSlice({
@@ -111,16 +112,17 @@ export const productSlice = createSlice({
       );
     },
     filterProductStatus: (state, action) => {
-      const statusCategory = state.product.filter(
+      const statusCategory = state.productContainer.filter(
         (itemStatus) => itemStatus.status === action.payload,
       );
 
-      const allCategory = state.product.filter(
+      const allCategory = state.productContainer.filter(
         (itemStatus) => itemStatus.status !== action.payload,
       );
 
       state.product = action.payload ? statusCategory : allCategory;
     },
+
   },
   extraReducers: {
     [getAllProducts.pending]: (state) => {
@@ -129,6 +131,7 @@ export const productSlice = createSlice({
     [getAllProducts.fulfilled]: (state, action) => {
       state.loading = false;
       state.product = action.payload;
+      state.productContainer = action.payload;
     },
     [getAllProducts.rejected]: (state, action) => {
       state.loading = false;
@@ -164,5 +167,5 @@ export const selectAllProducts = (state) => state.product.product;
 export const getProductStatus = (state) => state.product.status;
 export const getProductError = (state) => state.product.error;
 export const selectProductByCode = (state, code) => state.product.product.find((product) => product.code === code);
-export const { searchProduct, filterProductStatus } = productSlice.actions;
+export const { searchProduct, filterProductStatus, projectFilter } = productSlice.actions;
 export default productSlice.reducer;

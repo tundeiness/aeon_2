@@ -16,7 +16,9 @@ const CompositeSearchFilterBar = () => {
   const handleSearchProduct = () => {
     // dispatch(searchProduct(nameRef.current.value));
     // dispatch(searchProduct(codeRef.current.value));
-    dispatch(searchProduct(searchRef.current.value));
+    if (searchRef.current.value) {
+      dispatch(searchProduct(searchRef.current.value));
+    }
   };
   return (
   // <div className="flex flex-row justify-end w-1/2 py-2">

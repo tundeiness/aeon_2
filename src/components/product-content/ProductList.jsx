@@ -64,6 +64,17 @@ const ProductList = () => {
     setGetProductByCode(code);
   };
 
+  // const newProducts = useSelector(
+  //   (state) => {
+  //     const all = state.product.product;
+  //     const filterId = state.product.filter;
+  //     if (filterId === null) {
+  //       return all;
+  //     }
+  //     return all.filter((project) => project.id === filterId);
+  //   },
+  // );
+
   useEffect(() => {
     if (productStatus === 'idle') {
       dispatch(getAllProducts());
