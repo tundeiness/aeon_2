@@ -102,29 +102,26 @@ const initialState = {
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  // initialState: {
-  //   product: [
-  //     {
-  //       name: 'BVN Service',
-  //       summary:
-  //         'The BVN Full Details Service is used to confirm the authenticity of a BVN and/or phone number by matching any one or more of the request against the last name and date of birth of the customer.',
-  //       inputParameters: 'Bvn',
-  //       url: 'https://credequityapi.com/CredBvn/api/v1/Bvn/GetCustomerBvn',
-  //       pricePerCall: 0.0,
-  //       code: '100301',
-  //       dateCreated: '2021-03-04T11:22:17.447766',
-  //       dateLastModified: '2021-03-05T10:11:32.5831291',
-  //       lastUpdatedBy: 'support@credequity.com',
-  //       apiDocumentation: 'none',
-  //       testUrl: 'http://102.164.38.38/CredBvn/api/v1/Bvn/GetCustomerBvn',
-  //       status: 'Active',
-  //     },
-  //   ],
-  //   loading: false,
-  //   error: null,
-  // },
 
-  reducers: {},
+  reducers: {
+    searchProduct: (state, action) => {
+      state.product = state.productContainer.filter(
+        (productItem) => productItem.name.toLowerCase().includes(action.payload)
+          || productItem.code.includes(action.payload),
+      );
+    },
+    filterProductStatus: (state, action) => {
+      const statusCategory = state.product.filter(
+        (itemStatus) => itemStatus.status === action.payload,
+      );
+
+      const allCategory = state.product.filter(
+        (itemStatus) => itemStatus.status !== action.payload,
+      );
+
+      state.product = action.payload ? statusCategory : allCategory;
+    },
+  },
   extraReducers: {
     [getAllProducts.pending]: (state) => {
       state.loading = true;
@@ -167,4 +164,5 @@ export const selectAllProducts = (state) => state.product.product;
 export const getProductStatus = (state) => state.product.status;
 export const getProductError = (state) => state.product.error;
 export const selectProductByCode = (state, code) => state.product.product.find((product) => product.code === code);
+export const { searchProduct, filterProductStatus } = productSlice.actions;
 export default productSlice.reducer;

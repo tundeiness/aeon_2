@@ -295,9 +295,9 @@ const institutionSlice = createSlice({
       state.institution = action.payload ? statusCategory : allCategory;
     },
 
-    selectById: (state, action) => {
-      state.institution = state.institution.find((item) => item.id === action.payload);
-    },
+    // selectById: (state, action) => {
+    //   state.institution = state.institution.find((item) => item.id === action.payload);
+    // },
   },
 
   // extraReducers: {

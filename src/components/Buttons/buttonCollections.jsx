@@ -135,13 +135,14 @@ export const FilterButton = () => {
   );
 };
 
-export const SearchButton = () => {
+export const SearchButton = ({ onClick }) => {
   const test = 0;
   return (
     <>
       <button
         className="bg-buttonTwo px-4 py-3 rounded-md text-white font-medium text-sm"
         type="button"
+        onClick={onClick}
       >
         Search
       </button>

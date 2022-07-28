@@ -16,12 +16,14 @@ import SupportButton from '../support/support';
 import PageLoader from '../pageLoader/pageLoader';
 import NoData from '../Nodata/NoData';
 import { useStateContext } from '../../contexts/ContextProvider';
+import ProductFilterBar from './product-filter/ProductFilterBar';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { GoButton, FilterButton, SearchButton } from '../Buttons/buttonCollections';
 // import { getInstitution } from '../../redux/features/institutionSlice';
+import CompositeSearchFilterBar from './product-search/CompositeSearchFilterBar';
 import {
   getAllProducts,
   selectAllProducts,
@@ -74,7 +76,7 @@ const ProductList = () => {
   const displayData = product
     ?.slice(dataPageVisited, dataPageVisited + dataPerPage)
     ?.map((datum) => (
-      <tr key={datum['S/N']}>
+      <tr key={datum.code}>
         <td className="text-sm leading-5 py-4 px-3">{datum.code}</td>
         <td className="py-4 uppercase text-center">{datum.name}</td>
         <td className="py-4 pl-28">
@@ -167,11 +169,11 @@ const ProductList = () => {
             </header>
 
             <hr className="mb-5" />
-            <div className="flex flex-row justify-between w-full mb-5">
+            {/* <div className="flex flex-row justify-between w-full mb-5">
               <div className="w-1/4 mr-2">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="email-address"
+                  htmlFor="name"
                 >
                   Name
                   {' '}
@@ -179,15 +181,15 @@ const ProductList = () => {
                 <input
                   className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  "
                   type="text"
-                  name="email-address"
-                  id="email-address"
+                  name="name"
+                  id="name"
                 />
               </div>
 
               <div className="w-1/4 px-3">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="email-address"
+                  htmlFor="code"
                 >
                   Code
                   {' '}
@@ -195,34 +197,17 @@ const ProductList = () => {
                 <input
                   className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mt-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  "
                   type="text"
-                  name="email-address"
-                  id="email-address"
+                  name="code"
+                  id="code"
                 />
               </div>
-
-              <div className="w-1/4 px-3">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="status-category"
-                >
-                  status
-                </label>
-                <select
-                  id="status-category"
-                  name="status-category"
-                  className="mt-1 block w-full py-3 px-2 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option selected />
-                  <option>Active</option>
-                  <option>Inactive</option>
-                </select>
-              </div>
+              <ProductFilterBar />
 
               <div className="flex flex-col justify-end w-1/4">
                 <SearchButton />
               </div>
-            </div>
-
+            </div> */}
+            <CompositeSearchFilterBar />
             <div className="border border-gray-200 rounded-lg">
               <div className="product-list min-h-screen -mb-48">
                 <table className="table-fixed w-full text-xs">
