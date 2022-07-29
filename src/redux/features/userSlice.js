@@ -157,6 +157,9 @@ export const loginUser = createAsyncThunk('user/login', async (user) => {
 
 const initialState = {
   user: [],
+  userContainer: [],
+  userSearchContainer: [],
+  userStatusContainer: [],
   status: 'idle',
   error: null,
 };
@@ -193,6 +196,9 @@ export const userSlice = createSlice({
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.user = action.payload;
+        state.userContainer = action.payload;
+        state.userSearchContainer = action.payload;
+        state.userStatusContainer = action.payload;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.status = 'failed';
@@ -202,7 +208,6 @@ export const userSlice = createSlice({
         state.status = 'succeeded';
 
         const user = action.payload;
-        // state.entities[institution.id] = institution;
         state.user[user.id] = user;
         state.user.push(user);
       })

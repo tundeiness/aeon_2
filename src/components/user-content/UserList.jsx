@@ -52,9 +52,9 @@ const UserList = () => {
   const roleStatus = useSelector(getRoleStatus);
 
   // const institution = useSelector((state) => state.institution.institution);
-  const institution = useSelector(selectAllUsers);
-  const institutionStatus = useSelector(getUserStatus);
-  const institutionError = useSelector(getUserError);
+  const user = useSelector(selectAllUsers);
+  const userStatus = useSelector(getUserStatus);
+  const userError = useSelector(getUserError);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   // const [mockData, setMockData] = useState(institution[0]);
@@ -63,17 +63,17 @@ const UserList = () => {
 
   const [page, setPage] = useState(1);
 
-  console.log(institution);
+  console.log(user);
 
   useEffect(() => {
-    if (institutionStatus === 'idle') {
+    if (userStatus === 'idle') {
       dispatch(getAllUsers());
     }
 
     if (roleStatus === 'idle') {
       dispatch(getAllRoles());
     }
-  }, [dispatch, institutionStatus, roleStatus]);
+  }, [dispatch, userStatus, roleStatus]);
 
   // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
   // const id = uuidv4();
@@ -81,7 +81,7 @@ const UserList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = institution
+  const displayData = user
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     .map((datum, idx) => (
       // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
@@ -134,7 +134,7 @@ const UserList = () => {
       </tr>
     ));
 
-  const pagingCount = Math.ceil(institution?.length / dataPerPage);
+  const pagingCount = Math.ceil(user?.length / dataPerPage);
 
   const changePage = ({ selected }) => {
     setPageNum(selected);
@@ -142,7 +142,7 @@ const UserList = () => {
 
   const renderSelection = () => {
     let content;
-    switch (institutionStatus) {
+    switch (userStatus) {
       case 'loading':
         content = <p>Loading data ...</p>;
         break;

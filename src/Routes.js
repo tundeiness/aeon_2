@@ -234,6 +234,7 @@ const MainRoutes = () => {
             {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
             <Route path="users/create-user" element={<CreateUserView />} />
             <Route path="users/edit-user" element={<EditUserView />} />
+            {/* <Route path="users/view-user" element={<ViewUser />} /> */}
             <Route
               path="products/create-product"
               element={<CreateProductView />}
