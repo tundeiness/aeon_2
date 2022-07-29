@@ -36,6 +36,12 @@ const NameStatusRoleFilterBar = () => {
           id="category"
           name="category"
           className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+          value={status}
+          onChange={(e) => {
+            const selectedStatus = e.target.value;
+            setStatus(selectedStatus);
+            // handleFilterProductByStatus(e.target.value);
+          }}
         >
           <option value="" label="Select Status">
             Select Status
@@ -60,6 +66,12 @@ const NameStatusRoleFilterBar = () => {
           id="category"
           name="category"
           className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+          value={role}
+          onChange={(e) => {
+            const selectedRole = e.target.value;
+            setStatus(selectedRole);
+            // handleFilterProductByStatus(e.target.value);
+          }}
         >
           <option value="" label="Select Role">
             Select Role
