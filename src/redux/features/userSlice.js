@@ -160,6 +160,7 @@ const initialState = {
   userContainer: [],
   userSearchContainer: [],
   userStatusContainer: [],
+  userRoleContainer: [],
   status: 'idle',
   error: null,
 };
@@ -199,6 +200,7 @@ export const userSlice = createSlice({
         state.userContainer = action.payload;
         state.userSearchContainer = action.payload;
         state.userStatusContainer = action.payload;
+        state.userRoleContainer = action.payload;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.status = 'failed';
