@@ -6,6 +6,9 @@ import {
   getUserStatus,
   getUserError,
   getAllUsers,
+  filterUserByStatus,
+  filterUserByRole,
+  searchedUser,
 } from '../../../redux/features/userSlice';
 
 const NameStatusRoleFilterBar = () => {
@@ -20,14 +23,17 @@ const NameStatusRoleFilterBar = () => {
 
   const handleFilterUserByRole = () => {
     // some codes
+    dispatch(filterUserByRole(role));
   };
 
   const handleFilterUserByStatus = () => {
     // some codes
+    dispatch(filterUserByStatus(status));
   };
 
   const handleSearchUserByName = () => {
     // some codes
+    dispatch(searchedUser(username));
   };
 
   //  const handleFilterProductByStatus = (category) => {
@@ -75,7 +81,7 @@ const NameStatusRoleFilterBar = () => {
           onChange={(e) => {
             const selectedStatus = e.target.value;
             setStatus(selectedStatus);
-            // handleFilterProductByStatus(e.target.value);
+            handleFilterUserByStatus(e.target.value);
           }}
         >
           <option value="" label="Select Status">
@@ -105,7 +111,7 @@ const NameStatusRoleFilterBar = () => {
           onChange={(e) => {
             const selectedRole = e.target.value;
             setRole(selectedRole);
-            // handleFilterProductByStatus(e.target.value);
+            handleFilterUserByRole(e.target.value);
           }}
         >
           <option value="" label="Select Role">

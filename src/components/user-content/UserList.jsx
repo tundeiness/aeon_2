@@ -19,6 +19,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
+import NameStatusRoleFilterBar from './NameStatusRoleFilterBar/NameStatusRoleFilterBar';
 import {
   getAllRoles,
   selectAllRoles,
@@ -36,6 +37,8 @@ import {
   getUserError,
   getAllUsers,
 } from '../../redux/features/userSlice';
+import NoData from '../Nodata/NoData';
+import PageLoader from '../pageLoader/pageLoader';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const UserList = () => {
@@ -139,11 +142,11 @@ const UserList = () => {
     setPageNum(selected);
   };
 
-  const renderSelection = () => {
+  const renderUsers = () => {
     let content;
     switch (userStatus) {
       case 'loading':
-        content = <p>Loading data ...</p>;
+        content = <PageLoader />;
         break;
       case 'succeeded':
         content = displayData;
@@ -206,7 +209,8 @@ const UserList = () => {
               </div>
             </div>
             <hr className="mb-3 mt-2" />
-            <div className="flex flex-row w-full mb-4">
+            <NameStatusRoleFilterBar />
+            {/* <div className="flex flex-row w-full mb-4">
               <div className="w-1/3 px-1 mb-6 md:mb-0">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
@@ -269,10 +273,10 @@ const UserList = () => {
                   </option>
                 </select>
               </div>
-            </div>
+            </div> */}
 
             <div className="border border-gray-200 rounded-lg">
-              <div className="name-list">
+              <div className="user-list min-h-screen -mb-48">
                 <table className="table-fixed w-full text-xs">
                   <thead className=" bg-gray-50 text-xs capitalize">
                     <tr>
@@ -321,35 +325,24 @@ const UserList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {/* {(() => {
-                      switch (institutionStatus) {
-                        case 'loading': // if (x === 'value1')
-                          return <p>Loading data ...</p>;
-                        case 'succeeded': // if (x === 'value2')
-                          return displayData;
-                        case 'failed':
-                          return <p>Network Error </p>;
-                        default: {
-                          return displayData;
-                        }
-                      }
-                    })()} */}
-                    {renderSelection()}
+                    {user?.length > 0 ? renderUsers() : <NoData />}
                   </tbody>
                 </table>
               </div>
-              <ReactPaginate
-                previousLabel="Previous"
-                nextLabel="Next"
-                pageCount={pagingCount}
-                onPageChange={changePage}
-                containerClassName="pagination-button"
-                previousLinkClassName="previousButton"
-                nextLinkClassName="nextButton"
-                disabledClassName="paginationDisabled"
-                activeClassName="paginationActive"
-                className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
-              />
+              {user?.length > 0 ? (
+                <ReactPaginate
+                  previousLabel="Previous"
+                  nextLabel="Next"
+                  pageCount={pagingCount}
+                  onPageChange={changePage}
+                  containerClassName="pagination-button"
+                  previousLinkClassName="previousButton"
+                  nextLinkClassName="nextButton"
+                  disabledClassName="paginationDisabled"
+                  activeClassName="paginationActive"
+                  className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
+                />
+              ) : ''}
             </div>
           </div>
         </section>
