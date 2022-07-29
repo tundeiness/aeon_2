@@ -1,8 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const NameStatusRoleFilterBar = () => {
-  const test = 0;
+  const username = useRef();
+  const dispatch = useDispatch();
+  const [status, setStatus] = useState('');
+  const [role, setRole] = useState('');
+
   return (
     <div className="flex flex-row w-full mb-4">
       <div className="w-1/3 px-1 mb-6 md:mb-0">

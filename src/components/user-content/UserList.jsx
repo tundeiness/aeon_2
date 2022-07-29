@@ -27,8 +27,6 @@ import {
 } from '../../redux/features/roleSlice';
 import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import {
-  GoButton,
-  FilterButton,
   SearchButtonUser,
   AddUserButton,
 } from '../Buttons/buttonCollections';
