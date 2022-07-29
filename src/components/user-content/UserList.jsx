@@ -137,7 +137,7 @@ const UserList = () => {
                 <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
               </span>
             )}
-            <Link to="edit-user" onClick={setGetUserByUserId(datum.userId)}>
+            <Link to="edit-user" onClick={() => setGetUserByUserId(datum.userId)}>
               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
             </Link>
           </span>
