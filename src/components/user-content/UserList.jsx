@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-// import { nanoid } from '@reduxjs/toolkit';
+import { nanoid } from '@reduxjs/toolkit';
 // import { uuid } from 'uuidv4';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -83,12 +83,15 @@ const UserList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
+  console.log(user.length);
+
   const displayData = user
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     .map((datum, idx) => (
-      // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
       <tr key={uuidv4()}>
-        <td className="text-sm leading-5 py-4 px-4">{idx + 1}</td>
+        <td className="text-sm leading-5 py-4 px-4">
+          {user.indexOf(datum) + 1}
+        </td>
         <td className="py-4 uppercase text-center">{`${datum.lastname} ${datum.othernames}`}</td>
         <td className="py-4 pr-4 pl-5">{datum.email}</td>
         <td className="py-4 pl-8">
@@ -203,7 +206,7 @@ const UserList = () => {
                     <SearchButtonUser />
                   </div>
                   <div className="add-user-button w-auto">
-                    <AddUserButton />
+                    <AddUserButton to="create-user" />
                   </div>
                 </div>
               </div>
@@ -342,7 +345,9 @@ const UserList = () => {
                   activeClassName="paginationActive"
                   className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
                 />
-              ) : ''}
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </section>

@@ -164,12 +164,12 @@ export const SearchButtonUser = () => {
   );
 };
 
-export const AddUserButton = () => {
+export const AddUserButton = ({ to }) => {
   const test = 0;
   return (
     <>
       <Link
-        to="/create-user"
+        to={to}
         className="flex items-center bg-buttonTwo text-white hover:bg-purple-500 py-3 px-5 my-2.5 rounded-md text-sm w-auto"
       >
         <BiPlus className="inline-block mr-2" />

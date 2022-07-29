@@ -81,13 +81,13 @@ const NameStatusRoleFilterBar = () => {
           onChange={(e) => {
             const selectedStatus = e.target.value;
             setStatus(selectedStatus);
-            handleFilterUserByStatus(e.target.value);
+            handleFilterUserByStatus(status);
           }}
         >
           <option value="" label="Select Status">
             Select Status
           </option>
-          <option value="Active" label=" Active">
+          <option value="Active" label="Active">
             Active
           </option>
           <option value="InActive" label="InActive">
