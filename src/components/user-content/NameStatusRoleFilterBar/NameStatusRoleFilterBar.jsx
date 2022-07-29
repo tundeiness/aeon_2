@@ -1,12 +1,45 @@
 /* eslint-disable no-unused-vars */
-import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectAllUsers,
+  getUserStatus,
+  getUserError,
+  getAllUsers,
+} from '../../../redux/features/userSlice';
 
 const NameStatusRoleFilterBar = () => {
   const username = useRef();
   const dispatch = useDispatch();
   const [status, setStatus] = useState('');
   const [role, setRole] = useState('');
+
+  const user = useSelector(selectAllUsers);
+  const userStatus = useSelector(getUserStatus);
+  const userError = useSelector(getUserError);
+
+  const handleFilterUserByRole = () => {
+    // some codes
+  };
+
+  const handleFilterUserByStatus = () => {
+    // some codes
+  };
+
+  const handleSearchUserByName = () => {
+    // some codes
+  };
+
+  //  const handleFilterProductByStatus = (category) => {
+  //    dispatch(filterProductStatus(category));
+  //  };
+
+  useEffect(() => {
+    //  dispatch(getAllProducts());
+    if (userStatus === 'idle') {
+      dispatch(getAllUsers());
+    }
+  }, [dispatch]);
 
   return (
     <div className="flex flex-row w-full mb-4">
@@ -21,6 +54,8 @@ const NameStatusRoleFilterBar = () => {
             id="username"
             type="text"
             placeholder="Enter Username"
+            ref={username}
+            onChange={handleSearchUserByName}
           />
         </label>
       </div>
@@ -69,7 +104,7 @@ const NameStatusRoleFilterBar = () => {
           value={role}
           onChange={(e) => {
             const selectedRole = e.target.value;
-            setStatus(selectedRole);
+            setRole(selectedRole);
             // handleFilterProductByStatus(e.target.value);
           }}
         >

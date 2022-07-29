@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
@@ -187,6 +188,34 @@ export const userSlice = createSlice({
       state.error = true;
       state.pending = false;
     },
+
+    searchedUser: (state, action) => {
+      state.user = state.userContainer.filter((searchParam) => searchParam.name.toLowerCase().includes(action.payload));
+    },
+
+    filterUserByStatus: (state, action) => {
+      const statusCategory = state.userStatusContainer.filter(
+        (itemStatus) => itemStatus.status !== action.payload,
+      );
+
+      const allCategory = state.userStatusContainer.filter(
+        (itemStatus) => itemStatus.status !== action.payload,
+      );
+
+      state.user = action.payload ? statusCategory : allCategory;
+    },
+
+    filterUserByRole: (state, action) => {
+      const roleCategory = state.userRoleContainer.filter(
+        (itemRole) => itemRole.role !== action.payload,
+      );
+
+      const allRole = state.userRoleContainer.filter(
+        (itemRole) => itemRole.role !== action.payload,
+      );
+
+      state.user = action.payload ? roleCategory : allRole;
+    },
   },
   //  using create async thunk
   extraReducers(builder) {
@@ -286,8 +315,10 @@ export const selectAllUsers = (state) => state.user.user;
 export const getUserStatus = (state) => state.user.status;
 export const getUserError = (state) => state.user.error;
 
-export const {
-  setUserUpdate, remove, updateStart, updateSuccess, updateError,
-} = userSlice.actions;
+// export const {
+//   setUserUpdate, remove, updateStart, updateSuccess, updateError,
+// } = userSlice.actions;
+
+export const { filterUserByStatus, filterUserByRole, searchedUser } = userSlice.actions;
 
 export default userSlice.reducer;

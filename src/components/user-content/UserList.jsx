@@ -48,6 +48,7 @@ const UserList = () => {
   console.log(roleArray);
 
   const roleStatus = useSelector(getRoleStatus);
+  console.log(roleStatus);
 
   // const institution = useSelector((state) => state.institution.institution);
   const user = useSelector(selectAllUsers);
