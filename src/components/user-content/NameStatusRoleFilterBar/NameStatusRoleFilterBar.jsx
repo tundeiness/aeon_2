@@ -46,6 +46,7 @@ const NameStatusRoleFilterBar = () => {
       dispatch(getAllUsers());
     }
   }, [dispatch]);
+  console.log(username);
 
   return (
     <div className="flex flex-row w-full mb-4">

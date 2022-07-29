@@ -12,12 +12,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { nanoid } from '@reduxjs/toolkit';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
+import { useStateContext } from '../../../contexts/ContextProvider';
 import {
   selectAllUsers,
   getUserStatus,
   getUserError,
   getAllUsers,
   createUser,
+  selectUserByUserId,
 } from '../../../redux/features/userSlice';
 // import './createInstituiton.css';
 
@@ -26,6 +28,14 @@ const CreateUser = () => {
   const [createRequestStatus, setCreateRequestStatus] = useState('idle');
   const [enabled, setEnabled] = useState(false);
   const navigate = useNavigate();
+  const { getUserByUserId } = useStateContext();
+
+  const singleUser = useSelector((state) => selectUserByUserId(state, getUserByUserId));
+
+  console.log(singleUser);
+
+  // getUserByUserId,
+  //       setGetUserByUserId,
 
   const dispatch = useDispatch();
   const allUsers = useSelector(selectAllUsers);
@@ -61,12 +71,12 @@ const CreateUser = () => {
 
   const formic = useFormik({
     initialValues: {
-      first_name: '',
-      last_name: '',
+      first_name: singleUser.othernames,
+      last_name: singleUser.lastname,
       phone: '',
-      institution: '',
-      email: '',
-      role: '',
+      institution: singleUser.institutionCode,
+      email: singleUser.email,
+      role: singleUser.roleCode,
     },
     validate,
     onSubmit: (values, { resetForm }) => {

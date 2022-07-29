@@ -170,27 +170,27 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setuserUpdate: (state, action) => {
-      state.name = action.payload.name;
-      state.email = action.payload.email;
-    },
-    remove: (state) => {
-      state = null;
-    },
-    updateStart: (...state) => {
-      state.pending = true;
-    },
-    updateSuccess: ({ ...state }, action) => {
-      state.pending = false;
-      state.userInfo = action.payload;
-    },
-    updateError: (...state) => {
-      state.error = true;
-      state.pending = false;
-    },
+    // setuserUpdate: (state, action) => {
+    //   state.name = action.payload.name;
+    //   state.email = action.payload.email;
+    // },
+    // remove: (state) => {
+    //   state = null;
+    // },
+    // updateStart: (...state) => {
+    //   state.pending = true;
+    // },
+    // updateSuccess: ({ ...state }, action) => {
+    //   state.pending = false;
+    //   state.userInfo = action.payload;
+    // },
+    // updateError: (...state) => {
+    //   state.error = true;
+    //   state.pending = false;
+    // },
 
     searchedUser: (state, action) => {
-      state.user = state.userContainer.filter((searchParam) => searchParam.othernames.includes(action.payload));
+      state.user = state.userContainer.filter((searchParam) => searchParam.othernames.toLowerCase().includes(action.payload));
     },
 
     filterUserByStatus: (state, action) => {
@@ -314,6 +314,7 @@ export const userSlice = createSlice({
 export const selectAllUsers = (state) => state.user.user;
 export const getUserStatus = (state) => state.user.status;
 export const getUserError = (state) => state.user.error;
+export const selectUserByUserId = (state, id) => state.user.user.find((selectedUser) => selectedUser.userId === id);
 
 // export const {
 //   setUserUpdate, remove, updateStart, updateSuccess, updateError,

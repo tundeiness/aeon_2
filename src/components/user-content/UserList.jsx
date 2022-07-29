@@ -36,16 +36,21 @@ import {
   getUserStatus,
   getUserError,
   getAllUsers,
+  selectUserByUserId,
 } from '../../redux/features/userSlice';
 import NoData from '../Nodata/NoData';
 import PageLoader from '../pageLoader/pageLoader';
+// import { useStateContext } from "../../../contexts/ContextProvider";
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const UserList = () => {
   const { activeModal, setActiveModal } = useStateContext();
+  const [currentPage, setCurrentPage] = useState(0);
   // const { loading, institution } = useSelector((state) => ({
   //   ...state.institution,
   // }));
+
+  const { setGetUserByUserId } = useStateContext();
 
   const roleArray = useSelector(selectAllRoles);
   console.log(roleArray);
@@ -83,7 +88,7 @@ const UserList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  console.log(user.length);
+  console.log(dataPageVisited);
 
   const displayData = user
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
@@ -91,6 +96,7 @@ const UserList = () => {
       <tr key={uuidv4()}>
         <td className="text-sm leading-5 py-4 px-4">
           {user.indexOf(datum) + 1}
+          {/* {pageNum === 1 ? idx + 1 : ((pageNum - 1) * dataPerPage) + (idx + 1)} */}
         </td>
         <td className="py-4 uppercase text-center">{`${datum.lastname} ${datum.othernames}`}</td>
         <td className="py-4 pr-4 pl-5">{datum.email}</td>
@@ -131,15 +137,16 @@ const UserList = () => {
                 <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
               </span>
             )}
-            <button type="button">
+            <Link to="edit-user" onClick={setGetUserByUserId(datum.userId)}>
               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-            </button>
+            </Link>
           </span>
         </td>
       </tr>
     ));
 
   const pagingCount = Math.ceil(user?.length / dataPerPage);
+  console.log(pageNum);
 
   const changePage = ({ selected }) => {
     setPageNum(selected);
@@ -334,8 +341,8 @@ const UserList = () => {
               </div>
               {user?.length > 0 ? (
                 <ReactPaginate
-                  previousLabel="Previous"
-                  nextLabel="Next"
+                  previousLabel="← Previous"
+                  nextLabel="Next →"
                   pageCount={pagingCount}
                   onPageChange={changePage}
                   containerClassName="pagination-button"
