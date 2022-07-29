@@ -62,7 +62,7 @@ const NameStatusRoleFilterBar = () => {
             type="text"
             placeholder="Enter Username"
             ref={username}
-            onChange={handleSearchUserByName}
+            onChange={() => handleSearchUserByName}
           />
         </label>
       </div>
