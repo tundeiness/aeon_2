@@ -35,7 +35,7 @@ const CreateInstitution = () => {
     if (!value.notificationEmail) {
       errors.notificationEmail = 'Cannot be blank';
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.notificationEmail)
     ) {
       errors.notificationEmail = 'Invalid email format';
     }
