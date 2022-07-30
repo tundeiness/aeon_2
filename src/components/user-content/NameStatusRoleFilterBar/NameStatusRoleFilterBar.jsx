@@ -46,6 +46,7 @@ const NameStatusRoleFilterBar = () => {
       dispatch(getAllUsers());
     }
   }, [dispatch]);
+  console.log(status);
   console.log(username);
 
   return (
@@ -82,7 +83,7 @@ const NameStatusRoleFilterBar = () => {
           onChange={(e) => {
             const selectedStatus = e.target.value;
             setStatus(selectedStatus);
-            handleFilterUserByStatus(status);
+            handleFilterUserByStatus(e.target.value);
           }}
         >
           <option value="" label="Select Status">
