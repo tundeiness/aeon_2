@@ -123,38 +123,36 @@ export const deleteInstitution = createAsyncThunk(
 // const token = thunkAPI.getState().auth.user.token;
 export const createInstitution = createAsyncThunk(
   'institution/createInstitution',
-  async ({ initialInstitution }, thunkAPI) => {
-    const {
-      id,
-      name,
-      rcNumber,
-      address,
-      phone,
-      websiteUrl,
-      category,
-      noOfCalls,
-      threshold,
-      documentation,
-      description,
-      notificationEmail,
-      microservices,
-    } = initialInstitution;
+  async (initialInstitution, { rejectWithValue }) => {
+    // const {
+    //   name,
+    //   rcNumber,
+    //   address,
+    //   phone,
+    //   websiteUrl,
+    //   category,
+    //   noOfCalls,
+    //   threshold,
+    //   documentation,
+    //   description,
+    //   notificationEmail,
+    //   microservices,
+    // } = initialInstitution;
 
-    const institutionData = {
-      id,
-      name,
-      rcNumber,
-      address,
-      phone,
-      websiteUrl,
-      category,
-      noOfCalls,
-      threshold,
-      documentation,
-      description,
-      notificationEmail,
-      microservices,
-    };
+    // const institutionData = {
+    //   name,
+    //   rcNumber,
+    //   address,
+    //   phone,
+    //   websiteUrl,
+    //   category,
+    //   noOfCalls,
+    //   threshold,
+    //   documentation,
+    //   description,
+    //   notificationEmail,
+    //   microservices,
+    // };
 
     // const token = thunkAPI.getState().auth.user.token;
 
@@ -166,7 +164,7 @@ export const createInstitution = createAsyncThunk(
     try {
       const response = await axios.post(
         NEW_INSTITUTION_URL,
-        institutionData,
+        initialInstitution,
         // {
         //   institution: institutionData,
         // },
@@ -175,7 +173,8 @@ export const createInstitution = createAsyncThunk(
       // dispatch({ payload: institutionData });
       return response.data;
     } catch (error) {
-      return error.message;
+      // return error.message;
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -377,8 +376,8 @@ const institutionSlice = createSlice({
         state.status = 'succeeded';
         const institution = action.payload;
         // state.entities[institution.id] = institution;
-        state.institution[institution.id] = institution;
-        state.institution.push(institution);
+        // state.institution[institution.id] = institution;
+        // state.institution.push(institution);
         state.institution = institution;
       })
       // .addCase(getOneInstitution.fulfilled, (state, action) => {
