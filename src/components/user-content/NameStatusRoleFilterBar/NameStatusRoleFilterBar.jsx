@@ -12,7 +12,7 @@ import {
 } from '../../../redux/features/userSlice';
 
 const NameStatusRoleFilterBar = () => {
-  const username = useRef();
+  const usernameRef = useRef();
   const dispatch = useDispatch();
   const [status, setStatus] = useState('');
   const [role, setRole] = useState('');
@@ -32,8 +32,7 @@ const NameStatusRoleFilterBar = () => {
   };
 
   const handleSearchUserByName = () => {
-    // some codes
-    dispatch(searchedUser(username));
+    dispatch(searchedUser(usernameRef.current.value));
   };
 
   //  const handleFilterProductByStatus = (category) => {
@@ -47,7 +46,7 @@ const NameStatusRoleFilterBar = () => {
     }
   }, [dispatch]);
   console.log(status);
-  console.log(username);
+  // console.log(usernameRef.current.value);
 
   return (
     <div className="flex flex-row w-full mb-4">
@@ -62,8 +61,8 @@ const NameStatusRoleFilterBar = () => {
             id="username"
             type="text"
             placeholder="Enter Username"
-            ref={username}
-            onChange={() => handleSearchUserByName}
+            ref={usernameRef}
+            onChange={handleSearchUserByName}
           />
         </label>
       </div>
