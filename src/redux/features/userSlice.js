@@ -209,7 +209,7 @@ export const userSlice = createSlice({
 
     filterUserByRole: (state, action) => {
       const roleCategory = state.userRoleContainer.filter(
-        (itemRole) => itemRole.role !== action.payload,
+        (itemRole) => itemRole.role === action.payload,
       );
 
       const allRole = state.userRoleContainer.filter(
