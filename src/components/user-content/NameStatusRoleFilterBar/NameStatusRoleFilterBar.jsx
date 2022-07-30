@@ -26,9 +26,9 @@ const NameStatusRoleFilterBar = () => {
     dispatch(filterUserByRole(role));
   };
 
-  const handleFilterUserByStatus = () => {
+  const handleFilterUserByStatus = (paramStatus) => {
     // some codes
-    dispatch(filterUserByStatus(status));
+    dispatch(filterUserByStatus(paramStatus));
   };
 
   const handleSearchUserByName = () => {

@@ -197,7 +197,7 @@ export const userSlice = createSlice({
 
     filterUserByStatus: (state, action) => {
       const statusCategory = state.userContainer.filter(
-        (itemStatus) => itemStatus.status !== action.payload,
+        (itemStatus) => itemStatus.status === action.payload,
       );
 
       const allCategory = state.userContainer.filter(
