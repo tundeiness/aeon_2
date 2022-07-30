@@ -158,18 +158,19 @@ export const createInstitution = createAsyncThunk(
 
     // const token = thunkAPI.getState().auth.user.token;
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // };
     try {
       const response = await axios.post(
         NEW_INSTITUTION_URL,
-        {
-          institution: institutionData,
-        },
-        config,
+        institutionData,
+        // {
+        //   institution: institutionData,
+        // },
+        // config,
       );
       // dispatch({ payload: institutionData });
       return response.data;
@@ -374,24 +375,11 @@ const institutionSlice = createSlice({
       })
       .addCase(createInstitution.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        // action.payload.id = Number(action.payload.id);
-        // action.payload.name = name;
-        // action.payload.rcNumber = rcNumber;
-        // action.payload.address = address;
-        // action.payload.phone = phone;
-        // action.payload.websiteUrl = websiteUrl;
-        // action.payload.category = category;
-        // action.payload.noOfCalls = noOfCalls;
-        // action.payload.threshold = threshold;
-        // action.payload.documentation = documentation;
-        // action.payload.description = description;
-        // action.payload.notificationEmail = notificationEmail;
-        // console.log(action.payload);
-        // state.institution.push(action.payload);
         const institution = action.payload;
         // state.entities[institution.id] = institution;
         state.institution[institution.id] = institution;
         state.institution.push(institution);
+        state.institution = institution;
       })
       // .addCase(getOneInstitution.fulfilled, (state, action) => {
       //   state.status = 'succeeded';
