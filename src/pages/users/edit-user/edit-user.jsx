@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useFormik, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
@@ -369,12 +369,13 @@ const CreateUser = () => {
                     >
                       {formic.isSubmitting ? 'Please wait...' : 'Update User'}
                     </button>
-                    <button
+                    <Link
+                      to="/users"
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
                       type="submit"
                     >
                       Cancel
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
