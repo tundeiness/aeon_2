@@ -190,17 +190,15 @@ export const userSlice = createSlice({
     // },
 
     searchedUser: (state, action) => {
-      state.user = state.userContainer.filter(
-        (searchParam) => searchParam.lastname.toLowerCase().includes(action.payload),
-      );
+      state.user = state.userSearchContainer.filter((searchParam) => searchParam.lastname.toLowerCase().includes(action.payload));
     },
 
     filterUserByStatus: (state, action) => {
-      const statusCategory = state.userContainer.filter(
+      const statusCategory = state.userStatusContainer.filter(
         (itemStatus) => itemStatus.status === action.payload,
       );
 
-      const allCategory = state.userContainer.filter(
+      const allCategory = state.userStatusContainer.filter(
         (itemStatus) => itemStatus.status !== action.payload,
       );
 
