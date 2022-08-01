@@ -31,12 +31,12 @@ export const getInstitution = createAsyncThunk(
 
 export const enableDisableInstitution = createAsyncThunk(
   'institution/enableDisableInstitution',
-  async (code) => {
+  async (code, { rejectWithValue }) => {
     try {
       const response = await axios.post(`ENABLE_DISABLE_INSTITUTION_URL ${code}`);
       return response.data;
     } catch (error) {
-      return error.message;
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -393,9 +393,16 @@ const institutionSlice = createSlice({
           (institution) => institution.id !== action.payload.id,
         );
       })
+      .addCase(enableDisableInstitution.pending, (state) => {
+        state.status = 'loading';
+      })
       .addCase(enableDisableInstitution.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.institution = action.payload;
+      })
+      .addCase(enableDisableInstitution.rejected, (state) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
   },
 });
