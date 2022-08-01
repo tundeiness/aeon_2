@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable import/no-named-as-default */
@@ -64,6 +66,8 @@ const InstitutionList = () => {
     enableDisableInstitution(institutionCode);
   };
 
+  console.log(getInstitutionCode);
+
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
@@ -103,10 +107,15 @@ const InstitutionList = () => {
                 <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
               </Link>
               {datum.status === 'Active' ? (
-                <span className="flex items-center cursor-pointer">
+                <span
+                  className="flex items-center cursor-pointer"
+                >
                   <BsDashSquare
                     className="text-iconRed w-4 h-4 font-bold"
-                    onClick={() => { setIsOpen(true); setGetInstitutionCode(datum.code); }}
+                    onClick={() => {
+                      setIsOpen(true);
+                      handleEnableDisableInstitution(datum.code);
+                    }}
                   />
                 </span>
               ) : (

@@ -16,6 +16,7 @@ const EDIT_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Update'
 const DELETE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
 const GET_ALL_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/RetrieveAll';
 const ENABLE_DISABLE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=';
+const SEARCH_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Search';
 
 export const getInstitution = createAsyncThunk(
   'institution/getInstitution',
@@ -33,7 +34,7 @@ export const enableDisableInstitution = createAsyncThunk(
   'institution/enableDisableInstitution',
   async (code, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`ENABLE_DISABLE_INSTITUTION_URL ${code}`);
+      const response = await axios.post(`http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=${code}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -41,6 +42,19 @@ export const enableDisableInstitution = createAsyncThunk(
   },
 );
 
+export const searchInstitution = createAsyncThunk(
+  'institution/searchInstitution',
+  async (searchBody, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        SEARCH_INSTITUTION_URL, searchBody,
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 // export const getOneInstitution = createAsyncThunk(
 //   'institution/getOneInstitution',
 //   async (code, thunkAPI) => {
@@ -401,6 +415,17 @@ const institutionSlice = createSlice({
         state.institution = action.payload;
       })
       .addCase(enableDisableInstitution.rejected, (state) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(searchInstitution.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(searchInstitution.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.institution = action.payload;
+      })
+      .addCase(searchInstitution.rejected, (state) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
