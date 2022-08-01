@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
@@ -505,12 +505,13 @@ const UpdateInstitution = () => {
                         ? 'Please wait...'
                         : 'Update Institution'}
                     </button>
-                    <button
+                    <Link
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
                       type="submit"
+                      to="institutions"
                     >
                       Cancel
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
