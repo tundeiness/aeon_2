@@ -33,13 +33,12 @@ const DeleteModal = ({ isOpen, handleClose }) => {
               </button>
             </div>
             {/* body */}
-            <div className="relative p-6 flex-auto">
+            <div className="relative p-4 flex-auto">
               <h3 className="text-lg font-medium text-center">
                 Deactivate Institution
               </h3>
-              <p className="mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
-                Are you sure you want to deactivate this institution? This
-                action cannot be undone.
+              <p className="inline-block mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
+                Are you sure you want to deactivate this institution?
               </p>
             </div>
 

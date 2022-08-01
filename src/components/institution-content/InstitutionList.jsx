@@ -17,12 +17,14 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import FilterBar from './filter-institution/FilterBar';
 import SearchBar from './search-institution/SearchBar';
 // import DeleteModal from '../Modal/DeleteModal/DeleteModal';
+import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 // import ActivateModal from '../Modal/ActivateModal/ActivateModal';
 import {
   getInstitution,
   selectAllInstitutions,
   getInstitutionStatus,
   getInstitutionError,
+  enableDisableInstitution,
 } from '../../redux/features/institutionSlice';
 import PageLoader from '../pageLoader/pageLoader';
 import NoData from '../Nodata/NoData';
@@ -55,6 +57,10 @@ const InstitutionList = () => {
   const handleEditInstitution = (id) => {
     // some code blocks
     setGetInstitutionId(id);
+  };
+
+  const handleEnableDisableInstitution = (institutionCode) => {
+    enableDisableInstitution(institutionCode);
   };
 
   const dataPerPage = 10;
@@ -104,10 +110,16 @@ const InstitutionList = () => {
                 </span>
               ) : (
                 <span className="flex items-center">
-                  <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+                  <BsCheck2Square
+                    className="text-iconGreen w-5 h-5 font-bold"
+                    onClick={() => setIsOpen(true)}
+                  />
                 </span>
               )}
-              <Link to="edit-institution" onClick={() => handleEditInstitution(datum.id)}>
+              <Link
+                to="edit-institution"
+                onClick={() => handleEditInstitution(datum.id)}
+              >
                 <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
               </Link>
             </span>
@@ -226,8 +238,8 @@ const InstitutionList = () => {
           </div>
         </section>
       </article>
-      {/* <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
-      <ActivateModal /> */}
+      <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      {/* <ActivateModal /> */}
     </>
   );
 };
