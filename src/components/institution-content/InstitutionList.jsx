@@ -17,7 +17,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import FilterBar from './filter-institution/FilterBar';
 import SearchBar from './search-institution/SearchBar';
 // import DeleteModal from '../Modal/DeleteModal/DeleteModal';
-import DeleteModal from '../Modal/DeleteModal/DeleteModal';
+import DeactivateModal from '../Modal/DeactivateModal/DeactivateModal';
 // import ActivateModal from '../Modal/ActivateModal/ActivateModal';
 import {
   getInstitution,
@@ -39,6 +39,7 @@ const InstitutionList = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [pageNum, setPageNum] = useState(0);
+  const [getInstitutionCode, setGetInstitutionCode] = useState('');
   const dispatch = useDispatch();
 
   console.log(institution);
@@ -102,14 +103,14 @@ const InstitutionList = () => {
                 <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
               </Link>
               {datum.status === 'Active' ? (
-                <span className="flex items-center">
+                <span className="flex items-center cursor-pointer">
                   <BsDashSquare
                     className="text-iconRed w-4 h-4 font-bold"
-                    onClick={() => setIsOpen(true)}
+                    onClick={() => { setIsOpen(true); setGetInstitutionCode(datum.code); }}
                   />
                 </span>
               ) : (
-                <span className="flex items-center">
+                <span className="flex items-center cursor-pointer">
                   <BsCheck2Square
                     className="text-iconGreen w-5 h-5 font-bold"
                     onClick={() => setIsOpen(true)}
@@ -233,12 +234,18 @@ const InstitutionList = () => {
                   activeClassName="paginationActive"
                   className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
                 />
-              ) : ''}
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </section>
       </article>
-      <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      <DeactivateModal
+        handleClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+        code={getInstitutionCode}
+      />
       {/* <ActivateModal /> */}
     </>
   );

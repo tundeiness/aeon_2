@@ -26,7 +26,7 @@ import {
   getRoleStatus,
   getRoleError,
 } from '../../redux/features/roleSlice';
-import DeleteModal from '../Modal/DeleteModal/DeleteModal';
+import DeactivateModal from '../Modal/DeactivateModal/DeactivateModal';
 import {
   SearchButtonUser,
   AddUserButton,
@@ -359,7 +359,7 @@ const UserList = () => {
           </div>
         </section>
       </article>
-      <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      <DeactivateModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
     </>
   );
 };

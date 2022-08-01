@@ -1,11 +1,21 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ReactPortal from '../../ReactPortal/ReactPortal';
 import { DangerIcon } from '../../../data/Dummy';
+import {
+  enableDisableInstitution,
+} from '../../../redux/features/institutionSlice';
 
-const DeleteModal = ({ isOpen, handleClose }) => {
+const DeactivateModal = ({ isOpen, handleClose, code }) => {
   if (!isOpen) return null;
+  const dispatch = useDispatch();
+
+  const handleEnableDisableInstitution = (institutionCode) => {
+    enableDisableInstitution(institutionCode);
+  };
 
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
@@ -54,6 +64,7 @@ const DeleteModal = ({ isOpen, handleClose }) => {
               <button
                 className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
+                onClick={() => handleEnableDisableInstitution(code)}
               >
                 Deactivate
               </button>
@@ -65,4 +76,4 @@ const DeleteModal = ({ isOpen, handleClose }) => {
     </ReactPortal>
   );
 };
-export default DeleteModal;
+export default DeactivateModal;
