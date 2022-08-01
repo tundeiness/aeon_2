@@ -508,7 +508,7 @@ const UpdateInstitution = () => {
                     <Link
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
                       type="submit"
-                      to="institutions"
+                      to="/institutions"
                     >
                       Cancel
                     </Link>
