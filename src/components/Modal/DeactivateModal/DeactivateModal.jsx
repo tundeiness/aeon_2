@@ -14,7 +14,7 @@ const DeactivateModal = ({ isOpen, handleClose, code }) => {
   const dispatch = useDispatch();
 
   const handleEnableDisableInstitution = (institutionCode) => {
-    enableDisableInstitution(institutionCode);
+    dispatch(enableDisableInstitution(institutionCode));
   };
 
   useEffect(() => {
@@ -24,6 +24,8 @@ const DeactivateModal = ({ isOpen, handleClose, code }) => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
     };
   }, [handleClose]);
+
+  console.log(code);
 
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
