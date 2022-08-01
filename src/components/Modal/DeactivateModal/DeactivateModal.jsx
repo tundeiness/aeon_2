@@ -3,29 +3,39 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ReactPortal from '../../ReactPortal/ReactPortal';
 import { DangerIcon } from '../../../data/Dummy';
 import {
   enableDisableInstitution,
 } from '../../../redux/features/institutionSlice';
+import { useStateContext } from '../../../contexts/ContextProvider';
 
-const DeactivateModal = ({ isOpen, handleClose, code }) => {
+const DeactivateModal = ({ isOpen, handleClose }) => {
   if (!isOpen) return null;
   const dispatch = useDispatch();
 
-  const handleEnableDisableInstitution = (institutionCode) => {
-    dispatch(enableDisableInstitution(institutionCode));
-  };
+  const navigate = useNavigate();
+
+  const {
+    getInstitutionCode,
+  } = useStateContext();
 
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
+
     document.body.addEventListener('keydown', closeOnEscapeKey);
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
     };
   }, [handleClose]);
 
-  console.log(code);
+  const handleEnableDisableInstitution = () => {
+    dispatch(enableDisableInstitution(getInstitutionCode));
+    navigate('/institutions');
+  };
+
+  // console.log(code);
 
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
@@ -66,7 +76,7 @@ const DeactivateModal = ({ isOpen, handleClose, code }) => {
               <button
                 className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={() => handleEnableDisableInstitution(code)}
+                onClick={() => handleEnableDisableInstitution}
               >
                 Deactivate
               </button>

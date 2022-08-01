@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable consistent-return */
@@ -6,7 +7,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -35,14 +36,19 @@ import NoData from '../Nodata/NoData';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const InstitutionList = () => {
-  const { setGetItemId, setGetInstitutionId } = useStateContext();
+  const {
+    setGetItemId,
+    setGetInstitutionId,
+    getInstitutionCode,
+    setGetInstitutionCode,
+  } = useStateContext();
   const institution = useSelector(selectAllInstitutions);
   const institutionStatus = useSelector(getInstitutionStatus);
   const institutionError = useSelector(getInstitutionError);
 
   const [isOpen, setIsOpen] = useState(false);
   const [pageNum, setPageNum] = useState(0);
-  const [getInstitutionCode, setGetInstitutionCode] = useState('');
+  // const [getInstitutionCode, setGetInstitutionCode] = useState('');
   const dispatch = useDispatch();
 
   console.log(institution);
@@ -118,8 +124,11 @@ const InstitutionList = () => {
                   <BsDashSquare
                     className="text-iconRed w-4 h-4 font-bold"
                     onClick={() => {
-                      setIsOpen(true);
-                      handleEnableDisableInstitution(datum.code);
+                      datum.status === 'Active'
+                        ? setIsOpen(true)
+                        : setIsOpen(false);
+                      setGetInstitutionCode(datum.code);
+                      // handleEnableDisableInstitution(datum.code);
                     }}
                   />
                 </span>
@@ -127,7 +136,10 @@ const InstitutionList = () => {
                 <span className="flex items-center cursor-pointer">
                   <BsCheck2Square
                     className="text-iconGreen w-5 h-5 font-bold"
-                    onClick={() => setIsOpen(true)}
+                    onClick={() => {
+                      setIsOpen(true);
+                      setGetInstitutionCode(datum.code);
+                    }}
                   />
                 </span>
               )}

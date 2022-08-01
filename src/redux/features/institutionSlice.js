@@ -35,7 +35,7 @@ export const enableDisableInstitution = createAsyncThunk(
   async (code, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        ENABLE_DISABLE_INSTITUTION_URL, code,
+        `http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=${code}`,
       );
       return response.data;
     } catch (error) {
