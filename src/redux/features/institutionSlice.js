@@ -34,7 +34,9 @@ export const enableDisableInstitution = createAsyncThunk(
   'institution/enableDisableInstitution',
   async (code, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=${code}`);
+      const response = await axios.post(
+        ENABLE_DISABLE_INSTITUTION_URL, code,
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -291,10 +293,12 @@ const institutionSlice = createSlice({
       );
     },
     searchedInstitution: (state, action) => {
-      state.institution = state.institutionContainer.filter(
-        (searchParam) => searchParam.name.toLowerCase().includes(action.payload)
-          || searchParam.code.includes(action.payload),
+      const result = state.institutionContainer.filter(
+        (searchParam) => searchParam.name.toLowerCase().includes(action.payload.toLowerCase())
+          || searchParam.code.startsWith(action.payload),
       );
+
+      state.institution = result;
     },
 
     filterInstitutionStatus: (state, action) => {

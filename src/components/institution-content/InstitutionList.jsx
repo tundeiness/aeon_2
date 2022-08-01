@@ -27,6 +27,7 @@ import {
   getInstitutionStatus,
   getInstitutionError,
   enableDisableInstitution,
+  searchInstitution,
 } from '../../redux/features/institutionSlice';
 import PageLoader from '../pageLoader/pageLoader';
 import NoData from '../Nodata/NoData';
@@ -64,6 +65,10 @@ const InstitutionList = () => {
 
   const handleEnableDisableInstitution = (institutionCode) => {
     enableDisableInstitution(institutionCode);
+  };
+
+  const handleSearch = (searchParams) => {
+    dispatch(searchInstitution(searchParams));
   };
 
   console.log(getInstitutionCode);

@@ -107,13 +107,14 @@ export const GetData = () => {
   );
 };
 
-export const GoButton = () => {
+export const GoButton = ({ onClick }) => {
   const test = 0;
   return (
     <>
       <button
         className="bg-buttonTwo px-4 py-3 rounded-md text-white font-medium text-sm"
         type="button"
+        onClick={onClick}
       >
         Go
       </button>
