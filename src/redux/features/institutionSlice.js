@@ -33,6 +33,7 @@ export const getInstitution = createAsyncThunk(
 export const enableDisableInstitution = createAsyncThunk(
   'institution/enableDisableInstitution',
   async (code, { rejectWithValue }) => {
+    console.log('and this is really never logging anything??');
     try {
       const response = await axios.post(
         `http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=${code}`,
@@ -416,7 +417,7 @@ const institutionSlice = createSlice({
       })
       .addCase(enableDisableInstitution.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.institution = action.payload;
+        // state.institution = action.payload;
       })
       .addCase(enableDisableInstitution.rejected, (state) => {
         state.status = 'failed';

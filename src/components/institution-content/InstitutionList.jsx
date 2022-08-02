@@ -19,7 +19,6 @@ import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import FilterBar from './filter-institution/FilterBar';
 import SearchBar from './search-institution/SearchBar';
-// import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import DeactivateModal from '../Modal/DeactivateModal/DeactivateModal';
 // import ActivateModal from '../Modal/ActivateModal/ActivateModal';
 import {
@@ -32,8 +31,6 @@ import {
 } from '../../redux/features/institutionSlice';
 import PageLoader from '../pageLoader/pageLoader';
 import NoData from '../Nodata/NoData';
-// import { useStateContext } from '../../contexts/ContextProvider'
-// import InstitutionExcerpt from './InstitutionExcerpt';
 
 const InstitutionList = () => {
   const {
@@ -48,7 +45,7 @@ const InstitutionList = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [pageNum, setPageNum] = useState(0);
-  // const [getInstitutionCode, setGetInstitutionCode] = useState('');
+
   const dispatch = useDispatch();
 
   console.log(institution);
@@ -85,7 +82,6 @@ const InstitutionList = () => {
   const displayData = institution
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     .map((datum, _idx) => (
-      // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
       <>
         <tr key={datum.id}>
           <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
