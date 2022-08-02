@@ -38,6 +38,8 @@ const InstitutionList = () => {
     setGetInstitutionId,
     getInstitutionCode,
     setGetInstitutionCode,
+    getActive,
+    setGetActive,
   } = useStateContext();
   const institution = useSelector(selectAllInstitutions);
   const institutionStatus = useSelector(getInstitutionStatus);
@@ -82,6 +84,7 @@ const InstitutionList = () => {
   const displayData = institution
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     .map((datum, _idx) => (
+      // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
       <>
         <tr key={datum.id}>
           <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
@@ -120,10 +123,9 @@ const InstitutionList = () => {
                   <BsDashSquare
                     className="text-iconRed w-4 h-4 font-bold"
                     onClick={() => {
-                      datum.status === 'Active'
-                        ? setIsOpen(true)
-                        : setIsOpen(false);
+                      setIsOpen(true);
                       setGetInstitutionCode(datum.code);
+                      setGetActive(datum.status);
                       // handleEnableDisableInstitution(datum.code);
                     }}
                   />
@@ -135,6 +137,7 @@ const InstitutionList = () => {
                     onClick={() => {
                       setIsOpen(true);
                       setGetInstitutionCode(datum.code);
+                      setGetActive(datum.status);
                     }}
                   />
                 </span>

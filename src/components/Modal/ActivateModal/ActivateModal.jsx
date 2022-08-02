@@ -1,19 +1,42 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ReactPortal from '../../ReactPortal/ReactPortal';
 import { CircleCheckIcon } from '../../../data/Dummy';
+
+import {
+  getInstitution,
+  enableDisableInstitution,
+  getInstitutionStatus,
+} from '../../../redux/features/institutionSlice';
+import { useStateContext } from '../../../contexts/ContextProvider';
 
 const ActivateModal = ({ isOpen, handleClose }) => {
   if (!isOpen) return null;
 
+  const dispatch = useDispatch();
+
+  // const navigate = useNavigate();
+  const institutionStatus = useSelector(getInstitutionStatus);
+
+  const { getInstitutionCode } = useStateContext();
+
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
+
     document.body.addEventListener('keydown', closeOnEscapeKey);
+
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
+      dispatch(getInstitution());
     };
-  }, [handleClose]);
+  }, [handleClose, institutionStatus, dispatch]);
+
+  const handleEnableDisableInstitution = () => {
+    dispatch(enableDisableInstitution(getInstitutionCode));
+    // navigate('/institutions');
+  };
 
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
@@ -54,6 +77,10 @@ const ActivateModal = ({ isOpen, handleClose }) => {
               <button
                 className="bg-green-600 text-white font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
+                onClick={() => {
+                  handleEnableDisableInstitution();
+                  handleClose();
+                }}
               >
                 Activate
               </button>
