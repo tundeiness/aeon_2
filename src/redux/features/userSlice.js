@@ -190,7 +190,7 @@ export const userSlice = createSlice({
     // },
 
     searchedUser: (state, action) => {
-      state.user = state.userSearchContainer.filter((searchParam) => searchParam.lastname.toLowerCase().includes(action.payload));
+      state.user = state.userSearchContainer.filter((searchParam) => searchParam.lastname.toLowerCase().includes(action.payload.toLowerCase()));
     },
 
     filterUserByStatus: (state, action) => {

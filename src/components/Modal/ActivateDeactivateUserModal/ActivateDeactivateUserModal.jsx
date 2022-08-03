@@ -1,19 +1,43 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ReactPortal from '../../ReactPortal/ReactPortal';
-import { DangerIcon } from '../../../data/Dummy';
+import { DangerIcon, CircleCheckIcon } from '../../../data/Dummy';
+import {
+  getAllProducts,
+  enableDisableProduct,
+} from '../../../redux/features/productSlice';
+import { useStateContext } from '../../../contexts/ContextProvider';
 
-const DeactivateUserModal = ({ isOpen, handleClose }) => {
+const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
   if (!isOpen) return null;
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const {
+    getProductCode,
+    getActiveProduct,
+  } = useStateContext();
 
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
+
     document.body.addEventListener('keydown', closeOnEscapeKey);
+
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
+      dispatch(getAllProducts());
+      navigate('/products');
     };
-  }, [handleClose]);
+  }, [handleClose, dispatch, navigate]);
+
+  const handleEnableDisableProduct = () => {
+    dispatch(enableDisableProduct(getProductCode));
+  };
 
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
@@ -27,19 +51,37 @@ const DeactivateUserModal = ({ isOpen, handleClose }) => {
                 type="button"
                 className="flex justify-center items-center btnWrap w-12 h-12 rounded-3xl bg-red-50"
               >
-                <span className="flex justify-center items-center w-9 h-9 text-3xl text-red-700 rounded-3xl bg-red-200">
-                  {DangerIcon.symbol}
-                </span>
+                {getActiveProduct === 'Active' ? (
+                  <span className="flex justify-center items-center w-9 h-9 text-3xl text-red-700 rounded-3xl bg-red-200">
+                    {DangerIcon.symbol}
+                  </span>
+                ) : (
+                  <span className="flex justify-center items-center w-9 h-9 text-3xl text-green-700 rounded-3xl bg-red-200">
+                    {CircleCheckIcon.symbol}
+                  </span>
+                )}
               </button>
             </div>
             {/* body */}
-            <div className="relative p-6 flex-auto">
-              <h3 className="text-lg font-medium text-center">
-                Deactivate User
-              </h3>
-              <p className="mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
-                Are you sure you want to deactivate this user?
-              </p>
+            <div className="relative p-4 flex-auto">
+              {getActiveProduct === 'Active' ? (
+                <h3 className="text-lg font-medium text-center">
+                  Deactivate Product
+                </h3>
+              ) : (
+                <h3 className="text-lg font-medium text-center">
+                  Activate Product
+                </h3>
+              )}
+              {getActiveProduct === 'Active' ? (
+                <p className="inline-block mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
+                  Are you sure you want to deactivate this product?
+                </p>
+              ) : (
+                <p className="mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
+                  Are you sure you want to activate this product?
+                </p>
+              )}
             </div>
 
             {/* footer */}
@@ -49,14 +91,31 @@ const DeactivateUserModal = ({ isOpen, handleClose }) => {
                 type="button"
                 onClick={() => handleClose()}
               >
-                NO
+                Cancel
               </button>
-              <button
-                className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                YES
-              </button>
+              {getActiveProduct === 'Active' ? (
+                <button
+                  className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => {
+                    handleEnableDisableProduct();
+                    handleClose();
+                  }}
+                >
+                  Deactivate
+                </button>
+              ) : (
+                <button
+                  className="bg-green-600 text-white font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => {
+                    handleEnableDisableProduct();
+                    handleClose();
+                  }}
+                >
+                  Activate
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -65,4 +124,4 @@ const DeactivateUserModal = ({ isOpen, handleClose }) => {
     </ReactPortal>
   );
 };
-export default DeactivateUserModal;
+export default ActivateDeactivateUserModal;
