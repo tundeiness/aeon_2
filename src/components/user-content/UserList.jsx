@@ -50,7 +50,7 @@ const UserList = () => {
   //   ...state.institution,
   // }));
 
-  const { setGetUserByUserId } = useStateContext();
+  const { setGetUserByUserId, getUserStatus, setGetUserStatus } = useStateContext();
 
   const roleArray = useSelector(selectAllRoles);
   console.log(roleArray);
