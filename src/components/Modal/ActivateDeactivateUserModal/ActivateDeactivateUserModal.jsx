@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import ReactPortal from '../../ReactPortal/ReactPortal';
 import { DangerIcon, CircleCheckIcon } from '../../../data/Dummy';
 import {
-  getAllProducts,
-  enableDisableProduct,
-} from '../../../redux/features/productSlice';
+  getAllUsers,
+  enableDisableUser,
+} from '../../../redux/features/userSlice';
 import { useStateContext } from '../../../contexts/ContextProvider';
 
 const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
@@ -18,10 +18,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
 
   const navigate = useNavigate();
 
-  const {
-    getProductCode,
-    getActiveProduct,
-  } = useStateContext();
+  const { getProductCode, getActiveProduct, getUserStatus } = useStateContext();
 
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
