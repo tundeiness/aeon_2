@@ -28,7 +28,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
 
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
-      dispatch(getInstitution());
+      dispatch(getAllProducts());
     };
   }, [handleClose, dispatch]);
 

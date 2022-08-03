@@ -39,10 +39,7 @@ const ProductList = () => {
   const nameRef = useRef();
   const codeRef = useRef();
   const dispatch = useDispatch();
-  const {
-    getProductByCode,
-    setGetProductByCode,
-  } = useStateContext();
+  const { setGetProductByCode, setGetActiveProduct } = useStateContext();
 
   const product = useSelector(selectAllProducts);
   const productStatus = useSelector(getProductStatus);
@@ -114,17 +111,23 @@ const ProductList = () => {
               onClick={() => setIsOpen(true)}
             /> */}
             {datum.status === 'Active' ? (
-              <span className="flex items-center">
+              <span className="flex items-center cursor-pointer">
                 <BsDashSquare
                   className="text-iconRed w-4 h-4 font-bold"
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => {
+                    setIsOpen(true);
+                    setGetActiveProduct(datum.status);
+                  }}
                 />
               </span>
             ) : (
-              <span className="flex items-center">
+              <span className="flex items-center cursor-pointer">
                 <BsCheck2Square
                   className="text-iconGreen w-5 h-5 font-bold"
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => {
+                    setIsOpen(true);
+                    setGetActiveProduct(datum.status);
+                  }}
                 />
               </span>
             )}
