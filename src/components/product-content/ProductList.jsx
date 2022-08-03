@@ -39,7 +39,11 @@ const ProductList = () => {
   const nameRef = useRef();
   const codeRef = useRef();
   const dispatch = useDispatch();
-  const { setGetProductByCode, setGetActiveProduct } = useStateContext();
+  const {
+    setGetProductByCode,
+    setGetActiveProduct,
+    setGetProductCode,
+  } = useStateContext();
 
   const product = useSelector(selectAllProducts);
   const productStatus = useSelector(getProductStatus);
@@ -117,6 +121,7 @@ const ProductList = () => {
                   onClick={() => {
                     setIsOpen(true);
                     setGetActiveProduct(datum.status);
+                    setGetProductCode(datum.code);
                   }}
                 />
               </span>
@@ -127,6 +132,7 @@ const ProductList = () => {
                   onClick={() => {
                     setIsOpen(true);
                     setGetActiveProduct(datum.status);
+                    setGetProductCode(datum.code);
                   }}
                 />
               </span>

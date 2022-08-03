@@ -19,7 +19,11 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
   // const navigate = useNavigate();
   // const institutionStatus = useSelector(getInstitutionStatus);
 
-  const { getActive, getProductCode, getActiveProduct } = useStateContext();
+  const {
+    getActive,
+    getProductCode,
+    getActiveProduct,
+  } = useStateContext();
 
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
