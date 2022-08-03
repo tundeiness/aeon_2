@@ -245,71 +245,6 @@ const UserList = () => {
             </div>
             <hr className="mb-3 mt-2" />
             <NameStatusRoleFilterBar />
-            {/* <div className="flex flex-row w-full mb-4">
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="institution-name"
-                >
-                  Username
-                  <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="institution-name"
-                    type="text"
-                    placeholder="Enter Username"
-                  />
-                </label>
-              </div>
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  Status
-                  {' '}
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option value="" label="Select Status">
-                    Select Status
-                  </option>
-                  <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option>
-                </select>
-              </div>
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  Select Role
-                  {' '}
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option value="" label="Select Role">
-                    Select Role
-                  </option>
-                  <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option>
-                </select>
-              </div>
-            </div> */}
-
             <div className="border border-gray-200 rounded-lg">
               <div className="user-list min-h-screen -mb-48">
                 <table className="table-fixed w-full text-xs">
@@ -338,8 +273,7 @@ const UserList = () => {
                         className=" flex items-center  text-gray-500 py-4 pl-10 "
                       >
                         Status
-                        {/* <span>{ArrowDownIcon.symbol}</span> */}
-                        <BsArrowDownShort className="inline-block" />
+                        <BsArrowDownShort className="inline-block text-lg font-semibold" />
                       </th>
                       <th
                         scope="col"
