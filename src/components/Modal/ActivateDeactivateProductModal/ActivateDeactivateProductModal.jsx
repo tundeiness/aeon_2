@@ -20,7 +20,6 @@ const ActivateDeactivateProductModal = ({ isOpen, handleClose }) => {
   // const institutionStatus = useSelector(getInstitutionStatus);
 
   const {
-    getActive,
     getProductCode,
     getActiveProduct,
   } = useStateContext();
