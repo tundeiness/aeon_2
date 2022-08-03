@@ -18,7 +18,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
 
   const navigate = useNavigate();
 
-  const { getProductCode, getActiveProduct, getUserStatus } = useStateContext();
+  const { getProductCode, getActiveProduct, getUserId } = useStateContext();
 
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
@@ -33,7 +33,8 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
   }, [handleClose, dispatch, navigate]);
 
   const handleEnableDisableProduct = () => {
-    dispatch(enableDisableProduct(getProductCode));
+    const data = { userId: getUserId };
+    dispatch(enableDisableUser(data));
   };
 
   return (
