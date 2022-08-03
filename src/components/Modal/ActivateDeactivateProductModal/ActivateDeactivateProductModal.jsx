@@ -34,10 +34,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
 
   const handleEnableDisableProduct = () => {
     dispatch(enableDisableProduct(getProductCode));
-    // navigate('/institutions');
   };
-
-  // console.log(enableDisableInstitution(getInstitutionCode));
 
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
