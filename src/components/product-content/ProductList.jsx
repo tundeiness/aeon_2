@@ -20,6 +20,7 @@ import ProductFilterBar from './product-filter/ProductFilterBar';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
+import ActivateDeactivateProductModal from '../Modal/ActivateDeactivateProductModal/ActivateDeactivateProductModal';
 // import DeactivateModal from '../Modal/DeactivateModal/DeactivateModal';
 import { GoButton, FilterButton, SearchButton } from '../Buttons/buttonCollections';
 // import { getInstitution } from '../../redux/features/institutionSlice';
@@ -121,7 +122,10 @@ const ProductList = () => {
               </span>
             ) : (
               <span className="flex items-center">
-                <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+                <BsCheck2Square
+                  className="text-iconGreen w-5 h-5 font-bold"
+                  onClick={() => setIsOpen(true)}
+                />
               </span>
             )}
           </span>
@@ -192,7 +196,6 @@ const ProductList = () => {
                         className="flex items-center  text-gray-500 py-4 pl-28"
                       >
                         Status
-
                         <BsArrowDownShort className="text-lg font-semibold" />
                       </th>
                       <th
@@ -241,7 +244,10 @@ const ProductList = () => {
       {/* <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
         <DeleteInstitution />
       </Modal> */}
-      {/* <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} /> */}
+      <ActivateDeactivateProductModal
+        handleClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+      />
     </>
   );
 };
