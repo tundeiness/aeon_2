@@ -29,12 +29,12 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
 
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
-      dispatch(getAllProducts());
-      navigate('/products');
+      dispatch(getAllUsers());
+      navigate('/users');
     };
   }, [handleClose, dispatch, navigate]);
 
-  const handleEnableDisableProduct = () => {
+  const handleEnableDisableUser = () => {
     const data = { userId };
     dispatch(enableDisableUser(data));
   };
@@ -66,20 +66,20 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
             <div className="relative p-4 flex-auto">
               {activeUser === 'Active' ? (
                 <h3 className="text-lg font-medium text-center">
-                  Deactivate Product
+                  Deactivate User
                 </h3>
               ) : (
                 <h3 className="text-lg font-medium text-center">
-                  Activate Product
+                  Activate User
                 </h3>
               )}
               {activeUser === 'Active' ? (
                 <p className="inline-block mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
-                  Are you sure you want to deactivate this product?
+                  Are you sure you want to deactivate this user?
                 </p>
               ) : (
                 <p className="mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
-                  Are you sure you want to activate this product?
+                  Are you sure you want to activate this user?
                 </p>
               )}
             </div>
@@ -98,7 +98,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
                   className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => {
-                    handleEnableDisableProduct();
+                    handleEnableDisableUser();
                     handleClose();
                   }}
                 >
@@ -109,7 +109,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
                   className="bg-green-600 text-white font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => {
-                    handleEnableDisableProduct();
+                    handleEnableDisableUser();
                     handleClose();
                   }}
                 >

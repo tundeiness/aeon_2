@@ -131,7 +131,7 @@ const UserList = () => {
               <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
             {datum.status === 'Active' ? (
-              <span className="flex items-center">
+              <span className="flex items-center cursor-pointer">
                 <BsDashSquare
                   className="text-iconRed w-4 h-4 font-bold"
                   onClick={() => {
@@ -145,7 +145,7 @@ const UserList = () => {
                 />
               </span>
             ) : (
-              <span className="flex items-center">
+              <span className="flex items-center cursor-pointer">
                 <BsCheck2Square
                   className="text-iconGreen w-5 h-5 font-bold"
                   onClick={() => {
@@ -366,8 +366,8 @@ const UserList = () => {
               </div>
               {user?.length > 0 ? (
                 <ReactPaginate
-                  previousLabel="← Previous"
-                  nextLabel="Next →"
+                  previousLabel=" Previous"
+                  nextLabel="Next "
                   pageCount={pagingCount}
                   onPageChange={changePage}
                   containerClassName="pagination-button"
