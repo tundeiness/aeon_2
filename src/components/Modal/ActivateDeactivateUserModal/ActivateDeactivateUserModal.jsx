@@ -18,7 +18,9 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
 
   const navigate = useNavigate();
 
-  const { getProductCode, getActiveProduct, getUserId } = useStateContext();
+  const {
+    getProductCode, getActiveProduct, userId, setUserId, activeUser,
+  } = useStateContext();
 
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
@@ -33,7 +35,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
   }, [handleClose, dispatch, navigate]);
 
   const handleEnableDisableProduct = () => {
-    const data = { userId: getUserId };
+    const data = { userId };
     dispatch(enableDisableUser(data));
   };
 
@@ -49,7 +51,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
                 type="button"
                 className="flex justify-center items-center btnWrap w-12 h-12 rounded-3xl bg-red-50"
               >
-                {getActiveProduct === 'Active' ? (
+                {activeUser === 'Active' ? (
                   <span className="flex justify-center items-center w-9 h-9 text-3xl text-red-700 rounded-3xl bg-red-200">
                     {DangerIcon.symbol}
                   </span>
@@ -62,7 +64,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
             </div>
             {/* body */}
             <div className="relative p-4 flex-auto">
-              {getActiveProduct === 'Active' ? (
+              {activeUser === 'Active' ? (
                 <h3 className="text-lg font-medium text-center">
                   Deactivate Product
                 </h3>
@@ -71,7 +73,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
                   Activate Product
                 </h3>
               )}
-              {getActiveProduct === 'Active' ? (
+              {activeUser === 'Active' ? (
                 <p className="inline-block mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
                   Are you sure you want to deactivate this product?
                 </p>
@@ -91,7 +93,7 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
               >
                 Cancel
               </button>
-              {getActiveProduct === 'Active' ? (
+              {activeUser === 'Active' ? (
                 <button
                   className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                   type="button"

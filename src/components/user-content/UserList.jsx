@@ -50,7 +50,9 @@ const UserList = () => {
   //   ...state.institution,
   // }));
 
-  const { setGetUserByUserId, getUserStatus, setGetUserStatus } = useStateContext();
+  const {
+    setGetUserByUserId, setUserId, activeUser, setActiveUser,
+  } = useStateContext();
 
   const roleArray = useSelector(selectAllRoles);
   console.log(roleArray);
@@ -130,14 +132,37 @@ const UserList = () => {
             </button>
             {datum.status === 'Active' ? (
               <span className="flex items-center">
-                <BsDashSquare className="text-iconRed w-4 h-4 font-bold" />
+                <BsDashSquare
+                  className="text-iconRed w-4 h-4 font-bold"
+                  onClick={() => {
+                    setIsOpen(true);
+                    setUserId(datum.userId);
+                    setActiveUser(datum.status);
+                    // setGetInstitutionCode(datum.code);
+                    // setGetActive(datum.status);
+                    // handleEnableDisableInstitution(datum.code);
+                  }}
+                />
               </span>
             ) : (
               <span className="flex items-center">
-                <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+                <BsCheck2Square
+                  className="text-iconGreen w-5 h-5 font-bold"
+                  onClick={() => {
+                    setIsOpen(true);
+                    setUserId(datum.userId);
+                    setActiveUser(datum.status);
+                    // setGetInstitutionCode(datum.code);
+                    // setGetActive(datum.status);
+                    // handleEnableDisableInstitution(datum.code);
+                  }}
+                />
               </span>
             )}
-            <Link to="edit-user" onClick={() => setGetUserByUserId(datum.userId)}>
+            <Link
+              to="edit-user"
+              onClick={() => setGetUserByUserId(datum.userId)}
+            >
               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
             </Link>
           </span>
