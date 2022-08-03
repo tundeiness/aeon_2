@@ -33,8 +33,8 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
     };
   }, [handleClose, institutionStatus, dispatch]);
 
-  const handleEnableDisableInstitution = () => {
-    dispatch(enableDisableInstitution(getInstitutionCode));
+  const handleEnableDisableProduct = () => {
+    dispatch(enableDisableProduct(getProductCode));
     // navigate('/institutions');
   };
 
@@ -67,20 +67,20 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
             <div className="relative p-4 flex-auto">
               {getActive === 'Active' ? (
                 <h3 className="text-lg font-medium text-center">
-                  Deactivate Institution
+                  Deactivate Product
                 </h3>
               ) : (
                 <h3 className="text-lg font-medium text-center">
-                  Activate Institution
+                  Activate Product
                 </h3>
               )}
               {getActive === 'Active' ? (
                 <p className="inline-block mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
-                  Are you sure you want to deactivate this institution?
+                  Are you sure you want to deactivate this product?
                 </p>
               ) : (
                 <p className="mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
-                  Are you sure you want to activate this institution?
+                  Are you sure you want to activate this product?
                 </p>
               )}
             </div>
@@ -99,7 +99,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
                   className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => {
-                    handleEnableDisableInstitution();
+                    handleEnableDisableProduct();
                     handleClose();
                   }}
                 >
@@ -110,7 +110,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
                   className="bg-green-600 text-white font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => {
-                    handleEnableDisableInstitution();
+                    handleEnableDisableProduct();
                     handleClose();
                   }}
                 >
