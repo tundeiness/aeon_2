@@ -10,6 +10,7 @@ const SIGN_IN = 'http://13.59.94.46/aeon/api/v1/SignIn';
 const GET_ALL_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
 const NEW_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
 const UPDATE_USER_URL = 'http://13.59.94.46/aeon/api/v1/EditUser';
+const ENABLE_DISABLE_USER_URL = 'http://13.59.94.46/aeon/api/v1/EnableDisableUserStatus';
 
 export const getAllUsers = createAsyncThunk(
   'user/getUsers',
@@ -19,6 +20,18 @@ export const getAllUsers = createAsyncThunk(
       return response.data;
     } catch (error) {
       return error.message;
+    }
+  },
+);
+
+export const enableDisableUser = createAsyncThunk(
+  'user/enableDisableUser',
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(ENABLE_DISABLE_USER_URL, userId);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -246,6 +259,17 @@ export const userSlice = createSlice({
         state.status = 'succeeded';
         state.user[user.id] = user;
         state.user.push(user);
+      })
+      .addCase(enableDisableUser.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(enableDisableUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        // state.institution = action.payload;
+      })
+      .addCase(enableDisableUser.rejected, (state) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
     // [updateUser.pending]: (state) => {
     //   state.pending = true;
