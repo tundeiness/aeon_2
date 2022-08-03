@@ -113,7 +113,7 @@ export const productSlice = createSlice({
 
     searchProductByName: (state, action) => {
       state.product = state.productContainer.filter(
-        (productItem) => productItem.name.toLowerCase().includes(action.payload),
+        (productItem) => productItem.name.toLowerCase().includes(action.payload.toLowerCase()),
       );
     },
     filterProductStatus: (state, action) => {
