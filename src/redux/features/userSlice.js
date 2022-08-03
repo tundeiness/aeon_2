@@ -257,7 +257,7 @@ export const userSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.user[user.id] = user;
+        state.user[user.id] = action.payload;
         state.user.push(user);
       })
       .addCase(enableDisableUser.pending, (state) => {
@@ -265,7 +265,6 @@ export const userSlice = createSlice({
       })
       .addCase(enableDisableUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        // state.institution = action.payload;
       })
       .addCase(enableDisableUser.rejected, (state) => {
         state.status = 'failed';
