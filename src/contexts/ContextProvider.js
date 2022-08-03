@@ -35,6 +35,7 @@ export const ContextProvider = ({ children }) => {
   const [getInstitutionId, setGetInstitutionId] = useState(null);
   const [getProductByCode, setGetProductByCode] = useState(null);
   const [getUserByUserId, setGetUserByUserId] = useState(null);
+  const [getUserStatus, setGetUserStatus] = useState(null);
   const [getInstitutionCode, setGetInstitutionCode] = useState(null);
   const [getProductCode, setGetProductCode] = useState(null);
   const [getActiveProduct, setGetActiveProduct] = useState(null);
@@ -133,6 +134,8 @@ export const ContextProvider = ({ children }) => {
         setGetProductCode,
         getActiveProduct,
         setGetActiveProduct,
+        getUserStatus,
+        setGetUserStatus,
       }}
     >
       {children}
