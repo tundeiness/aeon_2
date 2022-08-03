@@ -7,10 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import ReactPortal from '../../ReactPortal/ReactPortal';
 import { DangerIcon, CircleCheckIcon } from '../../../data/Dummy';
 import {
-  getInstitution,
-  enableDisableInstitution,
-  getInstitutionStatus,
-} from '../../../redux/features/institutionSlice';
+  getAllProducts,
+  enableDisableProduct,
+} from '../../../redux/features/productSlice';
 import { useStateContext } from '../../../contexts/ContextProvider';
 
 const DeactivateModal = ({ isOpen, handleClose }) => {
@@ -18,9 +17,9 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
   const dispatch = useDispatch();
 
   // const navigate = useNavigate();
-  const institutionStatus = useSelector(getInstitutionStatus);
+  // const institutionStatus = useSelector(getInstitutionStatus);
 
-  const { getActive, getInstitutionCode } = useStateContext();
+  const { getActive, getProductCode, getActiveProduct } = useStateContext();
 
   useEffect(() => {
     const closeOnEscapeKey = (e) => (e.key === 'Escape' ? handleClose() : null);
@@ -31,7 +30,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
       dispatch(getInstitution());
     };
-  }, [handleClose, institutionStatus, dispatch]);
+  }, [handleClose, dispatch]);
 
   const handleEnableDisableProduct = () => {
     dispatch(enableDisableProduct(getProductCode));
@@ -52,7 +51,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
                 type="button"
                 className="flex justify-center items-center btnWrap w-12 h-12 rounded-3xl bg-red-50"
               >
-                {getActive === 'Active' ? (
+                {getActiveProduct === 'Active' ? (
                   <span className="flex justify-center items-center w-9 h-9 text-3xl text-red-700 rounded-3xl bg-red-200">
                     {DangerIcon.symbol}
                   </span>
@@ -65,7 +64,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
             </div>
             {/* body */}
             <div className="relative p-4 flex-auto">
-              {getActive === 'Active' ? (
+              {getActiveProduct === 'Active' ? (
                 <h3 className="text-lg font-medium text-center">
                   Deactivate Product
                 </h3>
@@ -74,7 +73,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
                   Activate Product
                 </h3>
               )}
-              {getActive === 'Active' ? (
+              {getActiveProduct === 'Active' ? (
                 <p className="inline-block mt-2 mb-1 text-slate-500 text-sm font-normal text-center">
                   Are you sure you want to deactivate this product?
                 </p>
@@ -94,7 +93,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
               >
                 Cancel
               </button>
-              {getActive === 'Active' ? (
+              {getActiveProduct === 'Active' ? (
                 <button
                   className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
