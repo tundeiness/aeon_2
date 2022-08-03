@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/prefer-default-export */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const SIGN_IN = 'http://13.59.94.46/aeon/api/v1/SignIn';
@@ -38,35 +38,19 @@ export const enableDisableUser = createAsyncThunk(
 
 export const createUser = createAsyncThunk(
   'user/createUser',
-  async ({ userData }, thunkAPI) => {
-    const {
-      firstName, lastName, phone, institution, email, role,
-    } = userData;
-
-    const newUserData = {
-      firstName,
-      lastName,
-      phone,
-      institution,
-      email,
-      role,
-    };
-
+  async (userData, thunkAPI) => {
     // const token = thunkAPI.getState().auth.user.token;
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // };
 
     try {
       const response = await axios.post(
-        NEW_USER_URL,
-        {
-          user: newUserData,
-        },
-        config,
+        NEW_USER_URL, userData,
+        // config,
       );
       return response.data;
     } catch (error) {
@@ -77,10 +61,11 @@ export const createUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'user/updateUser',
-  async (values, { rejectWithValue }) => {
-    const { id, ...fields } = values;
+  async (editedData, { rejectWithValue }) => {
+    console.log(editedData);
     try {
-      const response = await axios.put(`${UPDATE_USER_URL}${id}`, fields);
+      // const response = await axios.put(`${UPDATE_USER_URL}${id}`, fields);
+      const response = await axios.post(UPDATE_USER_URL, editedData);
       return response.data;
     } catch (error) {
       // return error.message;
@@ -255,10 +240,18 @@ export const userSlice = createSlice({
         state.user[user.id] = user;
         state.user.push(user);
       })
+      .addCase(updateUser.pending, (state) => {
+        state.status = 'loading';
+      })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.user[user.id] = action.payload;
-        state.user.push(user);
+        // state.user[user.id] = action.payload;
+        state.user = action.payload;
+        // state.user.push(user);
+      })
+      .addCase(updateUser.rejected, (state) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       })
       .addCase(enableDisableUser.pending, (state) => {
         state.status = 'loading';
@@ -346,3 +339,11 @@ export const selectUserByUserId = (state, id) => state.user.user.find((selectedU
 export const { filterUserByStatus, filterUserByRole, searchedUser } = userSlice.actions;
 
 export default userSlice.reducer;
+
+// {
+//   "email": "eu sunt et voluptate",
+//   "roleCode": "reprehenderit pariatur officia dolore",
+//   "lastname": "ad ex mollit",
+//   "othernames": "exercitation Lorem",
+//   "phoneNumber": "quis incididunt in laboris"
+// }

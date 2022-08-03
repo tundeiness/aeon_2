@@ -71,6 +71,19 @@ const CreateUser = () => {
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
       // console.log(values);
+      const othernames = values.first_name;
+      const lastname = values.last_name;
+      const { email } = values;
+      const roleCode = '';
+      const phoneNumber = values.phone;
+
+      const userData = {
+        email,
+        othernames,
+        roleCode,
+        phoneNumber,
+        lastname,
+      };
       resetForm(values);
     },
   });

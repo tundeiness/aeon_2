@@ -55,10 +55,10 @@ const UserList = () => {
   } = useStateContext();
 
   const roleArray = useSelector(selectAllRoles);
-  console.log(roleArray);
+  // console.log(roleArray);
 
   const roleStatus = useSelector(getRoleStatus);
-  console.log(roleStatus);
+  // console.log(roleStatus);
 
   // const institution = useSelector((state) => state.institution.institution);
   const user = useSelector(selectAllUsers);

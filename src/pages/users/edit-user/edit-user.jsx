@@ -4,12 +4,13 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useFormik, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { nanoid } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 import { useStateContext } from '../../../contexts/ContextProvider';
@@ -20,6 +21,7 @@ import {
   getAllUsers,
   createUser,
   selectUserByUserId,
+  updateUser,
 } from '../../../redux/features/userSlice';
 // import './createInstituiton.css';
 
@@ -32,7 +34,7 @@ const CreateUser = () => {
 
   const singleUser = useSelector((state) => selectUserByUserId(state, getUserByUserId));
 
-  console.log(singleUser);
+  // console.log(singleUser);
 
   // getUserByUserId,
   //       setGetUserByUserId,
@@ -40,13 +42,16 @@ const CreateUser = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector(selectAllUsers);
 
+  const userStatus = useSelector(getUserStatus);
+  const userError = useSelector(getUserError);
+
   // const handleCreateInstitution = (value) => {
   //   dispatch(createInstitution({ value }));
   // };
 
   const validate = (value) => {
     const errors = {};
-    if (!value.notificationEmail) {
+    if (!value.email) {
       errors.email = 'Cannot be blank';
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)
@@ -80,30 +85,57 @@ const CreateUser = () => {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
+      const othernames = values.first_name;
+      const lastname = values.last_name;
+      const { email } = values;
+      const { roleCode } = values;
+      const phoneNumber = values.phone;
+
+      const userData = {
+        email,
+        othernames,
+        roleCode,
+        phoneNumber,
+        lastname,
+      };
       // alert(
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
       // console.log(values);
-      resetForm(values);
+      dispatch(updateUser(userData));
+      setTimeout(() => {
+        navigate('/users');
+      }, 3200);
+      // resetForm(values);
     },
   });
 
   const { getFieldProps, setSubmitting } = formic;
 
-  const handleSubmit = () => {
-    console.log('formic.values', formic.values);
-    dispatch(
-      createUser({
-        id: nanoid(),
-        ...formic.values,
-      }),
-    ).unwrap();
-    setSubmitting(false);
+  useEffect(() => {
+    if (formic.isValid && userStatus === 'idle') {
+      navigate('/users');
+      dispatch(getAllUsers());
+    }
 
-    // .then(() => {
-    //   // navigate('/institutions');
-    // });
-  };
+    if (userError) {
+      toast.error('editing failed');
+      // navigate('/users');
+    }
+
+    // dispatch(getAllUsers());
+  }, [userStatus, navigate, dispatch]);
+
+  // const handleSubmit = () => {
+  //   console.log('formic.values', formic.values);
+  //   dispatch(
+  //     createUser({
+  //       id: nanoid(),
+  //       ...formic.values,
+  //     }),
+  //   ).unwrap();
+  //   setSubmitting(false);
+  // };
 
   const canCreate = formic.isValid && createRequestStatus === 'idle';
 
@@ -161,7 +193,7 @@ const CreateUser = () => {
   //   }
   // };
 
-  console.log(formic.values);
+  // console.log(formic.values);
 
   return (
     <>
@@ -365,7 +397,7 @@ const CreateUser = () => {
                       type="submit"
                       disabled={formic.isSubmitting}
                       // onClick={handleSaveInstitution()}
-                      onClick={handleSubmit}
+                      // onClick={handleSubmit}
                     >
                       {formic.isSubmitting ? 'Please wait...' : 'Update User'}
                     </button>
