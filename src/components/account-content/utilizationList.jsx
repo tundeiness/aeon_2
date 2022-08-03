@@ -18,7 +18,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
-import DeactivateModal from '../Modal/DeactivateModal/DeactivateModal';
+import ActivateDeactivateInstitutionModal from '../Modal/ActivateDeactivateInstitutionModal/ActivateDeactivateInstitutionModal';
 import {
   GoButton,
   FilterButton,
@@ -359,7 +359,10 @@ const UtilizationList = () => {
           </div>
         </section>
       </article>
-      <DeactivateModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      <ActivateDeactivateInstitutionModal
+        handleClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+      />
     </>
   );
 };

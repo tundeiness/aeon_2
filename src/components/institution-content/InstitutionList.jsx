@@ -19,7 +19,7 @@ import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import FilterBar from './filter-institution/FilterBar';
 import SearchBar from './search-institution/SearchBar';
-import DeactivateModal from '../Modal/DeactivateModal/DeactivateModal';
+import ActivateDeactivateInstitutionModal from '../Modal/ActivateDeactivateInstitutionModal/ActivateDeactivateInstitutionModal';
 // import ActivateModal from '../Modal/ActivateModal/ActivateModal';
 import {
   getInstitution,
@@ -266,12 +266,11 @@ const InstitutionList = () => {
           </div>
         </section>
       </article>
-      <DeactivateModal
+      <ActivateDeactivateInstitutionModal
         handleClose={() => setIsOpen(false)}
         isOpen={isOpen}
         code={getInstitutionCode}
       />
-      {/* <ActivateModal /> */}
     </>
   );
 };
