@@ -12,11 +12,11 @@ import {
 } from '../../../redux/features/productSlice';
 import { useStateContext } from '../../../contexts/ContextProvider';
 
-const DeactivateModal = ({ isOpen, handleClose }) => {
+const ActivateDeactivateProductModal = ({ isOpen, handleClose }) => {
   if (!isOpen) return null;
   const dispatch = useDispatch();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const institutionStatus = useSelector(getInstitutionStatus);
 
   const {
@@ -33,8 +33,9 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
       dispatch(getAllProducts());
+      navigate('/products');
     };
-  }, [handleClose, dispatch]);
+  }, [handleClose, dispatch, navigate]);
 
   const handleEnableDisableProduct = () => {
     dispatch(enableDisableProduct(getProductCode));
@@ -125,4 +126,4 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
     </ReactPortal>
   );
 };
-export default DeactivateModal;
+export default ActivateDeactivateProductModal;

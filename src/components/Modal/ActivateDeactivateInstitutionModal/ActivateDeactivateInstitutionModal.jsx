@@ -17,7 +17,7 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
   if (!isOpen) return null;
   const dispatch = useDispatch();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const institutionStatus = useSelector(getInstitutionStatus);
 
   const { getActive, getInstitutionCode } = useStateContext();
@@ -30,8 +30,9 @@ const DeactivateModal = ({ isOpen, handleClose }) => {
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
       dispatch(getInstitution());
+      navigate('/institutions');
     };
-  }, [handleClose, institutionStatus, dispatch]);
+  }, [handleClose, institutionStatus, dispatch, navigate]);
 
   const handleEnableDisableInstitution = () => {
     dispatch(enableDisableInstitution(getInstitutionCode));
