@@ -19,6 +19,7 @@ import { logout } from '../../redux/features/auth/authSlice';
 
 const SidebarNav = () => {
   const location = useLocation();
+  // const navigate = useNavigate();
   const isActive = location.pathname;
   const [isOpen, setIsOpen] = useState(false);
   const [defaultHome, setDefaultHome] = useState('dashboard');
@@ -45,16 +46,8 @@ const SidebarNav = () => {
 
   const handleLogOut = () => {
     dispatch(logout());
-    // navigate('/', { replace: true });
-    // localStorage.removeItem('user');
-    // dispatch(logout());
-    // navigate(from, { replace: true });
-    // navigate('/', { replace: true });
-
-    // navigate('/', { replace: true });
-    // dispatch(logout()).then(() => {
-    //   navigate('/', { replace: true });
-    // });
+    localStorage.clear();
+    navigate('/');
   };
 
   useEffect(() => {
@@ -108,13 +101,15 @@ const SidebarNav = () => {
             role="presentation"
           >
             <MdLogout className="xl:w-6 xl:h-7" />
-            <Link
-              to="/"
+            <button
+              type="button"
+              // to="/"
               className="inline-block rounded font-medium leading-6 text-indigo-100 "
               activeClassName="bg-authBtn"
+              onClick={handleLogOut}
             >
               Log Out
-            </Link>
+            </button>
           </li>
           {/* flex items-center mt-2 mb-1 py-1 pl-5 */}
           {/* <li
