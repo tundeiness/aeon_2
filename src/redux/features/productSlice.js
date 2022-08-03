@@ -70,6 +70,21 @@ export const getProductBand = createAsyncThunk(
   },
 );
 
+export const enableDisableProduct = createAsyncThunk(
+  'product/enableDisableProduct',
+  async (code, { rejectWithValue }) => {
+    // console.log("and this is really never logging anything??");
+    try {
+      const response = await axios.get(
+        `http://13.59.94.46/aeon/api/v1/Product/EnableDisable?code=${code}`,
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 // export const getRegisteredUser = createAsyncThunk(
 //   "auth/getRegistrationRes",
 //   async (currentUser, thunkAPI) => {
@@ -162,6 +177,18 @@ export const productSlice = createSlice({
       state.product = [action.payload];
     },
     [createProduct.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    [enableDisableProduct.pending]: (state) => {
+      state.loading = true;
+    },
+    [enableDisableProduct.fulfilled]: (state, action) => {
+      state.loading = false;
+      // state.product = [action.payload];
+    },
+    [enableDisableProduct.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
