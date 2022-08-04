@@ -33,6 +33,11 @@ import {
   getUserError,
   getAllUsers,
 } from '../../redux/features/userSlice';
+
+import {
+  createInstitution,
+  selectAllInstitutions,
+} from '../../redux/features/institutionSlice';
 import './utilizationlist.css';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
@@ -49,6 +54,16 @@ const UtilizationList = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   // const [mockData, setMockData] = useState(institution[0]);
+
+  const institutionList = useSelector(selectAllInstitutions);
+
+  const optionList = institutionList.map((institution) => (
+    <option
+      key={institution.id}
+      value={institution.code}
+      label={institution.name}
+    />
+  ));
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
 
@@ -206,12 +221,13 @@ const UtilizationList = () => {
                   className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                 >
                   <option value="" label="" />
-                  <option value="PrePaid" label=" PrePaid">
+                  {/* <option value="PrePaid" label=" PrePaid">
                     PrePaid
                   </option>
                   <option value="PostPaid" label="PostPaid">
                     PostPaid
-                  </option>
+                  </option> */}
+                  {optionList}
                 </select>
               </div>
               <div className="w-1/3 pl-4">
@@ -295,7 +311,7 @@ const UtilizationList = () => {
             </div>
 
             <div className="border border-gray-200 rounded-lg">
-              <div className="name-list">
+              <div className="utilization-list min-h-screen -mb-36">
                 <table className="table-fixed w-full text-xs leading-normal">
                   <thead className=" bg-gray-50 text-xs capitalize">
                     <tr>
@@ -339,7 +355,7 @@ const UtilizationList = () => {
                         }
                       }
                     })()} */}
-                    {renderSelection()}
+                    {/* {renderSelection()} */}
                   </tbody>
                 </table>
               </div>
@@ -359,10 +375,10 @@ const UtilizationList = () => {
           </div>
         </section>
       </article>
-      <ActivateDeactivateInstitutionModal
+      {/* <ActivateDeactivateInstitutionModal
         handleClose={() => setIsOpen(false)}
         isOpen={isOpen}
-      />
+      /> */}
     </>
   );
 };
