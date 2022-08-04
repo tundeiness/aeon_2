@@ -170,7 +170,7 @@ export const SideBarData = [
   },
   {
     title: 'Accounts',
-    path: '/accounts',
+    path: 'accounts/daily-utilization',
     icon: <FiFlag key="4" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
