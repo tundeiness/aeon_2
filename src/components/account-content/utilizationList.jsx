@@ -272,7 +272,7 @@ const UtilizationList = () => {
               </p>
             </div>
             <div className="border border-gray-200 rounded-lg">
-              <div className="utilization-list min-h-screen -mb-36">
+              <div className="utilization-list min-h-screen -mb-44">
                 <table className="table-fixed w-full text-xs leading-normal">
                   <thead className=" bg-gray-50 text-xs capitalize">
                     <tr>
