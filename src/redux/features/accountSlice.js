@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-unused-vars */
@@ -28,7 +29,11 @@ const initialState = {
 const accountSlice = createSlice({
   name: 'account',
   initialState,
-  reducer: {},
+  reducer: {
+    // filteredUtilizationByCode: (state, action) => {
+    //   state.account = state.account.filter((accountItem) => accountItem.name.toLowerCase().includes(action.payload));
+    // },
+  },
   extraReducers(builder) {
     builder
       .addCase(dailyUtilization.pending, (state) => {

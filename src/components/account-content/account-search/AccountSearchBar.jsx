@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   SearchButtonUtilization,
@@ -9,10 +9,15 @@ import {
   createInstitution,
   selectAllInstitutions,
 } from '../../../redux/features/institutionSlice';
+import {
+  dailyInstitutionUtilization,
+  dailyUtilization,
+} from '../../../redux/features/accountSlice';
 
 const AccountSearchBar = () => {
-  const test = 0;
+  const dispatch = useDispatch();
   const institutionList = useSelector(selectAllInstitutions);
+  const [setCode, getSetCode] = useState();
 
   const optionList = institutionList.map((institution) => (
     <option
@@ -21,6 +26,15 @@ const AccountSearchBar = () => {
       label={institution.name}
     />
   ));
+
+  const handleUtilizationSearch = (institutionCode) => {
+    const data = {
+      institutionCode,
+    };
+    dispatch(dailyUtilization(data));
+  };
+
+  console.log(setCode);
   return (
     <div className="flex flex-row justify-between w-full mb-6">
       <div className="w-1/3 pr-6">
@@ -41,15 +55,21 @@ const AccountSearchBar = () => {
         {' '}
         <label
           className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-          htmlFor="category"
+          htmlFor="institution"
         >
           Institutions
           {' '}
         </label>
         <select
-          id="category"
-          name="category"
+          id="institution"
+          name="institution"
           className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+          value={setCode}
+          onChange={(e) => {
+            const selectedStatus = e.target.value;
+            getSetCode(selectedStatus);
+            handleUtilizationSearch(e.target.value);
+          }}
         >
           <option value="" label="" aria-label="Select" />
           {/* <option value="PrePaid" label=" PrePaid">
