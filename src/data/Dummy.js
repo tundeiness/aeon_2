@@ -185,11 +185,11 @@ export const SideBarData = [
         path: '/accounts/account-statement',
         icon: <GoPrimitiveDot />,
       },
-      {
-        title: 'Daily Utilisation',
-        path: '/accounts/daily-utilisation',
-        icon: <GoPrimitiveDot />,
-      },
+      // {
+      //   title: 'Daily Utilisation',
+      //   path: '/accounts/daily-utilisation',
+      //   icon: <GoPrimitiveDot />,
+      // },
     ],
   },
   {
