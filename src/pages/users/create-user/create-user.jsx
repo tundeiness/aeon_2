@@ -30,7 +30,7 @@ const CreateUser = () => {
   const optionDataNewUser = institutions.map((institution) => (
     <option
       key={institution.id}
-      value={institution.name}
+      value={institution.code}
       label={institution.name}
     />
   ));
