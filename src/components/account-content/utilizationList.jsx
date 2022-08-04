@@ -34,6 +34,8 @@ import {
   getAllUsers,
 } from '../../redux/features/userSlice';
 
+import AccountSearchBar from './account-search/AccountSearchBar';
+
 import {
   createInstitution,
   selectAllInstitutions,
@@ -189,9 +191,9 @@ const UtilizationList = () => {
               </h1>
               <SupportButton />
             </header>
-
             <hr className="mb-12" />
-            <div className="flex flex-row justify-between w-full mb-6">
+            <AccountSearchBar />
+            {/* <div className="flex flex-row justify-between w-full mb-6">
               <div className="w-1/3 pr-6">
                 <label
                   className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
@@ -221,12 +223,6 @@ const UtilizationList = () => {
                   className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
                 >
                   <option value="" label="" />
-                  {/* <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option> */}
                   {optionList}
                 </select>
               </div>
@@ -236,7 +232,7 @@ const UtilizationList = () => {
                   <ExportButton />
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* <hr className="mb-3 mt-2" />
             <div className="flex flex-row w-full mb-4">
               <div className="w-1/3 px-1 mb-6 md:mb-0">
@@ -302,14 +298,12 @@ const UtilizationList = () => {
                 </select>
               </div>
             </div> */}
-
             <div className="bg-white p-6 rounded-lg shadow-xs mb-10 border border-gray-200">
               <h2 className="text-base font-medium mb-4 text-gray-800">
                 TOTAL WALLET BALANCE
               </h2>
               <p className="text-buttonTwo font-semibold text-4xl">0 NGN</p>
             </div>
-
             <div className="border border-gray-200 rounded-lg">
               <div className="utilization-list min-h-screen -mb-36">
                 <table className="table-fixed w-full text-xs leading-normal">
