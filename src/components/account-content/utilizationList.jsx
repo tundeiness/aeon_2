@@ -43,6 +43,7 @@ const UtilizationList = () => {
   const utilizationError = useSelector(dailyUtilizationError);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [getWalletBalance, setGetWalletBalance] = useState('');
   // const [mockData, setMockData] = useState(institution[0]);
 
   const utilizationPayload = useSelector(dailyInstitutionUtilization);
@@ -80,20 +81,14 @@ const UtilizationList = () => {
         <td className="py-4 uppercase text-center">
           {datum.totalNoOfApiCalls}
         </td>
-        <td className="py-4 pr-4 pl-5">{datum.totalDebit}</td>
-        {/* <td className="py-4 px-16 inline-block">
-          {datum.status === "Active" ? (
-            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white text-center">
-              <GoPrimitiveDot className="text-white" />
-              {datum.status}
-            </span>
-          ) : (
-            <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
-              <GoPrimitiveDot className="text-white" />
-              {datum.status}
-            </span>
-          )}
-        </td> */}
+        <td className="py-4 pr-4 pl-5 text-center text-green-600">
+          {datum.totalDebit}
+        </td>
+
+        <td className="py-4 pr-4 pl-5 text-center text-green-600">
+          {/* {datum.totalDebit} */}
+          {/* {setGetWalletBalance(datum.currentBalance)} */}
+        </td>
         <td className="py-4 pl-12">
           {/* <span className="inline-block text-gray-900 py-0.5 px-0.4 w-16 rounded-lg text-center hover:cursor-pointer">
             {datum.institutionCode}
@@ -106,14 +101,6 @@ const UtilizationList = () => {
             </button>
           </span>
         </td>
-        {/* <td className="py-4 px-6">
-          <span className="flex justify-between">
-            <button type="button">
-              <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-            </button>
-
-          </span>
-        </td> */}
       </tr>
     ));
 
@@ -278,7 +265,11 @@ const UtilizationList = () => {
               <h2 className="text-base font-medium mb-4 text-gray-800">
                 TOTAL WALLET BALANCE
               </h2>
-              <p className="text-buttonTwo font-semibold text-4xl">0 NGN</p>
+              <p className="text-buttonTwo font-semibold text-4xl">
+                {data.grandBalance}
+                {' '}
+                NGN
+              </p>
             </div>
             <div className="border border-gray-200 rounded-lg">
               <div className="utilization-list min-h-screen -mb-36">
