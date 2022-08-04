@@ -9,14 +9,10 @@ import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
 import { HiOutlineEye } from 'react-icons/hi';
-import { GoPrimitiveDot } from 'react-icons/go';
 
 import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
-import { handleDate } from '../../utils/dateParser';
 import { handleDateOmitTime } from '../../utils/omitTime';
-
-import ActivateDeactivateInstitutionModal from '../Modal/ActivateDeactivateInstitutionModal/ActivateDeactivateInstitutionModal';
 
 import {
   selectAllUsers,
@@ -130,18 +126,6 @@ const UtilizationList = () => {
     return content;
   };
 
-  //  switch (institutionStatus) {
-  //    case "loading": // if (x === 'value1')
-  //      return <p>Loading data ...</p>;
-  //    case "succeeded": // if (x === 'value2')
-  //      return displayData;
-  //    case "failed":
-  //      return <p>Network Error </p>;
-  //    default: {
-  //      return displayData;
-  //    }
-  //  }
-
   return (
     <>
       <article className="w-4/5 ml-auto">
@@ -156,111 +140,7 @@ const UtilizationList = () => {
             </header>
             <hr className="mb-12" />
             <AccountSearchBar />
-            {/* <div className="flex flex-row justify-between w-full mb-6">
-              <div className="w-1/3 pr-6">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="balance"
-                >
-                  Balance as at
-                  <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="balance"
-                    type="text"
-                    placeholder="Day"
-                  />
-                </label>
-              </div>
-              <div className="w-1/3 pl-6 pr-2">
-                {' '}
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  Institutions
-                  {' '}
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option value="" label="" />
-                  {optionList}
-                </select>
-              </div>
-              <div className="w-1/3 pl-4">
-                <div className=" flex flex-row justify-around mt-7">
-                  <SearchButtonUtilization />
-                  <ExportButton />
-                </div>
-              </div>
-            </div> */}
-            {/* <hr className="mb-3 mt-2" />
-            <div className="flex flex-row w-full mb-4">
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="institution-name"
-                >
-                  Username
-                  <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="institution-name"
-                    type="text"
-                    placeholder="Enter Username"
-                  />
-                </label>
-              </div>
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  Status
-                  {' '}
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option value="" label="Select Status">
-                    Select Status
-                  </option>
-                  <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option>
-                </select>
-              </div>
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  Select Role
-                  {' '}
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option value="" label="Select Role">
-                    Select Role
-                  </option>
-                  <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option>
-                </select>
-              </div>
-            </div> */}
+
             <div className="bg-white p-6 rounded-lg shadow-xs mb-10 border border-gray-200">
               <h2 className="text-base font-medium mb-4 text-gray-800">
                 TOTAL WALLET BALANCE
@@ -303,20 +183,6 @@ const UtilizationList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {/* {(() => {
-                      switch (institutionStatus) {
-                        case 'loading': // if (x === 'value1')
-                          return <p>Loading data ...</p>;
-                        case 'succeeded': // if (x === 'value2')
-                          return displayData;
-                        case 'failed':
-                          return <p>Network Error </p>;
-                        default: {
-                          return displayData;
-                        }
-                      }
-                    })()} */}
-                    {/* {renderUtilization()} */}
                     {dailtyReports?.length > 0 ? (
                       renderUtilization()
                     ) : (
@@ -345,10 +211,6 @@ const UtilizationList = () => {
           </div>
         </section>
       </article>
-      {/* <ActivateDeactivateInstitutionModal
-        handleClose={() => setIsOpen(false)}
-        isOpen={isOpen}
-      /> */}
     </>
   );
 };
