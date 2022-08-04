@@ -1,6 +1,9 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import {
   SearchButtonUtilization,
   ExportButton,
@@ -17,7 +20,9 @@ import {
 const AccountSearchBar = () => {
   const dispatch = useDispatch();
   const institutionList = useSelector(selectAllInstitutions);
-  const [setCode, getSetCode] = useState();
+  // const utilizationPayload = useSelector(dailyInstitutionUtilization);
+  const [setCode, getSetCode] = useState('');
+  const [endDate, setEndDate] = useState(null);
 
   const optionList = institutionList.map((institution) => (
     <option
@@ -28,13 +33,21 @@ const AccountSearchBar = () => {
   ));
 
   const handleUtilizationSearch = (institutionCode) => {
-    const data = {
+    const parseDate = new Date(endDate).toISOString();
+    const utilizationData = {
       institutionCode,
+      endDate: parseDate,
     };
-    dispatch(dailyUtilization(data));
+    dispatch(dailyUtilization(utilizationData));
   };
 
-  console.log(setCode);
+  // console.log(utilizationPayload.data.dailtyReports);
+  // const { data } = utilizationPayload;
+  // console.log(data.dailtyReports);
+
+  // console.log(setCode);
+  // console.log(new Date(endDate).toISOString());
+  // console.log(handleDate(endDate));
   return (
     <div className="flex flex-row justify-between w-full mb-6">
       <div className="w-1/3 pr-6">
@@ -43,11 +56,23 @@ const AccountSearchBar = () => {
           htmlFor="balance"
         >
           Balance as at
-          <input
+          {/* <input
             className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
             id="balance"
             type="text"
             placeholder="Day"
+          /> */}
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            className="block w-full text-gray-700 border rounded-lg py-3 px-3 mt-2 leading-tight focus:outline-none focus:bg-white "
+            // onSelect={handleDateSelect}
+            // showTimeSelect
+            // dateFormat="Pp"
+            dateFormat="yyyy/MM/dd"
+            maxDate={new Date()}
+            // showYearDropdown
+            // scrollableYearDropdown
           />
         </label>
       </div>
@@ -66,18 +91,12 @@ const AccountSearchBar = () => {
           className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
           value={setCode}
           onChange={(e) => {
-            const selectedStatus = e.target.value;
-            getSetCode(selectedStatus);
-            handleUtilizationSearch(e.target.value);
+            const selectedInstitution = e.target.value;
+            getSetCode(selectedInstitution);
+            // handleUtilizationSearch(e.target.value);
           }}
         >
           <option value="" label="" aria-label="Select" />
-          {/* <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option> */}
           {optionList}
         </select>
       </div>
@@ -86,6 +105,7 @@ const AccountSearchBar = () => {
           <button
             className="bg-buttonTwo mr-3 px-14 py-3 rounded-md text-white font-medium text-sm"
             type="button"
+            onClick={() => handleUtilizationSearch(setCode)}
           >
             Search
           </button>

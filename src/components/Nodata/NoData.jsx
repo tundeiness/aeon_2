@@ -5,7 +5,7 @@ import { SearchElement } from '../../data/Dummy';
 const NoData = () => {
   const test = 0;
   return (
-    <div className="bg-white p-6 rounded-lg shadow-xs mb-10 w-96 mt-52 ml-80 flex flex-col justify-center items-center">
+    <span className="bg-white p-6 rounded-lg shadow-xs mb-10 w-96 mt-52 ml-80 flex flex-col justify-center items-center">
       <span className="w-10 h-10 flex flex-row justify-center items-center rounded-full border border-outerRing bg-outerRing">
         <span className="flex flex-col items-center justify-center w-6 h-6 border border-indigo-100 rounded-full bg-indigo-100">
           <SearchElement />
@@ -19,7 +19,7 @@ const NoData = () => {
         Your search did not match any data. Please try again or search with new
         parameters
       </p>
-    </div>
+    </span>
   );
 };
 

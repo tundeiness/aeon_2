@@ -4,80 +4,64 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-// import { nanoid } from '@reduxjs/toolkit';
-// import { uuid } from 'uuidv4';
+
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import { FiSearch, FiEdit2 } from 'react-icons/fi';
-import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
+
 import { HiOutlineEye } from 'react-icons/hi';
 import { GoPrimitiveDot } from 'react-icons/go';
-import { RiDeleteBinLine } from 'react-icons/ri';
+
 import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
-import Data from '../../data/MOCK_DATA.json';
-import Modal from '../Modal/Modal';
-import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
+import { handleDate } from '../../utils/dateParser';
+import { handleDateOmitTime } from '../../utils/omitTime';
+
 import ActivateDeactivateInstitutionModal from '../Modal/ActivateDeactivateInstitutionModal/ActivateDeactivateInstitutionModal';
-import {
-  GoButton,
-  FilterButton,
-  SearchButtonUser,
-  AddUserButton,
-  SearchButtonUtilization,
-  ExportButton,
-} from '../Buttons/buttonCollections';
+
 import {
   selectAllUsers,
-  getUserStatus,
-  getUserError,
   getAllUsers,
 } from '../../redux/features/userSlice';
+import {
+  dailyInstitutionUtilization,
+  dailyUtilizationStatus,
+  dailyUtilizationError,
+} from '../../redux/features/accountSlice';
+
+import PageLoader from '../pageLoader/pageLoader';
 
 import AccountSearchBar from './account-search/AccountSearchBar';
+import NoData from '../Nodata/NoData';
 
-import {
-  createInstitution,
-  selectAllInstitutions,
-} from '../../redux/features/institutionSlice';
 import './utilizationlist.css';
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const UtilizationList = () => {
   const { activeModal, setActiveModal } = useStateContext();
-  // const { loading, institution } = useSelector((state) => ({
-  //   ...state.institution,
-  // }));
-
-  // const institution = useSelector((state) => state.institution.institution);
   const institution = useSelector(selectAllUsers);
-  const institutionStatus = useSelector(getUserStatus);
-  const institutionError = useSelector(getUserError);
+  const utilizationStatus = useSelector(dailyUtilizationStatus);
+  const utilizationError = useSelector(dailyUtilizationError);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   // const [mockData, setMockData] = useState(institution[0]);
 
-  const institutionList = useSelector(selectAllInstitutions);
+  const utilizationPayload = useSelector(dailyInstitutionUtilization);
+  const { data } = utilizationPayload;
+  // console.log(data);
+  const { dailtyReports } = data;
 
-  const optionList = institutionList.map((institution) => (
-    <option
-      key={institution.id}
-      value={institution.code}
-      label={institution.name}
-    />
-  ));
+  console.log(dailtyReports);
+
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
 
   const [page, setPage] = useState(1);
 
-  console.log(institution);
-
-  useEffect(() => {
-    if (institutionStatus === 'idle') {
-      dispatch(getAllUsers());
-    }
-  }, [dispatch, institutionStatus]);
+  // useEffect(() => {
+  //   if (utilizationStatus === 'idle') {
+  //     dispatch(getAllUsers());
+  //   }
+  // }, [dispatch, utilizationStatus]);
 
   // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
   // const id = uuidv4();
@@ -85,16 +69,20 @@ const UtilizationList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = institution
+  const displayData = dailtyReports
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     .map((datum, idx) => (
       // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
       <tr key={uuidv4()}>
-        <td className="text-sm leading-5 py-4 px-4 text-left">{idx + 1}</td>
-        <td className="py-4 uppercase text-center">{`${datum.lastname} ${datum.othernames}`}</td>
-        <td className="py-4 pr-4 pl-5">{datum.email}</td>
-        <td className="py-4 px-16 inline-block">
-          {datum.status === 'Active' ? (
+        <td className="text-sm leading-5 py-4 px-4 text-left">
+          {handleDateOmitTime(datum.date)}
+        </td>
+        <td className="py-4 uppercase text-center">
+          {datum.totalNoOfApiCalls}
+        </td>
+        <td className="py-4 pr-4 pl-5">{datum.totalDebit}</td>
+        {/* <td className="py-4 px-16 inline-block">
+          {datum.status === "Active" ? (
             <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white text-center">
               <GoPrimitiveDot className="text-white" />
               {datum.status}
@@ -105,29 +93,17 @@ const UtilizationList = () => {
               {datum.status}
             </span>
           )}
-        </td>
+        </td> */}
         <td className="py-4 pl-12">
-          <span className="inline-block text-gray-900 py-0.5 px-0.4 w-16 rounded-lg text-center hover:cursor-pointer">
+          {/* <span className="inline-block text-gray-900 py-0.5 px-0.4 w-16 rounded-lg text-center hover:cursor-pointer">
             {datum.institutionCode}
-          </span>
+          </span> */}
         </td>
         <td className="inline-block py-4 px-20">
           <span className="flex justify-between">
             <button type="button">
               <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
-            {/* {datum.status === 'Active' ? (
-              <span className="flex items-center">
-                <BsDashSquare className="text-iconRed w-4 h-4 font-bold" />
-              </span>
-            ) : (
-              <span className="flex items-center">
-                <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
-              </span>
-            )}
-            <button type="button">
-              <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-            </button> */}
           </span>
         </td>
         {/* <td className="py-4 px-6">
@@ -141,17 +117,17 @@ const UtilizationList = () => {
       </tr>
     ));
 
-  const pagingCount = Math.ceil(institution?.length / dataPerPage);
+  const pagingCount = Math.ceil(dailtyReports?.length / dataPerPage);
 
   const changePage = ({ selected }) => {
     setPageNum(selected);
   };
 
-  const renderSelection = () => {
+  const renderUtilization = () => {
     let content;
-    switch (institutionStatus) {
+    switch (utilizationStatus) {
       case 'loading':
-        content = <p>Loading data ...</p>;
+        content = <PageLoader />;
         break;
       case 'succeeded':
         content = displayData;
@@ -349,22 +325,31 @@ const UtilizationList = () => {
                         }
                       }
                     })()} */}
-                    {/* {renderSelection()} */}
+                    {/* {renderUtilization()} */}
+                    {dailtyReports?.length > 0 ? (
+                      renderUtilization()
+                    ) : (
+                      <NoData />
+                    )}
                   </tbody>
                 </table>
               </div>
-              <ReactPaginate
-                previousLabel="Previous"
-                nextLabel="Next"
-                pageCount={pagingCount}
-                onPageChange={changePage}
-                containerClassName="pagination-button"
-                previousLinkClassName="previousButton"
-                nextLinkClassName="nextButton"
-                disabledClassName="paginationDisabled"
-                activeClassName="paginationActive"
-                className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
-              />
+              {dailtyReports?.length > 0 ? (
+                <ReactPaginate
+                  previousLabel="Previous"
+                  nextLabel="Next"
+                  pageCount={pagingCount}
+                  onPageChange={changePage}
+                  containerClassName="pagination-button"
+                  previousLinkClassName="previousButton"
+                  nextLinkClassName="nextButton"
+                  disabledClassName="paginationDisabled"
+                  activeClassName="paginationActive"
+                  className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
+                />
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </section>

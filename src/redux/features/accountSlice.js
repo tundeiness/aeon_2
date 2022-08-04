@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-unused-vars */
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const DAILY_UTILIZATION_URL = 'http://13.59.94.46/aeon/api/v1/Account/DailyUtilization';
@@ -10,9 +10,10 @@ const DAILY_UTILIZATION_BREAKDOWN_URL = 'http://13.59.94.46/aeon/api/v1/Account/
 
 export const dailyUtilization = createAsyncThunk(
   'account/dailyUtilization',
-  async (institutionCode, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
+    // console.log(data);
     try {
-      const response = await axios.post(DAILY_UTILIZATION_URL, institutionCode);
+      const response = await axios.post(DAILY_UTILIZATION_URL, data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -30,9 +31,6 @@ const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducer: {
-    // filteredUtilizationByCode: (state, action) => {
-    //   state.account = state.account.filter((accountItem) => accountItem.name.toLowerCase().includes(action.payload));
-    // },
   },
   extraReducers(builder) {
     builder
