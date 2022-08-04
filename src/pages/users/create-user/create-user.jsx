@@ -27,6 +27,14 @@ const CreateUser = () => {
   const dispatch = useDispatch();
   const institutions = useSelector(selectAllInstitutions);
 
+  const optionDataNewUser = institutions.map((institution) => (
+    <option
+      key={institution.id}
+      value={institution.name}
+      label={institution.name}
+    />
+  ));
+
   // const handleCreateInstitution = (value) => {
   //   dispatch(createInstitution({ value }));
   // };
@@ -316,12 +324,13 @@ const CreateUser = () => {
                     <option value="" label="Select Institution">
                       Select Institution
                     </option>
-                    <option value="PrePaid" label=" PrePaid">
+                    {/* <option value="PrePaid" label=" PrePaid">
                       PrePaid
                     </option>
                     <option value="PostPaid" label="PostPaid">
                       PostPaid
-                    </option>
+                    </option> */}
+                    {optionDataNewUser}
                   </select>
                 </div>
 
