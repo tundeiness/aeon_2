@@ -23,6 +23,15 @@ import {
   selectUserByUserId,
   updateUser,
 } from '../../../redux/features/userSlice';
+
+import {
+  getInstitution,
+  selectAllInstitutions,
+  // getInstitutionStatus,
+  // getInstitutionError,
+  // enableDisableInstitution,
+  // searchInstitution,
+} from '../../../redux/features/institutionSlice';
 // import './createInstituiton.css';
 
 const CreateUser = () => {
@@ -33,6 +42,11 @@ const CreateUser = () => {
   const { getUserByUserId } = useStateContext();
 
   const singleUser = useSelector((state) => selectUserByUserId(state, getUserByUserId));
+  const institution = useSelector(selectAllInstitutions);
+
+  const optionData = institution.map((institution) => <option key={institution.id} value={institution.name} label={institution.name} />);
+
+  console.log(institution);
 
   // console.log(singleUser);
 
@@ -348,12 +362,7 @@ const CreateUser = () => {
                     <option value="" label="Select Institution">
                       Select Institution
                     </option>
-                    <option value="PrePaid" label=" PrePaid">
-                      PrePaid
-                    </option>
-                    <option value="PostPaid" label="PostPaid">
-                      PostPaid
-                    </option>
+                    {optionData}
                   </select>
                 </div>
 

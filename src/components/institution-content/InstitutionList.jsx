@@ -50,7 +50,7 @@ const InstitutionList = () => {
 
   const dispatch = useDispatch();
 
-  console.log(institution);
+  // console.log(institution);
 
   useEffect(() => {
     if (institutionStatus === 'idle') {
