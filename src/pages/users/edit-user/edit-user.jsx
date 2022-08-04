@@ -46,7 +46,7 @@ const CreateUser = () => {
 
   const optionData = institution.map((institution) => <option key={institution.id} value={institution.name} label={institution.name} />);
 
-  console.log(institution);
+  // console.log(institution);
 
   // console.log(singleUser);
 
