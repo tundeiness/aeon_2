@@ -87,40 +87,40 @@ const ActivateDeactivateUserModal = ({ isOpen, handleClose }) => {
             {/* footer */}
             <div className="flex items-center justify-center pl-6 pr-6 pt-2 pb-5 rounded-b">
               <button
-                className="text-gray-700 text-base background-transparent font-medium capitalize px-12 py-3  outline outline-gray-300 rounded mr-2 mb-1 ease-linear transition-all duration-150"
+                className="text-gray-700 text-sm background-transparent font-medium capitalize px-12 py-2.5  outline outline-gray-300 rounded mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => handleClose()}
               >
-                Cancel
+                NO
               </button>
               {activeUser === 'Active' ? (
                 <button
-                  className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
+                  className="bg-red-600 text-white active:bg-red-600 font-medium capitalize text-sm px-12 py-2.5 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => {
                     handleEnableDisableUser();
                     handleClose();
                   }}
                 >
-                  Deactivate
+                  YES
                 </button>
               ) : (
                 <button
-                  className="bg-green-600 text-white font-medium capitalize text-base px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
+                  className="bg-green-600 text-white font-medium text-sm  px-12 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => {
                     handleEnableDisableUser();
                     handleClose();
                   }}
                 >
-                  Activate
+                  Yes, go ahead
                 </button>
               )}
             </div>
           </div>
         </div>
       </div>
-      <div className="opacity-50 fixed inset-0 z-40 bg-black" />
+      <div className="opacity-50 fixed inset-0 z-40 bg-black " />
     </ReactPortal>
   );
 };
