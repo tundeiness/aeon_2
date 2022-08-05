@@ -10,7 +10,6 @@ import { useFormik, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { nanoid } from '@reduxjs/toolkit';
-import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
 import {
   createInstitution,
@@ -36,7 +35,7 @@ const CreateInstitution = () => {
     if (!value.notificationEmail) {
       errors.notificationEmail = 'Cannot be blank';
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.notificationEmail)
     ) {
       errors.notificationEmail = 'Invalid email format';
     }
@@ -77,30 +76,16 @@ const CreateInstitution = () => {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      // alert(
-      //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
-      // );
-      // console.log(values);
+      dispatch(createInstitution({ id: nanoid(), ...values }));
       resetForm(values);
+      setTimeout(() => {
+        navigate('/institutions');
+      }, 3200);
+      formic.setSubmitting(false);
     },
   });
 
-  const { getFieldProps, setSubmitting } = formic;
-
-  const handleSubmit = () => {
-    console.log('formic.values', formic.values);
-    dispatch(
-      createInstitution({
-        id: nanoid(),
-        ...formic.values,
-      }),
-    ).unwrap();
-    setSubmitting(false);
-
-    // .then(() => {
-    //   // navigate('/institutions');
-    // });
-  };
+  const { getFieldProps } = formic;
 
   const canCreate = formic.isValid && createRequestStatus === 'idle';
 
@@ -222,6 +207,7 @@ const CreateInstitution = () => {
                       value={formic.values.rcNumber}
                       id="rcNumber"
                       type="text"
+                      maxLength="8"
                       {...getFieldProps('rcNumber')}
                     />
                     {formic.touched.rcNumber && formic.errors.rcNumber && (
@@ -564,8 +550,6 @@ const CreateInstitution = () => {
                       className="shadow bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-sm py-2 px-6 rounded-md"
                       type="submit"
                       disabled={formic.isSubmitting}
-                      // onClick={handleSaveInstitution()}
-                      onClick={handleSubmit}
                     >
                       {formic.isSubmitting
                         ? 'Please wait...'

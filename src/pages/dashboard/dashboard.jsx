@@ -1,59 +1,15 @@
-/* eslint-disable import/named */
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-// /* eslint-disable jsx-a11y/anchor-is-valid */
-// /* eslint-disable max-len */
-// /* eslint-disable no-unused-vars */
-// import React from 'react';
-
-// const Dashboard = () => {
-//   const text = 0;
-//   return (
-//     <div className="min-h-full">
-
-//       <header className="bg-white shadow">
-//         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-//           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-//         </div>
-//       </header>
-//       <main>
-//         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-//           {/* <!-- Replace with your content --> */}
-//           <div className="px-4 py-6 sm:px-0">
-//             <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-//           </div>
-//           {/* <!-- /End replace --> */}
-//         </div>
-//       </main>
-//     </div>
-//   );
-// };
-
 // export default Dashboard;
-
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 // import { lazy } from 'react';
 import React, { lazy, useState, useEffect } from 'react';
+import { useFormik } from 'formik';
+import { BiXCircle } from 'react-icons/bi';
 import {
-  Routes, Link, Outlet, Route, useLocation,
-} from 'react-router-dom';
-import { BiHomeAlt, BiFile, BiXCircle } from 'react-icons/bi';
-import {
-  FiBarChart2, FiFlag, FiUser, FiRefreshCcw,
-} from 'react-icons/fi';
-import { ImStack } from 'react-icons/im';
-import {
-  BsCheck2Square,
-  BsCheckCircle,
-  BsXCircle,
   BsPatchCheck,
 } from 'react-icons/bs';
-import { MdLogout } from 'react-icons/md';
-import { AiOutlineIdcard } from 'react-icons/ai';
-import { CgChevronDown } from 'react-icons/cg';
 import { FaRegThumbsUp, FaRegCheckCircle } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import CountUp from 'react-countup';
@@ -61,25 +17,41 @@ import VendorStatus from '../../components/vendorStatus/VendorStatus';
 import BarChart from '../../components/charts/Charts';
 import GuageChart from '../../components/charts/Donut';
 import SidebarNav from '../../components/sideBarNav/sidebar-nav';
-// import Logo from '../../static/assets/img/logo-white.png';
 import Support from '../../components/support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { GetData } from '../../components/Buttons/buttonCollections';
 import NIMC from '../../static/assets/img/nimc.webp';
-import { getInstitution, deleteInstitution, setUpdate } from '../../redux/features/institutionSlice';
+import { getInstitution, deleteInstitution } from '../../redux/features/institutionSlice';
+import {
+  getConnection, getConnectionStatus, getConnectionError, selectAllConnections,
+} from '../../redux/features/connectionSlice';
 import {
   setUserUpdate,
 } from '../../redux/features/userSlice';
-// import { useGetDashboardQuery } from '../../services/dashboardAPI';
 import './dashboard.css';
 
 const Dashboard = () => {
-  const test = 0;
-  // const { data, isFetching } = useGetDashboardQuery;
-  // const { loading, institution } = useSelector((state) => ({ ...state.app }));
-  // const details = useSelector((state) => state.user);
-  // const [getData, setGetData] = useState(institution);
   const dispatch = useDispatch();
+
+  const testUser = JSON.parse(localStorage.getItem('user'));
+
+  const formic = useFormik({
+    initialValues: {
+      institution: '',
+      day: '',
+      api: '',
+    },
+    // validate,
+    onSubmit: (values) => {
+      // const userData = {
+      //   email: values.email,
+      //   password: values.password,
+      // };
+      // dispatch(login(userData));
+      // resetForm(values);
+    },
+  });
+  // console.log(testUser.userId);
 
   // dispatch(getInstitution());
 
@@ -92,9 +64,23 @@ const Dashboard = () => {
   } = useStateContext();
   const Badge = <img src={NIMC} alt="NIMC" className="h-14 w-16" />;
 
+  const connection = useSelector(selectAllConnections);
+  const connectionStatus = useSelector(getConnectionStatus);
+  const connectionError = useSelector(getConnectionError);
+
+  console.log(connection);
+
+  const NIMCCheck = connection.serviceName === 'NIN' && connection.info.status === '200';
+  const FRSCCheck = connection.serviceName === 'FRSC' && connection.info.status === '200';
+  const CACCheck = connection.serviceName === 'BVN' && connection.info.status === '200';
+
+  console.log(NIMCCheck);
+
   useEffect(() => {
-    dispatch(getInstitution());
-  }, [dispatch]);
+    if (connectionStatus === 'idle') {
+      dispatch(getConnection());
+    }
+  }, [dispatch, connectionStatus]);
 
   return (
   // <article className="flex-1 border border-red-500">
@@ -109,9 +95,9 @@ const Dashboard = () => {
             <Support />
           </header>
           <div className="vendor-boards flex xl:space-x-6 w-full xl:mt-5 xl:mb-6">
-            <VendorStatus vendor={Badge} stat={false} bottomSpace={4} />
-            <VendorStatus vendor="FRSC" stat={false} bottomSpace={8} />
-            <VendorStatus vendor="CAC" stat bottomSpace={8} />
+            <VendorStatus vendor={Badge} stat={NIMCCheck} bottomSpace={4} />
+            <VendorStatus vendor="FRSC" stat={FRSCCheck} bottomSpace={8} />
+            <VendorStatus vendor="CAC" stat={CACCheck} bottomSpace={8} />
           </div>
 
           <div className="calls-overview mb-8">
@@ -170,41 +156,59 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="institution-call py-6 w-full">
+          <form
+            className="institution-call py-6 w-full"
+            onSubmit={formic.handleSubmit}
+          >
             <p className="font-semibold text-2xl mb-3">
               API Calls by Institution
             </p>
             <div className="category-block flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                 <select
-                  id="payment-category"
-                  name="payment-category"
-                  autoComplete="category-name"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-gray-200 rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                  aria-label=".form-select-sm example"
+                  id="institution"
+                  name="institution"
+                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-gray-100 text-gray-400 rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
+                  value={formic.values.institution}
+                  onChange={formic.handleChange}
+                  {...formic.getFieldProps('institution')}
                 >
-                  <option className="uppercase" selected>
+                  <option value="CREDEQUITY" label="CREDEQUITY">
                     CREDEQUITY
                   </option>
-                  <option>Bi-Anunal</option>
-                  <option>Quarterly</option>
-                  <option>Monthly</option>
+                  <option value="Bi-Annual" label=" Bi-Annual">
+                    Bi-Anunal
+                  </option>
+                  <option value="Quarterly" label="Quarterly">
+                    Quarterly
+                  </option>
+                  <option value="Monthly" label="Monthly">
+                    Monthly
+                  </option>
                 </select>
               </div>
 
               <div className="w-full md:w-1/3 px-3">
                 <select
-                  id="payment-category"
-                  name="payment-category"
-                  autoComplete="category-name"
-                  className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  id="day"
+                  name="day"
+                  className="mt-1 block w-full py-3 px-3 border border-gray-200 bg-gray-100 text-gray-400 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                  value={formic.values.day}
+                  onChange={formic.handleChange}
+                  {...formic.getFieldProps('day')}
                 >
-                  <option className="uppercase" selected>
-                    TODAY
+                  <option value="Today" label="Today">
+                    Today
                   </option>
-                  <option>Bi-Anunal</option>
-                  <option>Quarterly</option>
-                  <option>Monthly</option>
+                  <option value="Bi-Annual" label=" Bi-Annual">
+                    Bi-Anunal
+                  </option>
+                  <option value="Quarterly" label="Quarterly">
+                    Quarterly
+                  </option>
+                  <option value="Monthly" label="Monthly">
+                    Monthly
+                  </option>
                 </select>
               </div>
 
@@ -212,22 +216,37 @@ const Dashboard = () => {
                 <GetData />
               </div>
             </div>
-          </div>
+          </form>
 
           <div className="chart-group flex xl:space-x-6 w-full">
             <div className="bg-white rounded-xl shadow border p-6 w-2/3">
-              <div className="flex justify-between">
-                <p>API Calls by month</p>
-                <select id="month-category" name="month-category">
-                  <option className="uppercase" selected>
-                    Month
+              <form
+                className="flex justify-between"
+                onSubmit={formic.handleSubmit}
+              >
+                <p>Today</p>
+                <select
+                  id="api"
+                  name="api"
+                  value={formic.values.api}
+                  onChange={formic.handleChange}
+                  {...formic.getFieldProps('api')}
+                >
+                  <option value="NIN" label="NIN">
+                    NIN
                   </option>
-                  <option>Jan</option>
-                  <option>Feb</option>
-                  <option>Mar</option>
+                  <option value="FRSC" label="FRSC">
+                    FRSC
+                  </option>
+                  <option value="Credit Bureau" label="Credit Bureau">
+                    Credit Bureau
+                  </option>
+                  <option value="Business Search" label="Business Search">
+                    Business Search
+                  </option>
                 </select>
-              </div>
-              <p className="py-3">
+              </form>
+              <p className="text-xs pb-8 text-gray-400">
                 No. of successful and Failed API calls made
               </p>
               <div>

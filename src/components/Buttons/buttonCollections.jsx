@@ -20,13 +20,14 @@ const AuthButton = ({
   );
 };
 
-export const BackToList = ({ text }) => {
+export const BackToList = ({ text, onClick, to }) => {
   const test = 0;
   return (
     <div className="inline-block px-1 mb-3">
       <Link
         className="flex flex-row items-center justify-start bg-buttonTwo hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white py-2 pl-2 pr-3 rounded-md font-medium text-base"
-        to="/institution"
+        to={to}
+        onClick={onClick}
       >
         <BiChevronLeft />
         {' '}
@@ -55,7 +56,7 @@ export const InActiveBtn = () => {
   return (
     <>
       <button
-        className="bg-red-400 px-3 py-1 rounded-md text-white"
+        className="bg-red-400 px-3 py-1 rounded-full text-white"
         type="button"
       >
         Inactive
@@ -106,13 +107,14 @@ export const GetData = () => {
   );
 };
 
-export const GoButton = () => {
+export const GoButton = ({ onClick }) => {
   const test = 0;
   return (
     <>
       <button
         className="bg-buttonTwo px-4 py-3 rounded-md text-white font-medium text-sm"
         type="button"
+        onClick={onClick}
       >
         Go
       </button>
@@ -134,13 +136,14 @@ export const FilterButton = () => {
   );
 };
 
-export const SearchButton = () => {
+export const SearchButton = ({ onClick }) => {
   const test = 0;
   return (
     <>
       <button
         className="bg-buttonTwo px-4 py-3 rounded-md text-white font-medium text-sm"
         type="button"
+        onClick={onClick}
       >
         Search
       </button>
@@ -162,17 +165,17 @@ export const SearchButtonUser = () => {
   );
 };
 
-export const AddUserButton = () => {
+export const AddUserButton = ({ to }) => {
   const test = 0;
   return (
     <>
-      <button
-        type="submit"
+      <Link
+        to={to}
         className="flex items-center bg-buttonTwo text-white hover:bg-purple-500 py-3 px-5 my-2.5 rounded-md text-sm w-auto"
       >
         <BiPlus className="inline-block mr-2" />
         <span>Add New User</span>
-      </button>
+      </Link>
     </>
   );
 };

@@ -32,16 +32,16 @@ import axios from 'axios';
 //   },
 // );
 
+const GET_ALL_PRODUCTS_URL = 'http://13.59.94.46/aeon/api/v1/Product/RetrieveAll';
+
 export const getAllProducts = createAsyncThunk(
   'product/getAllProducts',
-  async (_arg, { rejectWithValue }) => {
+  async () => {
     try {
-      const { data } = await axios.get(
-        'http://13.59.94.46/aeon/api/v1/Product/RetrieveAll',
-      );
-      return data;
+      const response = await axios.get(GET_ALL_PRODUCTS_URL);
+      return response.data;
     } catch (error) {
-      rejectWithValue(error.response.data);
+      return error.message;
     }
   },
 );
@@ -70,6 +70,21 @@ export const getProductBand = createAsyncThunk(
   },
 );
 
+export const enableDisableProduct = createAsyncThunk(
+  'product/enableDisableProduct',
+  async (code, { rejectWithValue }) => {
+    // console.log("and this is really never logging anything??");
+    try {
+      const response = await axios.get(
+        `http://13.59.94.46/aeon/api/v1/Product/EnableDisable?code=${code}`,
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 // export const getRegisteredUser = createAsyncThunk(
 //   "auth/getRegistrationRes",
 //   async (currentUser, thunkAPI) => {
@@ -92,31 +107,42 @@ export const getProductBand = createAsyncThunk(
 //   }
 // }
 
+const initialState = {
+  product: [],
+  productContainer: [],
+  status: 'idle',
+  error: null,
+
+};
+
 export const productSlice = createSlice({
   name: 'product',
-  initialState: {
-    product: [
-      {
-        name: 'BVN Service',
-        summary:
-          'The BVN Full Details Service is used to confirm the authenticity of a BVN and/or phone number by matching any one or more of the request against the last name and date of birth of the customer.',
-        inputParameters: 'Bvn',
-        url: 'https://credequityapi.com/CredBvn/api/v1/Bvn/GetCustomerBvn',
-        pricePerCall: 0.0,
-        code: '100301',
-        dateCreated: '2021-03-04T11:22:17.447766',
-        dateLastModified: '2021-03-05T10:11:32.5831291',
-        lastUpdatedBy: 'support@credequity.com',
-        apiDocumentation: 'none',
-        testUrl: 'http://102.164.38.38/CredBvn/api/v1/Bvn/GetCustomerBvn',
-        status: 'Active',
-      },
-    ],
-    loading: false,
-    error: null,
-  },
+  initialState,
 
-  reducers: {},
+  reducers: {
+    searchProductByCode: (state, action) => {
+      state.product = state.productContainer.filter(
+        (productItem) => productItem.code.includes(action.payload),
+      );
+    },
+
+    searchProductByName: (state, action) => {
+      state.product = state.productContainer.filter(
+        (productItem) => productItem.name.toLowerCase().includes(action.payload.toLowerCase()),
+      );
+    },
+    filterProductStatus: (state, action) => {
+      const statusCategory = state.productContainer.filter(
+        (itemStatus) => itemStatus.status === action.payload,
+      );
+
+      const allCategory = state.productContainer.filter(
+        (itemStatus) => itemStatus.status !== action.payload,
+      );
+
+      state.product = action.payload ? statusCategory : allCategory;
+    },
+  },
   extraReducers: {
     [getAllProducts.pending]: (state) => {
       state.loading = true;
@@ -124,6 +150,7 @@ export const productSlice = createSlice({
     [getAllProducts.fulfilled]: (state, action) => {
       state.loading = false;
       state.product = action.payload;
+      state.productContainer = action.payload;
     },
     [getAllProducts.rejected]: (state, action) => {
       state.loading = false;
@@ -153,7 +180,23 @@ export const productSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    [enableDisableProduct.pending]: (state) => {
+      state.loading = true;
+    },
+    [enableDisableProduct.fulfilled]: (state, action) => {
+      state.loading = false;
+      // state.product = [action.payload];
+    },
+    [enableDisableProduct.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
-
+export const selectAllProducts = (state) => state.product.product;
+export const getProductStatus = (state) => state.product.status;
+export const getProductError = (state) => state.product.error;
+export const selectProductByCode = (state, code) => state.product.product.find((product) => product.code === code);
+export const { searchProductByCode, filterProductStatus, searchProductByName } = productSlice.actions;
 export default productSlice.reducer;

@@ -88,7 +88,7 @@ const SubMenu = ({ item, key }) => {
             to={itm.path}
           >
             {itm.icon}
-            <span className="inline-block">{itm.title}</span>
+            <span className="inline-block ml-2">{itm.title}</span>
           </NavLink>
         ))}
     </>

@@ -1,21 +1,23 @@
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { HeadingDisplayRow, DataDisplayRow, TextDisplayRow } from '../../../components/viewDescription/ViewDescription';
+import { useStateContext } from '../../../contexts/ContextProvider';
 import SupportButton from '../../../components/support/support';
 import {
   BackToList,
   ActiveBtn,
   InActiveBtn,
 } from '../../../components/Buttons/buttonCollections';
+import {
+  selectInstitutionById,
+} from '../../../redux/features/institutionSlice';
 
-export const ViewInstitution = () => {
-  const [updateInstitution, setUpdateInstitution] = useState(false);
+const ViewInstitution = () => {
+  const { getItemId } = useStateContext();
+  const singleInstitution = useSelector((state) => selectInstitutionById(state, getItemId));
 
   return (
     <>
-      {/* <SidebarNav /> */}
       <article className="w-4/5 ml-auto">
         <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
           <div className="institution-wrapper p-5 bg-white rounded-tl-3xl rounded-bl-3xl">
@@ -28,91 +30,97 @@ export const ViewInstitution = () => {
             </header>
 
             <hr className="my-3" />
-            <BackToList text="Back to List" />
+            <BackToList
+              text="Back to List"
+              to="/institutions"
+              onClick={() => localStorage.removeItem('singleInstitution')}
+            />
             <div className="w-full border-t border-gray-200 mt-3">
               <dl className="mx-2">
                 <div className="flex flex-col divide-y divide-slate-200">
                   <HeadingDisplayRow
                     classText="company-number"
-                    title="CREDEQUITY"
-                    content="RC Number: 147749"
+                    title={singleInstitution.name}
+                    content={`RC Number: ${singleInstitution.rcNumber}`}
                   />
                   <DataDisplayRow
                     classText="code"
                     title="Code"
-                    content="14749"
+                    content={singleInstitution.code}
                   />
                   <DataDisplayRow
                     classText="status"
                     title="Status"
-                    content={<ActiveBtn />}
+                    content={
+                      singleInstitution.status === 'Active' ? (
+                        <ActiveBtn />
+                      ) : (
+                        <InActiveBtn />
+                      )
+                    }
                   />
                   <DataDisplayRow
                     classText="address"
                     title="Address"
-                    content="13A Charles Ifeanyi Street Lekki Phase 1 Lekki, Eti-Osa,"
+                    content={singleInstitution.address}
                   />
                   <DataDisplayRow
                     classText="website"
                     title="Website URL"
-                    content="www.credequity.com"
+                    content={singleInstitution.websiteUrl}
                   />
                   <DataDisplayRow
                     classText="industry"
                     title="Industry Category"
-                    content="PostPaid"
+                    content={singleInstitution.category}
                   />
 
                   <DataDisplayRow
                     classText="calls"
                     title="Number of Calls"
-                    content="1000"
+                    content={singleInstitution.noOfCalls}
                   />
 
                   <DataDisplayRow
                     classText="notification"
                     title="Notification Email"
-                    content="support@credequity.com"
+                    content={singleInstitution.notificationEmail}
                   />
 
                   <DataDisplayRow
                     classText="balance"
                     title="Balance"
-                    content="0 NGN"
+                    content={`${singleInstitution.balance} NGN`}
                   />
 
                   <DataDisplayRow
                     classText="threshold"
                     title="Threshold"
-                    content="0 NGN"
+                    content={`${singleInstitution.threshold} NGN`}
                   />
 
                   <DataDisplayRow
                     classText="test-token"
                     title="Test Token"
-                    content="csx982Ief5saa34gd"
+                    content={singleInstitution.testToken}
                   />
 
                   <DataDisplayRow
                     classText="live-token"
                     title="Live Token"
-                    content="009csx982IefFGop5saa34324gd"
+                    content={singleInstitution.token}
                   />
 
                   <TextDisplayRow
                     classText="documentation"
                     title="Documentation"
-                    content="Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                    incididunt cillum culpa consequat. Excepteur qui ipsum
-                    aliquip consequat sint."
+                    content={singleInstitution.documentation}
                   />
 
                   <TextDisplayRow
                     classText="description"
                     title="Description"
-                    content="Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                    incididunt cillum culpa consequat. Excepteur qui ipsum
-                    aliquip consequat sint."
+                    content={singleInstitution.description}
                   />
                 </div>
               </dl>

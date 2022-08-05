@@ -32,7 +32,7 @@ export const Dummy = () => {
 export const SearchElement = () => (
   <>
     {' '}
-    <FiSearch />
+    <FiSearch className="text-lg text-buttonTwo" />
   </>
 );
 
@@ -134,7 +134,7 @@ export const SideBarData = [
     iconOpen: <CgChevronUp />,
     subnav: [
       {
-        title: 'Create',
+        title: 'Create Institution',
         path: '/institutions/create-institution',
         icon: <GoPrimitiveDot />,
       },
@@ -146,13 +146,13 @@ export const SideBarData = [
     icon: <ImStack key="2" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Create Product',
+        path: '/products/create-product',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Users',
@@ -160,27 +160,37 @@ export const SideBarData = [
     icon: <BsCheck2Square key="3" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Create User',
+        path: '/users/create-user',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Accounts',
-    path: '/accounts',
+    path: 'accounts/daily-utilization',
     icon: <FiFlag key="4" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Posts',
+        path: '/accounts/posts',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Statement',
+        path: '/accounts/account-statement',
+        icon: <GoPrimitiveDot />,
+      },
+      // {
+      //   title: 'Daily Utilisation',
+      //   path: '/accounts/daily-utilisation',
+      //   icon: <GoPrimitiveDot />,
+      // },
+    ],
   },
   {
     title: 'Reports',
@@ -188,13 +198,18 @@ export const SideBarData = [
     icon: <BiFile key="5" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Transaction',
+        path: '/reports/transaction',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'API Usage',
+        path: '/reports/api-usage',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'CE-ID',
@@ -221,6 +236,25 @@ export const SideBarData = [
       {
         title: 'Business-Name',
         path: '/ce-id/business-name',
+      },
+      {
+        title: 'KYC',
+        path: '/ce-id/kyc',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Bank Statement',
+        path: '/ce-id/statement',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Credit Report',
+        path: '/ce-id/report',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'OCR',
+        path: '/ce-id/ocr',
         icon: <GoPrimitiveDot />,
       },
     ],
@@ -231,24 +265,17 @@ export const SideBarData = [
     icon: <FiUser key="7" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Update KYB',
+        path: '/profile/update-kyb',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Change Password',
+        path: '/profile/change-password',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
-  // {
-  //   title: 'Log Out',
-  //   path: '/',
-  //   icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
-  //   path2: () => {
-  //     const dispatch = useDispatch();
-  //     const navigate = useNavigate();
-
-  //     dispatch(logout());
-  //     navigate('/');
-  //   },
-  // },
 ];

@@ -8,11 +8,13 @@ import { useFormik } from 'formik';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import toast from 'react-hot-toast';
 import AeonLogo from '../../static/assets/img/logo-blue.png';
 import LandingImage from '../../static/assets/img/landing-image.png';
 import LogoImage from '../../static/assets/img/logo-transparent.png';
 import AuthButton from '../../components/authButton/authButton';
 import { login } from '../../redux/features/auth/authSlice';
+
 // import SpinnerModal from '../../components/Modal/spinnerModal/SpinnerModal';
 import './sign-in.css';
 
@@ -57,6 +59,12 @@ const SignIn = () => {
     // const from = loc.state?.from?.pathname || '/';
     if (isSuccess || user) {
       navigate('/dashboard');
+    }
+
+    if (isError) {
+      toast.error(message);
+      // dispatch(clearState());
+      navigate('/');
     }
     // navigate(from, { replace: true });
 

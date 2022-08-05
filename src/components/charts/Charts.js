@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Chart } from 'react-chartjs-2';
 // import faker from 'faker';
 
 ChartJS.register(
@@ -34,6 +34,15 @@ const options = {
       labels: {
         boxWidth: 12,
         padding: 30,
+        generateLabels: (chart) => {
+          const { datasets } = chart.data;
+          const backgroundColor = ['#36b9ff', '#1756c2', '#ff650E'];
+          return datasets[0].data.map((data, i) => ({
+            text: `${chart.data.labels[i]}`,
+            fillStyle: backgroundColor[i],
+            strokeStyle: backgroundColor[i],
+          }));
+        },
       },
     },
     // title: {
@@ -59,29 +68,25 @@ const options = {
   },
 };
 
-const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+const labels = ['Total', 'Successful', 'Failed'];
+const backgroundColor = ['#36b9ff', '#1756c2', '#ff650E'];
+// data: labels.map(() => Math.floor(Math.random() * 15000)),
+const total = Math.floor(Math.random() * 15000);
+const successful = Math.floor(Math.random() * 15000);
+const failed = Math.floor(Math.random() * 15000);
 
 const data = {
   labels,
 
   datasets: [
     {
-      label: 'Dataset 1',
-      data: labels.map(() => Math.floor(Math.random() * 15000)),
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      // barThickness: 22,
+      label: '',
+      data: [total, successful, failed],
+      backgroundColor: (c) => backgroundColor[c.dataIndex % backgroundColor.length],
       barPercentage: 0.9,
       maxBarThickness: 35,
-      // minBarLength: 2,
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => Math.floor(Math.random() * 15000)),
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      // barThickness: 22,
-      maxBarThickness: 35,
-      barPercentage: 0.9,
       hoverBackgroundColor: '#000B93',
+      // minBarLength: 2,
     },
   ],
 };

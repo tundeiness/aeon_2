@@ -1,15 +1,17 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-// import { nanoid } from '@reduxjs/toolkit';
+import { nanoid } from '@reduxjs/toolkit';
 // import { uuid } from 'uuidv4';
 import { Link, useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiSearch, FiEdit2 } from 'react-icons/fi';
 import { BsArrowDownShort, BsDashSquare, BsCheck2Square } from 'react-icons/bs';
+import { HiOutlineEye } from 'react-icons/hi';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import SupportButton from '../support/support';
@@ -17,16 +19,15 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import Data from '../../data/MOCK_DATA.json';
 import Modal from '../Modal/Modal';
 import DeleteInstitution from '../../pages/institutions/deleteInstitution/DeleteInstitution';
+import NameStatusRoleFilterBar from './NameStatusRoleFilterBar/NameStatusRoleFilterBar';
 import {
   getAllRoles,
   selectAllRoles,
   getRoleStatus,
   getRoleError,
 } from '../../redux/features/roleSlice';
-import DeleteModal from '../Modal/DeleteModal/DeleteModal';
+import ActivateDeactivateUserModal from '../Modal/ActivateDeactivateUserModal/ActivateDeactivateUserModal';
 import {
-  GoButton,
-  FilterButton,
   SearchButtonUser,
   AddUserButton,
 } from '../Buttons/buttonCollections';
@@ -35,24 +36,34 @@ import {
   getUserStatus,
   getUserError,
   getAllUsers,
+  selectUserByUserId,
 } from '../../redux/features/userSlice';
+import NoData from '../Nodata/NoData';
+import PageLoader from '../pageLoader/pageLoader';
+// import { useStateContext } from "../../../contexts/ContextProvider";
 // import InstitutionExcerpt from './InstitutionExcerpt';
 
 const UserList = () => {
   const { activeModal, setActiveModal } = useStateContext();
+  const [currentPage, setCurrentPage] = useState(0);
   // const { loading, institution } = useSelector((state) => ({
   //   ...state.institution,
   // }));
 
+  const {
+    setGetUserByUserId, setUserId, activeUser, setActiveUser,
+  } = useStateContext();
+
   const roleArray = useSelector(selectAllRoles);
-  console.log(roleArray);
+  // console.log(roleArray);
 
   const roleStatus = useSelector(getRoleStatus);
+  // console.log(roleStatus);
 
   // const institution = useSelector((state) => state.institution.institution);
-  const institution = useSelector(selectAllUsers);
-  const institutionStatus = useSelector(getUserStatus);
-  const institutionError = useSelector(getUserError);
+  const user = useSelector(selectAllUsers);
+  const userStatus = useSelector(getUserStatus);
+  const userError = useSelector(getUserError);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   // const [mockData, setMockData] = useState(institution[0]);
@@ -61,17 +72,17 @@ const UserList = () => {
 
   const [page, setPage] = useState(1);
 
-  console.log(institution);
+  console.log(user);
 
   useEffect(() => {
-    if (institutionStatus === 'idle') {
+    if (userStatus === 'idle') {
       dispatch(getAllUsers());
     }
 
     if (roleStatus === 'idle') {
       dispatch(getAllRoles());
     }
-  }, [dispatch, institutionStatus, roleStatus]);
+  }, [dispatch, userStatus, roleStatus]);
 
   // <InstitutionExcerpt  onClick={() => setIsOpen(true)}/>
   // const id = uuidv4();
@@ -79,12 +90,16 @@ const UserList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = institution
+  console.log(dataPageVisited);
+
+  const displayData = user
     .slice(dataPageVisited, dataPageVisited + dataPerPage)
     .map((datum, idx) => (
-      // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
       <tr key={uuidv4()}>
-        <td className="text-sm leading-5 py-4 px-4">{idx + 1}</td>
+        <td className="text-sm leading-5 py-4 px-4">
+          {user.indexOf(datum) + 1}
+          {/* {pageNum === 1 ? idx + 1 : ((pageNum - 1) * dataPerPage) + (idx + 1)} */}
+        </td>
         <td className="py-4 uppercase text-center">{`${datum.lastname} ${datum.othernames}`}</td>
         <td className="py-4 pr-4 pl-5">{datum.email}</td>
         <td className="py-4 pl-8">
@@ -113,36 +128,60 @@ const UserList = () => {
         <td className="py-4 px-6">
           <span className="flex justify-between">
             <button type="button">
-              <FiSearch className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+              <HiOutlineEye className="search-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
             </button>
             {datum.status === 'Active' ? (
-              <span className="flex items-center">
-                <BsDashSquare className="text-iconRed w-4 h-4 font-bold" />
+              <span className="flex items-center cursor-pointer">
+                <BsDashSquare
+                  className="text-iconRed w-4 h-4 font-bold"
+                  onClick={() => {
+                    setIsOpen(true);
+                    setUserId(datum.userId);
+                    setActiveUser(datum.status);
+                    // setGetInstitutionCode(datum.code);
+                    // setGetActive(datum.status);
+                    // handleEnableDisableInstitution(datum.code);
+                  }}
+                />
               </span>
             ) : (
-              <span className="flex items-center">
-                <BsCheck2Square className="text-iconGreen w-5 h-5 font-bold" />
+              <span className="flex items-center cursor-pointer">
+                <BsCheck2Square
+                  className="text-iconGreen w-5 h-5 font-bold"
+                  onClick={() => {
+                    setIsOpen(true);
+                    setUserId(datum.userId);
+                    setActiveUser(datum.status);
+                    // setGetInstitutionCode(datum.code);
+                    // setGetActive(datum.status);
+                    // handleEnableDisableInstitution(datum.code);
+                  }}
+                />
               </span>
             )}
-            <button type="button">
+            <Link
+              to="edit-user"
+              onClick={() => setGetUserByUserId(datum.userId)}
+            >
               <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-            </button>
+            </Link>
           </span>
         </td>
       </tr>
     ));
 
-  const pagingCount = Math.ceil(institution?.length / dataPerPage);
+  const pagingCount = Math.ceil(user?.length / dataPerPage);
+  console.log(pageNum);
 
   const changePage = ({ selected }) => {
     setPageNum(selected);
   };
 
-  const renderSelection = () => {
+  const renderUsers = () => {
     let content;
-    switch (institutionStatus) {
+    switch (userStatus) {
       case 'loading':
-        content = <p>Loading data ...</p>;
+        content = <PageLoader />;
         break;
       case 'succeeded':
         content = displayData;
@@ -199,79 +238,15 @@ const UserList = () => {
                     <SearchButtonUser />
                   </div>
                   <div className="add-user-button w-auto">
-                    <AddUserButton />
+                    <AddUserButton to="create-user" />
                   </div>
                 </div>
               </div>
             </div>
             <hr className="mb-3 mt-2" />
-            <div className="flex flex-row w-full mb-4">
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="institution-name"
-                >
-                  Username
-                  <input
-                    className="block w-full text-gray-700 border rounded-lg py-3 px-4 mb-3 mt-2 leading-tight focus:outline-none focus:bg-white "
-                    id="institution-name"
-                    type="text"
-                    placeholder="Enter Username"
-                  />
-                </label>
-              </div>
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  Status
-                  {' '}
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option value="" label="Select Status">
-                    Select Status
-                  </option>
-                  <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option>
-                </select>
-              </div>
-              <div className="w-1/3 px-1 mb-6 md:mb-0">
-                <label
-                  className="block capitalize tracking-wide text-gray-700 text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  Select Role
-                  {' '}
-                </label>
-                <select
-                  id="category"
-                  name="category"
-                  className="form-select mt-1 block w-full py-3 px-3 bg-clip-padding bg-no-repeat border border-gray-200 bg-white rounded-md shadow-sm focus:outline-none transition ease-in-out sm:text-sm"
-                >
-                  <option value="" label="Select Role">
-                    Select Role
-                  </option>
-                  <option value="PrePaid" label=" PrePaid">
-                    PrePaid
-                  </option>
-                  <option value="PostPaid" label="PostPaid">
-                    PostPaid
-                  </option>
-                </select>
-              </div>
-            </div>
-
+            <NameStatusRoleFilterBar />
             <div className="border border-gray-200 rounded-lg">
-              <div className="name-list">
+              <div className="user-list min-h-screen -mb-48">
                 <table className="table-fixed w-full text-xs">
                   <thead className=" bg-gray-50 text-xs capitalize">
                     <tr>
@@ -298,8 +273,7 @@ const UserList = () => {
                         className=" flex items-center  text-gray-500 py-4 pl-10 "
                       >
                         Status
-                        {/* <span>{ArrowDownIcon.symbol}</span> */}
-                        <BsArrowDownShort className="inline-block" />
+                        <BsArrowDownShort className="inline-block text-lg font-semibold" />
                       </th>
                       <th
                         scope="col"
@@ -320,40 +294,34 @@ const UserList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {/* {(() => {
-                      switch (institutionStatus) {
-                        case 'loading': // if (x === 'value1')
-                          return <p>Loading data ...</p>;
-                        case 'succeeded': // if (x === 'value2')
-                          return displayData;
-                        case 'failed':
-                          return <p>Network Error </p>;
-                        default: {
-                          return displayData;
-                        }
-                      }
-                    })()} */}
-                    {renderSelection()}
+                    {user?.length > 0 ? renderUsers() : <NoData />}
                   </tbody>
                 </table>
               </div>
-              <ReactPaginate
-                previousLabel="Previous"
-                nextLabel="Next"
-                pageCount={pagingCount}
-                onPageChange={changePage}
-                containerClassName="pagination-button"
-                previousLinkClassName="previousButton"
-                nextLinkClassName="nextButton"
-                disabledClassName="paginationDisabled"
-                activeClassName="paginationActive"
-                className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
-              />
+              {user?.length > 0 ? (
+                <ReactPaginate
+                  previousLabel=" Previous"
+                  nextLabel="Next "
+                  pageCount={pagingCount}
+                  onPageChange={changePage}
+                  containerClassName="pagination-button"
+                  previousLinkClassName="previousButton"
+                  nextLinkClassName="nextButton"
+                  disabledClassName="paginationDisabled"
+                  activeClassName="paginationActive"
+                  className="w-full flex flex-row justify-around py-3 text-xs shadow-md"
+                />
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </section>
       </article>
-      <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      <ActivateDeactivateUserModal
+        handleClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+      />
     </>
   );
 };

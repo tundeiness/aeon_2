@@ -138,7 +138,7 @@ import { useAuth } from './components/auth';
 
 // export default routes;
 
-import { useStateContext } from './contexts/ContextProvider';
+import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
 
 // import AuthLayout from './layouts/AuthLayout';
 // import MainLayout from './layouts/MainLayout';
@@ -155,28 +155,11 @@ const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-pas
 const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
 const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
 const ResetPasswordView = lazy(() => import('./pages/reset-password/reset-password'));
-// const LayoutView = lazy(() => import('./pages/layout/Layout'));
 const DashboardView = lazy(() => import('./pages/dashboard/dashboard'));
-const CEID = lazy(() => import('./pages/ceid/CEID'));
-const CreditReport = lazy(() => import('./pages/ceid/credit-report'));
-const OCR = lazy(() => import('./pages/ceid/ocr'));
-const BusinessSearch = lazy(() => import('./pages/ceid/business-name'));
-const IdentityCheck = lazy(() => import('./pages/ceid/identity-check'));
-
-// const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
-// const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
-// const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
 const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
-// const DeleteInstitutionView = lazy(() => import('./pages/layout/institutions/deleteInstitution/DeleteInstitution'));
-// const CreateInstitution = lazy(() => import('./pages/layout/institutions/create-instituition/create-institution'));
-// const ProductsView = lazy(() => import('./pages/layout/products/products'));
-
-// const { isLoggedIn } = useStateContext();
-
 const CreateInstitutionView = lazy(() => import('./pages/institutions/create-instituition/create-institution'));
-const ViewInstitutionView = lazy(() => import('./pages/institutions/view-institution/view-institution'));
 const ProductView = lazy(() => import('./pages/products/products'));
-const CreateProductView = lazy(() => import('./pages/products/create-product/createProduct'));
+const CreateProductView = lazy(() => import('./pages/products/create-product/create-product'));
 const EditInstitutionView = lazy(() => import('./pages/institutions/update-institution/update-institution'));
 const ViewProductView = lazy(() => import('./pages/products/view-product/view-product'));
 const AllUserView = lazy(() => import('./pages/users/User'));
@@ -185,11 +168,14 @@ const EditUserView = lazy(() => import('./pages/users/edit-user/edit-user'));
 const AccountUtilizationView = lazy(() => import('./pages/accounts/daily-utilization'));
 const TransactionsReportView = lazy(() => import('./pages/reports/transactions'));
 const ApiReportView = lazy(() => import('./pages/reports/api-usage'));
+const OneInstitutionView = lazy(() => import('./pages/institutions/view-institution/view-institution'));
 
 const MainRoutes = () => {
   // const location = useLocation();
   // const background = location.state && location.state.background;
-  const [user, setUser] = React.useState(null);
+  // const [user, setUser] = React.useState(null);
+  const user = JSON.parse(localStorage.getItem('user'));
+  // console.log(testUser.userId);
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
@@ -198,59 +184,94 @@ const MainRoutes = () => {
         <Route path="/login" element={<LoginPage />} />
       </Route> */}
         {/* <Route index element={<LoginView />} /> */}
-        <Route path="/" element={<LoginView />} />
-        {/* <Route path="/sign-in" element={<LoginView />} /> */}
+        {/* <Route path="/" element={<LoginView />} /> */}
+        <Route index element={<LoginView />} />
+        <Route path="sign-in" element={<LoginView />} />
+
         <Route path="reset-password" element={<ResetPasswordView />} />
         <Route path="new-password" element={<NewPasswordView />} />
         <Route path="forgot-password" element={<ForgotPasswordView />} />
         <Route path="check-email" element={<CheckEmailView />} />
 
+        <Route element={<ProtectedRoutes isAllowed={!user} />}>
+          <Route element={<MainLayout />}>
+            {/* <Route index element={<DashboardView />} /> */}
+            <Route path="dashboard" element={<DashboardView />} />
+            <Route path="institutions" element={<InstitutionView />} />
+            <Route
+              path="institutions/create-institution"
+              element={<CreateInstitutionView />}
+            />
+            <Route
+              path="institutions/edit-institution"
+              element={<EditInstitutionView />}
+            />
+            <Route
+              path="institutions/view-institution"
+              element={<OneInstitutionView />}
+            />
+
+            {/* <Route
+              path="institutions/view-institution/:id"
+              element={<OneInstitutionView />}
+            /> */}
+            {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
+            {/* <Route
+            path="institutions/delete-institution"
+            element={<DeleteInstitutionView />}
+          /> */}
+            {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
+            <Route path="users/create-user" element={<CreateUserView />} />
+            <Route path="users/edit-user" element={<EditUserView />} />
+            {/* <Route path="users/view-user" element={<ViewUser />} /> */}
+            <Route
+              path="products/create-product"
+              element={<CreateProductView />}
+            />
+            <Route path="products/view-product" element={<ViewProductView />} />
+            <Route path="products" element={<ProductView />} />
+            <Route path="users" element={<AllUserView />} />
+            <Route
+              path="accounts/daily-utilization"
+              element={<AccountUtilizationView />}
+            />
+            <Route
+              path="reports/transactions"
+              element={<TransactionsReportView />}
+            />
+
+            <Route path="reports/api-usage" element={<ApiReportView />} />
+          </Route>
+        </Route>
+        {/* <Route
+          path="ce-id"
+          element={(
+            <ProtectedRoutes
+              redirectPath="/dashboard"
+              isAllowed={!!user && user.role.includes('admin')}
+            >
+              <CE_ID />
+            </ProtectedRoutes>
+          )}
+        />
+        <Route
+          path="profile"
+          element={(
+            <ProtectedRoutes
+              redirectPath="/dashboard"
+              isAllowed={!!user && user.roles.includes('admin')}
+            >
+              <Profile />
+            </ProtectedRoutes>
+          )}
+        /> */}
+
+        {/* <Route path="/sign-in" element={<LoginView />} /> */}
+
         {/* <Route
           path="/dashboard"
           element={<MainLayout />}
         > */}
-        <Route element={<MainLayout />}>
-          {/* <Route index element={<DashboardView />} /> */}
-          <Route path="dashboard" element={<DashboardView />} />
-          <Route path="institutions" element={<InstitutionView />} />
-          <Route
-            path="institutions/create-institution"
-            element={<CreateInstitutionView />}
-          />
-          <Route
-            path="institutions/edit-institution"
-            element={<EditInstitutionView />}
-          />
-          <Route
-            path="institutions/view-institution"
-            element={<ViewInstitutionView />}
-          />
-          {/* <Route path="edit-institution/:id" element={<ViewInstitutionView />} /> */}
-          {/* <Route
-            path="institutions/delete-institution"
-            element={<DeleteInstitutionView />}
-          /> */}
-          {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
-          <Route path="users/create-user" element={<CreateUserView />} />
-          <Route path="users/edit-user" element={<EditUserView />} />
-          <Route
-            path="products/create-product"
-            element={<CreateProductView />}
-          />
-          <Route path="products/view-product" element={<ViewProductView />} />
-          <Route path="products" element={<ProductView />} />
-          <Route path="users" element={<AllUserView />} />
-          <Route
-            path="accounts/daily-utilization"
-            element={<AccountUtilizationView />}
-          />
-          <Route
-            path="reports/transactions"
-            element={<TransactionsReportView />}
-          />
-
-          <Route path="reports/api-usage" element={<ApiReportView />} />
-        </Route>
 
         {/* <Route
             path="institutions/create-institution"
@@ -277,9 +298,13 @@ const MainRoutes = () => {
         <Route
           path="*"
           element={(
-            <h1 className="flex flex-col items-center justify-center">
-              There&apos;s nothing here: 404!
-            </h1>
+            <div className="flex flex-col justify-center items-center h-screen">
+              <h1 className="heading flex flex-row items-center justify-center">
+                <span className="text-8xl">404!:</span>
+                {' '}
+                There&apos;s nothing here
+              </h1>
+            </div>
           )}
         />
         {/* <Route path="/dashboard" element={<ProtectedLayout />}>

@@ -4,21 +4,34 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useFormik, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { nanoid } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 import SidebarNav from '../../../components/sideBarNav/sidebar-nav';
 import SupportButton from '../../../components/support/support';
+import { useStateContext } from '../../../contexts/ContextProvider';
 import {
   selectAllUsers,
   getUserStatus,
   getUserError,
   getAllUsers,
   createUser,
+  selectUserByUserId,
+  updateUser,
 } from '../../../redux/features/userSlice';
+
+import {
+  getInstitution,
+  selectAllInstitutions,
+  // getInstitutionStatus,
+  // getInstitutionError,
+  // enableDisableInstitution,
+  // searchInstitution,
+} from '../../../redux/features/institutionSlice';
 // import './createInstituiton.css';
 
 const CreateUser = () => {
@@ -26,9 +39,25 @@ const CreateUser = () => {
   const [createRequestStatus, setCreateRequestStatus] = useState('idle');
   const [enabled, setEnabled] = useState(false);
   const navigate = useNavigate();
+  const { getUserByUserId } = useStateContext();
+
+  const singleUser = useSelector((state) => selectUserByUserId(state, getUserByUserId));
+  const institution = useSelector(selectAllInstitutions);
+
+  const optionData = institution.map((institution) => <option key={institution.id} value={institution.name} label={institution.name} />);
+
+  // console.log(institution);
+
+  // console.log(singleUser);
+
+  // getUserByUserId,
+  //       setGetUserByUserId,
 
   const dispatch = useDispatch();
   const allUsers = useSelector(selectAllUsers);
+
+  const userStatus = useSelector(getUserStatus);
+  const userError = useSelector(getUserError);
 
   // const handleCreateInstitution = (value) => {
   //   dispatch(createInstitution({ value }));
@@ -36,7 +65,7 @@ const CreateUser = () => {
 
   const validate = (value) => {
     const errors = {};
-    if (!value.notificationEmail) {
+    if (!value.email) {
       errors.email = 'Cannot be blank';
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)
@@ -61,39 +90,66 @@ const CreateUser = () => {
 
   const formic = useFormik({
     initialValues: {
-      first_name: '',
-      last_name: '',
+      first_name: singleUser.othernames,
+      last_name: singleUser.lastname,
       phone: '',
-      institution: '',
-      email: '',
-      role: '',
+      institution: singleUser.institutionCode,
+      email: singleUser.email,
+      role: singleUser.roleCode,
     },
     validate,
     onSubmit: (values, { resetForm }) => {
+      const othernames = values.first_name;
+      const lastname = values.last_name;
+      const { email } = values;
+      const { roleCode } = values;
+      const phoneNumber = values.phone;
+
+      const userData = {
+        email,
+        othernames,
+        roleCode,
+        phoneNumber,
+        lastname,
+      };
       // alert(
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
       // console.log(values);
-      resetForm(values);
+      dispatch(updateUser(userData));
+      setTimeout(() => {
+        navigate('/users');
+      }, 3200);
+      // resetForm(values);
     },
   });
 
   const { getFieldProps, setSubmitting } = formic;
 
-  const handleSubmit = () => {
-    console.log('formic.values', formic.values);
-    dispatch(
-      createUser({
-        id: nanoid(),
-        ...formic.values,
-      }),
-    ).unwrap();
-    setSubmitting(false);
+  useEffect(() => {
+    if (formic.isValid && userStatus === 'idle') {
+      navigate('/users');
+      dispatch(getAllUsers());
+    }
 
-    // .then(() => {
-    //   // navigate('/institutions');
-    // });
-  };
+    if (userError) {
+      toast.error('editing failed');
+      // navigate('/users');
+    }
+
+    // dispatch(getAllUsers());
+  }, [userStatus, navigate, dispatch]);
+
+  // const handleSubmit = () => {
+  //   console.log('formic.values', formic.values);
+  //   dispatch(
+  //     createUser({
+  //       id: nanoid(),
+  //       ...formic.values,
+  //     }),
+  //   ).unwrap();
+  //   setSubmitting(false);
+  // };
 
   const canCreate = formic.isValid && createRequestStatus === 'idle';
 
@@ -151,7 +207,7 @@ const CreateUser = () => {
   //   }
   // };
 
-  console.log(formic.values);
+  // console.log(formic.values);
 
   return (
     <>
@@ -306,12 +362,7 @@ const CreateUser = () => {
                     <option value="" label="Select Institution">
                       Select Institution
                     </option>
-                    <option value="PrePaid" label=" PrePaid">
-                      PrePaid
-                    </option>
-                    <option value="PostPaid" label="PostPaid">
-                      PostPaid
-                    </option>
+                    {optionData}
                   </select>
                 </div>
 
@@ -355,16 +406,17 @@ const CreateUser = () => {
                       type="submit"
                       disabled={formic.isSubmitting}
                       // onClick={handleSaveInstitution()}
-                      onClick={handleSubmit}
+                      // onClick={handleSubmit}
                     >
                       {formic.isSubmitting ? 'Please wait...' : 'Update User'}
                     </button>
-                    <button
+                    <Link
+                      to="/users"
                       className="bg-white text-gray-500 focus:outline-none py-2 px-6 ml-5 rounded-md border border-gray-200"
                       type="submit"
                     >
                       Cancel
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

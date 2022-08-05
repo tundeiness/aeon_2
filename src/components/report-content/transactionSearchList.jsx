@@ -17,7 +17,7 @@ import { CalendarElement } from '../../data/Dummy';
 import NoData from '../Nodata/NoData';
 import SupportButton from '../support/support';
 import { useStateContext } from '../../contexts/ContextProvider';
-import DeleteModal from '../Modal/DeleteModal/DeleteModal';
+import ActivateDeactivateInstitutionModal from '../Modal/ActivateDeactivateInstitutionModal/ActivateDeactivateInstitutionModal';
 import {
   SearchButtonUtilization,
   ExportButton,
@@ -365,7 +365,10 @@ const TransactionSearchList = () => {
           </div>
         </section>
       </article>
-      <DeleteModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
+      <ActivateDeactivateInstitutionModal
+        handleClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+      />
     </>
   );
 };
