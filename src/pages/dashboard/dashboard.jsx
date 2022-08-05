@@ -25,9 +25,9 @@ import { getInstitution, deleteInstitution } from '../../redux/features/institut
 import {
   getConnection, getConnectionStatus, getConnectionError, selectAllConnections,
 } from '../../redux/features/connectionSlice';
-import {
-  setUserUpdate,
-} from '../../redux/features/userSlice';
+// import {
+//   setUserUpdate,
+// } from '../../redux/features/userSlice';
 import './dashboard.css';
 
 const Dashboard = () => {
