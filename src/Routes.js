@@ -168,7 +168,7 @@ const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 // const { isLoggedIn } = useStateContext();
 
 const CreateInstitutionView = lazy(() => import('./pages/institutions/create-instituition/create-institution'));
-const ViewInstitutionView = lazy(() => import('./pages/institutions/view-institution/view-institution'));
+// const ViewInstitutionView = lazy(() => import('./pages/institutions/view-institution/view-institution'));
 const ProductView = lazy(() => import('./pages/products/products'));
 const CreateProductView = lazy(() => import('./pages/products/create-product/create-product'));
 const EditInstitutionView = lazy(() => import('./pages/institutions/update-institution/update-institution'));
@@ -309,9 +309,13 @@ const MainRoutes = () => {
         <Route
           path="*"
           element={(
-            <h1 className="flex flex-col items-center justify-center">
-              There&apos;s nothing here: 404!
-            </h1>
+            <div className="flex flex-col justify-center items-center h-screen">
+              <h1 className="heading flex flex-row items-center justify-center">
+                <span className="text-8xl">404!:</span>
+                {' '}
+                There&apos;s nothing here
+              </h1>
+            </div>
           )}
         />
         {/* <Route path="/dashboard" element={<ProtectedLayout />}>
