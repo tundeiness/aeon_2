@@ -250,6 +250,7 @@ const MainRoutes = () => {
             <Route path="ce-id/credit-report" element={<CreditReport />} />
             <Route path="ce-id/ocr" element={<OCR />} />
             <Route path="/ce-id/business-name" element={<BusinessSearch />} />
+            <Route path="ce-id/identity-check" element={<IdentityCheck />} />
           </Route>
         </Route>
         {/* <Route
