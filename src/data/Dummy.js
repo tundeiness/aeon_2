@@ -233,30 +233,30 @@ export const SideBarData = [
         path: '/ce-id/ocr',
         icon: <GoPrimitiveDot />,
       },
-      {
-        title: 'Business-Name',
-        path: '/ce-id/business-name',
-      },
-      {
-        title: 'KYC',
-        path: '/ce-id/kyc',
-        icon: <GoPrimitiveDot />,
-      },
-      {
-        title: 'Bank Statement',
-        path: '/ce-id/statement',
-        icon: <GoPrimitiveDot />,
-      },
-      {
-        title: 'Credit Report',
-        path: '/ce-id/report',
-        icon: <GoPrimitiveDot />,
-      },
-      {
-        title: 'OCR',
-        path: '/ce-id/ocr',
-        icon: <GoPrimitiveDot />,
-      },
+      // {
+      //   title: 'Business-Name',
+      //   path: '/ce-id/business-name',
+      // },
+      // {
+      //   title: 'KYC',
+      //   path: '/ce-id/kyc',
+      //   icon: <GoPrimitiveDot />,
+      // },
+      // {
+      //   title: 'Bank Statement',
+      //   path: '/ce-id/statement',
+      //   icon: <GoPrimitiveDot />,
+      // },
+      // {
+      //   title: 'Credit Report',
+      //   path: '/ce-id/report',
+      //   icon: <GoPrimitiveDot />,
+      // },
+      // {
+      //   title: 'OCR',
+      //   path: '/ce-id/ocr',
+      //   icon: <GoPrimitiveDot />,
+      // },
     ],
   },
   {
