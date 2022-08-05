@@ -154,20 +154,9 @@ const ForgotPasswordView = lazy(() => import('./pages/forgot-password/forgot-pas
 const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
 const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
 const ResetPasswordView = lazy(() => import('./pages/reset-password/reset-password'));
-// const LayoutView = lazy(() => import('./pages/layout/Layout'));
 const DashboardView = lazy(() => import('./pages/dashboard/dashboard'));
-// const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
-// const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
-// const InstitutionView = lazy(() => import('./pages/layout/institutions/institutions'));
 const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
-// const DeleteInstitutionView = lazy(() => import('./pages/layout/institutions/deleteInstitution/DeleteInstitution'));
-// const CreateInstitution = lazy(() => import('./pages/layout/institutions/create-instituition/create-institution'));
-// const ProductsView = lazy(() => import('./pages/layout/products/products'));
-
-// const { isLoggedIn } = useStateContext();
-
 const CreateInstitutionView = lazy(() => import('./pages/institutions/create-instituition/create-institution'));
-// const ViewInstitutionView = lazy(() => import('./pages/institutions/view-institution/view-institution'));
 const ProductView = lazy(() => import('./pages/products/products'));
 const CreateProductView = lazy(() => import('./pages/products/create-product/create-product'));
 const EditInstitutionView = lazy(() => import('./pages/institutions/update-institution/update-institution'));
