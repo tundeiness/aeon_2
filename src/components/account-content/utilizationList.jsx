@@ -43,11 +43,13 @@ const UtilizationList = () => {
   // const [mockData, setMockData] = useState(institution[0]);
 
   const utilizationPayload = useSelector(dailyInstitutionUtilization);
-  const { data } = utilizationPayload;
+  const wholeData = utilizationPayload?.data;
+  // const { data } = utilizationPayload;
   // console.log(data);
-  const { dailtyReports } = data;
-
-  console.log(dailtyReports);
+  // const { dailtyReports } = data;
+  const reports = wholeData?.dailtyReports;
+  // const [searchData, setSearchData] = useState(data.dailtyReports);
+  // console.log(dailtyReports);
 
   const [pageNum, setPageNum] = useState(0);
   const dispatch = useDispatch();
@@ -66,8 +68,7 @@ const UtilizationList = () => {
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = dailtyReports
-    .slice(dataPageVisited, dataPageVisited + dataPerPage)
+  const displayData = reports?.slice(dataPageVisited, dataPageVisited + dataPerPage)
     .map((datum, idx) => (
       // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
       <tr key={uuidv4()}>
@@ -100,7 +101,7 @@ const UtilizationList = () => {
       </tr>
     ));
 
-  const pagingCount = Math.ceil(dailtyReports?.length / dataPerPage);
+  const pagingCount = Math.ceil(reports?.length / dataPerPage);
 
   const changePage = ({ selected }) => {
     setPageNum(selected);
@@ -146,7 +147,7 @@ const UtilizationList = () => {
                 TOTAL WALLET BALANCE
               </h2>
               <p className="text-buttonTwo font-semibold text-4xl">
-                {data.grandBalance}
+                {wholeData?.grandBalance ? wholeData?.grandBalance : 0}
                 {' '}
                 NGN
               </p>
@@ -183,15 +184,16 @@ const UtilizationList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-300">
-                    {dailtyReports?.length > 0 ? (
-                      renderUtilization()
-                    ) : (
-                      <NoData />
-                    )}
+                    {reports?.length > 0
+                    || reports === undefined ? (
+                        renderUtilization()
+                      ) : (
+                        <NoData />
+                      )}
                   </tbody>
                 </table>
               </div>
-              {dailtyReports?.length > 0 ? (
+              {reports?.length > 0 || reports === undefined ? (
                 <ReactPaginate
                   previousLabel="Previous"
                   nextLabel="Next"
