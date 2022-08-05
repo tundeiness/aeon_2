@@ -57,7 +57,7 @@ const ActivateDeactivateProductModal = ({ isOpen, handleClose }) => {
                     {DangerIcon.symbol}
                   </span>
                 ) : (
-                  <span className="flex justify-center items-center w-9 h-9 text-3xl text-green-700 rounded-3xl bg-red-200">
+                  <span className="flex justify-center items-center w-9 h-9 text-3xl text-green-700 rounded-3xl bg-green-200">
                     {CircleCheckIcon.symbol}
                   </span>
                 )}
