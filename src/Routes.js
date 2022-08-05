@@ -156,6 +156,11 @@ const CheckEmailView = lazy(() => import('./pages/check-email/check-email'));
 const NewPasswordView = lazy(() => import('./pages/new-password/new-password'));
 const ResetPasswordView = lazy(() => import('./pages/reset-password/reset-password'));
 const DashboardView = lazy(() => import('./pages/dashboard/dashboard'));
+const CEID = lazy(() => import('./pages/ceid/CEID'));
+const CreditReport = lazy(() => import('./pages/ceid/credit-report'));
+const OCR = lazy(() => import('./pages/ceid/ocr'));
+const BusinessSearch = lazy(() => import('./pages/ceid/business-name'));
+const IdentityCheck = lazy(() => import('./pages/ceid/identity-check'));
 const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
 const CreateInstitutionView = lazy(() => import('./pages/institutions/create-instituition/create-institution'));
 const ProductView = lazy(() => import('./pages/products/products'));
@@ -241,6 +246,10 @@ const MainRoutes = () => {
             />
 
             <Route path="reports/api-usage" element={<ApiReportView />} />
+            <Route path="ce-id" element={<CEID />} />
+            <Route path="ce-id/credit-report" element={<CreditReport />} />
+            <Route path="ce-id/ocr" element={<OCR />} />
+            <Route path="/ce-id/business-name" element={<BusinessSearch />} />
           </Route>
         </Route>
         {/* <Route
@@ -302,7 +311,8 @@ const MainRoutes = () => {
               <h1 className="heading flex flex-row items-center justify-center">
                 <span className="text-8xl">404!:</span>
                 {' '}
-                There&apos;s nothing here
+                There&apos;s nothing
+                here
               </h1>
             </div>
           )}
