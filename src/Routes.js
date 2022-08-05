@@ -182,7 +182,15 @@ const MainRoutes = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   // console.log(testUser.userId);
   return (
-    <Suspense fallback={<PageLoader />}>
+    <Suspense
+      fallback={(
+        <div className="flex flex-col justify-center items-center h-screen">
+          <h1 className="heading flex flex-row items-center justify-center">
+            Loading ...
+          </h1>
+        </div>
+      )}
+    >
       <Routes>
         {/* <Route element={<HomeLayout />}>
         <Route path="/" element={<HomePage />} />
