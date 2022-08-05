@@ -5,6 +5,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const SIGN_IN = 'http://13.59.94.46/aeon/api/v1/SignIn';
 const GET_ALL_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
 const NEW_USER_URL = 'http://13.59.94.46/aeon/api/v1/GetUsers';
 const UPDATE_USER_URL = 'http://13.59.94.46/aeon/api/v1/EditUser';
@@ -74,6 +75,64 @@ export const updateUser = createAsyncThunk(
   },
 );
 
+export const signIn = createAsyncThunk(
+  'user/signIn',
+  async ({ initialInstitution }, thunkAPI) => {
+    const {
+      id,
+      name,
+      rcNumber,
+      address,
+      phone,
+      websiteUrl,
+      category,
+      noOfCalls,
+      threshold,
+      documentation,
+      description,
+      notificationEmail,
+      microservices,
+    } = initialInstitution;
+
+    const institutionData = {
+      id,
+      name,
+      rcNumber,
+      address,
+      phone,
+      websiteUrl,
+      category,
+      noOfCalls,
+      threshold,
+      documentation,
+      description,
+      notificationEmail,
+      microservices,
+    };
+
+    // const token = thunkAPI.getState().auth.user.token;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const response = await axios.post(
+        NEW_INSTITUTION_URL,
+        {
+          institution: institutionData,
+        },
+        config,
+      );
+      // dispatch({ payload: institutionData });
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
 export const getUsers = createAsyncThunk('user/getUsers', async () => fetch('http://13.59.94.46/aeon/api/v1/GetUsers').then((res) => res.json()));
 
 export const getActiveUsers = createAsyncThunk('user/getActiveUsers', async () => fetch('http://13.59.94.46/aeon/api/v1/GetActiveUser').then((res) => res.json()));
@@ -105,14 +164,6 @@ const initialState = {
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  // initialState: {
-  //   userInfo: {
-  //     name: 'john',
-  //     email: 'john@rocketmail.com',
-  //   },
-  //   pending: false,
-  //   error: false,
-  // },
   reducers: {
     setuserUpdate: (state, action) => {
       state.name = action.payload.name;

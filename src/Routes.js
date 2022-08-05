@@ -183,6 +183,8 @@ const AllUserView = lazy(() => import('./pages/users/User'));
 const CreateUserView = lazy(() => import('./pages/users/create-user/create-user'));
 const EditUserView = lazy(() => import('./pages/users/edit-user/edit-user'));
 const AccountUtilizationView = lazy(() => import('./pages/accounts/daily-utilization'));
+const TransactionsReportView = lazy(() => import('./pages/reports/transactions'));
+const ApiReportView = lazy(() => import('./pages/reports/api-usage'));
 
 const MainRoutes = () => {
   // const location = useLocation();
@@ -195,8 +197,9 @@ const MainRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
       </Route> */}
-        <Route index element={<LoginView />} />
-        <Route path="/sign-in" element={<LoginView />} />
+        {/* <Route index element={<LoginView />} /> */}
+        <Route path="/" element={<LoginView />} />
+        {/* <Route path="/sign-in" element={<LoginView />} /> */}
         <Route path="reset-password" element={<ResetPasswordView />} />
         <Route path="new-password" element={<NewPasswordView />} />
         <Route path="forgot-password" element={<ForgotPasswordView />} />
@@ -207,7 +210,7 @@ const MainRoutes = () => {
           element={<MainLayout />}
         > */}
         <Route element={<MainLayout />}>
-          <Route index element={<DashboardView />} />
+          {/* <Route index element={<DashboardView />} /> */}
           <Route path="dashboard" element={<DashboardView />} />
           <Route path="institutions" element={<InstitutionView />} />
           <Route
@@ -228,24 +231,25 @@ const MainRoutes = () => {
             element={<DeleteInstitutionView />}
           /> */}
           {/* <Route path="/institution/:id" component={InstitutionDetails} /> */}
-
           <Route path="users/create-user" element={<CreateUserView />} />
-
           <Route path="users/edit-user" element={<EditUserView />} />
-
           <Route
             path="products/create-product"
             element={<CreateProductView />}
           />
           <Route path="products/view-product" element={<ViewProductView />} />
           <Route path="products" element={<ProductView />} />
-
           <Route path="users" element={<AllUserView />} />
-          <Route path="ce-id" element={<CEID />} />
-          <Route path="ce-id/credit-report" element={<CreditReport />} />
-          <Route path="ce-id/ocr" element={<OCR />} />
-          <Route path="/ce-id/business-name" element={<BusinessSearch />} />
-          {/* <Route path="ce-id/identity-check" element={<IdentityCheck />} /> */}
+          <Route
+            path="accounts/daily-utilization"
+            element={<AccountUtilizationView />}
+          />
+          <Route
+            path="reports/transactions"
+            element={<TransactionsReportView />}
+          />
+
+          <Route path="reports/api-usage" element={<ApiReportView />} />
         </Route>
 
         {/* <Route

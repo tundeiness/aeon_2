@@ -56,6 +56,7 @@ import { AiOutlineIdcard } from 'react-icons/ai';
 import { CgChevronDown } from 'react-icons/cg';
 import { FaRegThumbsUp, FaRegCheckCircle } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
+import CountUp from 'react-countup';
 import VendorStatus from '../../components/vendorStatus/VendorStatus';
 import BarChart from '../../components/charts/Charts';
 import GuageChart from '../../components/charts/Donut';
@@ -125,7 +126,7 @@ const Dashboard = () => {
                 </h5>
                 <div className="content-wrap flex justify-between items-center mt-8">
                   <p className="inline-block text-white text-4xl font-semibold">
-                    3,010
+                    <CountUp end={3010} duration={5} />
                   </p>
                   <FaRegThumbsUp className="text-white text-4xl font-semibold" />
                 </div>
@@ -137,7 +138,7 @@ const Dashboard = () => {
                 </h5>
                 <div className="content-wrap flex justify-between items-center mt-8">
                   <p className="inline-block text-gray-900 text-4xl font-semibold">
-                    3,000
+                    <CountUp end={3000} duration={5} />
                   </p>
                   <FaRegCheckCircle className="text-gray-900 text-4xl font-semibold" />
                 </div>
@@ -149,7 +150,7 @@ const Dashboard = () => {
                 </h5>
                 <div className="content-wrap flex justify-between items-center mt-8">
                   <p className="inline-block text-gray-900 text-4xl font-semibold">
-                    10
+                    <CountUp end={10} duration={5} />
                   </p>
                   <BiXCircle className="text-gray-900 text-4xl font-semibold" />
                 </div>
@@ -161,7 +162,7 @@ const Dashboard = () => {
                 </h5>
                 <div className="content-wrap flex justify-between items-center mt-8">
                   <p className="inline-block text-white text-4xl font-semibold">
-                    100%
+                    <CountUp end={100} duration={5} suffix="%" />
                   </p>
                   <BsPatchCheck className="text-white text-4xl font-semibold" />
                 </div>
@@ -226,7 +227,9 @@ const Dashboard = () => {
                   <option>Mar</option>
                 </select>
               </div>
-              <p className="py-3">No. of successful and Failed API calls made</p>
+              <p className="py-3">
+                No. of successful and Failed API calls made
+              </p>
               <div>
                 {' '}
                 <BarChart />
@@ -237,7 +240,9 @@ const Dashboard = () => {
               <div className="flex justify-center">
                 <p className="uppercase inline-block">credequity</p>
               </div>
-              <p className="cut-out-label absolute left-36 bottom-24 font-normal">API Calls</p>
+              <p className="cut-out-label absolute left-36 bottom-24 font-normal">
+                API Calls
+              </p>
               <GuageChart />
             </div>
           </div>

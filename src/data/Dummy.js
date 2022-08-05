@@ -15,10 +15,12 @@ import { RiDeleteBinLine, RiCheckboxIndeterminateLine } from 'react-icons/ri';
 import { BiHomeAlt, BiFile, BiPlus } from 'react-icons/bi';
 import { ImStack } from 'react-icons/im';
 import { MdLogout, MdOutlineIndeterminateCheckBox } from 'react-icons/md';
-import { AiOutlineIdcard } from 'react-icons/ai';
+import { AiOutlineIdcard, AiOutlineCalendar } from 'react-icons/ai';
 import { IoWarningOutline } from 'react-icons/io5';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { HiOutlineEye } from 'react-icons/hi';
+
+import { logout } from '../redux/features/auth/authSlice';
 
 export const Dummy = () => {
   const test = 0;
@@ -26,6 +28,20 @@ export const Dummy = () => {
     <div>dummy</div>
   );
 };
+
+export const SearchElement = () => (
+  <>
+    {' '}
+    <FiSearch />
+  </>
+);
+
+export const CalendarElement = () => (
+  <span className="inline-block absolute top-10 left-3 z-10">
+    {' '}
+    <AiOutlineCalendar />
+  </span>
+);
 
 export const DangerIcon = {
   title: 'Danger',
@@ -223,9 +239,16 @@ export const SideBarData = [
     //   },
     // ],
   },
-  {
-    title: 'Log Out',
-    path: '/log-out',
-    icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
-  },
+  // {
+  //   title: 'Log Out',
+  //   path: '/',
+  //   icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
+  //   path2: () => {
+  //     const dispatch = useDispatch();
+  //     const navigate = useNavigate();
+
+  //     dispatch(logout());
+  //     navigate('/');
+  //   },
+  // },
 ];
