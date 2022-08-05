@@ -137,7 +137,6 @@ import { useAuth } from './components/auth';
 
 // export default routes;
 
-import { useStateContext } from './contexts/ContextProvider';
 import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
 
 // import AuthLayout from './layouts/AuthLayout';
