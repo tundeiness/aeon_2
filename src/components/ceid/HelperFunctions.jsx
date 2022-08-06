@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-unused-vars */
 /* eslint-disable prefer-template */
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/button-has-type */
@@ -12,9 +14,11 @@ import { AiOutlineLeft, AiOutlineCloudUpload, AiOutlineFileImage } from 'react-i
 import { FiFeather } from 'react-icons/fi';
 import { IoIosArrowUp } from 'react-icons/io';
 import React, { useState, useRef } from 'react';
+import { useFormik, ErrorMessage } from 'formik';
 import SupportButton from '../support/support';
 import time from '../../static/assets/img/time.svg';
 import userimage from '../../static/assets/img/userimage.svg';
+import { SearchButton } from '../Buttons/buttonCollections';
 // import ReactPortal from '../ReactPortal/ReactPortal';
 
 export const Title = (props) => {
@@ -105,75 +109,220 @@ export function IdentityCheckResult({ GoBack }) {
     </>
   );
 }
-export function IdentityCheck() {
+
+export const IdentityCheck = () => {
   const [result, setResult] = useState(true);
   // const [title, setTitle] = useState('Identity Check');
   const title = result ? 'Identity Check' : 'Identity Check Result';
+
   const HandleChange = () => {
     setResult(false);
     // if (result === true) setTitle('Identity Check');
     // setTitle('Identity Check Result');
   };
+
+  const validate = (value) => {
+    const errors = {};
+    // if (!value.notificationEmail) {
+    //   errors.notificationEmail = 'Cannot be blank';
+    // } else if (
+    //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.notificationEmail)
+    // ) {
+    //   errors.notificationEmail = 'Invalid email format';
+    // }
+
+    if (!value.phoneNumber) {
+      errors.phoneNumber = 'phone number cannot be blank';
+    }
+
+    if (!value.bvn) {
+      errors.bvn = 'bvn cannot be blank';
+    }
+
+    if (!value.driverLicense) {
+      errors.driverLicense = 'License cannot be blank';
+    }
+
+    if (!value.nin) {
+      errors.nin = 'NIN cannot be blank';
+    }
+
+    return errors;
+  };
+
+  const formic = useFormik({
+    initialValues: {
+      phoneNumber: '',
+      bvn: '',
+      driverLicense: '',
+      nin: '',
+    },
+    validate,
+    onSubmit: (values, { resetForm }) => {
+      // dispatch(createInstitution({ id: nanoid(), ...values }));
+      // resetForm(values);
+      // setTimeout(() => {
+      //   navigate('/institutions');
+      // }, 3200);
+      // formic.setSubmitting(false);
+    },
+  });
   return (
     <article className="w-4/5 ml-auto">
       <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
         <div className="institution-wrapper p-8 h-full bg-white rounded-tl-3xl rounded-bl-3xl">
           <Title title={title} />
           <CardLayout>
-            {
-              result ? (
-                <>
-                  <h1 className="font-bold text-black"> Terms of use</h1>
-                  <p className="text-sm mt-2">
-                    {' '}
-                    I have consent from the owner of the details I
-                    provide below to fetch and display their
-                    data for identity verification.
-                    {' '}
-
-                  </p>
-                  <form>
-                    <div className="mt-2">
-                      <input
-                        type="checkbox"
-                        id="scales"
-                        name="terms"
-                      />
-                      <label htmlFor="terms" className="text-sm mt-2"> I agree to the terms outlined above.</label>
+            {result ? (
+              <>
+                <h1 className="font-bold text-black"> Terms of use</h1>
+                <p className="text-sm mt-2">
+                  {' '}
+                  I have consent from the owner of the details I provide below
+                  to fetch and display their data for identity verification.
+                  {' '}
+                </p>
+                <form>
+                  <div className="mt-2">
+                    <input type="checkbox" id="scales" name="terms" />
+                    <label htmlFor="terms" className="text-sm mt-2">
+                      {' '}
+                      I agree to the terms outlined above.
+                    </label>
+                  </div>
+                  <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
+                    <div className="flex flex-col pb-4">
+                      <label
+                        htmlFor="phoneNumber"
+                        className="flex flex-col font-medium"
+                      >
+                        {' '}
+                        Phone Number:
+                        <input
+                          type="text"
+                          className={`bg-white p-2 w-1/2 border-2 mt-2 rounded focus:bg-white ${
+                            formic.phoneNumber && formic.errors.phoneNumber
+                              ? 'border-red-400'
+                              : 'border-gray-200'
+                          }`}
+                          onChange={formic.handleChange}
+                          onBlur={formic.handleBlur}
+                          value={formic.values.phoneNumber}
+                          id="phoneNumber"
+                          {...formic.getFieldProps('phoneNumber')}
+                        />
+                        {formic.touched.phoneNumber
+                          && formic.errors.phoneNumber && (
+                            <span className="text-red-300 text-xs">
+                              {formic.errors.phoneNumber}
+                            </span>
+                        )}
+                      </label>
                     </div>
-                    <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
-                      <div className="flex flex-col">
-                        <label htmlFor="phoneNumber" className="font-medium"> Phone Number:</label>
-                        <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-                      </div>
-                      <div className="flex flex-col">
-                        <label htmlFor="bvn" className="font-medium"> BVN:</label>
-                        <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-                      </div>
-                      <div className="flex flex-col">
-                        <label htmlFor="nin" className="font-medium"> NIN:</label>
-                        <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-                      </div>
-                      <div className="flex flex-col">
-
-                        <label htmlFor="nin" className="font-medium"> Driver's License:</label>
-                        <input type="text" className="bg-white p-2 w-1/2 border-2 mt-2 rounded" />
-                      </div>
-                      <button onClick={HandleChange} type="submit" className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4">
-                        Search
-                      </button>
+                    <div className="flex flex-col pb-4">
+                      <label
+                        htmlFor="bvn"
+                        className="flex flex-col font-medium"
+                      >
+                        {' '}
+                        BVN:
+                        <input
+                          type="text"
+                          className={`bg-white p-2 w-1/2 border-2 mt-2 rounded focus:bg-white ${
+                            formic.bvn && formic.errors.bvn
+                              ? 'border-red-400'
+                              : 'border-gray-200'
+                          }`}
+                          onChange={formic.handleChange}
+                          onBlur={formic.handleBlur}
+                          value={formic.values.bvn}
+                          id="bvn"
+                          {...formic.getFieldProps('bvn')}
+                        />
+                        {formic.touched.bvn && formic.errors.bvn && (
+                          <span className="text-red-300 text-xs">
+                            {formic.errors.bvn}
+                          </span>
+                        )}
+                      </label>
                     </div>
-
-                  </form>
-                </>
-              ) : <IdentityCheckResult GoBack={() => setResult(true)} />
-            }
+                    <div className="flex flex-col pb-4">
+                      <label
+                        htmlFor="nin"
+                        className="flex flex-col font-medium"
+                      >
+                        {' '}
+                        NIN:
+                        <input
+                          type="text"
+                          className={`bg-white p-2 w-1/2 border-2 mt-2 rounded focus:bg-white ${
+                            formic.nin && formic.errors.nin
+                              ? 'border-red-400'
+                              : 'border-gray-200'
+                          }`}
+                          onChange={formic.handleChange}
+                          onBlur={formic.handleBlur}
+                          value={formic.values.nin}
+                          id="nin"
+                          {...formic.getFieldProps('nin')}
+                        />
+                        {formic.touched.nin && formic.errors.nin && (
+                          <span className="text-red-300 text-xs">
+                            {formic.errors.nin}
+                          </span>
+                        )}
+                      </label>
+                    </div>
+                    <div className="flex flex-col pb-4">
+                      <label
+                        htmlFor="driverLicense"
+                        className="flex flex-col font-medium"
+                      >
+                        {' '}
+                        Driver's License:
+                        <input
+                          type="text"
+                          className={`bg-white p-2 w-1/2 border-2 mt-2 rounded focus:bg-white ${
+                            formic.driverLicense && formic.errors.driverLicense
+                              ? 'border-red-400'
+                              : 'border-gray-200'
+                          }`}
+                          onChange={formic.handleChange}
+                          onBlur={formic.handleBlur}
+                          value={formic.values.driverLicense}
+                          id="driverLicense"
+                          {...formic.getFieldProps('driverLicense')}
+                        />
+                        {formic.touched.driverLicense
+                          && formic.errors.driverLicense && (
+                            <span className="text-red-300 text-xs">
+                              {formic.errors.driverLicense}
+                            </span>
+                        )}
+                      </label>
+                    </div>
+                    {/* <button
+                      onClick={HandleChange}
+                      type="submit"
+                      className="border-2 w-1/4 rounded-lg mt-2 bg-blue-900 text-white p-4"
+                    >
+                      Search
+                    </button> */}
+                    <div className="w-1/3">
+                      <SearchButton onClick={HandleChange} />
+                    </div>
+                  </div>
+                </form>
+              </>
+            ) : (
+              <IdentityCheckResult GoBack={() => setResult(true)} />
+            )}
           </CardLayout>
         </div>
       </section>
     </article>
   );
-}
+};
 
 export function NinData() {
   return (
