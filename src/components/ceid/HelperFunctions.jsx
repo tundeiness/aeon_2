@@ -131,6 +131,15 @@ export const IdentityCheck = () => {
     //   errors.notificationEmail = 'Invalid email format';
     // }
 
+    // acceptTerms: Yup.bool().oneOf(
+    //   [true],
+    //   "Accept Terms & Conditions is required"
+    // );
+
+    if (!value.acceptTerms) {
+      errors.acceptTerms = 'Accept Terms & Conditions';
+    }
+
     if (!value.phoneNumber) {
       errors.phoneNumber = 'phone number cannot be blank';
     }
@@ -156,9 +165,11 @@ export const IdentityCheck = () => {
       bvn: '',
       driverLicense: '',
       nin: '',
+      acceptTerms: false,
     },
     validate,
     onSubmit: (values, { resetForm }) => {
+      console.log(values.acceptTerms);
       // dispatch(createInstitution({ id: nanoid(), ...values }));
       // resetForm(values);
       // setTimeout(() => {
@@ -167,6 +178,17 @@ export const IdentityCheck = () => {
       // formic.setSubmitting(false);
     },
   });
+
+  // const handleChange = (e) => {
+  //   const { checked } = e.target;
+  //   if (checked) {
+  //     formic.setFieldValue(true);
+  //   } else {
+  //     formic.setFieldValue(
+  //       false,
+  //     );
+  //   }
+  // };
   return (
     <article className="w-4/5 ml-auto">
       <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
@@ -182,12 +204,39 @@ export const IdentityCheck = () => {
                   to fetch and display their data for identity verification.
                   {' '}
                 </p>
-                <form>
+                <form onSubmit={formic.handleSubmit}>
                   <div className="mt-2">
-                    <input type="checkbox" id="scales" name="terms" />
-                    <label htmlFor="terms" className="text-sm mt-2">
+                    <label
+                      htmlFor="acceptTerms"
+                      className="text-sm mt-2 flex flex-row"
+                    >
                       {' '}
+                      <input
+                        type="checkbox"
+                        id="acceptTerms"
+                        name="acceptTerms"
+                        className="mr-2"
+                        // checked={formic.values.acceptTerms}
+                        onChange={formic.handleChange}
+                        // onChange={(e) => {
+                        //   formic.setFieldValue(e.target.checked);
+                        // }}
+                        value={formic.values.acceptTerms || false}
+                        // className={
+                        //   'form-check-input mr-2'
+                        //   + (formic.errors.acceptTerms
+                        //   && formic.touched.acceptTerms
+                        //     ? ' is-invalid'
+                        //     : '')
+                        // }
+                      />
                       I agree to the terms outlined above.
+                      {/* {formic.touched.acceptTerms
+                        && formic.errors.acceptTerms && (
+                          <span className="text-red-300 text-xs">
+                            {formic.errors.acceptTerms}
+                          </span>
+                      )} */}
                     </label>
                   </div>
                   <div className="rounded-lg w-11/12 h-75 mt-4 bg-[#F9F9F9] flex flex-col overflow-y-scroll p-8 shadow-md border-2">
