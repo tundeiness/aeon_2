@@ -1,10 +1,8 @@
 import React from 'react';
 import CeidComponent from '../../components/ceid/Ceid';
 
-function CEID() {
-  return (
-    <CeidComponent />
-  );
-}
+const CEID = () => (
+  <CeidComponent />
+);
 
 export default CEID;
