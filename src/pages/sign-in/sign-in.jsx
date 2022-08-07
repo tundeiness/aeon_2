@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import toast from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import AeonLogo from '../../static/assets/img/logo-blue.png';
 import LandingImage from '../../static/assets/img/landing-image.png';
 import LogoImage from '../../static/assets/img/logo-transparent.png';
@@ -58,6 +58,7 @@ const SignIn = () => {
     // some codes
     // const from = loc.state?.from?.pathname || '/';
     if (isSuccess || user) {
+      toast.success('successfully logged in');
       navigate('/dashboard');
     }
 
@@ -209,6 +210,7 @@ const SignIn = () => {
           <span className="uppercase inline-block pr-3">Credequity 2022</span>
         </footer>
       </main>
+      <Toaster position="top-center" />
     </>
   );
 };

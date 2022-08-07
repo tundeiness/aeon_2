@@ -121,8 +121,8 @@ export const IdentityCheck = () => {
     // setTitle('Identity Check Result');
   };
 
-  const checkRef = useRef(null);
-  console.log(checkRef.current.value);
+  // const checkRef = useRef(null);
+  // console.log(checkRef.current.value);
 
   const validate = (value) => {
     const errors = {};
@@ -182,6 +182,7 @@ export const IdentityCheck = () => {
     },
   });
 
+  console.log(formic.values.acceptTerms);
   // const handleChange = (e) => {
   //   const { checked } = e.target;
   //   if (checked) {
@@ -219,7 +220,7 @@ export const IdentityCheck = () => {
                         id="acceptTerms"
                         name="acceptTerms"
                         className="mr-2"
-                        ref={checkRef}
+                        // ref={checkRef}
                         // checked={formic.values.acceptTerms}
                         onChange={formic.handleChange}
                         // onChange={(e) => {
