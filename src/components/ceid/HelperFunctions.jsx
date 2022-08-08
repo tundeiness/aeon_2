@@ -378,7 +378,8 @@ export const IdentityCheck = () => {
   );
 };
 
-export function NinData() {
+export const NinData = () => {
+  const test = 0;
   return (
     <div className="flex w-full gap-20">
       <div className="w-1/4 flex flex-col justify-center">
@@ -536,9 +537,10 @@ export function NinData() {
       </div>
     </div>
   );
-}
+};
 
-export function FRSCData() {
+export const FRSCData = () => {
+  const test = 0;
   return (
     <div className="flex w-full gap-20">
       <div className="w-1/4 flex flex-col">
@@ -620,9 +622,10 @@ export function FRSCData() {
       </div>
     </div>
   );
-}
+};
 
-export function BvnData() {
+export const BvnData = () => {
+  const test = 0;
   return (
     <div className="flex w-full gap-20">
       <div className="w-1/4 flex flex-col">
@@ -689,9 +692,9 @@ export function BvnData() {
       </div>
     </div>
   );
-}
+};
 
-export function IdentityCheck2({ GoBack }) {
+export const IdentityCheck2 = ({ GoBack }) => {
   const [data, setData] = useState(true);
   return (
     <div>
@@ -732,9 +735,9 @@ export function IdentityCheck2({ GoBack }) {
       )}
     </div>
   );
-}
+};
 
-export function CreditReport() {
+export const CreditReport = () => {
   const [show, setShow] = useState(true);
   const title = show ? 'Credit Report' : 'Credit Report Result';
   // const title = result ? 'Identity Check' : 'Identity Check Result';
@@ -783,7 +786,7 @@ export function CreditReport() {
       </CardLayout>
     </CardBodyLayout>
   );
-}
+};
 
 const Data = () => (
   <>
@@ -1015,7 +1018,7 @@ const Performance = () => (
   </>
 );
 
-export function OCRUpload() {
+export const OCRUpload = () => {
   // const [per, setPer] = useState(0);
   const [fileName, setFileName] = useState('img.png');
   const [fileSize, setFileSize] = useState('2mb');
@@ -1122,9 +1125,9 @@ export function OCRUpload() {
       </CardLayout>
     </CardBodyLayout>
   );
-}
+};
 
-export function SearchResultTop(props) {
+export const SearchResultTop = (props) => {
   const {
     duration, result, buttonText, HandleBack,
   } = props;
@@ -1160,7 +1163,7 @@ export function SearchResultTop(props) {
 
     </>
   );
-}
+};
 
 export const BusinessSearchResult = ({ GoBack }) => (
   <>
@@ -1254,7 +1257,7 @@ export const BusinessSearchResult = ({ GoBack }) => (
   </>
 );
 
-export function BusinessSearch() {
+export const BusinessSearch = () => {
   const [check, setCheck] = useState(true);
   const title = check ? 'Business Search (CAC)' : 'Business Search Result';
   return (
@@ -1301,4 +1304,4 @@ export function BusinessSearch() {
       </CardLayout>
     </CardBodyLayout>
   );
-}
+};
