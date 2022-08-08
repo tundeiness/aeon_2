@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-template */
@@ -1037,7 +1038,7 @@ export const OCRUpload = () => {
     </div>
   );
 
-  function GetFile({ target }) {
+  const GetFile = ({ target }) => {
     setFile(target[0]);
     const filename = target.files[0].name;
     const filesize = target.files[0].size;
@@ -1051,7 +1052,7 @@ export const OCRUpload = () => {
     }
     setFileName(filename);
     setFileSize(filesize);
-  }
+  };
 
   console.log('SIZE', file);
   // console.log('FILE', file);
