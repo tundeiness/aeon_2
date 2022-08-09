@@ -27,6 +27,10 @@ const SignIn = () => {
       errors.email = 'Invalid email format';
     }
 
+    // if (!values.acceptTerms) {
+    //   errors.acceptTerms = 'Accept Terms & Conditions';
+    // }
+
     return errors;
   };
 
@@ -41,6 +45,7 @@ const SignIn = () => {
     initialValues: {
       email: '',
       password: '',
+      remember: false,
     },
     validate,
     onSubmit: (values, { resetForm }) => {
@@ -153,8 +158,11 @@ const SignIn = () => {
                     <div className="flex md:hidden flex-row">
                       <input
                         id="remember"
+                        name="remember"
                         className="remember-input mt-2 mr-2"
                         type="checkbox"
+                        value={formic.values.remember || false}
+                        onChange={formic.handleChange}
                       />
                       <label
                         className="label block text-gray-700 text-xs font-medium mt-1"
