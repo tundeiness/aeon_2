@@ -42,6 +42,7 @@ export const enableDisableInstitution = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
+      // throw Error('Something went wrong');
       return rejectWithValue(error.response.data);
     }
   },
