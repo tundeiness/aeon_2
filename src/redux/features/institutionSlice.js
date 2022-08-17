@@ -11,20 +11,19 @@ import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
-const NEW_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
-const EDIT_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Update';
-const DELETE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Create';
-const GET_ALL_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/RetrieveAll';
+const NEW_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/Create`;
+const EDIT_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/Update`;
+const DELETE_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/Create`;
+const GET_ALL_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/RetrieveAll`;
 const ENABLE_DISABLE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=';
-const SEARCH_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/Search';
+const SEARCH_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/Search`;
 
 export const getInstitution = createAsyncThunk(
   'institution/getInstitution',
   async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_AEON_URL}Institution/RetrieveAll`,
-        // GET_ALL_INSTITUTION_URL
+        GET_ALL_INSTITUTION_URL,
       );
       return response.data;
     } catch (error) {
