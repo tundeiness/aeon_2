@@ -22,7 +22,10 @@ export const getInstitution = createAsyncThunk(
   'institution/getInstitution',
   async () => {
     try {
-      const response = await axios.get(GET_ALL_INSTITUTION_URL);
+      const response = await axios.get(
+        `${process.env.REACT_APP_AEON_URL}Institution/RetrieveAll`,
+        // GET_ALL_INSTITUTION_URL
+      );
       return response.data;
     } catch (error) {
       return error.message;

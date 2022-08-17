@@ -77,82 +77,81 @@ const InstitutionList = () => {
   };
 
   console.log(getInstitutionCode);
+  console.log(process.env);
 
   const dataPerPage = 10;
   const dataPageVisited = pageNum * dataPerPage;
 
-  const displayData = institution
-    .slice(dataPageVisited, dataPageVisited + dataPerPage)
-    .map((datum, _idx) => (
-      // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
-      <>
-        <tr key={datum.id}>
-          <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
-          <td className="py-4 uppercase text-center">{datum.name}</td>
-          <td className="py-4 pr-4 pl-20">
+  const displayData = institution?.slice(dataPageVisited, dataPageVisited + dataPerPage)?.map((datum, _idx) => (
+    // <InstitutionExcerpt onClick={() => setIsOpen(true)} key={datum.id} institution={institution} />
+    <>
+      <tr key={datum.id}>
+        <td className="text-sm leading-5 py-4 px-3">{datum.id}</td>
+        <td className="py-4 uppercase text-center">{datum.name}</td>
+        <td className="py-4 pr-4 pl-20">
+          {datum.status === 'Active' ? (
+            <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
+              <GoPrimitiveDot className="text-white" />
+              {datum.status}
+            </span>
+          ) : (
+            <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
+              <GoPrimitiveDot className="text-white" />
+              {datum.status}
+            </span>
+          )}
+        </td>
+        <td className="py-4 pl-4">{datum.websiteUrl}</td>
+        <td className="py-4 pl-10">
+          <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
+            {datum.category}
+          </span>
+        </td>
+        <td className="py-4 px-6">
+          <span className="flex justify-between">
+            <Link
+              to="view-institution"
+              onClick={() => handleViewInstitution(datum.id)}
+            >
+              <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
+            </Link>
             {datum.status === 'Active' ? (
-              <span className="flex items-center bg-green-300 py-0.3 px-0.2 w-14 rounded-xl text-white">
-                <GoPrimitiveDot className="text-white" />
-                {datum.status}
+              <span
+                className="flex items-center cursor-pointer"
+              >
+                <BsDashSquare
+                  className="text-iconRed w-4 h-4 font-bold"
+                  onClick={() => {
+                    setIsOpen(true);
+                    setGetInstitutionCode(datum.code);
+                    setGetActive(datum.status);
+                    // handleEnableDisableInstitution(datum.code);
+                  }}
+                />
               </span>
             ) : (
-              <span className="flex items-center bg-red-400 py-0.3 px-0.2 w-16 rounded-xl text-white">
-                <GoPrimitiveDot className="text-white" />
-                {datum.status}
+              <span className="flex items-center cursor-pointer">
+                <BsCheck2Square
+                  className="text-iconGreen w-5 h-5 font-bold"
+                  onClick={() => {
+                    setIsOpen(true);
+                    setGetInstitutionCode(datum.code);
+                    setGetActive(datum.status);
+                  }}
+                />
               </span>
             )}
-          </td>
-          <td className="py-4 pl-4">{datum.websiteUrl}</td>
-          <td className="py-4 pl-10">
-            <span className="inline-block text-textTeams py-0.5 px-0.4 w-16 bg-indigo-50 rounded-lg text-center hover:cursor-pointer">
-              {datum.category}
-            </span>
-          </td>
-          <td className="py-4 px-6">
-            <span className="flex justify-between">
-              <Link
-                to="view-institution"
-                onClick={() => handleViewInstitution(datum.id)}
-              >
-                <HiOutlineEye className="view-icon hover:cursor-pointer w-5 h-5 text-searchColor" />
-              </Link>
-              {datum.status === 'Active' ? (
-                <span
-                  className="flex items-center cursor-pointer"
-                >
-                  <BsDashSquare
-                    className="text-iconRed w-4 h-4 font-bold"
-                    onClick={() => {
-                      setIsOpen(true);
-                      setGetInstitutionCode(datum.code);
-                      setGetActive(datum.status);
-                      // handleEnableDisableInstitution(datum.code);
-                    }}
-                  />
-                </span>
-              ) : (
-                <span className="flex items-center cursor-pointer">
-                  <BsCheck2Square
-                    className="text-iconGreen w-5 h-5 font-bold"
-                    onClick={() => {
-                      setIsOpen(true);
-                      setGetInstitutionCode(datum.code);
-                      setGetActive(datum.status);
-                    }}
-                  />
-                </span>
-              )}
-              <Link
-                to="edit-institution"
-                onClick={() => handleEditInstitution(datum.id)}
-              >
-                <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
-              </Link>
-            </span>
-          </td>
-        </tr>
-      </>
-    ));
+            <Link
+              to="edit-institution"
+              onClick={() => handleEditInstitution(datum.id)}
+            >
+              <FiEdit2 className="pen-icon hover:cursor-pointer w-5 h-5 text-penColor" />
+            </Link>
+          </span>
+        </td>
+      </tr>
+    </>
+  ));
 
   const pagingCount = Math.ceil(institution?.length / dataPerPage);
 
