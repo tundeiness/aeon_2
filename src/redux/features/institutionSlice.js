@@ -15,7 +15,7 @@ const NEW_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/Create
 const EDIT_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/Update`;
 const DELETE_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/Create`;
 const GET_ALL_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/RetrieveAll`;
-const ENABLE_DISABLE_INSTITUTION_URL = 'http://13.59.94.46/aeon/api/v1/Institution/EnableDisable?code=';
+const ENABLE_DISABLE_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/EnableDisable?code=`;
 const SEARCH_INSTITUTION_URL = `${process.env.REACT_APP_AEON_URL}Institution/Search`;
 
 export const getInstitution = createAsyncThunk(
