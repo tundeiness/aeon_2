@@ -1,9 +1,11 @@
 nav{
-  width: 17.5rem
+  /* width: 17.5rem */
+  width: 90%;
 }
 
 .active{
   background-color: #000B93;
+  width: 90%;
 }
 
 /*  */

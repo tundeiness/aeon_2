@@ -207,13 +207,18 @@ export const SideBarData = [
     icon: <FiUser key="7" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      // {
+      //   title: 'change-password',
+      //   path: '/profile',
+      //   icon: <GoPrimitiveDot />,
+      // },
+      {
+        title: 'kyc',
+        path: '/profile/kyc',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Log Out',

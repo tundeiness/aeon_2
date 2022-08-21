@@ -37,7 +37,7 @@ export const CardBodyLayout = (props) => {
   const { children } = props;
   return (
     <div className="w-4/5 ml-auto">
-      <section className="pt-3 pl-4 h-full bg-liteBlue pb-5">
+      <section className="pt-6 pl-4 bg-liteBlue pb-5">
         <div className="institution-wrapper overflow-y-auto p-8 h-full bg-white rounded-tl-3xl rounded-bl-3xl">
           {children}
         </div>

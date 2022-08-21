@@ -162,6 +162,9 @@ const CreditReport = lazy(() => import('./pages/ceid/credit-report'));
 const OCR = lazy(() => import('./pages/ceid/ocr'));
 const BusinessSearch = lazy(() => import('./pages/ceid/business-name'));
 const IdentityCheck = lazy(() => import('./pages/ceid/identity-check'));
+const ForgotPassword = lazy(() => import('./pages/new-password/new-password'));
+const ChangePassword = lazy(() => import('./pages/profile/change-password/change-password'));
+const Kyc = lazy(() => import('./pages/profile/kyc/kyc'));
 
 // const DashboardView = lazy(() => import('./pages/layout/dashboard/dashboard'));
 // const InstitutionView = lazy(() => import('./pages/institutions/institutions'));
@@ -244,6 +247,9 @@ const MainRoutes = () => {
           <Route path="ce-id/credit-report" element={<CreditReport />} />
           <Route path="ce-id/ocr" element={<OCR />} />
           <Route path="/ce-id/business-name" element={<BusinessSearch />} />
+
+          <Route path="profile" element={<ChangePassword />} />
+          <Route path="/profile/kyc" element={<Kyc />} />
           {/* <Route path="ce-id/identity-check" element={<IdentityCheck />} /> */}
         </Route>
         {/* <Route
