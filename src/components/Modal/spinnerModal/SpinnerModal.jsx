@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import ReactPortal from '../../ReactPortal/ReactPortal';
 import { CircleCheckIcon } from '../../../data/Dummy';
 
-const ActivateModal = ({ isOpen, handleClose }) => {
+const SpinnerModal = ({ isOpen, handleClose }) => {
   if (!isOpen) return null;
 
   useEffect(() => {
@@ -65,4 +65,4 @@ const ActivateModal = ({ isOpen, handleClose }) => {
     </ReactPortal>
   );
 };
-export default ActivateModal;
+export default SpinnerModal;

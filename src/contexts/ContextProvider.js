@@ -6,10 +6,16 @@ import React, {
   createContext, useContext, useState, Navigate,
 } from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectInstitutionById,
+} from '../redux/features/institutionSlice';
+
 const initialState = {
   // serverStatus: false,
   modal: false,
   edit: false,
+  id: null,
 };
 
 const StateContext = createContext(null);
@@ -21,14 +27,31 @@ export const ContextProvider = ({ children }) => {
   const [isClicked, setIsClicked] = useState(initialState);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isOnline, setIsOnline] = useState(false);
+  const [singleInstitution, setSingleInstitution] = useState(null);
 
   const [userInfo, setUserInfo] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
+  const [getItemId, setGetItemId] = useState(null);
+  const [getInstitutionId, setGetInstitutionId] = useState(null);
+  const [getProductByCode, setGetProductByCode] = useState(null);
+  const [getUserByUserId, setGetUserByUserId] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [activeUser, setActiveUser] = useState(null);
+  const [getInstitutionCode, setGetInstitutionCode] = useState(null);
+  const [getProductCode, setGetProductCode] = useState(null);
+  const [getActiveProduct, setGetActiveProduct] = useState(null);
+  const [getActive, setGetActive] = useState(null);
 
   const [user, setUser] = useState(null);
-  // const navigate = useNavigate();
 
   const [isAuthenticated, seIsAuthenticated] = useState(false);
+
+  // const iData = useSelector((state) => selectInstitutionById(state, id));
+  //  return iData;
+
+  const handleViewInstitution = (id) => {
+    setSingleInstitution(useSelector((state) => selectInstitutionById(state, id)));
+  };
 
   const handleClick = (clicked) => {
     setIsClicked({ ...initialState, [clicked]: true });
@@ -94,6 +117,28 @@ export const ContextProvider = ({ children }) => {
         setIsAuth,
         login,
         logout,
+        handleViewInstitution,
+        singleInstitution,
+        getItemId,
+        setGetItemId,
+        getInstitutionId,
+        setGetInstitutionId,
+        getProductByCode,
+        setGetProductByCode,
+        getUserByUserId,
+        setGetUserByUserId,
+        getInstitutionCode,
+        setGetInstitutionCode,
+        getActive,
+        setGetActive,
+        getProductCode,
+        setGetProductCode,
+        getActiveProduct,
+        setGetActiveProduct,
+        userId,
+        setUserId,
+        activeUser,
+        setActiveUser,
       }}
     >
       {children}

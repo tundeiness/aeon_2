@@ -15,9 +15,12 @@ import { RiDeleteBinLine, RiCheckboxIndeterminateLine } from 'react-icons/ri';
 import { BiHomeAlt, BiFile, BiPlus } from 'react-icons/bi';
 import { ImStack } from 'react-icons/im';
 import { MdLogout, MdOutlineIndeterminateCheckBox } from 'react-icons/md';
-import { AiOutlineIdcard } from 'react-icons/ai';
+import { AiOutlineIdcard, AiOutlineCalendar } from 'react-icons/ai';
 import { IoWarningOutline } from 'react-icons/io5';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
+import { HiOutlineEye } from 'react-icons/hi';
+
+import { logout } from '../redux/features/auth/authSlice';
 
 export const Dummy = () => {
   const test = 0;
@@ -25,6 +28,20 @@ export const Dummy = () => {
     <div>dummy</div>
   );
 };
+
+export const SearchElement = () => (
+  <>
+    {' '}
+    <FiSearch className="text-lg text-buttonTwo" />
+  </>
+);
+
+export const CalendarElement = () => (
+  <span className="inline-block absolute top-10 left-3 z-10">
+    {' '}
+    <AiOutlineCalendar />
+  </span>
+);
 
 export const DangerIcon = {
   title: 'Danger',
@@ -83,6 +100,13 @@ export const CreateIcon = [{
   symbol: <FiEdit2 />,
 }];
 
+export const EyeIcon = [
+  {
+    title: 'View',
+    symbol: <HiOutlineEye />,
+  },
+];
+
 export const iconArray = [
   ['dashboard', <BiHomeAlt key="0" />],
   ['institution', <FiBarChart2 key="1" />],
@@ -110,7 +134,7 @@ export const SideBarData = [
     iconOpen: <CgChevronUp />,
     subnav: [
       {
-        title: 'Create',
+        title: 'Create Institution',
         path: '/institutions/create-institution',
         icon: <GoPrimitiveDot />,
       },
@@ -122,13 +146,13 @@ export const SideBarData = [
     icon: <ImStack key="2" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Create Product',
+        path: '/products/create-product',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Users',
@@ -136,27 +160,37 @@ export const SideBarData = [
     icon: <BsCheck2Square key="3" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Create User',
+        path: '/users/create-user',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'Accounts',
-    path: '/accounts',
+    path: 'accounts/daily-utilization',
     icon: <FiFlag key="4" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Posts',
+        path: '/accounts/posts',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'Statement',
+        path: '/accounts/account-statement',
+        icon: <GoPrimitiveDot />,
+      },
+      // {
+      //   title: 'Daily Utilisation',
+      //   path: '/accounts/daily-utilisation',
+      //   icon: <GoPrimitiveDot />,
+      // },
+    ],
   },
   {
     title: 'Reports',
@@ -164,13 +198,18 @@ export const SideBarData = [
     icon: <BiFile key="5" className="xl:w-6 xl:h-7" />,
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
-    // subnav: [
-    //   {
-    //     title: 'Create',
-    //     path: '/layout/institution/create-institution',
-    //     icon: <GoPrimitiveDot />,
-    //   },
-    // ],
+    subnav: [
+      {
+        title: 'Transaction',
+        path: '/reports/transaction',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'API Usage',
+        path: '/reports/api-usage',
+        icon: <GoPrimitiveDot />,
+      },
+    ],
   },
   {
     title: 'CE-ID',
@@ -179,11 +218,11 @@ export const SideBarData = [
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
     subnav: [
-      // {
-      //   title: 'Identity-Check',
-      //   path: '/ce-id/identity-check',
-      //   icon: <GoPrimitiveDot />,
-      // },
+      {
+        title: 'Identity-Check',
+        path: '/ce-id/identity-check',
+        icon: <GoPrimitiveDot />,
+      },
       {
         title: 'Credit-Report',
         path: '/ce-id/credit-report',
@@ -197,6 +236,25 @@ export const SideBarData = [
       {
         title: 'Business-Name',
         path: '/ce-id/business-name',
+      },
+      {
+        title: 'KYC',
+        path: '/ce-id/kyc',
+        icon: <GoPrimitiveDot />,
+      },
+      // {
+      //   title: 'Bank Statement',
+      //   path: '/ce-id/statement',
+      //   icon: <GoPrimitiveDot />,
+      // },
+      {
+        title: 'Credit Report',
+        path: '/ce-id/report',
+        icon: <GoPrimitiveDot />,
+      },
+      {
+        title: 'OCR',
+        path: '/ce-id/ocr',
         icon: <GoPrimitiveDot />,
       },
     ],
@@ -208,11 +266,12 @@ export const SideBarData = [
     iconClosed: <CgChevronDown />,
     iconOpen: <CgChevronUp />,
     subnav: [
-      // {
-      //   title: 'change-password',
-      //   path: '/profile',
-      //   icon: <GoPrimitiveDot />,
-      // },
+
+      {
+        title: 'change-password',
+        path: '/profile',
+        icon: <GoPrimitiveDot />,
+      },
       {
         title: 'kyc',
         path: '/profile/kyc',
@@ -220,9 +279,23 @@ export const SideBarData = [
       },
     ],
   },
-  {
-    title: 'Log Out',
-    path: '/log-out',
-    icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
-  },
+  // {
+  //   title: 'Log Out',
+  //   path: '/log-out',
+  //   icon: <MdLogout key="8" className="xl:w-6 xl:h-7" />,
+  //   iconClosed: <CgChevronDown />,
+  //   iconOpen: <CgChevronUp />,
+  //   subnav: [
+  //     {
+  //       title: 'Update KYB',
+  //       path: '/profile/update-kyb',
+  //       icon: <GoPrimitiveDot />,
+  //     },
+  //     {
+  //       title: 'Change Password',
+  //       path: '/profile/change-password',
+  //       icon: <GoPrimitiveDot />,
+  //     },
+  //   ],
+  // },
 ];

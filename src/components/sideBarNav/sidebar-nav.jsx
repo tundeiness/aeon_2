@@ -3,48 +3,63 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { Link, useLocation, Navlink } from 'react-router-dom';
-import { BiHomeAlt, BiFile } from 'react-icons/bi';
-import { FiBarChart2, FiFlag, FiUser } from 'react-icons/fi';
-import { ImStack } from 'react-icons/im';
-import { BsCheck2Square } from 'react-icons/bs';
+import React, { useState, useEffect } from 'react';
+import {
+  Link, useLocation, useNavigate,
+} from 'react-router-dom';
+import { useFormik } from 'formik';
 import { MdLogout } from 'react-icons/md';
-import { AiOutlineIdcard } from 'react-icons/ai';
-import { CgChevronDown } from 'react-icons/cg';
+import { useSelector, useDispatch } from 'react-redux';
 import Submenu from './Submenu/SubMenu';
 import { SideBarData } from '../../data/Dummy';
-// import Logo from '../../static/assets/img/logo-white.png';
 import Logo from '../../static/assets/img/logo-white.png';
 import './sidebarnav.css';
 
-// const NavLink = ({
-//   to, className, activeClassName, inactiveClassName, ...rest
-// }) => {
-//   const location = useLocation();
-//   const isActive = location.pathname === to;
-
-//   const allClassNames = className + (isActive ? `${activeClassName}` : `${inactiveClassName}`);
-//   return (
-//     <link className={allClassNames} to={to} {...rest} />);
-// };
+import { logout } from '../../redux/features/auth/authSlice';
 
 const SidebarNav = () => {
   const location = useLocation();
+  // const navigate = useNavigate();
   const isActive = location.pathname;
   const [isOpen, setIsOpen] = useState(false);
   const [defaultHome, setDefaultHome] = useState('dashboard');
   const [pathlink, setPathlink] = useState(isActive);
 
   const transformIcon = 'w-4 h-4 inline-block cursor-pointer origin-center rotate-180';
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const switchDefaultHome = (linkName) => {
     setDefaultHome(linkName);
   };
 
+  const {
+    user, isLoading, isError, isSuccess, message,
+  } = useSelector(
+    (state) => state.auth,
+  );
+
   const handleMenuDrawer = () => {
     setIsOpen(!isOpen);
   };
+
+  // const user = localStorage.getItem('user');
+
+  const handleLogOut = () => {
+    dispatch(logout());
+    localStorage.clear();
+    navigate('/');
+  };
+
+  useEffect(() => {
+    // dispatch(logout()).then(() => {
+    //   navigate('/', { replace: true });
+    // });
+    // dispatch(logout());
+    // navigate('/', { replace: true });
+    // if (isSuccess) {
+    //   navigate('/', { replace: true });
+    // }
+  }, []);
 
   console.log(isActive);
 
@@ -54,10 +69,7 @@ const SidebarNav = () => {
     // <aside className="flex flex-col h-screen bg-link text-white space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out md:relative md:-translate-x-0">
     <aside className="fixed w-1/5 min-h-screen inset-0 bg-liteBlue text-white">
       <div className="logo-wrapper">
-        <Link
-          to="/dashboard/*"
-          className="inline-block xl:ml-9 xl:mt-9"
-        >
+        <Link to="/dashboard/*" className="inline-block xl:ml-9 xl:mt-9">
           <img src={Logo} alt="brand-logo" className="xl:w-40 xl:h-10" />
         </Link>
       </div>
@@ -73,6 +85,33 @@ const SidebarNav = () => {
               <Submenu item={child} key={child.id} className="py-2" />
             </li>
           ))}
+
+          {/* <form
+            className="outline outline-red-500 py-3 px-4"
+            onSubmit={formic.handleSubmit}
+          >
+            <button className="flex flex-row" type="submit">
+              <MdLogout className="xl:w-6 xl:h-7" />
+              <span className="inline-block pl-2">Log Out</span>
+            </button>
+          </form> */}
+          <li
+            className="flex items-center space-x-1 py-3 px-4 hover:bg-linkDeep rounded transition duration-200"
+            onClick={handleLogOut}
+            role="presentation"
+          >
+            <MdLogout className="xl:w-6 xl:h-7" />
+            <button
+              type="button"
+              // to="/"
+              className="inline-block rounded font-medium leading-6 text-indigo-100 "
+              activeClassName="bg-authBtn"
+              onClick={handleLogOut}
+            >
+              Log Out
+            </button>
+          </li>
+          {/* flex items-center mt-2 mb-1 py-1 pl-5 */}
           {/* <li
             className={`flex items-center space-x-3 py-3 px-4 hover:bg-authBtn rounded transition duration-200 ${
               pathlink === '/layout/dashboard' ? 'bg-authBtn' : ''
@@ -96,7 +135,6 @@ const SidebarNav = () => {
               </span>
             </span>
           </li> */}
-
           {/* <li> */}
           {/* <span className="relative flex flex-row items-center">
               <FiBarChart2 className="xl:w-6 xl:h-7" />
@@ -166,7 +204,6 @@ const SidebarNav = () => {
               </ul>
             )} */}
           {/* </li> */}
-
           {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 rounded transition duration-200 ${
               defaultHome === 'products' ? 'bg-authBtn' : ''
@@ -188,7 +225,6 @@ const SidebarNav = () => {
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
           </li> */}
-
           {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'users' ? 'bg-authBtn' : ''
@@ -210,7 +246,6 @@ const SidebarNav = () => {
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
           </li> */}
-
           {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'accounts' ? 'bg-authBtn' : ''
@@ -232,7 +267,6 @@ const SidebarNav = () => {
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
           </li> */}
-
           {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'reports' ? 'bg-authBtn' : ''
@@ -254,7 +288,6 @@ const SidebarNav = () => {
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
           </li> */}
-
           {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'ce-id' ? 'bg-authBtn' : ''
@@ -276,7 +309,6 @@ const SidebarNav = () => {
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
           </li> */}
-
           {/* <li
             className={`flex justify-between items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'profile' ? 'bg-authBtn' : ''
@@ -298,7 +330,6 @@ const SidebarNav = () => {
             </span>
             <CgChevronDown className="sub-arrow text-white w-4 h-4 inline-block cursor-pointer" />
           </li> */}
-
           {/* <li
             className={`flex items-center space-x-3 py-3 px-4 hover:bg-linkDeep rounded transition duration-200 ${
               defaultHome === 'log out' ? 'bg-authBtn' : ''

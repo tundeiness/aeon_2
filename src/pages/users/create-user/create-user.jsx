@@ -27,6 +27,14 @@ const CreateUser = () => {
   const dispatch = useDispatch();
   const institutions = useSelector(selectAllInstitutions);
 
+  const optionDataNewUser = institutions.map((institution) => (
+    <option
+      key={institution.id}
+      value={institution.code}
+      label={institution.name}
+    />
+  ));
+
   // const handleCreateInstitution = (value) => {
   //   dispatch(createInstitution({ value }));
   // };
@@ -71,6 +79,19 @@ const CreateUser = () => {
       //   `You have loggedin succesfully! Email: ${values.notificationEmail}`,
       // );
       // console.log(values);
+      const othernames = values.first_name;
+      const lastname = values.last_name;
+      const { email } = values;
+      const roleCode = '';
+      const phoneNumber = values.phone;
+
+      const userData = {
+        email,
+        othernames,
+        roleCode,
+        phoneNumber,
+        lastname,
+      };
       resetForm(values);
     },
   });
@@ -303,12 +324,13 @@ const CreateUser = () => {
                     <option value="" label="Select Institution">
                       Select Institution
                     </option>
-                    <option value="PrePaid" label=" PrePaid">
+                    {/* <option value="PrePaid" label=" PrePaid">
                       PrePaid
                     </option>
                     <option value="PostPaid" label="PostPaid">
                       PostPaid
-                    </option>
+                    </option> */}
+                    {optionDataNewUser}
                   </select>
                 </div>
 
