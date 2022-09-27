@@ -10,11 +10,11 @@ import * as Yup from 'yup';
 import { CardLayout, Title, CardBodyLayout } from '../ceid/HelperFunctions';
 
 const validate = Yup.object().shape({
-  currentPass: Yup.string().required(),
-  newPass: Yup.string().required(),
-  confirmPass: Yup.string().required().oneOf([Yup.ref('newPass')], 'Your passwords do not match.'),
+  currentPass: Yup.string().required('Password is required'),
+  newPass: Yup.string().required('Type your new password'),
+  confirmPass: Yup.string().required('Please, confirm your password').oneOf([Yup.ref('newPass')], 'Your passwords do not match.'),
 });
-const correctPassword = '12328285';
+const correctPassword = '12';
 const notify = () => toast('You have successfully updated your password');
 function ChangePassword() {
   const [show, setShow] = useState(true);
@@ -22,6 +22,7 @@ function ChangePassword() {
   const [newp, setNew] = useState('password');
   const [confirm, setConfirm] = useState('password');
   const [success, setSuccess] = useState(false);
+  const [wrongPassword, setWrongPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -31,8 +32,12 @@ function ChangePassword() {
     },
     validationSchema: validate,
     onSubmit: (values) => {
+      if (values.currentPass !== correctPassword) {
+        return setWrongPassword(true);
+      }
       console.log(values);
       setSuccess(true);
+      return toast.success('Password reset was successfull');
     },
   });
   return (
@@ -64,6 +69,7 @@ function ChangePassword() {
                       {formik.errors.currentPass}
                     </div>
                   ) : null }
+                  {wrongPassword ? <div className="text-red-500 text-sm"> Wrong password, try again </div> : null}
                 </div>
 
                 <label htmlFor="newPass" className="block text-sm font-medium text-gray-900 dark:text-gray-300">New Password</label>
@@ -118,6 +124,7 @@ function ChangePassword() {
           </CardLayout>
         </CardBodyLayout>
       </div>
+      <Toaster />
     </>
 
   );
