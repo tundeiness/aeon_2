@@ -1,0 +1,44 @@
+.previous{
+  margin-right: 15rem;
+}
+
+.next{
+  margin-left: 15rem;
+}
+
+.previousButton::before{
+  content:"\2190";
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.previousButton{
+  border: 1px grey solid;
+  padding-left: 12px;
+  padding-right:12px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  border-radius: 0.4rem;
+}
+
+.nextButton{
+  border: 1px grey solid;
+  padding-left: 12px;
+  padding-right:12px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  border-radius: 0.4rem;
+}
+
+.nextButton::after{
+  content:"\2192";
+  padding-left: 5px;
+  font-weight: bold;
+}
+
+.paginationActive{
+  /* border: 1px grey solid; */
+  padding: 2px 10px;
+  border-radius: 0.4rem;
+  background-color: rgba(75,0, 130, 0.1)
+}

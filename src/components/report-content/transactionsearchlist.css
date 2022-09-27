@@ -1,0 +1,79 @@
+
+.pagination-button > ul{
+  display: flex;
+  /* justify-content:space-around; */
+}
+
+
+.previous{
+  margin-right: 15rem;
+}
+
+.next{
+  margin-left: 15rem;
+}
+
+.previousButton::before{
+  content:"\2190";
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.previousButton{
+  border: 1px grey solid;
+  padding-left: 12px;
+  padding-right:12px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  border-radius: 0.4rem;
+}
+
+.nextButton{
+  border: 1px grey solid;
+  padding-left: 12px;
+  padding-right:12px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  border-radius: 0.4rem;
+}
+
+.nextButton::after{
+  content:"\2192";
+  padding-left: 5px;
+  font-weight: bold;
+}
+
+.paginationActive{
+  /* border: 1px grey solid; */
+  padding: 2px 10px;
+  border-radius: 0.4rem;
+  background-color: rgba(75,0, 130, 0.1)
+}
+
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+
+input[type="date"]::before {
+  content: attr(placeholder);
+  position: absolute;
+  color: #999999;
+}
+
+input[type="date"] {
+  color: #ffffff;
+}
+
+input[type="date"]:focus,
+input[type="date"]:valid {
+  color: #666666;
+}
+
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+  content: "";
+}

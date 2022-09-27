@@ -1,0 +1,25 @@
+nav{
+  width: 17.5rem
+}
+
+.sub-arrow{
+  /* content: '\203A'; */
+  /* margin-left: 10px; */
+  /* transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);  */
+}
+
+.sub-menu{
+ 
+}
+
+.sub-menu-deactivate{
+   display: none;
+}
+
+.cut-out-label{
+  color: #2a2a2a;
+  font-size: 13px;
+  line-height: 15.73px;
+}
